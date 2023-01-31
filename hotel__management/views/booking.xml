@@ -1,0 +1,130 @@
+<odoo>
+    <record model="ir.ui.view" id="hotel_booking_search">
+        <field name="name">booking</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="sequence"/>
+                <field name="room_id" string="room_no"/>
+                <field name="partner_id" string="guest"/>
+                <separator/>
+                <group expand="1" string="Group By">
+                    <filter string="room" name='room' context="{'group_by':'room_id'}"/>
+                    <filter string="room type" name='room_type' context="{'group_by':'bed_type'}"/>
+                    <filter string="state" name='state' context="{'group_by':'state'}"/>
+                </group>
+                <separator/>
+                <filter name="current checkout" string="current checkout" domain="[('current_check_out', '=', True)]"/>
+                <!-- <filter name="nextday checkout" string="nextday checkout" domain="[('nextday_check_out', '=', '1')]"/>-->
+                <filter name="checkin" string="checkin" domain="[('state', '=', 'check_in')]"/>
+
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hotel_list_booking">
+        <field name="name">Accommodation</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <tree decoration-warning="current_check_out == True "
+                  decoration-danger="current_check_out == True and state != 'check_out'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="room_id"/>
+                <field name="check_in"/>
+                <field name="bed_type" invisible="1"/>
+                <field name="state" widget="label_selection"/>
+                <field name="current_check_out" invisible="1"/>
+                <field name="nextday_check_out" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hotel_form_booking">
+        <field name="name">hotel</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_check_in" type="object" string="Check In" states="draft"
+                            class="oe_highlight"/>
+                    <button name="action_check_out" type="object" string="Check Out" states="check_in"
+                            class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="check_in,check_out,draft"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Paid" bg_color="bg-danger"
+                            attrs="{'invisible': [('state', '!=', 'paid')]}"/>
+
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="partner_id"
+                                   context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                   options="{&quot;always_reload&quot;: True}"
+                                   attrs="{'readonly': [('state', 'in', ('check_in', 'check_out'))]}"/>
+                            <field name="check_in" attrs="{'readonly': [('state', 'in', ('check_in', 'check_out'))]}"/>
+                            <field name="expected_days"
+                                   attrs="{'invisible': [('state','not in',['draft','check_in'])], 'readonly': [('state', 'in', ('check_in', 'check_out'))]}"/>
+                            <field name="expected_checkout" attrs="{'invisible': [('state','!=','check_in')]}"/>
+                            <field name="check_out" attrs="{'invisible': [('state','in',['draft','check_in'])]}"/>
+                            <field name="number_person"
+                                   attrs="{'readonly': [('state', 'in', ('check_in', 'check_out'))]}"/>
+                        </group>
+                        <group>
+                            <field name="room_id" domain="[('state','=','available')]"
+                                   attrs="{'readonly': [('state', 'in', ('check_in', 'check_out'))]}"/>
+                            <field name="bed_type" attrs="{'readonly': [('state', 'in', ('check_in', 'check_out'))]}"/>
+                            <field name="facility_ids" widget="many2many_tags"/>
+                            <field name="current_check_out" invisible="1"/>
+                            <field name="nextday_check_out" invisible="1"/>
+                            <field name="total_food" invisible="1"/>
+                            <field name="order_ref" invisible="1"/>
+                            <field name="partner" invisible="1"/>
+                            <field name="room_name" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook string="Guest">
+                        <page string="Guests">
+                            <field name="add_guests">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="age"/>
+                                    <field name="gender"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="age"/>
+                                        <field name="gender"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Payment">
+                            <field name="food_id">
+                                <tree>
+
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="price"/>
+                                    <field name="sub_total_price" sum="total"/>
+                                </tree>
+                            </field>
+                            <div string='Total' align="right">
+                                <field name="payment" string="Room Rent"
+                                       attrs="{'invisible': [('state','in','draft')]}"/>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>
