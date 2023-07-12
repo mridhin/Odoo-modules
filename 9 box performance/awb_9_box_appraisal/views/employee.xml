@@ -1,0 +1,44 @@
+<odoo>
+      <record id="inherit_employee_form_view" model="ir.ui.view">
+            <field name="name">inherit.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='hr_settings']" position="after">
+                    <page string="9 Box Appraisal">
+                            <group  string="Current Appraisal">
+                                <field name="period_id"/>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="start_date"/>
+                                </group>
+                                <group>
+                                    <field name="end_date"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="category"/>
+                            </group>
+                          <group>
+                              <group>
+                                  <field name="potential_field"/>
+                              </group>
+                              <group>
+                                  <field name="performance_field"/>
+                              </group>
+                          </group>
+                        <field name="appraisal_value_id">
+                            <tree>
+                                <field name="name"/>
+                                <field name="category"/>
+                                <field name="potential"/>
+                                <field name="performance"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+</odoo>

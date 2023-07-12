@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="blog_topic2.CustomerOrderSummary" owl="1">
+        <div style="width: 100%; padding-top: 10px;">
+        <div class="o_dynamic_dashboard"
+             style="width: 20%; height: 100%; float: left; background: ; margin-left: 10%;">
+            <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>Employee List</h5>
+                            </div>
+                        </div>
+
+                    </div>
+
+                <ul>
+                       <t t-foreach="partner" t-as="widget">
+                            <li draggable="true" ondragstart="drag(event)"
+                                t-att-title="partner[widget].id"
+                                t-att-id="partner[widget].employee_id">
+                                 <t t-esc="partner[widget].name"/>
+                            </li>
+                    </t>
+                               </ul>
+        </div>
+<!--            <div class="box arrow-right" style="margin-top: 115%;transform: rotate(270deg); ">-->
+<!--  POTENTIAL-->
+<!--</div>-->
+        </div>
+<div class="box arrow-right" style="margin-left: 5%;position: absolute;margin-top: 22%;transform: rotate(270deg);">
+  POTENTIAL
+</div>
+<!--            <div class="box arrow-right" style="transform: rotate(270deg);">-->
+<!--  Potential-->
+<!--</div>-->
+
+            <div style="height: auto; background: ; width: 1000%; margin-left:500px ; padding-left:50px">
+
+
+
+            <div class="row">
+                 <div class="card1" style="height:240px; width:250px;"
+                      id="item1" draggable="true"
+                      ondrop="drop1(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>Potential Gem</h4>
+
+                    </div>
+                     <div class="card-body mt-3" id="in_ex_body_hide"
+                          onclick="myFunction3()">
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-12">
+                                High Potential/Low Performance
+                               <ul class="dest-list1" id="super_list1">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="card-footer">
+
+                           <div class="row">
+                               <button style="margin:auto;"
+                                       class="btn list_potential_gem"
+                                       type="button">List
+            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card2" style="height:240px; width:250px;" id="item2"
+                     draggable="true"
+                     ondrop="drop2(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>High Potential</h4>
+
+                    </div>
+                    <div class="card-body mt-3" id="in_ex_body_hide"
+                         onclick="showhighpotential()">
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-12">
+                                 High Potential/Moderate Performance
+                               <ul class="dest-list2" id="super_list2">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+
+                           <div class="row">
+                               <button style="margin:auto;"
+                                       class="btn list_high_potential"
+                                       type="button">List
+            </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card3" style="height:240px; width:250px;" id="item3"
+                     draggable="true"
+                     ondrop="drop3(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>Star</h4>
+
+                    </div>
+                    <div class="card-body mt-3" id="in_ex_body_hide"
+                         onclick="showstar()">
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-12">
+                                 High Potential/High Performance
+                               <ul class="dest-list3" id="super_list3">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+
+                           <div class="row">
+<!--                    <button style="margin-left:50px;" class="btn show_star"-->
+                               <!--                            type="button">Show-->
+                               <!--            </button>-->
+                               <!--                               <button class="btn hide_star" type="button">Hide-->
+                               <!--            </button>-->
+                               <button style="margin:auto;"
+                                       class="btn list_star"
+                                       type="button">List
+            </button>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                 <div class="card4" style="height:240px; width:250px;"
+                      id="item4" draggable="true"
+                      ondrop="drop4(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>Inconsistent Player</h4>
+
+                    </div>
+                     <div class="card-body mt-3" id="in_ex_body_hide"
+                          onclick="showinconsistent()">
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-12">
+                                 Moderate Potential/Low Performance
+                               <ul class="dest-list4" id="super_list4">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="card-footer">
+
+                           <div class="row">
+<!--                    <button style="margin-left:50px;" class="btn show_inconsistent"-->
+                               <!--                            type="button">Show-->
+                               <!--            </button>-->
+                               <!--                               <button class="btn hide_inconsistent" type="button">Hide-->
+                               <!--            </button>-->
+                               <button style="margin:auto;"
+                                       class="btn list_inconsistent"
+                                       type="button">List
+            </button>
+
+                        </div>
+                    </div>
+                </div>
+                    <div class="card5" style="height:240px; width:250px;"
+                         id="item5" draggable="true"
+                         ondrop="drop5(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>Core Player</h4>
+
+                    </div>
+                        <div class="card-body mt-3" id="in_ex_body_hide"
+                             onclick="showcore()">
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-12">
+                                 Moderate Potential/Moderate Performance
+                               <ul class="dest-list4" id="super_list4">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="card-footer">
+
+                           <div class="row">
+<!--                    <button style="margin-left:50px;" class="btn show_core"-->
+                               <!--                            type="button">Show-->
+                               <!--            </button>-->
+                               <!--                               <button class="btn hide_core" type="button">Hide-->
+                               <!--            </button>-->
+                               <button style="margin:auto;"
+                                       class="btn list_core"
+                                       type="button">List
+            </button>
+
+                        </div>
+                    </div>
+                </div>
+                    <div class="card6" style="height:240px; width:250px;"
+                         id="item6" draggable="true"
+                         ondrop="drop6(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>High Performer</h4>
+
+                    </div>
+                        <div class="card-body mt-3" id="in_ex_body_hide"
+                             onclick="showhigh()">
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-12">
+                                 Moderate Potential/High Performance
+                               <ul class="dest-list6" id="super_list6">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="card-footer">
+
+                           <div class="row">
+<!--                    <button style="margin-left:50px;" class="btn show_high"-->
+                               <!--                            type="button">Show-->
+                               <!--            </button>-->
+                               <!--                               <button class="btn hide_high" type="button">Hide-->
+                               <!--            </button>-->
+                               <button style="margin:auto;"
+                                       class="btn list_high"
+                                       type="button">List
+            </button>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                 <div class="card7" style="height:240px; width:250px;"
+                      id="item7" draggable="true"
+                      ondrop="drop7(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>Risk</h4>
+
+                    </div>
+                     <div class="card-body mt-3" id="in_ex_body_hide"
+                          onclick="showrisk()">
+                        <div class="row" style="text-align:center">
+                            <div class="col-md-12">
+                                 Low Potential/
+                                Low Performance
+                               <ul class="dest-list7" id="super_list7">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="card-footer">
+
+                           <div class="row">
+<!--                    <button style="margin-left:50px;" class="btn show_risk"-->
+                               <!--                            type="button">Show-->
+                               <!--            </button>-->
+                               <!--                               <button class="btn hide_risk" type="button">Hide-->
+                               <!--            </button>-->
+                               <button style="margin:auto;"
+                                       class="btn list_risk"
+                                       type="button">List
+            </button>
+
+                        </div>
+                    </div>
+                </div>
+                    <div class="card8" style="height:240px; width:250px;"
+                         id="item8" draggable="true"
+                         ondrop="drop8(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>Average Performer</h4>
+
+                    </div>
+                        <div class="card-body mt-3" id="in_ex_body_hide"
+                             onclick="showaverage()">
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-12">
+                                Low Potential/Moderate Performance
+                               <ul class="dest-list8" id="super_list8">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="card-footer">
+
+                           <div class="row">
+<!--                    <button style="margin-left:50px;" class="btn show_average"-->
+                               <!--                            type="button">Show-->
+                               <!--            </button>-->
+                               <!--                               <button class="btn hide_average" type="button">Hide-->
+                               <!--            </button>-->
+                               <button style="margin:auto;"
+                                       class="btn list_average"
+                                       type="button">List
+            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                    <div class="card9" style="height:240px; width:250px;"
+                         id="item9" draggable="true"
+                         ondrop="drop9(event)" ondragover="allowDrop(event)">
+                    <div class="card-header" style="text-align: center;">
+
+                            <h4>Solid Performer</h4>
+
+                    </div>
+                        <div class="card-body mt-3" id="in_ex_body_hide"
+                             onclick="showsolid()">
+                        <div class="row" style="text-align:center">
+                            <div class="col-md-12">
+                                Low Potential/High Performance
+                               <ul class="dest-list9" id="super_list9">
+
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="card-footer">
+
+                           <div class="row">
+<!--                    <button style="margin-left:50px;" class="btn show_solid"-->
+                               <!--                            type="button">Show-->
+                               <!--            </button>-->
+                               <!--                               <button class="btn hide_solid" type="button">Hide-->
+                               <!--            </button>-->
+                               <button style="margin:auto;"
+                                       class="btn list_solid"
+                                       type="button">List
+            </button>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+            <div class="box arrow-right">
+  PERFORMANCE
+</div>
+                             </div>
+
+        </div>
+
+    </div>
+    </t>
+    <t t-name="employeelist">
+
+        <t t-foreach="widget" t-as="widget">
+            <div t-att-title="title" class="box10" t-att-id="widget.id"
+                 draggable="true" ondragstart="drag(event)">
+                <h2 class="employeename" t-att-id="title"><t t-esc="widget.name"/></h2>
+            </div>
+        </t>
+    </t>
+
+    <t t-name="potentialgem">
+            <div class="box11" t-att-id="id" t-att-title="title"
+                 draggable="true" ondragstart="dragpotentialgem(event)"
+            >
+                <h2><t t-esc="widget"/></h2>
+            </div>
+    </t>
+    <t t-name="potential_gem" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>Potential Gem</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closepotential()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+
+                    </div>
+            <ul class="potential_gem_ul">
+               <t t-foreach="potential_gem" t-as="widget">
+
+                       <li t-att-title="potential_gem[widget].employee_period_id[0]"
+                           t-att-class="potential_gem[widget].appraisal_name[2]"
+                           t-att-id="potential_gem[widget].name[0]"
+                           draggable="true"
+                           ondragstart="dragpotentialgem(event)">
+                           <t t-esc="potential_gem[widget].name[1]"/>
+                           <button class="btn"
+                                   onclick="removepotentialdiv(event)"><i t-att-id="potential_gem[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+
+
+               </t>
+        </ul>
+        </div>
+
+    </t>
+    <t t-name="high_potential" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>High Potential</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closehigh()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+
+                    </div>
+            <ul class="high_potential_ul">
+               <t t-foreach="high_potential" t-as="widget">
+
+                       <li t-att-title="high_potential[widget].employee_period_id[0]"
+                           t-att-id="high_potential[widget].name[0]"
+                           draggable="true"
+                           ondragstart="draghighpotential(event)">
+                           <t t-esc="high_potential[widget].name[1]"/>
+                           <button class="btn" onclick="removehighdiv(event)"><i t-att-id="high_potential[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+
+
+               </t>
+        </ul>
+        </div>
+    </t>
+    <t t-name="star" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>Star</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closestar()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+
+                    </div>
+            <ul class="star_ul">
+               <t t-foreach="star" t-as="widget">
+
+                       <li t-att-title="star[widget].employee_period_id[0]"
+                           t-att-id="star[widget].name[0]"
+                           draggable="true" ondragstart="dragstar(event)">
+                           <t t-esc="star[widget].name[1]"/>
+                           <button class="btn" onclick="removestardiv(event)"><i t-att-id="star[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+
+
+               </t>
+        </ul>
+        </div>
+    </t>
+    <t t-name="inconsistent" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>Inconsistent</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closeinconsistent()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+            </div>
+            <ul class="inconsistent_ul">
+               <t t-foreach="inconsistent" t-as="widget">
+
+                       <li t-att-title="inconsistent[widget].employee_period_id[0]"
+                           t-att-id="inconsistent[widget].name[0]"
+                           draggable="true"
+                           ondragstart="draginconsistent(event)">
+                           <t t-esc="inconsistent[widget].name[1]"/>
+                           <button class="btn"
+                                   onclick="removeinconsistentdiv(event)"><i t-att-id="inconsistent[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+
+
+               </t>
+        </ul>
+        </div>
+    </t>
+    <t t-name="corep" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>Core Player</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closecore()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+
+                    </div>
+            <ul class="core_ul">
+               <t t-foreach="corep" t-as="widget">
+
+                       <li t-att-title="corep[widget].employee_period_id[0]"
+                           t-att-id="corep[widget].name[0]"
+                           draggable="true" ondragstart="dragcore(event)">
+                           <t t-esc="corep[widget].name[1]"/>
+                           <button class="btn" onclick="removecorediv(event)"><i t-att-id="corep[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+
+
+               </t>
+        </ul>
+        </div>
+    </t>
+    <t t-name="highp" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>High Performer</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closehighp()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+
+                    </div>
+            <ul class="highp_ul">
+               <t t-foreach="highp" t-as="widget">
+                       <li t-att-title="highp[widget].employee_period_id[0]"
+                           t-att-id="highp[widget].name[0]"
+                           draggable="true"
+                           ondragstart="draghighperformer(event)">
+                           <t t-esc="highp[widget].name[1]"/>
+                           <button class="btn" onclick="removehighpdiv(event)"><i t-att-id="highp[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+
+
+               </t>
+        </ul>
+        </div>
+    </t>
+    <t t-name="risk" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>Risk</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closerisk()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+
+                    </div>
+            <ul class="risk_ul">
+               <t t-foreach="risk" t-as="widget">
+                       <li t-att-title="risk[widget].employee_period_id[0]"
+                           t-att-id="risk[widget].name[0]"
+                           draggable="true" ondragstart="dragrisk(event)">
+                           <t t-esc="risk[widget].name[1]"/>
+                           <button class="btn" onclick="removeriskdiv(event)"><i t-att-id="risk[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+               </t>
+        </ul>
+        </div>
+    </t>
+    <t t-name="average" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>Average Performer</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closeaverage()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+
+                    </div>
+            <ul class="average_ul">
+               <t t-foreach="average" t-as="widget">
+                       <li t-att-title="average[widget].employee_period_id[0]"
+                           t-att-id="average[widget].name[0]"
+                           draggable="true" ondragstart="dragaverage(event)">
+                           <t t-esc="average[widget].name[1]"/>
+                           <button class="btn"
+                                   onclick="removeaveragediv(event)"><i t-att-id="average[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+               </t>
+        </ul>
+        </div>
+    </t>
+    <t t-name="solid" owl="1">
+        <div class="card" style="height:auto;width:300px;">
+            <div class="card-header">
+                        <div class="row">
+                            <div style="margin: auto;">
+                            <h5>Solid Performer</h5>
+                            </div>
+                            <div style="margin-right: 10px;">
+                <button sclass="btn" onclick="closesolid()"><i class="fa fa-close"></i></button>
+                        </div>
+                        </div>
+
+                    </div>
+            <ul class="solid_ul">
+               <t t-foreach="solid" t-as="widget">
+                       <li t-att-title="solid[widget].employee_period_id[0]"
+                           t-att-id="solid[widget].name[0]"
+                           draggable="true" ondragstart="dragsolid(event)">
+                           <t t-esc="solid[widget].name[1]"/>
+                           <button class="btn" onclick="removesoliddiv(event)"><i t-att-id="solid[widget].name[0]" class="fa fa-trash"></i></button>
+                       </li>
+               </t>
+        </ul>
+        </div>
+    </t>
+    <t t-name="currectapp" owl="1">
+        <div style="background-color: powderblue;" t-att-title="currectapp.id"
+             t-att-id="currectapp.state">
+        </div>
+    </t>
+</templates>

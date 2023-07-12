@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <template id="assets_backend_appraisal"
+                  name="appraisal-dashboard assets inherit"
+                  inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript"
+                        src="/awb_9_box_appraisal/static/src/js/appraisal_period.js"/>
+                <link rel="stylesheet" type="text/scss"
+                      href="/awb_9_box_appraisal/static/src/scss/style.scss"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>
