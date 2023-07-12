@@ -1,0 +1,873 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="appraisal_period_tree">
+            <field name="name">Appraisal Period</field>
+            <field name="model">appraisal.period</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false"
+                      decoration-danger="state == 'close'"
+                      decoration-info="state == 'active'">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="appraisal_period_graph">
+            <field name="name">Appraisal Period Graph</field>
+            <field name="model">appraisal.period</field>
+            <field name="arch" type="xml">
+                <graph type="pie">
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="appraisal_period_pivot">
+            <field name="name">Appraisal Period Pivot</field>
+            <field name="model">appraisal.period</field>
+            <field name="arch" type="xml">
+                <pivot>
+                </pivot>
+            </field>
+        </record>
+        <record id="appraisal_period1" model="ir.ui.view">
+            <field name="name">tes.appraisal.period</field>
+            <field name="model">appraisal.period</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+
+                    <script>
+                        $(document).ready(function(){
+                        $(".o_dropdown").hide();
+                        });
+                        function allowDrop(ev) {
+                        ev.preventDefault();
+
+                        }
+                        function drag(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        let employee = ev.target.title
+                        console.log('empfirstdrag',employee)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        });
+                        console.log('state',state)
+                        console.log('state',title)
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function drop1(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let employee = ev.dataTransfer.getData("employee")
+                        console.log("employeeid1",employee)
+                        let state = ev.dataTransfer.getData("state")
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+
+                        let destlist = document.querySelector('.dest-list1');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        item.className = 1;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data2 =
+                        {"name":target,"potential":"high","performance":"low","category":"hp_lp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        var data1 =
+                        {"name":target,"category":"hp_lp","potential":"high","performance":"low","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        }
+                        function drop2(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let state = ev.dataTransfer.getData("state")
+                        let employee = ev.dataTransfer.getData("employee")
+                        console.log("employeeid2",employee)
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+                        let destlist = document.querySelector('.dest-list2');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data2 =
+                        {"name":target,"potential":"high","performance":"moderate","category":"hp_mp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        var data1 =
+                        {"name":target,"category":"hp_mp","potential":"high","performance":"moderate","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        }
+                        function drop3(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let state = ev.dataTransfer.getData("state")
+                        let employee = ev.dataTransfer.getData("employee")
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+                        let destlist = document.querySelector('.dest-list3');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data1 =
+                        {"name":target,"category":"hp_hp","potential":"high","performance":"high","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        var data2 =
+                        {"name":target,"potential":"high","performance":"high","category":"hp_hp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        }function drop4(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let state = ev.dataTransfer.getData("state")
+                        let employee = ev.dataTransfer.getData("employee")
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+                        let destlist = document.querySelector('.dest-list4');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data1 =
+                        {"name":target,"category":"mp_lp","potential":"moderate","performance":"low","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        var data2 =
+                        {"name":target,"potential":"moderate","performance":"low","category":"mp_lp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        }function drop5(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let state = ev.dataTransfer.getData("state")
+                        let employee = ev.dataTransfer.getData("employee")
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+                        let destlist = document.querySelector('.dest-list5');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data1 =
+                        {"name":target,"category":"mp_mp","potential":"moderate","performance":"moderate","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        var data2 =
+                        {"name":target,"potential":"moderate","performance":"moderate","category":"mp_mp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        }function drop6(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let state = ev.dataTransfer.getData("state")
+                        let employee = ev.dataTransfer.getData("employee")
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+                        let destlist = document.querySelector('.dest-list6');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data1 =
+                        {"name":target,"category":"mp_hp","potential":"moderate","performance":"high","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        var data2 =
+                        {"name":target,"potential":"moderate","performance":"high","category":"mp_hp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        }function drop7(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let state = ev.dataTransfer.getData("state")
+                        let employee = ev.dataTransfer.getData("employee")
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+                        let destlist = document.querySelector('.dest-list7');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data1 =
+                        {"name":target,"category":"lp_lp","potential":"low","performance":"low","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        var data2 =
+                        {"name":target,"potential":"low","performance":"low","category":"lp_lp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        }function drop8(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let state = ev.dataTransfer.getData("state")
+                        let employee = ev.dataTransfer.getData("employee")
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+                        let destlist = document.querySelector('.dest-list8');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data1 =
+                        {"name":target,"category":"lp_mp","potential":"low","performance":"moderate","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        var data2 =
+                        {"name":target,"potential":"low","performance":"moderate","category":"lp_mp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        }function drop9(ev) {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text");
+                        let target = ev.dataTransfer.getData("target")
+                        let title = ev.dataTransfer.getData("title")
+                        let state = ev.dataTransfer.getData("state")
+                        let employee = ev.dataTransfer.getData("employee")
+                        if (state === "inactive") {
+                        alert("The Appraisal is not active yet");
+                        return false;
+                        }
+                        if (state === "close") {
+                        alert("The Appraisal is closed");
+                        return false;
+                        }
+                        let destlist = document.querySelector('.dest-list9');
+                        if (destlist){
+                        let item = document.createElement('li');
+                        item.textContent = data;
+                        destlist.appendChild(item);}
+                        $('#'+target).remove();
+                        var data1 =
+                        {"name":target,"category":"lp_hp","potential":"low","performance":"high","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/for_create_list",
+                        data: data1,
+                        });
+                        var data2 =
+                        {"name":target,"potential":"low","performance":"high","category":"lp_hp","appraisal":title,"employee":employee}
+                        $.ajax({
+                        type:'post',
+                        url:"/update_employee",
+                        data: data2,
+                        });
+                        }function dragpotentialgem(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        let employee = ev.target.title
+                        console.log('empsecdrag',employee)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        });
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function draghighpotential(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        let employee = ev.target.title
+                        console.log("employeedrag",employee)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        });
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function dragstar(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        let employee = ev.target.title
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        });
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function draginconsistent(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        let employee = ev.target.title
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        });
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function dragcore(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        let employee = ev.target.title
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        });
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function draghighperformer(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        let employee = ev.target.title
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        });
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function dragrisk(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        let employee = ev.target.title
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        });
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function dragaverage(ev) {
+                        let text = ev.srcElement.textContent;
+                        let target = ev.target.id
+                        let title = ""
+                        let state = ""
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        state = this.id
+                        let employee = ev.target.title
+                        });
+                        ev.dataTransfer.setData("text", text);
+                        ev.dataTransfer.setData("target", target);
+                        ev.dataTransfer.setData("title", title);
+                        ev.dataTransfer.setData("state", state);
+                        ev.dataTransfer.setData("employee", employee);
+                        }
+                        function myFunction3() {
+                        $(document).ready(function(){
+                        $(".o_potential_gem").show();
+                        $(".o_high_potential").hide();
+                        $(".o_star").hide();
+                        $(".o_inconsistent").hide();
+                        $(".o_core").hide();
+                        $(".o_highp").hide();
+                        $(".o_risk").hide();
+                        $(".o_average").hide();
+                        $(".o_solid").hide();
+                        });
+                        console.log('sucess');
+                        }
+                        function showhighpotential() {
+                        $(document).ready(function(){
+                        $(".o_high_potential").show();
+                        $(".o_potential_gem").hide();
+                        $(".o_star").hide();
+                        $(".o_inconsistent").hide();
+                        $(".o_core").hide();
+                        $(".o_highp").hide();
+                        $(".o_risk").hide();
+                        $(".o_average").hide();
+                        $(".o_solid").hide();
+                        });
+                        console.log('sucess');
+                        }
+                        function showstar() {
+                        $(document).ready(function(){
+                        $(".o_star").show();
+                        $(".o_potential_gem").hide();
+                        $(".o_high_potential").hide();
+                        $(".o_inconsistent").hide();
+                        $(".o_core").hide();
+                        $(".o_highp").hide();
+                        $(".o_risk").hide();
+                        $(".o_average").hide();
+                        $(".o_solid").hide();
+                        });
+                        }
+                        function showinconsistent() {
+                        $(document).ready(function(){
+                        $(".o_inconsistent").show();
+                        $(".o_potential_gem").hide();
+                        $(".o_high_potential").hide();
+                        $(".o_star").hide();
+                        $(".o_core").hide();
+                        $(".o_highp").hide();
+                        $(".o_risk").hide();
+                        $(".o_average").hide();
+                        $(".o_solid").hide();
+                        });
+                        }
+                        function showcore() {
+                        $(document).ready(function(){
+                        $(".o_core").show();
+                        $(".o_potential_gem").hide();
+                        $(".o_high_potential").hide();
+                        $(".o_star").hide();
+                        $(".o_inconsistent").hide();
+                        $(".o_highp").hide();
+                        $(".o_risk").hide();
+                        $(".o_average").hide();
+                        $(".o_solid").hide();
+                        });
+                        }
+                        function showhigh() {
+                        $(document).ready(function(){
+                        $(".o_highp").show();
+                        $(".o_potential_gem").hide();
+                        $(".o_high_potential").hide();
+                        $(".o_star").hide();
+                        $(".o_inconsistent").hide();
+                        $(".o_core").hide();
+                        $(".o_risk").hide();
+                        $(".o_average").hide();
+                        $(".o_solid").hide();
+                        });
+                        }
+                        function showrisk() {
+                        $(document).ready(function(){
+                        $(".o_risk").show();
+                        $(".o_potential_gem").hide();
+                        $(".o_high_potential").hide();
+                        $(".o_star").hide();
+                        $(".o_inconsistent").hide();
+                        $(".o_core").hide();
+                        $(".o_highp").hide();
+                        $(".o_average").hide();
+                        $(".o_solid").hide();
+                        });
+                        }
+                        function showaverage() {
+                        $(document).ready(function(){
+                        $(".o_average").show();
+                        $(".o_potential_gem").hide();
+                        $(".o_high_potential").hide();
+                        $(".o_star").hide();
+                        $(".o_inconsistent").hide();
+                        $(".o_core").hide();
+                        $(".o_highp").hide();
+                        $(".o_risk").hide();
+                        $(".o_solid").hide();
+                        });
+                        }
+                        function showsolid() {
+                        $(document).ready(function(){
+                        $(".o_solid").show();
+                        $(".o_potential_gem").hide();
+                        $(".o_high_potential").hide();
+                        $(".o_star").hide();
+                        $(".o_inconsistent").hide();
+                        $(".o_core").hide();
+                        $(".o_highp").hide();
+                        $(".o_risk").hide();
+                        $(".o_average").hide();
+                        });
+                        }
+                        function closepotential() {
+                        $(document).ready(function(){
+                        $(".o_potential_gem").hide();
+                        });
+                        console.log('sucess');
+                        }
+                        function closehigh() {
+                        $(document).ready(function(){
+                        $(".o_high_potential").hide();
+                        });
+                        }
+                        function closestar() {
+                        $(document).ready(function(){
+                        $(".o_star").hide();
+                        });
+                        }
+                        function closeinconsistent() {
+                        $(document).ready(function(){
+                        $(".o_inconsistent").hide();
+                        });
+                        }
+                        function closecore() {
+                        $(document).ready(function(){
+                        $(".o_core").hide();
+                        });
+                        }
+                        function closehighp() {
+                        $(document).ready(function(){
+                        $(".o_highp").hide();
+                        });
+                        }
+                        function closerisk() {
+                        $(document).ready(function(){
+                        $(".o_risk").hide();
+                        });
+                        }
+                        function closeaverage() {
+                        $(document).ready(function(){
+                        $(".o_average").hide();
+                        });
+                        }
+                        function closesolid() {
+                        $(document).ready(function(){
+                        $(".o_solid").hide();
+                        });
+                        }
+                        function removepotentialdiv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".potential_gem_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                        function removehighdiv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".high_potential_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                        function removestardiv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".star_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                        function removeinconsistentdiv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".inconsistent_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                        function removecorediv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".core_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                        function removehighpdiv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".highp_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                        function removeriskdiv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".risk_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                        function removeaveragediv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".average_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                        function removesoliddiv(ev){
+                        let text = ev.target.id
+                        let title = ""
+                        console.log("list",text)
+                        $('.o_appraisal > div').map(function() {
+                        title = this.title
+                        });
+                        $(".solid_ul").find("#"+text).remove()
+                        var data1 = {"name":text,"id":title}
+                        $.ajax({
+                        type:'post',
+                        url:"/remove_list",
+                        data: data1,
+                        });
+                        }
+                    </script>
+
+                    <div style="text-align:right;">
+                        <button type="object" name="save_button"
+                                string="Save" icon="fa-save"/>
+                        <button type="object" name="show_pivot"
+                                icon="fa-list-alt"/>
+                        <button type="object" name="show_graph"
+                                icon="fa-pie-chart"/>
+                    </div>
+
+                    <div class="title" style="text-align:center;">
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <div class="title" style="text-align:center;">
+
+                        <h4>
+                            <field name="start_date"/>
+                            -
+                            <field name="end_date"/>
+                        </h4>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="o_appraisal"/>
+                        <div class="o_partner_order_summary">
+                        </div>
+                        <div class="o_potential_gem"
+                             style="margin-left:100px ; display:none;">
+                        </div>
+                        <div class="o_high_potential"
+                             style="margin-left:100px ; display:none;"/>
+                        <div class="o_star"
+                             style="margin-left:100px ; display:none;"/>
+                        <div class="o_inconsistent"
+                             style="margin-left:100px ; display:none;"/>
+                        <div class="o_core"
+                             style="margin-left:100px ; display:none;"/>
+                        <div class="o_highp"
+                             style="margin-left:100px ; display:none;"/>
+                        <div class="o_risk"
+                             style="margin-left:100px ; display:none;"/>
+                        <div class="o_average"
+                             style="margin-left:100px ; display:none;"/>
+                        <div class="o_solid"
+                             style="margin-left:100px ; display:none;"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

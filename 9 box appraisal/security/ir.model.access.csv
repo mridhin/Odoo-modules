@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_appraisal_menu,access.appraisal.menu,model_appraisal_menu,,1,1,1,1
+access_employee_list,access.employee.list,model_employee_list,,1,1,1,1
+access_appraisal_value,access.appraisal.value,model_appraisal_value,,1,1,1,1
+access_appraisal_period,access.appraisal.period,model_appraisal_period,,1,1,1,1
+access_period,access.period,model_period,,1,1,1,1
