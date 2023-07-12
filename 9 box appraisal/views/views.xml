@@ -1,0 +1,54 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="appraisal_list_tree">
+            <field name="name">Appraisal List</field>
+            <field name="model">appraisal.menu</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="appraisal_list_form">
+            <field name="name">Appraisal List</field>
+            <field name="model">appraisal.menu</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                            <group>
+                                <field name="name"/>
+                                <field name="period_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <group>
+                                <field name="start_date"/>
+                                </group><group>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="appraisal_menu">
+            <field name="name">Appraisal</field>
+            <field name="res_model">appraisal.menu</field>
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+
+        <record id="appraisal_period" model="ir.actions.act_window">
+            <field name="name">Appraisal period</field>
+            <field name="res_model">appraisal.period</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+
+
+        <menuitem name="9-Box Appraisal" id="main_menu_appraisal" action="appraisal_menu"/>
+        <menuitem name="9 Box Appraisal" id="menu4_appraisal" sequence="3"
+                  parent="main_menu_appraisal" action="appraisal_period"/>
+  </data>
+</odoo>
