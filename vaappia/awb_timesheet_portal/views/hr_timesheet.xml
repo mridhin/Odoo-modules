@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+  <!-- Added text field for timesheet table  -->
+	  <record id="timesheet_view_form_inherited" model="ir.ui.view">
+	            <field name="name">account.analytic.line.form.inherit</field>
+	            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="timesheet_grid.timesheet_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='name']" position="after">
+                        <group>
+                         	<field name="approver_notes" placeholder="Approver Notes" widget="text" nolabel="1"/>
+                         </group>
+                    </xpath>
+                   </data>
+              </field>
+    </record>
+	  <record id="hr_timesheet_line_tree_inherited" model="ir.ui.view">
+           <field name="name">account.analytic.line.tree.hr_timesheet</field>
+           <field name="model">account.analytic.line</field>
+           <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+           <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='so_line']" position="before">
+            	<field name="approver_notes"/>
+            </xpath>
+           </field>
+	  </record>
+  	</data>
+</odoo>

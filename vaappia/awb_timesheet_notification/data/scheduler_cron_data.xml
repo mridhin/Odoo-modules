@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <!-- Cron for Employee Reminder -->
+        <record id="employee_timesheet_notification_cron" forcecreate="True" model="ir.cron">
+            <field name="name">Previous Week Timesheet Not Submitted: </field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="state">code</field>
+            <field name="code">model.send_employee_timesheet_reminder_notification()</field>
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="user_id">2</field>
+            <field eval="False" name="doall" />
+        </record>
+        <!-- Cron for Approver Reminder -->
+        <record id="approver_timesheet_notification_cron" forcecreate="True" model="ir.cron">
+            <field name="name">Previous Week Timesheet Not Approved: </field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="state">code</field>
+            <field name="code">model.send_approver_timesheet_reminder_notification()</field>
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="user_id">2</field>
+            <field eval="False" name="doall" />
+            <field name="active">0</field>
+        </record>
+
+        <!-- Cron for Approver Employee Reminder -->
+        <record id="approver_employee_timesheet_notification_cron" forcecreate="True" model="ir.cron">
+            <field name="name">Employee Previous Week Timesheet Missed: </field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="state">code</field>
+            <field name="code">model.send_approver_employee_timesheet_reminder_notification()</field>
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="user_id">2</field>
+            <field eval="False" name="doall" />
+            <field name="active">0</field>
+        </record>
+        
+
+        <!-- Employee Timesheet Template -->
+        <record id="email_timesheet_reminder_template" model="mail.template">
+            <field name="name">Employee Timesheet Reminder Template</field>
+            <field name="email_from">noreply.odoov14.gmail.com</field>
+            <field name="model_id" ref="hr_timesheet.model_hr_employee" />
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px;font-size: 13px;">
+                        Hello <t t-out="object.name"></t>,<br/>
+                        You have seemed to have missed your timesheet submission for the
+                        following week(s). Please submit asap.
+                        <br/>
+                         Note: This is an automated email. Please do not reply.
+                       
+                    </p>
+                </div>
+            </field>
+        </record>
+        <!-- Approver Timesheet Template -->
+        <record id="email_approver_timesheet_reminder_template" model="mail.template">
+            <field name="name">Approver Timesheet Reminder Template</field>
+            <field name="email_from">noreply.odoov14.gmail.com</field>
+            <field name="model_id" ref="base.model_res_users" />
+            <field name="auto_delete" eval="True" />
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px;font-size: 13px;">
+                        Hello <t t-out="object.name"></t>,<br/>
+                        You have seemed to have missed to approve the following timesheets
+                        submitted to you.
+                        <br/>
+                        The Employee Portal Team.
+                        <br/>
+                        Note: This is an automated email. Please do not reply.
+                    </p>
+                </div>
+            </field>
+        </record>
+         <!-- Approver  Timesheet Template For those Employee Who have not filled the Timesheet -->
+        <record id="email_approver_employee_timesheet_reminder_template" model="mail.template">
+            <field name="name">Approver Employee Timesheet Reminder Template</field>
+            <field name="email_from">noreply.odoov14.gmail.com</field>
+            <field name="model_id" ref="base.model_res_users" />
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px;font-size: 13px;">
+                        Hello <t t-out="object.name"></t>,<br/>
+                        The following employees have missed their timehseet submission.
+                        <br/>
+                        The Employee Portal Team.
+                        <br/>
+                        Note: This is an automated email. Please do not reply.
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

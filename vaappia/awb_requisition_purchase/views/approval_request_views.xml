@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pr_approval_request_form" model="ir.ui.view">
+        <field name="name">pr.approval.request.form</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+        <field name="arch" type="xml">
+          
+            <field name="amount" position="after">
+            	<field name="approval_type" invisible="1"/>
+            	<field name="purchase_id" attrs="{'invisible': [('approval_type', '!=', 'purchase_payment')]}"/>
+            	<field name="purchase_requester_id" attrs="{'invisible': [('approval_type', '!=', 'purchase_payment')]}"/>
+            </field>
+            
+            
+            <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+			    <page string="PRF" name="prf_page" attrs="{'invisible': [('approval_type', '!=', 'purchase_payment')]}">
+			      <group name="">
+			        <group name="">
+			          <field name="x_studio_cost_distribution_charge" string="Cost Distribution / Charge"/>
+			          <field name="x_studio_executive_office" string="Executive Office" widget="boolean"/>
+			          <field name="prf_finance"  widget="boolean"/>
+			          <field name="prf_operation_it"  widget="boolean"/>
+			          <field name="prf_human_resource"  widget="boolean"/>
+			        </group>
+			        <group name="">
+			          <field name="x_studio_date_due" string="Date Due"/>
+			          <field name="prf_marketing"  widget="boolean"/>
+			          <field name="prf_sales"  widget="boolean"/>
+			          <field name="prf_CE"  widget="boolean"/>
+			          <field name="prf_PS"  widget="boolean"/>
+			        </group>
+			      </group>
+			      
+			      <group name="">
+			        <group name="">
+			          <field name="prf_legal"  widget="boolean"/>
+			          <field name="prf_capex"  widget="boolean"/>
+			          <field name="prf_others"  widget="boolean"/>
+			          <field name="prf_other_extra"  attrs="{'invisible': [('prf_others', '!=', True)]}"/>
+			        </group>
+			        <group name="">
+			        </group>
+			      </group>
+			      
+			      
+			    </page>
+			  </xpath>
+
+        </field>
+    </record>
+</odoo>

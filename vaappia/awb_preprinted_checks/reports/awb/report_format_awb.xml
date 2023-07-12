@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paper_format_checks" model="report.paperformat">
+            <field name="name">PREPRINTED_CHECKS</field>
+            <field name="default"/>
+            <field name="format">Letter</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">70</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">21</field>
+            <field name="margin_right">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="awb_preprinted_checks.print_account_payment" model="ir.actions.report">
+            <field name="paperformat_id" ref="awb_preprinted_checks.paper_format_checks"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">'Check - %s' % object.name</field>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>

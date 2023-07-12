@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.project_role</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="hr.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='hr']" position="inside">
+                    <h2>Set Employe Timesheet Reminder</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="send_employee_reminder" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label
+                                    string="Send Employe Timesheet Reminder?"
+                                    for="send_employee_reminder"
+                                />
+                                <div class="text-muted" id="msg_module_digest">
+                                    Send Employe Timesheet Reminder
+                                </div>
+                                <div
+                                    class="content-group"
+                                    attrs="{'invisible': [('send_employee_reminder','=',False)]}"
+                                >
+                                    <div class="mt16">
+                                        <label
+                                            for="dayofweek"
+                                            class="col-lg-3 o_light_label"
+                                        />
+                                        <field
+                                            name="dayofweek"
+                                            attrs="{'required': [('send_employee_reminder','=',True)]}"
+                                            class="oe_inline"
+                                             style="width: 100px; margin-right: 8px;"
+                                        />
+                                        <field
+                                            name="time"
+                                            attrs="{'required': [('send_employee_reminder','=',True)]}"
+                                            class="oe_inline" widget="float_time"
+                                        />
+                                    </div>
+                                     <div class="mt16">
+                                        <label
+                                            for="select_week"
+                                            class="col-lg-3 o_light_label"
+                                        />
+                                        <field
+                                            name="select_week"
+                                            attrs="{'required': [('send_employee_reminder','=',True)]}"
+                                            class="oe_inline"
+                                            style="width: 100px; margin-right: 8px;"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="send_aprrover_reminder" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label
+                                    string="Send Approver Timesheet Reminder?"
+                                    for="send_aprrover_reminder"
+                                />
+                                <div class="text-muted" id="msg_module_digest">
+                                    Send Approver Timesheet Reminder
+                                </div>
+                                <div
+                                    class="content-group"
+                                    attrs="{'invisible': [('send_aprrover_reminder','=',False)]}"
+                                >
+                                    <div class="mt16">
+                                        <label
+                                            for="approver_dayofweek"
+                                            class="col-lg-3 o_light_label"
+                                        />
+                                        <field
+                                            name="approver_dayofweek"
+                                            attrs="{'required': [('send_aprrover_reminder','=',True)]}"
+                                            class="oe_inline"
+                                             style="width: 100px; margin-right: 5px;"
+                                        />
+                                        <field
+                                            name="approver_time"
+                                            attrs="{'required': [('send_aprrover_reminder','=',True)]}"
+                                            class="oe_inline" widget="float_time"
+                                        />
+                                    </div>
+                                     <div class="mt16">
+                                        <label
+                                            for="approver_select_week"
+                                            class="col-lg-3 o_light_label"
+                                        />
+                                        <field
+                                            name="approver_select_week"
+                                            attrs="{'required': [('send_aprrover_reminder','=',True)]}"
+                                            class="oe_inline"
+                                            style="width: 100px; margin-right: 8px;"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="send_aprrover_employee_reminder" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label
+                                    string="Send Approver Employee Timesheet Reminder?"
+                                    for="send_aprrover_employee_reminder"
+                                />
+                                <div class="text-muted" id="msg_module_digest">
+                                    Send Approver Employee Timesheet Reminder
+                                </div>
+                                <div
+                                    class="content-group"
+                                    attrs="{'invisible': [('send_aprrover_employee_reminder','=',False)]}"
+                                >
+                                    <div class="mt16">
+                                        <label
+                                            for="approver_employee_dayofweek"
+                                            class="col-lg-3 o_light_label"
+                                        />
+                                        <field
+                                            name="approver_employee_dayofweek"
+                                            attrs="{'required': [('send_aprrover_employee_reminder','=',True)]}"
+                                            class="oe_inline"
+                                             style="width: 100px; margin-right: 5px;"
+                                        />
+                                        <field
+                                            name="approver_employee_time"
+                                            attrs="{'required': [('send_aprrover_employee_reminder','=',True)]}"
+                                            class="oe_inline" widget="float_time"
+                                        />
+                                    </div>
+                                     <div class="mt16">
+                                        <label
+                                            for="approver_employee_select_week"
+                                            class="col-lg-3 o_light_label"
+                                        />
+                                        <field
+                                            name="approver_employee_select_week"
+                                            attrs="{'required': [('send_aprrover_employee_reminder','=',True)]}"
+                                            class="oe_inline"
+                                            style="width: 100px; margin-right: 8px;"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+
+        <!-- New Model Timesheet -->
+        <record id="timesheet_weekly_details_view_form" model="ir.ui.view">
+            <field name="name">timesheet.weekly_details.form.view</field>
+            <field name="model">timesheet.weekly.details</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet Details">
+                     <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="is_timesheet"/>
+                                <field name="analytic_account_line_id"/>
+
+                            </group>
+                        </group>
+
+                     </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="timesheet_weekly_details_view_tree">
+            <field name="name">timesheet.weekly_details.tree.view</field>
+            <field name="model">timesheet.weekly.details</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="is_timesheet"/>
+                </tree>
+            </field>
+        </record>
+<!--         <record model="ir.actions.act_window" id="timesheet_weekly_details_action_window">
+            <field name="name">Timesheet Weekly Details</field>
+            <field name="res_model">timesheet.weekly.details</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Weekly Details" id="timesheet_weekly_details_menu" parent="hr_timesheet.menu_hr_time_tracking"
+              action="awb_timesheet_notification.timesheet_weekly_details_action_window"/> -->
+    </data>
+</odoo>

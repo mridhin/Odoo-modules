@@ -1,0 +1,530 @@
+<!--<odoo>-->
+<odoo xmlns:th="http://www.w3.org/1999/xhtml">
+    <template id="timesheet_button_layout" name="timesheet_button_entry"
+              inherit_id="portal.portal_breadcrumbs" priority="36">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="after">
+            <!--            <script>-->
+            <!--                function validateFormcreate(){-->
+            <!--                let x = document.forms["formtime"]["hours"].value;-->
+            <!--                console.log('ccccc',x)-->
+            <!--                if (x > 24) {-->
+            <!--                alert("Not allowed to enter more than 24 hours");-->
+            <!--                return false;-->
+            <!--                }-->
+
+            <!--                }-->
+            <!--            </script>-->
+            <t t-if="page_name == 'timesheet' or timesheet"
+               t-attf-class="breadcrumb-item #{'active' if not timesheet else ''}">
+                <div class="o_download_pdf btn-toolbar flex-sm-nowrap"
+                     id="mydiv">
+                    <div class="my_div">
+                        <a role="button"
+                           class="btn btn-secondary flex-grow-1 mb-1 createButton"
+                           data-toggle="modal"
+                           id='myModal' data-target='#warrantypopup' href="#">
+                            <t>Create Timesheet</t>
+                            <!--                        <t t-set="url" t-value="'/create/timesheets'"/>-->
+                        </a>
+                    </div>
+                </div>
+                <form action="/timesheet/request/submit"
+                      method="post"
+                      id="formtime" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token"
+                           t-att-value="request.csrf_token()"/>
+                    <div id="warrantypopup" class="modal fade">
+                        <div id="create-timesheet-modal"
+                             class="modal-dialog modal-content"
+                             style="border:solid 2px white; height:auto;width:700px;margin-top:50px">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Timesheet</h5>
+                            </div>
+                            <div class="modal-body" id="pop_html">
+                                <div class="timesheet_form">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="employee-name">Employee
+                                                Name
+                                            </label>
+                                            <input type="text"
+                                                   id="employee-name"
+                                                   readonly="1"
+                                                   class="form-control-plaintext"/>
+                                            <input type="hidden"
+                                                   id="employee-id"
+                                                   name="employee"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="employee">Project
+                                            </label>
+                                            <div class="col-75">
+                                                <select class="form-control o_website_form_input"
+                                                        id="project"
+                                                        name="project"
+                                                        required="">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="client">Client Name
+                                            </label>
+                                            <!--                                            <select class="form-control o_website_form_input"-->
+                                            <!--                                                    id="client" name="client">-->
+                                            <!--                                                <option></option>-->
+                                            <!--                                            </select>-->
+                                            <input type="text" id="client-name"
+                                                   readonly="1"
+                                                   class="form-control-plaintext"/>
+                                            <input type="hidden" id="client-id"
+                                                   name="client"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="employee">Project Type
+                                            </label>
+                                            <div class="col-75">
+                                                <!--                                                <select class="form-control o_website_form_input"-->
+                                                <!--                                                        id="activity"-->
+                                                <!--                                                        name="activity" required=""-->
+                                                <!--                                                >-->
+                                                <!--                                                    <option></option>-->
+
+                                                <!--                                                </select>-->
+                                                <input type="hidden"
+                                                       class="project_type"
+                                                       name="project_type"/>
+                                                <input type="text"
+                                                       id="project-type"
+                                                       readonly="1"
+                                                       class="form-control-plaintext project_type"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="date_start">
+                                                        Date
+                                                    </label>
+                                                    <input type="text"
+                                                           id="date_start"
+                                                           name="date"
+                                                           required=""
+                                                           autocomplete="off"
+                                                    />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="client">Hours
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control o_website_form_input"
+                                                           name="hours"
+                                                           required=""
+                                                           autocomplete="off"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="employee">Activity
+                                            </label>
+                                            <div class="col-75">
+                                                <select class="form-control o_website_form_input"
+                                                        id="activity"
+                                                        name="activity"
+                                                        required=""
+                                                >
+                                                    <option></option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="employee">Activity
+                                                Type
+                                            </label>
+                                            <div class="col-75">
+                                                <input type="hidden"
+                                                       class="activity_type"
+                                                       name="activity_type"/>
+                                                <input type="text"
+                                                       id="activity-type"
+                                                       readonly="1"
+                                                       class="form-control-plaintext activity_type"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="employee">Platform
+                                            </label>
+                                            <div class="col-75">
+                                                <select class="form-control o_website_form_input"
+                                                        id="platform"
+                                                        name="platform">
+                                                    <option></option>
+                                                    <option>Outsystem</option>
+                                                    <option>Appia</option>
+                                                    <option>UI/UX</option>
+                                                    <option>Not_Applicable
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="employee">Notes</label>
+                                            <input type="text"
+                                                   class="form-control o_website_form_input"
+                                                   name="notes"
+                                                   autocomplete="off"/>
+                                        </div>
+                                       </div>
+                                    <!-- Save current url value -->
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="hidden"
+                                                   class="form-control o_website_form_input"
+                                                   name="url" id="url"
+                                                   autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close
+                                </button>
+                                <button type="submit"
+                                        id="warranty_submit"
+                                        class="btn btn-primary btn-md o_website_form_send">
+                                    Create
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form action="/edit/request" method="post"
+                      id="formedit" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token"
+                           t-att-value="request.csrf_token()"/>
+                    <div id="editpopup" class="modal fade"
+                         style="heght:50%">
+                        <div class="modal-dialog modal-content"
+                             style="border:solid 2px white; height:500px;width:500px;margin-top:50px">
+                            <div class="modal-body" id="pop_html">
+                                <a href="#"
+                                   class="o_popup_btn_close o_not_editable o_default_snippet_text pull-right"
+                                   data-dismiss="modal" style="font-size:30px">×
+                                </a>
+                                <br/>
+                                <div style="margin-top:-48px">
+                                    <h2 style="text-align:center; font-size 18px; font-weight:bold"
+                                        class="o_default_snippet_text">
+                                        Edit Timesheet
+                                    </h2>
+                                </div>
+                                <br/>
+                                <input type="text" id="timesheet_id"
+                                       class="form-control o_website_form_input"
+                                       name="timesheet" style="display:none;"/>
+                                <label class="col-md-3 col-sm-4 control-label"
+                                       for="name">Description
+                                </label>
+                                <div class="col-12">
+                                    <input type="text" id="name"
+                                           class="form-control o_website_form_input"
+                                           name="name"/>
+                                </div>
+                                <br/>
+                                <label class="col-md-3 col-sm-4 control-label"
+                                       for="date">Date
+                                </label>
+                                <div class="col-12">
+                                    <input type="text" id="date"
+                                           class="form-control o_website_form_input"
+                                           name="date"/>
+                                </div>
+                                <br/>
+                                <label class="col-md-3 col-sm-4 control-label"
+                                       for="hours">Hours
+                                </label>
+                                <div class="col-12" id="hours1">
+                                    <input type="text" id="hours"
+                                           class="form-control o_website_form_input"
+                                           name="hours"/>
+                                </div>
+                                <div class="col-6">
+                                    <input type="hidden"
+                                           class="form-control o_website_form_input"
+                                           name="url_name" id="url_name"
+                                           autocomplete="off"/>
+                                </div>
+                            </div>
+                            <div style="padding-top:20px"
+                                 class="form-group row form-field">
+                                <div style="padding:0 45% 0 45%">
+                                    <button type="submit"
+                                            id="edit_submit"
+                                            class="btn btn-primary btn-md o_website_form_send">
+                                        Update
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form action="/update/request" method="post"
+                      id="formtime" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token"
+                    />
+                    <div id="rejectpopup" class="modal fade"
+                         style="heght:50%">
+                        <div class="modal-dialog modal-content"
+                             style="border:solid 2px white; height:250px;width:500px;margin-top:50px">
+                            <div class="modal-body" id="pop_html">
+                                <a href="#"
+                                   class="o_popup_btn_close o_not_editable o_default_snippet_text pull-right"
+                                   data-dismiss="modal" style="font-size:30px">×
+                                </a>
+                                <input type="text" id="reject_timesheet_id"
+                                       class="form-control o_website_form_input"
+                                       name="timesheet" style="display:none;"/>
+                                <label class="col-md-3 col-sm-4 control-label"
+                                       style="white-space: nowrap;" for="name">
+                                    Approver Notes
+                                </label>
+                                <div class="col-12">
+                                    <input type="text" id="name"
+                                           class="form-control o_website_form_input"
+                                           name="name"/>
+                                </div>
+                            </div>
+                            <div style="padding-top:20px"
+                                 class="form-group row form-field">
+                                <div style="padding:0 45% 0 45%">
+                                    <button type="submit"
+                                            id="edit__update_submit"
+                                            class="btn btn-primary btn-md o_website_form_send">
+                                        Update
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="timesheet_checkbox" name="timesheet_checkbox"
+              inherit_id="hr_timesheet.portal_my_timesheets">
+        <xpath expr="//thead/tr[contains(@t-attf-class, 'thead-light')]"
+               position="inside">
+            <t t-elif="groupby == 'status'">
+                <th colspan="6">
+                    <em class="font-weight-normal text-muted">Timesheets for
+                    </em>
+                    <span t-field="timesheets[0].validated_status"/>
+                </th>
+                <th colspan="1" class="text-right text-muted">
+                    <t t-if="is_uom_day">
+                        Total:
+                        <span t-esc="timesheets._convert_hours_to_days(hours_spent)"
+                              t-options='{"widget": "timesheet_uom"}'/>
+                    </t>
+                    <t t-else="">
+                        Total:
+                        <span t-esc="hours_spent"
+                              t-options='{"widget": "float_time"}'/>
+                    </t>
+                </th>
+            </t>
+            <t t-elif="groupby == 'platform'">
+                <th colspan="5">
+                    <em class="font-weight-normal text-muted">Timesheets for
+                    </em>
+                    <span t-field="timesheets[0].area"/>
+                </th>
+                <th colspan="1" class="text-right text-muted">
+                    <t t-if="is_uom_day">
+                        Total:
+                        <span t-esc="timesheets._convert_hours_to_days(hours_spent)"
+                              t-options='{"widget": "timesheet_uom"}'/>
+                    </t>
+                    <t t-else="">
+                        Total:
+                        <span t-esc="hours_spent"
+                              t-options='{"widget": "float_time"}'/>
+                    </t>
+                </th>
+            </t>
+        </xpath>
+        <xpath expr="//thead/tr/th" position="before">
+            <th></th>
+        </xpath>
+        <!--         <xpath expr="//thead/tr" position="inside">-->
+        <!--            <th id="reject_button1" style="display:none"></th>-->
+        <!--        </xpath>-->
+        <!--            <head>-->
+        <!--                <script>-->
+        <!--                    $(th).attr('colspan',6);-->
+        <!--                </script>-->
+        <!--            </head>-->
+        <!--       <xpath expr="//thead/tr[contains(@t-attf-class, 'thead-light')]" position="inside">-->
+        <!--           <script>-->
+
+        <!--               var cell = document.querySelectorAll('table tr.thead-light th:nth-child(2)');-->
+        <!--               cell.attr('colspan',6);-->
+        <!--               console.log('th',cell)-->
+        <!--           </script>-->
+        <!--       </xpath>-->
+        <xpath expr="//thead/tr[3]" position="inside">
+            <th>
+                Project Type
+            </th>
+            <th>
+            	Approver Notes
+            </th>
+            <th>
+                Activity Type
+            </th>
+            <th>
+                Platform
+            </th>
+            <th>
+                Status
+            </th>
+        </xpath>
+        <xpath expr="//tbody/t/tr/td" position="before">
+            <div id="checkboxes">
+                <td id='total_hours' class="total_hours">
+                    <span class="checkbox">
+                        <input t-att-id="timesheet.id"
+                               t-att-title="timesheet.validated_status"
+                               name="check" type="checkbox"/>
+                    </span>
+                </td>
+            </div>
+        </xpath>
+        <xpath expr="//tbody/t/tr" position="inside">
+            <td>
+                <span t-esc="timesheet.project_type"
+                      t-att-title="timesheet.id"/>
+            </td>
+            <td>
+            	<span t-esc="timesheet.approver_notes"
+                      t-att-title="timesheet.id"/>
+            </td>
+            <td>
+                <span t-esc="timesheet.timesheet_invoice_type"
+                      t-att-title="timesheet.id"/>
+            </td>
+            <td>
+                <span t-esc="timesheet.area"
+                      t-att-title="timesheet.id"/>
+            </td>
+            <td>
+                <span t-esc="dict(timesheet.fields_get(allfields=['validated_status'])['validated_status']['selection'])[timesheet.validated_status]"
+                      t-att-title="timesheet.id"/>
+            </td>
+            <td id='reject_button2' class="reject_button2"
+                t-att-title="timesheet.id" style="display:none;">
+                <a role="button"
+                   class="btn btn-secondary flex-grow-1 mb-1 rejectButton"
+                   data-toggle="modal"
+                   t-att-id="timesheet.id" data-target='#rejectpopup' href="#"
+                >
+                    <t>Edit</t>
+                </a>
+            </td>
+        </xpath>
+
+        <xpath expr="//t/t[4]/t" position="inside">
+            <span class="button_class" style="margin-right:78.5%;display:none">
+                <button class="approve"
+
+
+                        id="approve"
+
+                >
+                    Approve
+                </button>
+                <button class="reject"
+
+
+                        id="reject"
+
+                >
+                    Reject
+                </button>
+
+            </span>
+        </xpath>
+        <xpath expr="//t/t[4]/t" position="inside">
+            <span class="edit_button_class"
+                  style="margin-right:78.5%;display:none;">
+
+                <a role="button"
+                   class="btn btn-secondary flex-grow-1 mb-1 createButton"
+                   data-toggle="modal"
+                   id='edit' data-target='#editpopup' href="#">
+                    <t>Edit</t>
+                </a>
+
+
+                <button class="delete"
+
+
+                        id="delete"
+
+                >
+                    Delete
+                </button>
+                <button class="submit"
+
+
+                        id="submit"
+
+                >
+                    Submit
+                </button>
+                <!-- Export Button Added -->
+                  <button class="Export"
+
+
+                        id="Export"
+
+                >
+                    Export
+                </button>
+                <div>Hours:
+                    <span id="selected_hours"
+                          t-options='{"widget": "float_time"}'/>
+                </div>
+
+            </span>
+
+        </xpath>
+
+
+    </template>
+
+</odoo>
