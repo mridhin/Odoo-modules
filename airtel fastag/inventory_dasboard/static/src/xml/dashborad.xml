@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="inventory_dashboard">
+
+        <div class="row">
+
+            <div class=" o_transfer" style="margin-left:25px;">
+
+            </div>
+            <div style="margin-left:25px; margin-right:25px" class="o_product">
+            </div>
+            <div class="o_report" style="margin-right:25px" >
+
+            </div>
+        </div>
+    </t>
+    <t t-name="TransferChart">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>Transfer</title>
+        </head>
+        <div style="padding-top:30px; width:400px; height:1000px;">
+                <div class="card" style="height:300px;">
+                    <div class="card-header" style="background-color:#cc3333;">
+                        <div style="text-align: center; color:white;">
+                            <h4 >Transfer</h4>
+                        </div>
+                    </div>
+                    <div class="card-body mt-3" id="in_ex_body_hide">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <span><h6>Total Transfer: <t t-esc="count[0]"/>
+                                    <button class="btn show_all_transfer" type="button">Show list</button> </h6>
+                                   </span>
+
+                                <span><h6>Assigned Transfer: <t t-esc="count[1]"/>
+                                    <button class="btn show_assign_transfer" type="button">Show list</button>
+                                </h6></span>
+                                <span><h6>Acknowledge Transfer: <t t-esc="count[2]"/>
+                                     <button class="btn show_ackw_transfer" type="button">Show list</button>
+                                </h6>
+                                </span>
+                                <span><h6>Canceled Transfer: <t t-esc="count[3]"/>
+                                    <button class="btn show_cancel_transfer" type="button">Show list</button>
+                                </h6>
+                                </span>
+                                <span><h6>Declined Transfer: <t t-esc="count[4]"/>
+                                    <button class="btn show_declined_transfer" type="button">Show list</button>
+                                </h6>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    <t t-name="ProductChart">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>Product</title>
+        </head>
+        <div style="padding-top:30px; width:400px; height:1000px;">
+                <div class="card" style="height:300px; ">
+                    <div class="card-header" style="background-color:#cc3333;">
+                        <div style="text-align: center; color:white;">
+                            <h4 >Product</h4>
+                        </div>
+                    </div>
+                    <div class="card-body mt-3" id="in_ex_body_hide">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span><h6>Total Product: <t t-esc="count[0]"/></h6> </span>
+                                <span><h6>Available Product: <t t-esc="count[4]"/></h6> </span>
+                                <span><h6>Sold Product: <t t-esc="count[1]"/></h6> </span>
+                                <span><h6>Faulty Product: <t t-esc="count[2]"/></h6> </span>
+                                <span><h6>Unlinked Product: <t t-esc="count[3]"/></h6> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    <t t-name="ReportChart">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>Report</title>
+        </head>
+        <div style="padding-top:30px; width:400px; height:1000px;">
+                <div class="card" style="height:300px;">
+                    <div class="card-header" style="background-color:#cc3333;">
+                        <div style="text-align: center; color:white;">
+                            <h4 >Report</h4>
+                        </div>
+                    </div>
+                    <div class="card-body mt-3" id="in_ex_body_hide">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span><h6>Total Report: <t t-esc="count[0]"/></h6> </span>
+                                <span><h6>Sold Product Report: <t t-esc="count[1]"/></h6> </span>
+                                <span><h6>Faulty Product Report: <t t-esc="count[2]"/></h6> </span>
+                                <span><h6>Unlinked Product Report: <t t-esc="count[3]"/></h6> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+
+</templates>

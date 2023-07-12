@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="api_log_tree">
+        <field name="name">Api Log</field>
+        <field name="model">api.log</field>
+        <field name="arch" type="xml">
+            <tree>
+<!--                <field name="id"/>-->
+                <field name="api_name"/>
+<!--                <field name="api"/>-->
+                <field name="method"/>
+<!--                <field name="api_data_key"/>-->
+                <field name="req_body"/>
+                <field name="params"/>
+                <field name="req_header"/>
+                <field name="response"/>
+                <field name="created_date"/>
+<!--                <field name="created"/>-->
+<!--                <field name="modified_id"/>-->
+
+                <field name="error_type"/>
+                <field name="result"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="api_log_form">
+        <field name="name">Api Log</field>
+        <field name="model">api.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+<!--                            <field name="id"/>-->
+                            <field name="api_name"/>
+<!--                            <field name="api"/>-->
+                            <field name="method"/>
+                            <field name="result"/>
+                            <field name="error_type"/>
+<!--                            <field name="api_data_key"/>-->
+                        </group>
+                        <group>
+                            <field name="req_body"/>
+                            <field name="params"/>
+                            <field name="req_header"/>
+                            <field name="response"/>
+                            <field name="created_date"/>
+                        </group>
+<!--                        <group>-->
+<!--&lt;!&ndash;                            <field name="created"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="modified_id"/>&ndash;&gt;-->
+<!--                            <field name="status"/>-->
+<!--                            <field name="error_type"/>-->
+<!--                        </group>-->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Top menu item -->
+    <record model="ir.actions.act_window" id="log_action">
+        <field name="name">Api details</field>
+        <field name="res_model">api.log</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+    <menuitem id="api_log_root" name="Api Log" parent="stock.menu_stock_config_settings" action="log_action" sequence="5"/>
+
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ordering_system,access.ordering.system,model_ordering_system,,1,1,1,1
+access_message_order.wizard,access.message_order.wizard,model_message_order_wizard,,1,1,1,1

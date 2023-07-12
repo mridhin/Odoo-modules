@@ -1,0 +1,329 @@
+<odoo>
+    <data>
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">view.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!--                <xpath expr="//header" position="inside">-->
+                <!--                    <button name="action_updtate_report"-->
+                <!--                                string="Create missing report" type="object"-->
+                <!--                                class="oe_highlight"-->
+
+                <!--                        />-->
+                <!--                </xpath>-->
+                <xpath expr="//button[@name='action_confirm']"
+                       position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('state', '!=',
+                        'draft'),('current_user', '=', False)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']"
+                       position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('rs_state',
+                        '!=',
+                        'ackw'),('current_user', '=', False)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_validate']"
+                       position="attributes">
+                    <attribute name="invisible">1
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='do_print_picking']"
+                       position="attributes">
+                    <attribute name="invisible">1
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='do_unreserve']"
+                       position="attributes">
+                    <attribute name="invisible">1
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_scrap']"
+                       position="attributes">
+                    <attribute name="invisible">1
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button name="action_declined"
+                            string="Declined" type="object"
+                            attrs="{'invisible': ['|',('state', '!=', 'draft'),('current_user', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date_deadline']" position="after">
+                    <field name="rs_teamleader" invisible="1"/>
+                    <field name="rs_citymanager" invisible="1"/>
+                    <field name="rs_reassign" readonly="1"
+                           attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
+                    <!--                    <field name="balance_count"/>-->
+                    <field name="current_user" invisible="1"/>
+                    <!--                    <field name="product_id_count"/>-->
+                </xpath>
+                <xpath expr="//page[@name='operations']" position="after">
+                    <page name="ft_users" string="Fastag User">
+                        <group>
+                            <group>
+                                <field name="ft_user_id"/>
+                            </group>
+                            <group>
+                                <field name="ft_user_count"/>
+                            </group>
+                        </group>
+                        <group>
+                            <button name="action_find_fastag" string="Submit"
+                                    type="object" class="oe_highlight"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!--        <record id="view_picking_form_inherit2" model="ir.ui.view">-->
+        <!--            <field name="name">view.picking.form.inherit2</field>-->
+        <!--            <field name="model">stock.picking</field>-->
+        <!--            <field name="inherit_id"-->
+        <!--                   ref="rn_vehical_class.rs_inherit_stock_picking_form_view"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <xpath expr="//field[@name='rs_office_addres']"-->
+        <!--                       position="after">-->
+        <!--                    <field name="em_user" invisible="1"/>-->
+        <!--                    <field name="product_circle" widget="many2many_tags"-->
+        <!--                           attrs="{'invisible': [('em_user', '=', False)]}"-->
+        <!--                           options="{'no_create_edit': True, 'no_quick_create': True}"/>-->
+        <!--                    <field name="product_count"-->
+        <!--                           attrs="{'invisible': [('em_user', '=', False)]}"/>-->
+        <!--                    <field name="avail_category_ids" widget="many2many_tags"/>-->
+        <!--                    <field name="product_categ_count"/>-->
+        <!--                </xpath>-->
+        <!--            </field>-->
+        <!--        </record>-->
+        <record id="view_picking_tree_inherit" model="ir.ui.view">
+            <field name="name">view.picking.tree.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id"
+                   ref="rn_vehical_class.rs_inherit_stock_picking_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fastag_count']" position="after">
+                    <field name="balance_count"/>
+                    <field name="product_id_count"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="delete_product_tree_inherit" model="ir.ui.view">
+            <field name="name">view.product.delete.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id"
+                   ref="import_button.import_button_product"/>
+            <field name="groups_id"
+                   eval="[(4, ref('stock.group_stock_manager'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="delete">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.module.category" id="module_category_team">
+            <field name="name">Inventory Access</field>
+            <field name="description">Team Leader</field>
+            <field name="sequence">45</field>
+        </record>
+        <record model="res.groups" id="group_user_team">
+            <field name="name">Team leader</field>
+            <field name="category_id" ref="module_category_team"/>
+        </record>
+        <record model="res.groups" id="group_city_manager">
+            <field name="name">City manager</field>
+            <field name="category_id" ref="module_category_team"/>
+            <field name="implied_ids" eval="[(4, ref('group_user_team'))]"/>
+        </record>
+        <record model="res.groups" id="group_enterprise_manager">
+            <field name="name">Enterprise manager</field>
+            <field name="category_id" ref="module_category_team"/>
+            <field name="implied_ids" eval="[(4, ref('group_city_manager'))]"/>
+        </record>
+        <record model="res.groups" id="group_warhouse_manager">
+            <field name="name">Warhouse manager</field>
+            <field name="category_id" ref="module_category_team"/>
+        </record>
+
+        <!--        <record model="res.groups" id="group_user_promoters">-->
+        <!--            <field name="name">Promoters</field>-->
+        <!--            <field name="category_id" ref="module_category_team"/>-->
+        <!--        </record>-->
+        <!--      <record model="ir.rule" id="team_city">-->
+        <!--          <field name="name">city manager view</field>-->
+        <!--          <field name="model_id" ref="stock.model_stock_picking"/>-->
+        <!--          <field name="domain_force">-->
+        <!--              [('rs_citymanager','=',user.name),('rs_destination_id.rs_circle.id','=',user.rs_circle.id)]-->
+        <!--          </field>-->
+        <!--          <field name="groups" eval="[(4, ref('group_city_manager'))]"/>-->
+        <!--      </record>-->
+        <!--        <record model="ir.rule" id="team_circle">-->
+        <!--            <field name="name">team leader view</field>-->
+        <!--            <field name="model_id" ref="stock.model_stock_picking"/>-->
+        <!--            <field name="domain_force">-->
+        <!--                [('rs_teamleader','=',user.name),('rs_destination_id.rs_circle.id','=',user.rs_circle.id)]-->
+        <!--            </field>-->
+        <!--            <field name="groups" eval="[(4, ref('group_user_team'))]"/>-->
+        <!--        </record>-->
+        <!--      <record model="ir.rule" id="team_enterprise">-->
+        <!--          <field name="name">enterprise manager view</field>-->
+        <!--          <field name="model_id" ref="stock.model_stock_picking"/>-->
+        <!--          <field name="domain_force">-->
+        <!--              ['|','|',('rs_destination_id.rs_tl.rs_cm.rs_em.id','=',user.id),-->
+        <!--              ('rs_user_id.rs_tl.rs_cm.rs_em.id','=',user.id),-->
+        <!--              ('rs_user_id.rs_em.id','=',user.id)]-->
+        <!--          </field>-->
+        <!--          <field name="groups" eval="[(4, ref('group_enterprise_manager'))]"/>-->
+        <!--      </record>-->
+        <record model="ir.rule" id="team_enterprise">
+            <field name="name">enterprise manager view</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="domain_force">
+                ['|',('rs_destination_id.rs_em.id','=',user.id),
+                ('rs_user_id.rs_em.id','=',user.id)]
+            </field>
+            <field name="groups" eval="[(4, ref('group_enterprise_manager'))]"/>
+        </record>
+        <!--      <record model="ir.rule" id="team_city">-->
+        <!--          <field name="name">city manager view</field>-->
+        <!--          <field name="model_id" ref="stock.model_stock_picking"/>-->
+        <!--          <field name="domain_force">-->
+        <!--              [('rs_destination_id.rs_tl.rs_cm.id','=',user.id),('rs_destination_id.rs_circle.id','=',user.rs_circle.id),]-->
+        <!--          </field>-->
+        <!--          <field name="groups" eval="[(4, ref('group_city_manager'))]"/>-->
+        <!--      </record>-->
+        <record model="ir.rule" id="team_city">
+            <field name="name">city manager view</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="domain_force">
+                ['|','&amp;',('rs_destination_id.rs_cm.id','=',user.id),('rs_destination_id.rs_circle.id','=',user.rs_circle.id),'&amp;',
+                ('rs_user_id.rs_cm.id','=',user.id),
+                ('rs_user_id.rs_circle.id','=',user.rs_circle.id)]
+            </field>
+            <field name="groups" eval="[(4, ref('group_city_manager'))]"/>
+        </record>
+        <!--      <record model="ir.rule" id="team_circle">-->
+        <!--            <field name="name">team leader view</field>-->
+        <!--            <field name="model_id" ref="stock.model_stock_picking"/>-->
+        <!--            <field name="domain_force">-->
+        <!--                ['|','&amp;','&amp;',('rs_destination_id.rs_tl.id','=',user.id),('rs_destination_id.rs_circle.id','=',user.rs_circle.id),-->
+        <!--                ('rs_user_id.rs_tl.id','=',user.id),('rs_user_id.rs_circle.id','=',user.rs_circle.id)]-->
+        <!--            </field>-->
+        <!--            <field name="groups" eval="[(4, ref('group_user_team'))]"/>-->
+        <!--        </record>-->
+        <record model="ir.rule" id="team_circle">
+            <field name="name">team leader view</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="domain_force">
+                ['|','&amp;',('rs_destination_id.rs_tl.id','=',user.id),('rs_destination_id.rs_circle.id','=',user.rs_circle.id),'&amp;',
+                ('rs_user_id.rs_tl.id','=',user.id),
+                ('rs_user_id.rs_circle.id','=',user.rs_circle.id)]
+            </field>
+            <field name="groups" eval="[(4, ref('group_user_team'))]"/>
+        </record>
+        <record model="ir.rule" id="team_report_enterprise">
+            <field name="name">enterprise manager report view</field>
+            <field name="model_id"
+                   ref="rs_stock_transfer_report.model_all_transfer_report"/>
+            <field name="domain_force">
+                [('rs_assigned_id.rs_em.id','=',user.id)
+                ]
+            </field>
+            <field name="groups" eval="[(4, ref('group_enterprise_manager'))]"/>
+        </record>
+        <record model="ir.rule" id="team_report_city">
+            <field name="name">city manager report view</field>
+            <field name="model_id"
+                   ref="rs_stock_transfer_report.model_all_transfer_report"/>
+            <field name="domain_force">
+                [('rs_assigned_id.rs_cm.id','=',user.id),('rs_assigned_id.rs_circle.id','=',user.rs_circle.id)]
+            </field>
+            <field name="groups" eval="[(4, ref('group_city_manager'))]"/>
+        </record>
+        <record model="ir.rule" id="team_report_circle">
+            <field name="name">team leader report view</field>
+            <field name="model_id"
+                   ref="rs_stock_transfer_report.model_all_transfer_report"/>
+            <field name="domain_force">
+                [('rs_assigned_id.rs_tl.id','=',user.id),('rs_assigned_id.rs_circle.id','=',user.rs_circle.id)]
+            </field>
+            <field name="groups" eval="[(4, ref('group_user_team'))]"/>
+        </record>
+        <record id="report_record_rule_manager_user" model="ir.rule">
+            <field name="name">User can see his / her Report</field>
+            <field name="model_id"
+                   ref="rs_stock_transfer_report.model_all_transfer_report"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="groups" eval="[(4, ref ('stock.group_stock_user'))]"/>
+            <field name="domain_force">[('rs_assigned_id.id', '=', user.id)]
+            </field>
+        </record>
+        <record id="REPORT_record_rule_manager" model="ir.rule">
+            <field name="name">Admin can see All Report</field>
+            <field name="model_id"
+                   ref="rs_stock_transfer_report.model_all_transfer_report"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="groups"
+                   eval="[(4, ref ('stock.group_stock_manager'))]"/>
+            <field name="domain_force">[(1, '=',1)]</field>
+        </record>
+        <record model="ir.rule" id="team_transfer_report_enterprise">
+            <field name="name">enterprise manager transfer report view</field>
+            <field name="model_id"
+                   ref="rn_vehical_class.model_transfer_report"/>
+            <field name="domain_force">
+                [('assigned_id.rs_em.id','=',user.id)
+                ]
+            </field>
+            <field name="groups" eval="[(4, ref('group_enterprise_manager'))]"/>
+        </record>
+        <record model="ir.rule" id="team_transfer_report_city">
+            <field name="name">city manager transfer report view</field>
+            <field name="model_id"
+                   ref="rn_vehical_class.model_transfer_report"/>
+            <field name="domain_force">
+                [('assigned_id.rs_cm.id','=',user.id),('assigned_id.rs_circle.id','=',user.rs_circle.id)]
+            </field>
+            <field name="groups" eval="[(4, ref('group_city_manager'))]"/>
+        </record>
+        <record model="ir.rule" id="transfer_team_report_circle">
+            <field name="name">team leader transfer report view</field>
+            <field name="model_id"
+                   ref="rn_vehical_class.model_transfer_report"/>
+            <field name="domain_force">
+                [('assigned_id.rs_tl.id','=',user.id),('assigned_id.rs_circle.id','=',user.rs_circle.id)]
+            </field>
+            <field name="groups" eval="[(4, ref('group_user_team'))]"/>
+        </record>
+        <record id="transfer_report_record_rule_manager_user" model="ir.rule">
+            <field name="name">User can see his / her Transfer Report</field>
+            <field name="model_id"
+                   ref="rn_vehical_class.model_transfer_report"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="groups" eval="[(4, ref ('stock.group_stock_user'))]"/>
+            <field name="domain_force">[('assigned_id.id', '=', user.id)]
+            </field>
+        </record>
+        <record id="Transfer_REPORT_record_rule_manager" model="ir.rule">
+            <field name="name">Admin can see Transfer Report</field>
+            <field name="model_id"
+                   ref="rn_vehical_class.model_transfer_report"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="groups"
+                   eval="[(4, ref ('stock.group_stock_manager'))]"/>
+            <field name="domain_force">[(1, '=',1)]</field>
+        </record>
+    </data>
+</odoo>

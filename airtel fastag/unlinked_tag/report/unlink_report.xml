@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="unlink_report_search" model="ir.ui.view">
+            <field name="name">unlink.report.search</field>
+            <field name="model">unlinked.report</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="bar_code" string="Barcode"/>
+                    <field name="tag_id" string="Tag Class"/>
+                    <!--........................GROUP........................-->
+
+                    <group expand="1" string="Group by">
+                        <filter name="tag_id" string="Tag Class"
+                                context="{'group_by':'tag_id'}"/>
+                        <filter name="product_assign_to" string="Product Assign To"
+                                context="{'group_by':'product_assign_to'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!--        unlink report tree view-->
+        <record model="ir.ui.view" id="unlinked_report_tree">
+            <field name="name">Unlinked Report</field>
+            <field name="model">unlinked.report</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="month"/>
+                    <field name="bar_code"/>
+                    <field name="tag_id"/>
+                    <field name="toll_plaza"/>
+                    <field name="amount"/>
+                    <field name="circle_id"/>
+                    <field name="product_assign_to"/>
+                    <field name="employee_id"/>
+<!--
+                    <field name="product_unlink_by"/>
+-->
+                </tree>
+            </field>
+        </record>
+        <!--        unlink report action-->
+        <record model="ir.actions.act_window" id="unlink_report_action">
+            <field name="name">Unlinked Report</field>
+            <field name="res_model">unlinked.report</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!--        unlink report menu-->
+        <menuitem id="menu_unlink_report" name="Unlink Report"
+                  parent="stock.menu_warehouse_report" sequence="30"
+                  action="unlink_report_action"/>
+    </data>
+</odoo>

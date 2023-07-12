@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+<!--         <record model="ir.module.category" id="module_category_team">-->
+<!--             <field name="name">Team Leader</field>-->
+<!--            <field name="description">Team Leader</field>-->
+<!--            <field name="sequence">45</field>-->
+<!--        </record>-->
+<!--        <record model="res.groups" id="group_user_team">-->
+<!--            <field name="name">Team leader</field>-->
+<!--            <field name="category_id" ref="module_category_team"/>-->
+<!--        </record>-->
+
+<!--        <record model="res.groups" id="group_user_promoters">-->
+<!--            <field name="name">Promoters</field>-->
+<!--            <field name="category_id" ref="module_category_team"/>-->
+<!--        </record>-->
+
+<!--        <record model="ir.rule" id="team_circle">-->
+<!--            <field name="name">team leader view</field>-->
+<!--            <field name="model_id" ref="stock.model_stock_picking"/>-->
+<!--            <field name="domain_force">-->
+<!--                [('rs_destination_id.rs_circle.id','=',user.rs_circle.id)]-->
+<!--            </field>-->
+<!--            <field name="groups" eval="[(4, ref('group_user_team'))]"/>-->
+<!--        </record>-->
+    </data>
+</odoo>

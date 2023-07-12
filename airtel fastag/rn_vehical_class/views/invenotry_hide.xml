@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+        <!-- stock picking inherit invisible fields-->
+
+        <record id="rs_inherit_invisible_stock_picking_form_view" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[@name='extra']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+  </data>
+</odoo>

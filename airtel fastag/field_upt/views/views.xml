@@ -1,0 +1,109 @@
+<odoo>
+  <data>
+    <record id="form_inherit_fields" model="ir.ui.view">
+      <field name="name">product.form.fields</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="arch" type="xml">
+        <label for="list_price" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </label>
+        <xpath expr="//field[@name='list_price']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='type']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <label for="standard_price" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </label>
+        <xpath expr="//field[@name='standard_price']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//page[@name='variants']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//page[@name='inventory']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+       <!--  <xpath expr="//div[@name='button_box']" position="replace">
+        </xpath> -->
+        <xpath expr="//field[@name='barcode']" position="after">
+          <field name="circle_name"/>
+        </xpath>
+      </field>
+    </record>
+    <record id="template_form_view" model="ir.ui.view">
+      <field name="name">code.form.fields</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="l10n_in.product_template_hsn_code"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='l10n_in_hsn_description']"
+               position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='l10n_in_hsn_code']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+      </field>
+    </record>
+    <record id="form_product_inherit_fields" model="ir.ui.view">
+      <field name="name">productt.form.fields</field>
+      <field name="model">product.product</field>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="arch" type="xml">
+         <xpath expr="//field[@name='barcode']" position="after">
+          <field name="circle_name"/>
+        </xpath>
+      </field>
+    </record>
+    <record id="nii_inherit_product_view_tree_view" model="ir.ui.view">
+      <field name="name">productt.product.tree</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_tree_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='barcode']" position="after">
+          <field name="circle_name"/>
+        </xpath>
+      </field>
+    </record>
+    <record id="product_template_search_form_rsp_view" model="ir.ui.view">
+      <field name="name">productt.template.search.form</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_search_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='categ_id']" position="before">
+          <separator/>
+         <filter string="Circle name" name="circle"
+                  context="{'group_by':'circle_name'}"/>
+          <filter string="Employee No" name="warehouse_emp_no"
+                  context="{'group_by':'warehouse_emp_no'}"/>
+          <filter string="Assign To" name="assign_to"
+                  context="{'group_by':'product_assigned_to'}"/>
+        </xpath>
+        <xpath expr="//filter[@name='filter_to_purchase']" position="after">
+          <separator/>
+          <filter string="Available Products" name="available_product"
+                  domain="[('fastag_sold','=','no'),('rs_faulty_stag','=','no'),('unlink_fastag','=',False)]"/>
+          <filter string="Sold Products" name="sold_product"
+                  domain="[('fastag_sold','=','yes')]"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="stock.product_template_action_product" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="product_template_search_form_rsp_view"/>
+        <field name="context">{"search_default_available_product":1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No product found. Let's create one!
+            </p>
+        </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,9 @@
+<odoo>
+  <data>
+  
+    
+    <record id="inherit_group_inventory_fastag" model="res.groups">
+        <field name="name">Own Transfer</field>
+    </record>
+  </data>
+</odoo>

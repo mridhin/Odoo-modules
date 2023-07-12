@@ -1,0 +1,185 @@
+<odoo>
+    <data>
+        <!--        .................SEARCH VIEW FOR ORDERING MENU..................-->
+        <record id="order_search" model="ir.ui.view">
+            <field name="name">order.search</field>
+            <field name="model">ordering.system</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Reference No."
+                           filter_domain="[('name','ilike',self)]"/>
+                    <field name="requester_name" string="Requester Name"
+                           filter_domain="[('requester_name','ilike',self)]"/>
+                    <field name="employee_id" string="Employee Id"
+                           filter_domain="[('employee_id','ilike',self)]"/>
+                    <field name="mobile_no" string="Mobile No."
+                           filter_domain="[('mobile_no','ilike',self)]"/>
+
+                    <!--......................FILTER.....................-->
+
+                    <filter name="tag_fulfillment_status" string="Requested"
+                            domain="[('tag_fulfillment_status','=','requested')]"/>
+                    <filter name="transferred" string="Transferred"
+                            domain="[('tag_fulfillment_status','=','transferred')]"/>
+
+
+                    <!--........................GROUP........................-->
+
+                    <group expand="1" string="Group by">
+                        <filter name="requester_circle" string="Requester circle"
+                                context="{'group_by':'requester_circle'}"/>
+                        <filter name="requested_date" string="Requested date"
+                                context="{'group_by':'requested_date'}"/>
+                        <filter name="tag_class" string="Tag Class"
+                                context="{'group_by':'tag_class'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--........................TREE VIEW OF THE ORDERING MENU......................-->
+
+        <record id="order_tree" model="ir.ui.view">
+            <field name="name">order.tree</field>
+            <field name="model">ordering.system</field>
+            <field name="arch" type="xml">
+                <tree default_order="name desc">
+                    <field name="name"/>
+                    <field name="requester_name"/>
+                    <field name="requester_circle"/>
+                    <field name="requested_date"/>
+                    <field name="employee_id"/>
+                    <field name="employee_name" invisible="1"/>
+                    <!--<field name="product_name"/>-->
+                    <field name="tag_class"/>
+                    <field name="tag_count"/>
+                    <field name="tag_fulfillment_status"/>
+                    <field name="source_profile" invisible="1"/>
+                    <field name="product_type" invisible="1"/>
+                    <field name="mobile_no" invisible="1"/>
+                    <field name="email_id" invisible="1"/>
+                    <field name="address" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--......................FORM VIEW OF THE ORDERING MENU...............................-->
+
+        <record id="order_form" model="ir.ui.view">
+            <field name="name">order.tree</field>
+            <field name="model">ordering.system</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!--..........FOR HIDING THE BUTTONS IN THE FORM VIEW LIKE SAVE,DISCARD,CREATE AND EDIT..........-->
+                    <sheet>
+                        <script>
+                            $(document).ready(function(){
+                            $(".o_cp_bottom_left").hide();
+                            });
+                        </script>
+                        <group>
+                            <group>
+                                <field name="name" invisible="1"/>
+                                <field name="employee_id" invisible="1"/>
+                                <field name="employee_name" invisible="1"/>
+                                <field name="requester_name" string="Source Name:" required='1'
+                                       options="{'no_create': True, 'no_create_edit':True}"/>
+                                <field name="tag_class"  required='1'
+                                       options="{'no_create': True, 'no_create_edit':True}"
+                                        domain="[('id','!=',(1,35,34))]"/>
+                                <field name="tag_count" string="Number Of Fastags:"
+                                        required='1'/>
+                                <field name="requester_circle" string="Circle:"
+                                        required='1'
+                                       options="{'no_create': True, 'no_create_edit':True}"/>
+                            </group>
+                            <group>
+                                <field name="source_profile"/>
+                                <field name="requested_date"/>
+                                <field name="mobile_no"/>
+                                <field name="email_id"/>
+                                <field name="tag_fulfillment_status" invisible="1"/>
+                                <!-- <field name="product_name"/>-->
+                                <!--  <field name="product_type"/>-->
+                            </group>
+                            <group>
+                                <field name="address"/>
+                            </group>
+                            <group></group>
+                            <group>
+                                <group col="6">
+                                    <field name="state" string="State"
+                                           style="width: 85px;margin-left:1%"
+                                           placeholder="State"/>
+                                    <field name="city" string="City"
+                                           style="width: 75px;margin-left:1%"
+                                           placeholder="City"/>
+                                    <field name="pin_code" string="Pincode"
+                                           style="width: 70px;margin-left:1%"
+                                           placeholder="Pincode"/>
+                                </group>
+
+
+                            </group>
+                        </group>
+                        <!--............................SUBMIT BUTTON.................................-->
+                        <button id="button_confirm" name="action_order_submit" string="Submit"
+                                class="oe_highlight oe_edit_only"
+                                type="object"
+                                style="margin-left:550px;"/>
+
+                        <!--...............................RESET BUTTON.................................-->
+                        <label for="reset_button" class="btn btn-sm btn-primary oe_highlight oe_edit_only"
+                               string="Select checkbox to reset"
+                        style="margin-left:50px;"/>
+                        <field name="reset_button" class="oe_edit_only"
+                               attrs="{'invisible': ['|',('reset_button2', '=', False),('reset_button', '=', True)]}"/>
+                        <field name="reset_button2" class="oe_edit_only" attrs="{'invisible': [('reset_button2', '=', True)]}"/>
+<!--                        </label>-->
+<!--                        <button id="button_reset" name="action_order_reset"-->
+<!--                                string="Reset"-->
+<!--                                class="oe_highlight oe_edit_only"-->
+<!--                                type="object"-->
+<!--                                confirm="Want to Reset(It will make all fields empty!!!!)"-->
+<!--                                style="margin-left:50px;"/>-->
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="order_action" model="ir.actions.act_window">
+            <field name="name">Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ordering.system</field>
+            <field name="view_mode">tree,form,search,kanban,graph</field>
+            <field name="context">{"search_default_tag_fulfillment_status":1}</field>
+            <field name="help" type="html">
+                <p class="order_view">Create your Order ID For Transfer Request.</p>
+            </field>
+        </record>
+        <menuitem id="Ordering_menu" name="Ordering"
+                  parent='stock.menu_stock_warehouse_mgmt'
+                  action="order_action"
+                  sequence="4"
+                  groups="record_rule.group_enterprise_manager,stock.group_stock_manager"/>
+
+
+        <!--..........................FORM VIEW OF THE WIZARD FOR THE POPUP............................-->
+
+        <record id="message_order_wizard_form" model="ir.ui.view">
+            <field name="name">message_order.wizard.form</field>
+            <field name="model">message_order.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <p class="text-center">
+                        <field name="message"/>
+                    </p>
+                    <!-- ...................IT IS FOR THE BUTTON IN THE WIZARD.....................-->
+                    <footer>
+                        <button name="action_create_order" string="Ok" type="object" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

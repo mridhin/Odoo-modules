@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_unlinked_tag_unlinked_tag,access.unlinked_tag.unlinked_tag,model_unlinked_tag_unlinked_tag,,1,1,1,1
+access_check_wizard,access.check.wizard,model_check_wizard,,1,1,1,1
+access_unlinked_mismatching,access.unlinked.mismatching,model_unlinked_mismatching,,1,1,1,1
+access_unlinked_matching,access.unlinked.matching,model_unlinked_matching,,1,1,1,1
+access_unlinked_report,access.unlinked.report,model_unlinked_report,,1,1,1,1
+access_unlinked_sheet,access.unlinked.sheet,model_unlinked_sheet,,1,1,1,1
+access_unlinked_duplicate,access.unlinked.duplicate,model_unlinked_duplicate,,1,1,1,1

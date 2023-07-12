@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <template id="assets_backend" name="change_color_backend" inherit_id="web.assets_backend">
+            <xpath expr=".">
+                <link rel="stylesheet" type="text/css"
+                      href="/color_theme_backend_cqt/static/src/css/change_color_backend.css"/>
+                <script type="text/javascript" src="/color_theme_backend_cqt/static/src/js/change_color_backend.js"/>
+            </xpath>
+        </template>
+        <template id="assets_frontend" name="change_theme_color" inherit_id="web.assets_frontend">
+            <xpath expr=".">
+                <link rel="stylesheet" type="text/css"
+                      href="/color_theme_backend_cqt/static/src/css/change_color_frontend.css"/>
+                <script type="text/javascript" src="/color_theme_backend_cqt/static/src/js/change_color_frontend.js"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

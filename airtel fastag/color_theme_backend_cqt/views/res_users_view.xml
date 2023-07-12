@@ -1,0 +1,18 @@
+<odoo>
+    <record id="res_users_inherit" model="ir.ui.view">
+        <field name="name">Res Partner Inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='preferences']" position="inside">
+                <field name="theme_color" widget="color"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_all_customers_product_form" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="stock.product_template_action_product" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product.product_template_tree_view"/>
+        <field name="sequence">1</field>
+    </record>
+</odoo>

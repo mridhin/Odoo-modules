@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="unacknowledged_report_form_view">
+        <field name="name">Unacknowledged Report Form</field>
+        <field name="model">unacknowledged.report</field>
+        <field name="arch" type="xml">
+            <form string="Unacknowledged Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="rs_name"/>
+                            <field name="rs_from_emp_no"/>
+                            <field name="rs_circle_id"/>
+                        </group>
+                        <group>
+                            <field name="rs_barcode"/>
+                            <field name="rs_to_emp_no"/>
+                            <field name="assigned_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="unacknowledged_report_tree_view" model="ir.ui.view">
+        <field name="name">Unacknowledged Report Tree</field>
+        <field name="model">unacknowledged.report</field>
+        <field name="arch" type="xml">
+            <tree string="Unacknowledged Report" create="0">
+                <field name="rs_name"/>
+                <field name="rs_barcode"/>
+                <field name="rs_from_emp_no"/>
+                <field name="rs_to_emp_no"/>
+                 <field name="rs_circle_id"/>
+                <field name="assigned_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="unacknowledged_report_search_view" model="ir.ui.view">
+        <field name="name">Unacknowledged Report Search</field>
+        <field name="model">unacknowledged.report</field>
+        <field name="arch" type="xml">
+            <search string="Unacknowledged Report">
+                <field name="rs_name"/>
+                <field name="rs_barcode"/>
+                <field name="rs_from_emp_no"/>
+                <field name="rs_to_emp_no"/>
+                 <field name="rs_circle_id"/>
+                <field name="assigned_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_unacknowledged_report">
+        <field name="name">Unacknowledged Tags</field>
+        <field name="res_model">unacknowledged.report</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create Your Unacknowledged Report</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_unacknowledged_report" name="Unacknowledged Report" parent="stock.menu_warehouse_report"
+              sequence="35" action="action_unacknowledged_report"/>
+</odoo>

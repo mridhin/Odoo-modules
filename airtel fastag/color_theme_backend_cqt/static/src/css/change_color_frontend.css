@@ -1,0 +1,188 @@
+:root {
+    --o-community-color: #0088ff;
+    --o-enterprise-color: #0088ff;
+    --o-enterprise-primary-color: #0088ff;
+}
+
+.btn.btn-primary {
+    background-color: var(--o-enterprise-color);
+    border-color: var(--o-enterprise-color);
+}
+
+#list_website_pages th {
+    background-color: var(--o-enterprise-color);
+}
+
+body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-primary {
+    background-color: var(--o-enterprise-color);
+    border-color: var(--o-enterprise-color);
+}
+
+body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-primary:hover {
+    opacity: 0.7;
+    background-color: var(--o-enterprise-color);
+}
+
+body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-primary:fosu {
+    opacity: 0.7;
+    background-color: var(--o-enterprise-color);
+}
+
+body .modal.oe_seo_configuration .o_seo_og_image .o_meta_img:hover {
+    border-color: var(--o-enterprise-color);
+}
+
+body .modal.o_technical_modal a:not(.o_btn_preview) {
+    color: var(--o-enterprise-color);
+}
+
+.o_tooltip {
+    border-color: var(--o-enterprise-color);
+}
+
+body .modal.oe_seo_configuration .o_seo_og_image .o_meta_img.o_active_image {
+    border-color: var(--o-enterprise-color);
+}
+
+.btn-link {
+    color: var(--o-enterprise-color);
+}
+
+body .modal.oe_seo_configuration .o_seo_og_image .o_meta_img_upload:hover {
+    border-color: var(--o-enterprise-color);
+    color: var(--o-enterprise-color);
+}
+
+body .modal.oe_seo_configuration .o_seo_og_image .o_meta_img.o_active_image:before {
+    border: 16px solid var(--o-enterprise-color);
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: var(--o-enterprise-color);
+}
+
+#oe_main_menu_navbar .dropdown-item.active,
+#oe_main_menu_navbar .dropdown-item:active {
+    background-color: var(--o-enterprise-color);
+}
+
+.nav-link {
+    color: var(--o-enterprise-color);
+}
+
+#list_website_pages td > a.fa {
+    color: var(--o-enterprise-color);
+}
+
+.oe_website_login_container.btn-secondary,
+.oe_website_login_container.btn-primary {
+    background-color: var(--o-enterprise-color);
+    border-color: var(--o-enterprise-color);
+}
+
+
+/* .o_tooltip */
+
+.o_tooltip {
+    /* border: 2px solid var(--o-enterprise-color); */
+    background-color: var(--o-enterprise-color);
+}
+
+.o_tooltip.active.right::before {
+    background-color: var(--o-enterprise-color);
+}
+
+.o_tooltip::after {
+    border-color: var(--o-enterprise-color);
+    background: var(--o-enterprise-color);
+}
+
+.o_tooltip.bottom::before {
+    border-bottom-color: var(--o-enterprise-color);
+}
+
+.o_main_navbar .show .dropdown-toggle {
+    background-color: var(--o-enterprise-color);
+    opacity: 0.7;
+}
+
+.o_main_navbar > a:hover,
+.o_main_navbar > a:focus,
+.o_main_navbar > ul > li > a:hover,
+.o_main_navbar > ul > li > a:focus,
+.o_main_navbar > ul > li > label:hover,
+.o_main_navbar > ul > li > label:focus,
+.o_main_navbar > button:hover,
+.o_main_navbar > button:focus {
+    background-color: var(--o-enterprise-color);
+    opacity: 0.7;
+}
+
+.tooltip .oe_tooltip_string {
+    background-color: var(--o-enterprise-color);
+}
+
+.oe_website_login_container.justify-content-between a {
+    color: var(--o-enterprise-color);
+}
+
+.o_footer a {
+    color: var(--o-enterprise-color);
+}
+
+.o_footer_copyright .o_brand_promotion {
+    display: none !important;
+}
+
+#list_website_pages > div.dropdown > button.btn-secondary {
+    background-color: var(--o-enterprise-color);
+    border-color: var(--o-enterprise-color);
+}
+
+#list_website_pages > div.dropdown > button.btn-secondary:focus,
+#list_website_pages > div.dropdown > button.btn-secondary.focus {
+    box-shadow: 0 0 0 0.2rem var(--o-enterprise-color);
+}
+
+#bottom > div.o_footer_copyright div.dropup > button.btn-secondary {
+    background-color: var(--o-enterprise-color);
+    border-color: var(--o-enterprise-color);
+}
+
+#bottom > div.o_footer_copyright div.dropup > button.btn-secondary:focus,
+#bottom > div.o_footer_copyright div.dropup > button.btn-secondary.focus {
+    box-shadow: 0 0 0 0.2rem var(--o-enterprise-color);
+}
+
+
+/*order*/
+
+.row.mt16.o_portal_sale_sidebar .btn.btn-secondary {
+    background-color: var(--o-enterprise-color);
+    border-color: var(--o-enterprise-color);
+}
+
+.row.mt16.o_portal_sale_sidebar .btn.btn-secondary:hover {
+    opacity: 0.7;
+    background-color: var(--o-enterprise-color);
+    border-color: var(--o-enterprise-color);
+}
+
+.row.mt16.o_portal_sale_sidebar a.small {
+    color: var(--o-enterprise-color);
+}
+
+@media (max-width: 767.98px) {
+    .o_main_navbar .o_app {
+        border-bottom: 1px solid var(--o-enterprise-color);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .o_main_navbar > .o_menu_brand {
+        border-bottom: 1px solid var(--o-enterprise-color);
+    }
+}

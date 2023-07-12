@@ -1,0 +1,217 @@
+<odoo>
+  <data>
+   
+  
+    <!-- <record id="rs_inherit_stock_picking_form_view" model="ir.ui.view">
+      <field name="name">stock.picking.form.inherit</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_form"/>
+      <field name="arch" type="xml">
+        
+      
+      </field>
+      </record> -->
+
+        
+<!--FILTER FOR stock picking tree view BY NAME IN RECORDS-->
+<record id="stock_picking_search_filters" model="ir.ui.view">
+  <field name="name">stock.picking.view.search</field>
+  <field name="model">stock.picking</field>
+  <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+  <field name="arch" type="xml">
+    
+        <!-- <group>
+          <filter name="rs_destination_id" string="Assign To " />
+        </group> -->
+
+        <!-- <search >
+         <xpath expr="//filter[@name='status']" position="after">
+            <filter string="Status" name="status" domain="[]" context="{'group_by': 'state'}"/>
+         </xpath>
+
+        </search> -->
+             
+
+
+ 
+      <!--search particular field of country using field name in search view-->
+
+        <xpath expr="//filter[@name='origin']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+       <xpath expr="//filter[@name='picking_type']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
+      <xpath expr="//filter[@name='starred']" position="attributes">     
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <xpath expr="//filter[@name='waiting']" position="attributes">     
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <xpath expr="//filter[@name='done']" position="attributes">     
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <xpath expr="//filter[@name='late']" position="attributes">     
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <xpath expr="//filter[@name='planning_issues']" position="attributes">     
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+
+      <xpath expr="//filter[@name='backorder']" position="attributes">     
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <xpath expr="//filter[@name='activities_exception']" position="attributes">     
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <!-- <xpath expr="//filter[@name='ready']" position="attributes">     
+        <attribute name="string">Acknowledge</attribute>
+      </xpath> -->
+
+      <xpath expr="//filter[@name='draft']" position="attributes">
+        <attribute name="string">Assign</attribute>
+      </xpath>
+
+      <xpath expr="//filter[@name='available']" position="attributes">
+        <attribute name="string">Acknowledge</attribute>
+      </xpath>
+      <xpath expr="//filter[@name='cancel']" position="attributes">
+        <attribute name="string">Cancel/Decline</attribute>
+      </xpath>
+
+  </field>
+</record>
+
+
+
+
+
+<!--CHANGES IN FIELD OF PRODCUT PRODUCT VARIENTS TEMPLATES-->
+  <record id="ni_inherit_product_view_form_view" model="ir.ui.view">
+        <field name="name">product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+       
+          <xpath expr="//field[@name='categ_id']" position="attributes">
+              <attribute name="invisible" >1</attribute>
+          </xpath>
+
+          <xpath expr="//field[@name='type']" position="after">
+            <field name="vehical_type" string="Vehicle Type"/>
+            </xpath>
+
+        <xpath expr="//field[@name='vehical_type']" position="after">
+        <field name="tag_id" /> 
+          <field name="assign_to_mob"/>
+          <field name="fastag_sold"/>
+          <field name="rs_faulty_stag"/>
+            <field name="unlink_fastag" />     
+             <field name="unlink_amount" attrs="{'invisible':[('unlink_fastag','=',False)]}"/>      
+            </xpath>
+
+        <xpath expr="//label[@for='lst_price']" position="attributes">
+        <attribute name="invisible" >1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='lst_price']" position="attributes">
+          <attribute name="invisible" >1</attribute>
+          </xpath>
+          <xpath expr="//field[@name='type']" position="attributes">
+          <attribute name="invisible" >1</attribute>
+          </xpath>
+          <xpath expr="//field[@name='taxes_id']" position="attributes">
+          <attribute name="invisible" >1</attribute>
+          </xpath>
+          <xpath expr="//label[@for='standard_price']" position="attributes">
+        <attribute name="invisible" >1</attribute>
+        </xpath>
+           <xpath expr="//field[@name='standard_price']" position="attributes">
+          <attribute name="invisible" >1</attribute>
+          </xpath>
+
+            <xpath expr="//field[@name='company_id']" position="before">
+            <field name="tag_color" widget="many2many_tags"/>
+            <field name="rs_tag_id" />
+            <field name="upload_date" />
+            <field name="vendor_name" />
+            <field name="assigned_To" widget="many2many_tags"/>
+            <field name="vendor_id" />
+            <field name="employee_no" />
+            </xpath>
+        
+          <!--hide tabs in product product varients in form-->
+            <page name="purchase" position="attributes">
+              <attribute name='invisible'>1</attribute> 
+          </page>
+              <page name="inventory" position="attributes">
+                <attribute name='invisible'>1</attribute> 
+            </page>
+
+        
+            <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+              <attribute name="invisible" >1</attribute>
+              </xpath>
+
+        </field>
+        </record>
+
+
+ <!-- CODE FOR VISBLILITY OF MAIN MENU REPORTING for ALL THE USERS -->
+      <record model="ir.ui.menu" id="stock.menu_warehouse_report">
+        <field eval="[(6,0,[ref('base.group_user')])]" name="groups_id"/>
+      </record> 
+
+
+ <!-- CODE FOR IN-VISBLILITY OF MAIN SUB MENU CONFIGURATION for ALL THE USERS -->
+ <record id="make_invisible" model="res.groups">
+       <field name="name">Invisible</field>
+    </record>
+    <record model="ir.ui.menu" id="stock.menu_pickingtype">
+        <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+ <record model="ir.ui.menu" id="stock.menu_reordering_rules_config">
+        <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  
+
+<!--CHANGES IN MENUS'S OF CONFIGURATION MENU VARIENTS TEMPLATES-->
+  <!-- <record id="stock_picking_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+       <xpath expr="//field[@name='fatag_bracode']" position="after">
+      
+      
+       </xpath>
+  </field>
+  </record> -->
+
+
+    <!-- Top menu item -->
+<!-- 
+    <menuitem name="rn_transfer_change" id="rn_transfer_change.menu_root"/> -->
+
+    <!-- menu categories -->
+
+    <!-- <menuitem name="Menu 1" id="rn_transfer_change.menu_1" parent="rn_transfer_change.menu_root"/>
+    <menuitem name="Menu 2" id="rn_transfer_change.menu_2" parent="rn_transfer_change.menu_root"/> -->
+
+    <!-- actions -->
+<!-- 
+    <menuitem name="List" id="rn_transfer_change.menu_1_list" parent="rn_transfer_change.menu_1"
+              action="rn_transfer_change.action_window"/>
+    <menuitem name="Server to list" id="rn_transfer_change" parent="rn_transfer_change.menu_2"
+              action="rn_transfer_change.action_server"/> -->
+
+  </data>
+</odoo>
