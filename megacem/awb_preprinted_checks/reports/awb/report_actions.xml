@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+            id="print_account_payment"
+            model="account.payment"
+            string="Check"
+            name="awb_preprinted_checks.report_invoice_check"
+    />
+</odoo>

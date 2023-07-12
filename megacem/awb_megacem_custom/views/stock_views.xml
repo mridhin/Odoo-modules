@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="stock.action_picking_tree_all">
+            <field name="name">Receiving Report</field>
+        </record>
+         <record model="ir.ui.menu" id="stock.all_picking">
+            <field name="name">Receiving Report</field>
+        </record>
+        <record id="stock_picking_form_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+       
+                <xpath expr="//label[@for='partner_id'][2]"  position="attributes">
+                    <attribute name="string">Supplier</attribute>
+                </xpath>
+                <label for='scheduled_date' position="attributes">
+                    <attribute name='string'>Date</attribute>
+                </label>
+                 <field name='origin' position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </field>
+                <field name='origin' position="after">
+                    <field name="check_received_employee_id" string="Checked/Received By"/>
+                    <field name="noted_employee_id" string="Noted By"/>
+                </field>
+                <xpath expr="//field[@name='move_ids_without_package']/tree//field[@name='quantity_done']"  position="after">
+                        <field name="price_unit" string="Unit Price"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>

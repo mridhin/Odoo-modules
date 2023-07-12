@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_check">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <style>
+                            .row1 {
+                                height: 60px; max-height: 60px; min-height: 60px;
+                            }
+
+                            .row2 {
+                                height: 35px; max-height: 35px; min-height: 35px;
+                            }
+
+                            .row3 {
+                              height: 35px; max-height: 35px; min-height: 35px;
+                            }
+
+                            td {
+                                vertical-align: bottom;
+                            }
+
+                            span {
+                                font-size: 15px; color: red; font-weight: bold;
+                            }
+
+                            .col1 {
+                                background-color: white;
+                                width: 320px;
+                            }
+
+                            .col2 {
+                                background-color: white;
+                                width: 600px;
+                            }
+
+                            .col3 {
+                                background-color: white;
+                                width: 180px;
+                            }
+                        </style>
+                        <div style="text-align: right;">
+                            <table>
+                                <tr class="row1">
+                                    <td class="col1"/>
+                                    <td class="col2"/>
+                                    <td class="col3" style="padding-left: 75px;">***<span t-field="doc.date"/>***
+                                    </td>
+                                </tr>
+                                <tr class="row2">
+                                    <td class="col1"/>
+                                    <td class="col2" style="padding-left: 115px;">***<span t-field="doc.partner_id.name"/>***
+                                    </td>
+                                    <td class="col3" style="padding-left: 45px;">
+                                        ***
+                                        <t t-if="doc.currency_id.position == 'before'">
+                                                <span t-field="doc.currency_id.name"/>
+                                        </t>
+                                        <span t-esc= "'{0:,.2f}'.format(abs(doc.amount))"/>
+                                        <t t-if="doc.currency_id.position == 'after'">
+                                                <span t-field="doc.currency_id.name"/>
+                                        </t>
+                                        ***
+                                    </td>
+                                </tr>
+                                <tr class="row3">
+                                    <td class="col1"/>
+                                    <td class="col2" style="padding-left: 85px;" colspan="2">***<span t-field="doc.amount_in_words"/>***
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

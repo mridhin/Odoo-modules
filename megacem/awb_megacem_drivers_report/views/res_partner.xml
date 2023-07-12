@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="ds_partner_view_buttons">
+        <field name="name">ds.partner.view.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority" eval="14"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[@name='button_box']" position="inside">
+                <button name="action_count_dr" type="object" class="oe_stat_button" icon="fa-list">
+                    <div class="o_stat_info">
+                        <field name="dr_count" class="o_stat_value"/>
+                        <span class="o_stat_text">Drivers Report</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

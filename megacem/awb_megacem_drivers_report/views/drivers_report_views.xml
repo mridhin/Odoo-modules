@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="drivers_report_model_action" model="ir.actions.act_window">
+            <field name="name">Drivers Report</field>
+            <field name="res_model">drivers.report</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Define a new lost reason
+                </p>
+                <p>
+                    Use lost reasons to expla in why an opportunity is lost.
+                </p>
+                <p>
+                    Some examples of lost reasons: "We don't have people/skill", "Price too high"
+                </p>
+            </field>
+        </record>
+
+        <record id="view_drivers_report" model="ir.ui.view" >
+            <field name="name">drivers.report.form</field>
+            <field name="model">drivers.report</field>
+            <field name="arch" type="xml">
+                <form string="Drivers Report Form View">
+                    <header>
+                        <field name="awb_stage_id" widget="statusbar" required="1" domain='[["code","not in",["draft","rejected"]]]'/>
+<!--                        <field name="state" widget="statusbar" statusbar_visible="in-transit,arrived,pending,approved"/>-->
+                        <button id="button_arrived" name="action_arrived" string="Arrived To Yard" class="btn btn-primary" type="object"
+                                attrs="{'invisible': [('stage_code', 'in', ['pending', 'approved','rejected', 'arrived', 'draft'] ), ]}"/>
+                        <button id="button_approved" name="action_approved" string="Approved" class="btn btn-primary" type="object"
+                                attrs="{'invisible': [('stage_code', 'not in', ['pending']) ]}" groups="awb_megacem_drivers_report.group_logistic_supervisor,awb_megacem_drivers_report.group_accounting_department"/>
+                        <button id="button_for_review" name="action_for_review" string="For Review" type="object"
+                                attrs="{'invisible': [('stage_code', 'in', ['pending', 'approved','rejected', 'draft'] ), ]}"/>
+
+
+                        <button id="button_return_to_pending" name="action_return_to_pending" string="Return To Pending" class="btn btn-primary" type="object"
+                                attrs="{'invisible': [('stage_code', 'not in', ['approved','rejected'])]}" groups="awb_megacem_drivers_report.group_accounting_department" />
+                        <button id="button_rejected" name="action_rejected" class="btn btn-danger" string="Reject" type="object"
+                                attrs="{'invisible': [('stage_code', 'not in', ['pending', 'approved'])]}" groups="awb_megacem_drivers_report.group_logistic_supervisor, awb_megacem_drivers_report.group_accounting_department"/>
+
+
+
+
+                    </header>
+                    <sheet string="Drivers Report">
+                        <field name="kanban_state" widget="state_selection"/>
+                        <field name="active" invisible="1"/>
+                        <field name="stage_code" invisible="1"/>
+                        <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" text="Approved" bg_color="bg-success" attrs="{'invisible': [('stage_code', '!=', 'approved')]}"/>
+                        <widget name="web_ribbon" text="Rejected" bg_color="bg-danger" attrs="{'invisible': [('stage_code', '!=', 'rejected')]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Name..." readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Primary Information">
+                                <field name="stage_code" invisible="1"/>
+                                <field name="is_logistics_supervisor" invisible="1"/>
+                                <field name="name" string="Drivers Report No." readonly="1"/>
+                                <field name="drivers_class" string="Class" attrs="{'readonly': [('stage_code', 'not in', ['draft'])]}"/>
+                                <field name="customer" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                <field name="load_no" attrs="{'required': [('stage_code','=', 'draft')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                <field name="dor_no" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                <field name="type_of_delivery" attrs="{'required': [('stage_code','=', 'draft')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}" invisible="1"/>
+                                <field name="type_of_delivery_id" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                <field name="tod_specify" attrs="{
+                                'required': [('type_of_delivery','=', 'others')],
+                                'invisible': [('type_of_delivery', '!=', 'others')],
+                                'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                <field name="type_of_operation" attrs="{'required': [('stage_code','=', 'draft')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}" invisible="1"/>
+                                <field name="type_of_operation_id" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                <field name="pcv_no" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                <field name="soa_journal_report"/>
+                            </group>
+                            <group string="Dispatcher Information">
+                                <field name="created_by" invisible="1"/>
+                                <field name="created_by_2" readonly="1"/>
+                                <field name="created_on" readonly="1"/>
+                                <field name="fulfilled_by" invisible="1"/>
+                                <field name="fulfilled_by_2" readonly="1"/>
+                                <field name="submitted_on" readonly="1"/>
+                                <field name="date_delivered" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved','rejected'])] }"/>
+                                <field name="remarks" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                <field name="approved_by" invisible="1"/>
+                                <field name="approved_by_2" readonly="1"/>
+                                <field name="approved_on" readonly="1"/>
+                                <field name="shipment_no"/>
+                                <field name="hauling_rate"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Yard" groups="awb_megacem_drivers_report.group_dr_yard">
+                                <group>
+                                    <group>
+                                        <field name="stage_seq" invisible="1"/>
+                                        <field name="starting_location" string="Starting Location:" attrs="{'required': [('stage_code','=', 'draft')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                         <field name="please_specify" string="Please Specify"
+                                                attrs= "{'invisible': [('starting_location', '!=', 'others')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])], 'required': [('starting_location', '=', 'others')]}"/>
+                                        <field name="date_and_time_dispatched" string="Date &amp; Time Dispatched:"
+                                               attrs="{'required': [('stage_code','=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="yard_arrival" string="Yard Arrival:"
+                                               attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="dispatched_by" string="Dispatched by:"
+                                               attrs="{'required': [('stage_code','=', 'draft')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+
+
+
+                            <page string="Plant" groups="awb_megacem_drivers_report.group_dr_plant">
+                                <group>
+                                    <group>
+                                        <field name="plant_site" attrs="{'required': [('stage_code','=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="plant_please_specify" string="Please Specify"
+                                                attrs= "{'required': [('plant_site', '=', 'others'), ('stage_code','not in', ['draft','approved','rejected'])], 'invisible': [('plant_site', '!=', 'others')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="plant_remarks" attrs="{'required': [('stage_code','=', 'draft')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_and_time_of_plant_arrival" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="date_and_time_of_plant_departure" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Delivery Site" groups="awb_megacem_drivers_report.group_dr_delivery_site">
+                                <group>
+                                    <group>
+                                        <field name="customer_name"/>
+                                        <field name="delivery_site" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="date_and_time_of_arrival" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="date_and_time_of_departure_from_delivery_site" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="start_of_unload" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="end_of_unload" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="unit_of_measure" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="quantity_delivered" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="quantity_received" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="discrepancy" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <br></br>
+                                    <group>
+                                        <field name="delivery_site_2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>                                       
+                                        <field name="date_and_time_of_arrival_2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="date_and_time_of_departure_2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="unit_of_measure_2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="quantity_delivered_2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <br></br>
+                                    <group>
+                                        <field name="delivery_site_3" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="date_and_time_of_arrival_3" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="date_and_time_of_departure_3" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="unit_of_measure_3" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Hubreading" groups="awb_megacem_drivers_report.group_dr_hubreading">
+                                <group>
+                                    <group>
+                                        <field name="hubreading_starting_location" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="hubreading_plant_site" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="hubreading_delivery_site" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="hubreading_ending_location" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="total_kilometers_travelled" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Expenses" groups="awb_megacem_drivers_report.group_dr_expenses">
+                                <group>
+                                    <group>
+                                        <field name="travel_allowance" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="travel_vale" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="total_travel_allowance" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="passway" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="passway_fee_amount"
+                                               attrs='{"invisible": [("passway", "!=", True)], "readonly": [("stage_code", "in", ["approved", "rejected"])]}'/>
+                                        <field name="toll_fee" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="toll_fee_amount"
+                                               attrs='{"invisible": [("toll_fee", "!=", True)], "readonly": [("stage_code", "in", ["approved", "rejected"])]}'/>
+                                        <field name="diesel" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="diesel_amount" attrs='{"invisible": [("diesel", "!=", True)], "readonly": [("stage_code", "in", ["approved", "rejected"])]}'/>
+                                        <field name="extra_helper" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="extra_helper_amount"
+                                               attrs='{"invisible": [("extra_helper", "!=", True)], "readonly": [("stage_code", "in", ["approved", "rejected"])]}'/>
+                                        <field name="return_money" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="return_money_amount"
+                                               attrs='{"invisible": [("return_money", "!=", True)], "readonly": [("stage_code", "in", ["approved", "rejected"])]}'/>
+                                        <field name="sop" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="sop_amount" attrs='{"invisible": [("sop", "!=", True)], "readonly": [("stage_code", "in", ["approved", "rejected"])]}'/>
+                                        <field name="others" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="expenses_please_specify" attrs='{"invisible": [("others", "!=", True)], "readonly": [("stage_code", "in", ["approved", "rejected"])]}'/>
+                                        <field name="amount" attrs='{"invisible": [("others", "!=", True)], "readonly": [("stage_code", "in", ["approved", "rejected"])]}'/>
+                                        <field name="remaining" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="total_expenses" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="expenses_remarks" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Fuel Details" groups="awb_megacem_drivers_report.group_dr_fuel_details">
+                                <group>
+                                    <group>
+                                        <field name="date_and_time_issued" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="location" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="pondo_before_trips" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="issued" attrs="{'required': [('stage_code','=', 'in-transit')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="total_pondo" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="pondo_after_trips" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="total_fuel_usage" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="average_fuel_consumption" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Truck Details" groups="awb_megacem_drivers_report.group_dr_truck_details">
+                                <group>
+                                    <group string="TH no./ Truck Plate no.">
+                                        <field name="th_number" attrs="{'required': [('stage_code','=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group string="Bulk no./Bulk Plate no.">
+<!--                                        <field name="no_field" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>-->
+                                        <field name="bulk_no_id" attrs="{'required': [('stage_code','=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="driver_1_name" domain='[["job_id","ilike","Driver"]]'
+                                               attrs="{'required': [('stage_code','=', 'draft')], 'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="employee_id_dr1" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="vale_d1" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}" default=""/>
+                                        <field name="rate_d1" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}" default=""/>
+                                    </group>
+                                    <group>
+                                        <field name="driver_2_name" domain='[["job_id","ilike","Driver"]]' attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="vale_d2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="rate_d2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <br></br>
+                                    <br></br>
+                                    <group>
+                                        <field name="helper_1_name" domain='[["job_id","ilike","Helper"]]' attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="employee_id_h1" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="vale_h1" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="rate_h1" attrs="{'required': [('stage_code','!=', 'draft')],  'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="helper_2_name" domain='[["job_id","ilike","Helper"]]' attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="employee_id_h2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="vale_h2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="rate_h2" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="helper_3_name" domain='[["job_id","ilike","Helper"]]' attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="employee_id_h3" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="vale_h3" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                        <field name="rate_h3" attrs="{'readonly': [('stage_code', 'in', ['approved', 'rejected'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter" name="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                        <field name="activity_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="drivers_report_kanban" model="ir.ui.view">
+            <field name="name">drivers.report.kanban</field>
+            <field name="model">drivers.report</field>
+            <field name="arch" type="xml">
+                <kanban records_draggable="false" default_group_by="awb_stage_id" default_order="priority desc, awb_sequence asc, id desc" group_create="true">
+                    <field name="responsible" widget="many2one_avatar_user" can_create="true" can_write="true" />
+                    <progressbar field="kanban_state"
+                                 colors="{&quot;normal&quot;: &quot;muted&quot;, &quot;done&quot;: &quot;success&quot;, &quot;blocked&quot;: &quot;danger&quot;}"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_record oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="o_kanban_record_details">
+                                    <div class="o_kanban_record_top" name="studio_auto_kanban_top">
+                                        <div class="o_kanban_record_headings" name="studio_auto_kanban_headings">
+                                            <field name="priority" widget="boolean_favorite" nolabel="1"/>
+                                            <strong class="o_kanban_record_title" name="studio_auto_kanban_title">
+                                                <field name="name"/>
+                                            </strong>
+                                        </div>
+                                        <div class="o_dropdown_kanban dropdown">
+                                            <a role="button" class="dropdown-toggle o-no-caret btn"
+                                               data-toggle="dropdown" data-display="static" href="#"
+                                               aria-label="Dropdown Menu" title="Dropdown Menu">
+                                                <span class="fa fa-ellipsis-v"/>
+                                            </a>
+                                            <div class="dropdown-menu" role="menu">
+                                                <a t-if="widget.editable" role="menuitem" type="edit"
+                                                   class="dropdown-item">Edit
+                                                </a>
+                                                <a t-if="widget.deletable" role="menuitem" type="delete"
+                                                   class="dropdown-item">Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_body" name="studio_auto_kanban_body"/>
+                                    <div class="o_kanban_record_bottom" name="studio_auto_kanban_bottom">
+                                        <div class="oe_kanban_bottom_left" name="studio_auto_kanban_bottom_left"/>
+                                        <div class="oe_kanban_bottom_right" name="studio_auto_kanban_bottom_right">
+                                            <field name="kanban_state" widget="state_selection"/>
+                                            <t t-set="unassigned">
+                                                <t t-esc="_t('Unassigned')"/>
+                                            </t>
+                                            <img t-att-src="kanban_image('res.users', 'image_128', record.responsible.raw_value)"
+                                                 t-att-title="record.responsible.value || unassigned"
+                                                 t-att-alt="record.responsible.value"
+                                                 class="oe_kanban_avatar o_image_24_cover float-right"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="drivers_report_tree" model="ir.ui.view">
+            <field name="name">drivers.report.tree</field>
+            <field name="model">drivers.report</field>
+            <field name="arch" type="xml">
+                 <tree string="Drivers Report Tree View">
+                 <!-- Added selection field -->
+                    <field name="billing_status" decoration-success="billing_status == 'billed'" decoration-info="billing_status == 'unbilled'" widget="badge" optional="show"/>
+                    <field name="date_delivered"/>
+                    <field name="drivers_class" string="Class"/>
+                    <field name="name"/>
+                    <field name="employee_id_dr1"/>
+                    <field name="driver_1_name"/>
+                    <field name="vale_d1"/>
+                    <field name="employee_id_dr2"/>
+                    <field name="driver_2_name"/>
+                    <field name="vale_d2"/>
+                    <field name="employee_id_h1"/>
+                    <field name="rate_d1" optional="hide"/>
+                    <field name="helper_1_name"/>
+                    <field name="vale_h1"/>
+                    <field name="rate_h1" optional="hide"/>
+                    <field name="rate_d2" optional="hide"/>
+                    <field name="employee_id_h2"/>
+                    <field name="helper_2_name"/>
+                    <field name="vale_h2"/>
+                    <field name="rate_h2" optional="hide"/>
+                    <field name="employee_id_h3"/>
+                    <field name="helper_3_name"/>
+                    <field name="vale_h3"/>
+                    <field name="rate_h3" optional="hide"/>
+                    <field name="plant_site"/>
+                    <field name="delivery_site"/>
+                     <field name="type_of_delivery_id"/>
+                    <field name="customer"/>
+                     <field name="type_of_operation_id"/>
+                    <field name="th_number"/>
+                    <field name="no_field"/>
+                    <field name="dor_no"/>
+                    <field name="quantity_delivered"/>
+                    <field name="quantity_received"/>
+                    <field name="starting_location"/>
+                    <field name="created_on"/>
+                    <field name="date_and_time_dispatched"/>
+                    <field name="date_and_time_of_departure_from_delivery_site"/>
+                    <field name="date_and_time_of_plant_departure"/>
+                    <field name="dispatched_by"/>
+                    <field name="extra_helper"/>
+                    <field name="toll_fee"/>
+                    <field name="sop"/>
+                    <field name="others"/>
+                    <field name="passway"/>
+                    <field name="travel_allowance"/>
+                    <field name= "stage_code"/>
+                    <field name="start_of_unload"/>
+                    <field name="hubreading_delivery_site"/>
+                    <field name="hubreading_ending_location"/>
+                    <field name="hubreading_plant_site"/>
+                    <field name="hubreading_starting_location"/>
+                    <field name="total_kilometers_travelled"/>
+                    <field name="remarks"/>
+                    <field name="load_no" optional="hide"/>                   
+                    <field name="tod_specify" optional="hide"/>
+                    <field name="pcv_no" optional="hide"/>
+                    <field name="created_by" optional="hide"/>
+                     <field name="created_by_2" optional="hide"/>
+                    <field name="fulfilled_by" optional="hide"/>
+                    <field name="submitted_on" optional="hide"/>
+                    <field name="date_delivered" optional="hide"/>
+                    <field name="approved_by_2" optional="hide"/>
+                     <field name="approved_by" optional="hide"/>
+                    <field name="approved_on" optional="hide"/>
+                    <field name="plant_remarks" optional="hide"/>
+                    <field name="date_and_time_of_plant_arrival" optional="hide"/>
+                    <field name="date_and_time_of_arrival" optional="hide"/>
+                    <field name="end_of_unload" optional="hide"/>
+                    <field name="unit_of_measure" optional="hide"/>
+                    <field name="discrepancy" optional="hide"/>
+                    <field name="delivery_site_2" optional="hide"/>
+                    <field name="unit_of_measure_2" optional="hide"/>
+                    <field name="quantity_delivered_2" optional="hide"/>
+                    <field name="date_and_time_of_arrival_2" optional="hide"/>
+                    <field name="date_and_time_of_departure_2" optional="hide"/>
+                    <field name="delivery_site_3" optional="hide"/>
+                    <field name="unit_of_measure_3" optional="hide"/>
+                    <field name="date_and_time_of_arrival_3" optional="hide"/>
+                    <field name="date_and_time_of_departure_3" optional="hide"/>
+                    <field name="travel_vale" optional="hide"/>
+                    <field name="total_travel_allowance" optional="hide"/>
+                    <field name="passway_fee_amount" optional="hide"/>
+                    <field name="toll_fee_amount" optional="hide"/>
+                    <field name="diesel" optional="hide"/>
+                    <field name="diesel_amount" optional="hide"/>
+                    <field name="extra_helper_amount" optional="hide"/>
+                    <field name="return_money" optional="hide"/>
+                    <field name="return_money_amount" optional="hide"/>
+                    <field name="sop_amount" optional="hide"/>
+                    <field name="please_specify" optional="hide"/>
+                    <field name="amount" optional="hide"/>
+                    <field name="remaining" optional="hide"/>
+                    <field name="total_expenses" optional="hide"/>
+                    <field name="date_and_time_issued" optional="hide"/>
+                    <field name="location" optional="hide"/>
+                    <field name="pondo_before_trips" optional="hide"/>
+                    <field name="issued" optional="hide"/>
+                    <field name="total_pondo" optional="hide"/>
+                    <field name="pondo_after_trips" optional="hide"/>
+                    <field name="total_fuel_usage" optional="hide"/>
+                    <field name="average_fuel_consumption" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="driver_report_search">
+            <field name="name">drivers.report.search</field>
+            <field name="model">drivers.report</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Drivers Report No"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Customer" name='customer' context="{'group_by':'customer'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+<!--        <record id="sequence_mti" model="ir.sequence">-->
+<!--            <field name="name">SEQ MTI CODE</field>-->
+<!--            <field name="code">mti.drivers.report.sequence</field>-->
+<!--            <field name="active">TRUE</field>-->
+<!--            <field name="prefix">MTI DR -</field>-->
+<!--            <field name="padding">8</field>-->
+<!--            <field name="number_next">1</field>-->
+<!--            <field name="number_increment">1</field>-->
+<!--        </record>-->
+
+<!--        <record id="sequence_mpi" model="ir.sequence">-->
+<!--            <field name="name">SEQ MPI CODE</field>-->
+<!--            <field name="code">mpi.drivers.report.sequence</field>-->
+<!--            <field name="active">TRUE</field>-->
+<!--            <field name="prefix">MPI DR -</field>-->
+<!--            <field name="padding">8</field>-->
+<!--            <field name="number_next">1</field>-->
+<!--            <field name="number_increment">1</field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

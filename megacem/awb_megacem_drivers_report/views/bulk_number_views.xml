@@ -1,0 +1,36 @@
+
+<odoo>
+    <data>
+        <!-- report th number -->
+        <record id="view_drivers_bulknumber" model="ir.ui.view">
+            <field name="name">report.bulknumber.tree</field>
+            <field name="model">bulk.number</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="company_id"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="drivers_report_bulk_number" model="ir.actions.act_window">
+            <field name="name">Bulk No./Plate No.</field>
+            <field name="res_model">bulk.number</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Define a new lost reason
+                </p>
+                <p>
+                    Use lost reasons to explain why an opportunity is lost.
+                </p>
+                <p>
+                    Some examples of lost reasons: "We don't have people/skill", "Price too high"
+                </p>
+            </field>
+        </record>
+        <!-- end report th number -->
+    </data>
+</odoo>

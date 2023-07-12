@@ -1,0 +1,36 @@
+
+<odoo>
+    <data>
+        <!-- report th number -->
+        <record id="view_drivers_type_of_delivery" model="ir.ui.view">
+            <field name="name">report.type.of.delivery.tree</field>
+            <field name="model">type.of.delivery</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="company_id"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="drivers_report_type_of_delivery" model="ir.actions.act_window">
+            <field name="name">Type Of Delivery</field>
+            <field name="res_model">type.of.delivery</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Define a new lost reason
+                </p>
+                <p>
+                    Use lost reasons to expla in why an opportunity is lost.
+                </p>
+                <p>
+                    Some examples of lost reasons: "We don't have people/skill", "Price too high"
+                </p>
+            </field>
+        </record>
+        <!-- end report th number -->
+    </data>
+</odoo>

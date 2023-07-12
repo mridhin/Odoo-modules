@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_drivers_report,access.drivers.report,model_drivers_report,,1,1,1,0
+access_report_stages,access.report_stages,model_report_stages,,1,1,1,0
+access_report_destinations,access.report_destinations,model_drivers_report_destinations,,1,1,1,0
+access_report_th_number,access.report_th_number,model_th_number,,1,1,1,0
+access_report_bulk_number_logistics,access.report_bulk_number_logistics,model_bulk_number,group_logistic_supervisor,1,1,1,1
+access_report_bulk_number_user,access.report_bulk_number_user,model_bulk_number,base.group_user,1,0,0,0
+admin_access_report_bulk_number_logistics,access.report_bulk_number_logistics,model_bulk_number,base.group_system,1,1,1,1
+access_hr_job,hr.job Access Internal User,model_hr_job,base.group_user,1,0,0,0
+access_report_top_logistics,access.type_of_operation_logistics,model_type_of_operation,group_logistic_supervisor,1,1,1,1
+access_report_top_user,access.type_of_operation_user,model_type_of_operation,base.group_user,1,0,0,0
+admin_access_report_top_logistics,access.type_of_operation_logistics,model_type_of_operation,base.group_system,1,1,1,1
+access_report_tod_logistics,access.type_of_delivery_logistics,model_type_of_delivery,group_logistic_supervisor,1,1,1,1
+access_report_tod_user,access.type_of_delivery_user,model_type_of_delivery,base.group_user,1,0,0,0
+admin_access_report_tod_logistics,access.type_of_delivery_logistics,model_type_of_delivery,base.group_system,1,1,1,1
+
