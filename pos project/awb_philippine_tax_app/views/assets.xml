@@ -1,0 +1,7 @@
+<odoo>
+    <template id="report_assets_inherit_m2550" inherit_id="web.assets_backend" name="AWB Reports">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/awb_philippine_tax_app/static/src/css/m_q_2550.css"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_e_0619_reports">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="text-left row" style="height:76px;">
+                        <div>
+                        </div>
+                        <img src="/awb_philippine_tax_app/static/src/img/company.png" style="
+                            max-height: 60px;margin-left:356px;margin-top:5px"/>
+                        <div style="margin-left:-5px;">
+                            <h7>Republic of the Philippines</h7><br/>
+                            <h9 style="margin-left:-405px;font-size:10px;margin-top:10px;">For BIR BCS/</h9>
+                            <h7 style="margin-left:340px;">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Department of Finance</h7><br/>
+                            <h9 style="margin-left:-405px;font-size:10px;">Use Only Item:</h9>
+                            <h7 style="margin-left:338px;">Bureau of Internal Revenue</h7>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                <table style="border:2pt solid black;width:100%;color:black;" class="table-bordered">
+                    <tr>
+                        <td width="15%">
+                            <p style="text-align:center;">BIR Form No.<br/>
+                            <b style="font-size:35px;">0619-E</b><br/>
+                            <t t-esc="docs.awb_due_date.strftime('%B')"/> <t t-esc="docs.awb_due_date.strftime('%Y')"/><br/>
+                            Page 1
+                            </p>
+                        </td>
+
+                        <td width="65%" style="text-align:center;">
+                            <h1 style="text-align:center;font-size:30px;">Monthly Remittance Form</h1>
+                            <h5 style="text-align:center;margin-top:-5px;">of Creditable Income Taxes Withheld (Expanded)</h5>
+                            <h15 style="text-align:center;margin-top:15px;font-size:10px;">Enter all required information in CAPITAL LETTERS using BLACK ink. Mark all applicable boxes with an “X”.<br/></h15>
+                            <h15 style="text-align:center;margin-top:-8px;font-size:10px;">Two copies MUST be filed with the BIR and one held by the Taxpayer.
+                            </h15>
+                        </td>
+                        <td width="20%">
+                            <img src="/awb_philippine_tax_app/static/src/img/qr.png" style="width:150px;margin-top:5px;margin-left:5px;height:65px"/>
+                            <p style="text-align:right">0619-E 01/18 P1&amp;nbsp;</p>
+                        </td>
+                    </tr>
+                    </table>
+                <t t-foreach="docs" t-as="o">
+                    <div class="part-div">
+                        <div class="row part-one" style="height:13px;margin-top:1px;">
+                                <div class="row" style="margin-left:30px;font-size:12px;">
+				    <p style="font-size:12px;"><b style="margin-left:5px;">1</b>For the Month of (MM/YYYY)</p>
+				    <p style="margin-left:15px;"><b style="margin-left:5px;">2</b>Due Date (MM/DD/YYYY)</p>
+                                    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                    &amp;nbsp;&amp;nbsp;
+                                    &amp;nbsp;&amp;nbsp;
+				    <b style="margin-left:15px;">3</b>
+                                    <p style="margin-left:5px;">Amended Form ?</p>
+                                    <b style="margin-left:10px;">4</b>
+                                    <p style="margin-left:5px;">Any Taxes Withheld?</p>
+                                    <b style="margin-left:10px;">5</b>
+                                    <p style="margin-left:5px;padding-right:5px;">ATC</p>
+                                    <b style="margin-left:10px;">6</b>
+				    <p style="margin-left:5px;padding-right:5px;">Tax Type Code</p>
+                                </div>
+                        </div>
+                        <div class="row part-one" style="height:22px;font-size:12px;">                      
+			    <div class="leftbox" style="margin-left:68px;margin-top:10px;">
+                                <span t-esc="o.awb_month"/> 
+                            </div>
+			    <div class="right-boxq" style="margin-left:1px;margin-top:10px;">
+                                <span t-esc="o.awb_year"/> 
+                            </div>
+
+                            <div class="leftbox" style="margin-left:45px;margin-top:10px;">
+                                <span t-esc="o.awb_due_date.strftime('%m')"/> 
+                            </div>
+                            <div class="leftbox" style="margin-left:1px;margin-top:10px;">
+                                <span t-esc="o.awb_due_date.strftime('%d')"/> 
+                            </div>
+                            <div class="right-boxq" style="margin-left:1px;margin-top:10px;">
+                                <span t-esc="o.awb_due_date.strftime('%Y')"/> 
+                            </div>
+
+			    <div class="yesbox" style="margin-left:25px;margin-top:5px;">
+                                <t t-if="o.awb_amended_return == 't'">
+                                    <p class="text-center">&#10004; </p>   
+                                </t> 
+                            </div>
+                            <p style="margin-left:5px;font-size:12px;margin-top:5px;">yes</p>
+
+                            <div class="yesbox" style="margin-left:10px;margin-top:5px;">
+                                <t t-if="o.awb_amended_return == 'f'">
+                                    <p class="text-center">&#10004; </p>   
+                                </t> 
+                            </div>
+                            <p style="margin-left:5px;font-size:12px;margin-top:5px;">No</p>
+
+                            <div class="yesbox" style="margin-left:25px;margin-top:5px;">
+                                <t t-if="o.awb_any_taxes_withheld == 't'">
+                                    <p class="text-center">&#10004; </p>   
+                                </t> 
+                            </div>
+                            <p style="margin-left:5px;font-size:12px;margin-top:5px;">yes</p>
+
+                            <div class="yesbox" style="margin-left:10px;margin-top:5px;">
+                                <t t-if="o.awb_any_taxes_withheld == 'f'">
+                                    <p class="text-center">&#10004; </p>   
+                                </t> 
+                            </div>
+			    <p style="margin-left:5px;font-size:12px;margin-top:5px;">No</p>
+
+			    <div class="leftbox" style="margin-left:40px;margin-top:10px;">
+                                WME10 
+                            </div>
+                            
+			    <div class="leftbox" style="margin-left:50px;margin-top:10px;">
+                                WE
+			    </div>
+                                                        
+                        </div>
+                        <div class="row sub_table_header part1">
+                            <b style="font-size:12px;">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Part I – Background Information &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</b>
+                        </div>
+			<div class="row part-one" style="height:25px;font-size:12px;">
+                            <b class="mt-left-q31 mb-4">7</b>
+                            <p class="mb-4" style="margin-left:10px;"> Taxpayer Identification Number (TIN)</p>
+                            <div class="business-style-q" style="margin-top:1px;">
+                                <span t-esc="o.awb_company_id.awb_vat_registration_no"/>   
+                            </div>
+                            <div class="row mrleft">
+                                <b class="mb-4" style="margin-left:15px;">8</b>
+                                <p class="mb-4" style="margin-left:10px;"> RDO Code</p>
+                                <div class="business-style-q" style="margin-top:1px;">
+                                  <span t-esc="o.awb_company_id.awb_rdo_code"/>   
+                                </div>
+                            </div>
+                            
+                        </div>
+			<div class="row part-one box-left company_name_border" style="height:45px;font-size:12px;">
+                            <b class="mt-left-q30 mb-4">9</b>
+                            <p style="margin-left:11px;">
+                                Withholding Agent’s Name (Last Name, First Name, Middle Name for Individual OR Registered Name for Non-Individual)
+                                </p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;margin-top:-20px;">
+                            <div class="withholding0619" style="height:18px;margin-top:-3px;font-size:12px;">   
+                               <span t-esc="o.awb_company_id.name"/>
+                            </div>
+                        </div>
+
+			<div class="row part-one box-left company_name_border" style="height:45px;">
+                            <b class="mt-left-q30 mb-4" style="font-size:12px;">10</b>
+                            <p style="margin-left:1px;;margin-top:1px;font-size:7px;">Registered Address (Indicate complete address. If branch, indicate the branch address. If the registered address is different from the current address, go to the RDO to update registered address by using BIR Form No.1905)</p>
+                            
+                        </div>
+                        <div class="row part-one div7" style="height:18px;margin-top:5px;font-size:12px;">
+                            <div class="withholding0619" style="margin-top:-30px;">   
+                               <span t-esc="o.awb_company_id.street"/>   
+                              <span t-esc="o.awb_company_id.street2 "/>   
+                              <span t-esc="o.awb_company_id.city"/>   
+                              <span t-esc="o.awb_company_id.state_id.name"/>   
+                              <span t-esc="o.awb_company_id.country_id.name"/>
+                            </div>
+                        </div>
+                        <br/>
+			<div class="row part-one div7" style="height:7px;margin-left:26px;">
+                            <div class="address-name" style="margin-top:-20px;">   
+                            </div>
+                        <div class="row treaty-div-q" style="height:18px;margin-top:-16px;font-size:12px;margin-left:165px;">
+                            <p >10A ZIP Code</p>
+                            <div class="business-style-q" style="margin-top:-3px;font-size:12px;">
+                                <span t-esc="o.awb_company_id.zip"/>   
+                            </div>
+                        </div> 
+                        </div>
+
+			<div class="row part-one treaty-border-q" style="height:29px;font-size:12px;">
+                            <b class="mt-left-q30 mb-4" style="font-size:12px;">11</b>
+                            <p style="margin-left:11px;;margin-top:1px;">Contact Number</p>
+                            <div class="row treaty-div-q" style="margin-left:10px;margin-top:-2px;font-size:12px;">
+                                <div class="contact-number">
+                                    <span t-esc="o.awb_company_id.phone"/>
+                                </div>
+                            </div>
+
+                            <p style="margin-top:4px;margin-left:20px;">12 Category of Withholding Agent</p>
+                            <div class="yesbox amended-return1" style="margin-left:10px;">
+                                <t t-if="o.awb_category_of_withholding_agent == 'private'">
+                                    <p>&#10004; </p>  
+                                </t>
+                            </div>
+                            <p class="amended-return1">Private</p>
+                            <div class="nobox amended-return1" style="margin-left:10px;">
+                                <t t-if="o.awb_category_of_withholding_agent == 'government'">
+                                    <p>&#10004; </p> 
+                                </t>   
+                            </div>
+                            <p class="amended-return1">Government</p>
+                            
+                        </div>
+
+			<div class="row part-one box-left company_name_border" style="font-size:12px;height:40px;">
+                            <b class="mt-left-q30 mb-4">13</b>
+                            <p style="margin-left:11px;">
+                                Email Address
+                                </p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;">
+                            <div class="withholding0619" style="margin-top:5px;margin-left:20px;font-size:12px;">   
+                                <span t-esc="o.awb_company_id.email"/>
+                            </div>
+                        </div>
+                        <div class="row sub_table_header part1">
+                            <b style="margin-left:370px;font-size:12px;">Part II – Tax Remittance</b>
+		    	</div>
+                        
+			<div class="row part-one" style="height:14px;font-size:12px;">
+                            <strong><p class="ml-4">14</p></strong>
+                            <p class="sale-div-q"> Amount of Remittance</p>
+                            <div class="tax-valuebox" style="margin-left:290px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_remittance))"/> 
+                            </div>
+                        </div>
+                        
+			<div class="row part-one" style="height:14px;font-size:12px;margin-top:10px;">
+                            <strong><p class="ml-4">15</p></strong>
+                            <p class="sale-div-q"> Less: Amount Remitted from Previously Filed Form, if this is an amended form</p>
+                            <div class="tax-valuebox" style="margin-left:-49px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_less_remittance))"/> 
+                            </div>
+                        </div>
+
+                        <div class="row part-one" style="height:14px;font-size:12px;margin-top:10px;">
+                            <strong><p class="ml-4">16</p></strong>
+                            <p class="sale-div-q"> Net Amount of Remittance (Item 14 Less Item 15)</p>
+                            <t t-set="total_14_15" t-value="o.awb_remittance + o.awb_less_remittance"/>
+                            <div class="tax-valuebox" style="margin-left:124px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(total_14_15))"/> 
+                            </div>
+                        </div>
+
+			<div class="row part-one" style="height:14px;font-size:12px;margin-top:10px;">
+                            <strong><p class="ml-4">17</p></strong>
+                            <p class="sale-div-q"> Add: Penalties</p>
+                            
+                        </div>
+                        
+                        <div class="row part-one" style="height:14px;font-size:12px;margin-top:10px;">
+                            <strong><p class="mb-4" style="margin-left:60px;">17A</p></strong>
+                            <p style="margin-left: 4px;">
+                                Surcharge</p>
+
+                            <div class="tax-valuebox" style="margin-left:482px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_17a))"/> 
+                            </div>
+                        </div>
+
+                        <div class="row part-one" style="height:14px;font-size:12px;margin-top:10px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">17B</p></strong>
+                            <p style="margin-left: 4px;">
+                                 Interest</p>
+
+                            <div class="tax-valuebox" style="margin-left:497px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_17b))"/> 
+                            </div>
+                        </div>
+
+                        <div class="row part-one" style="height:14px;font-size:12px;margin-top:10px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">17C</p></strong>
+                            <p style="margin-left: 4px;">
+                                 Compromise</p>
+
+                            <div class="tax-valuebox" style="margin-left:467px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_17c))"/> 
+                            </div>
+                        </div>
+
+                        <div class="row part-one" style="height:14px;font-size:12px;margin-top:10px;">
+                            <strong><p class="mb-4" style="margin-left:60px;">17D</p></strong>
+                            <p style="margin-left: 4px;">
+                                 Total Penalties (Sum of Items 17A to 17C)</p>
+
+                            <div class="tax-valuebox" style="margin-left:287px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_17d))"/> 
+                            </div>
+                        </div>
+
+                        <div class="row part-one" style="height:20px;font-size:12px;margin-top:10px;">
+                            <strong><p class="ml-4">18</p></strong>
+                            <p class="sale-div-q"> Total Amount of Remittance (Sum of Items 16 and 17D)</p>
+                            <t t-set="total_16_17D" t-value="total_14_15 + o.awb_17d"/>
+
+                            <div class="tax-valuebox" style="margin-left:82px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(total_16_17D))"/> 
+                            </div>
+		    	</div>
+			<div class="row part-one treaty-border-q" style="height:50px;font-size:9px;">
+                        &amp;nbsp;&amp;nbsp;I/We declare under the penalties of perjury that this remittance form has been made in good faith, verified by me/us, and to the best of my/our knowledge and belief, is true and correct, pursuant
+to the provisions of the National Internal Revenue Code, as amended, and the regulations issued under authority thereof. Further, I/we give my/our consent to the processing of my/our information
+as contemplated under the *Data Privacy Act of 2012 (R.A. No. 10173) for legitimate and lawful purposes. (If Authorized Representative, attach authorization letter)
+			</div>
+                    </div>
+
+		    <div class="row part-one">
+                        <div  style="height:40px;font-size:12px;width:50%;margin-left:15px;border:1pt solid grey;color:black;">
+                            <p style="margin-left:10px;">For Individual:</p>
+                        </div>
+                        <div style="height:40px;font-size:12px;width:47%;margin-left:0px;border:1pt solid grey;color:black;">
+                            <p style="margin-left:10px;">For Non-Individual:</p>
+                        </div>
+                    </div>
+
+		    <div class="row part-one">
+                        <div class="bg-color" style="height:55px;font-size:10px;width:50%;margin-left:15px;border:1pt solid grey;color:black;">
+                            <p style="margin-left:10px;">Signature over Printed Name of Taxpayer/Authorized Representative/ Tax &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Agent (Indicate Title/Designation and TIN)</p>
+                        </div>
+                        <div class="bg-color" style="height:55px;font-size:10px;width:47%;margin-left:0px;border:1pt solid grey;color:black;">
+                            <p style="margin-left:20px;">Signature over Printed Name of President/Vice President/<br/>
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Authorized Officer or Representative/Tax Agent<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+(Indicate Title/Designation and TIN)</p>
+                        </div>
+                    </div>
+
+                    <table style="width:100%; margin:-5px auto;height:40px;font-size:8px;" class="table-condensed table-sm">
+                        <tr >
+                            <td class="bg-color" style="border:1pt solid grey;width:20%;color:black;">Tax Agent Accreditation No./
+                            Attorney’s Roll No. (if applicable)</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td class="bg-color" style="border:1pt solid grey;width:10%;color:black;margin-top:-10px;">Date of Issue (MM/DD/YYYY)</td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"><span t-field="o.awb_issue_date"/></td>
+                            <td class="bg-color" style="border:1pt solid grey;width:10%;color:black;">Date of Expiry (MM/DD/YYYY)</td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"><span t-field="o.awb_expiry_date"/></td>
+                        </tr>
+                    </table>
+                    <div class="bg-color row sub_table_header part1">
+                    <b style="font-size:12px;">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Part III – Details of Payment &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</b>
+                    </div>
+
+                    <table style="width:100%; margin:0px auto;height:20px;font-size:8px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:20%;color:black;text-align:center;">Particulars</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;text-align:center;">Drawee Bank/Agency</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;text-align:center;">Number</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;text-align:center;">Date (MM/DD/YYYY)</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;text-align:center;">Amount</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:30px;font-size:9px;" class="table-condensed table-sm">
+                        <tr >
+                            <td class="bg-color" style="border:1pt solid grey;width:20%;color:black;">19 Cash/Bank Debit Memo</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:30px;" class="table-condensed table-sm">
+                        <tr >
+                            <td class="bg-color" style="border:1pt solid grey;width:20%;color:black;">20 Check</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:30px;" class="table-condensed table-sm">
+                        <tr >
+                            <td class="bg-color" style="border:1pt solid grey;width:20%;color:black;">21 Tax Debit Memo</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:30px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:20%;color:black;">22 Others (specify below)</td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:40px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:100%;color:black;"></td>
+                        </tr>
+                    </table>
+
+                    <div class="row part-one">
+                        <div  style="height:70px;font-size:11px;width:63%;margin-left:15px;border:1pt solid grey;color:black;">
+                            <p style="margin-left:10px;">Machine Validation/Revenue Official Receipt Details (if not filed with an Authorized Agent Bank):</p>
+                        </div>
+                        <div style="height:70px;font-size:11px;width:34%;margin-left:0px;border:1pt solid grey;color:black;">
+                            <p style="margin-left:10px;">Stamp of Receiving Office/AAB and Date of Receipt<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;(RO’s Signature/Bank Teller’s Initial)</p>
+                        </div>
+		    </div>
+
+                    *NOTE: Please read the BIR Data Privacy Policy found in the BIR website (www.bir.gov.ph)
+                </t>                    
+		</div>
+            </t>
+        </t>
+    </template>
+</odoo>

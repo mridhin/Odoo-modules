@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+
+
+		<!-- Report template -->
+		<template id="sale_report">
+			<t t-call="web.html_container">
+			<t t-set="currency_id_symbol" t-value="env.company.currency_id.symbol" />
+			
+
+
+				<div style="text-align: center;">
+					<h2 style="font-weight: bold;">BIR POS REPORT (SALES BOOK)</h2>
+				</div>
+				<div style="text-align: left;">
+					<p>
+						<strong>DATE RANGE:</strong>
+						<t t-esc="header_details['start_date']" />
+						to
+						<t t-esc="header_details['end_date']" />
+					</p>
+
+					<p>
+						<strong>Company Name:</strong>
+						<t t-esc="header_details['company_name']" />
+					</p>
+					<p>
+						<strong>TIN Number:</strong>
+						<t t-esc="header_details['tin_number']" />
+					</p>
+					<p>
+						<strong>POS Terminal Number:</strong>
+						<t t-esc="header_details['pos_terminal_no']" />
+					</p>
+					<p>
+						<strong>MIN:</strong>
+						<t t-esc="header_details['min']" />
+					</p>
+					<p>
+						<strong>PTU:</strong>
+						<t t-esc="header_details['ptu']" />
+					</p>
+					<p>
+						<strong>Accreditation Number:</strong>
+						<t t-esc="header_details['acc_number_pos']" />
+					</p>
+				</div>
+
+				<table
+					style="width: 100%; border-collapse: collapse; border: 1px solid black;">
+					<thead>
+						<tr>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 25px;">Date</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">OR/Invoice Number From</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">OR/Invoice Number To</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">Ending Balance</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">Beginning Balance</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">Total Sales</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">VATable Sales</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">VAT Amount</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">Zero Rated Sales</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">VAT Exempt Sales</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">SC Discount</th>
+							<th
+								style="text-align: left; border: 1px solid black; padding: 5px;">PWD Discount</th>
+						</tr>
+					</thead>
+					<!-- min-width added for column issue and changed portrait to landscape -->
+					<tbody>
+						<t t-foreach="query_lines" t-as="q_line">
+							<tr>
+								<td
+									style="text-align: left; border: 1px solid black; padding: 1px;">
+									<t t-esc="q_line['date_order']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									
+									<t
+										
+										t-esc="q_line['min_order']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									
+									<t
+										
+										t-esc="q_line['max_order']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['ending_bal']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['beg_bal']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['total_sale']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['vatable_sales']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['vat_amount']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['zero_rated_sales']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['vat_exempt_sales']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['sc_discount_amount']"></t>
+								</td>
+								<td
+									style="text-align: right; border: 1px solid black; padding: 5px; min-width: 100px;">
+									<t t-esc="currency_id_symbol" />
+									<t
+										t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+										t-esc="q_line['pwd_discount_amount']"></t>
+								</td>
+							</tr>
+						</t>
+					</tbody>
+
+
+				</table>
+
+
+
+				<t t-call="awb_sale_book_report.sale_report_footer" />
+
+
+
+			</t>
+		</template>
+
+
+		<template id="sale_report_footer">
+
+
+			<div style="margin-top: 20px;">
+				<strong>Date and Time generated:</strong>
+				<t t-esc="date_time" />
+				<br />
+				<strong>Generated by:</strong>
+				<t t-esc="company" />
+			</div>
+
+
+
+
+			<div>
+				<strong>Important:</strong>
+				<br />
+				Please note that the ending balance of the previous date sale is
+				your beginning balance for the current business date.
+				<br />
+				Please do not sum up the columns. The total sales is already
+				reflected in the total sales column.
+			</div>
+
+		</template>
+
+	</data>
+</odoo>

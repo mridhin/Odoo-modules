@@ -1,0 +1,600 @@
+
+.td_left {
+  border-right: 0.5px solid white;
+}
+.border_table{
+  border: 2px solid black;
+}
+.main_table_header{
+  font-family: Arial;
+  font-size: 8px;
+  text-align: center;
+}
+.sub_table_header{
+  font-family: Arial;
+  font-size: 7px;
+  height: 23px;
+}
+.data_table{
+  font-family: Arial;
+  font-size: 6px;
+  text-align: center;
+}
+.cell_hieght{
+  height: 10px;
+}
+.table-head{
+  width: 100%; 
+  margin: 0px auto;
+  border: 1px solid black;
+}
+.main-headre-div{
+  border: 1px solid black;
+}
+.headre-div{
+  margin-top: -29px;
+}
+.headre-div-1{
+  margin-top: -44px;
+}
+.headre-div-2{
+  margin-left: 20px;
+}
+.part-zero{
+  background-color: white;
+  font-family: Arial;
+  font-size: 10px;
+  text-align: left;
+}
+.part-one{
+  font-family: Arial;
+  font-size: 8px;
+}
+.ml{
+  margin-top: 10px;
+  margin-left: -19px;
+
+}
+.mt-left30{
+  margin-left: 24px;
+}
+.mt-left-q30{
+  margin-left: 17px;
+}
+.mt-left-q31{
+  margin-left: 32px;
+}
+.period-start{
+  margin-left: 5px;
+}
+.mt-lfet{
+  margin-left: 40px;
+}
+.mt-lfet1{
+  margin-top: 11px;
+  margin-left: -15px;
+}
+.mt-lfet1-q{
+  margin-top: 11px;
+  margin-left: -30px;
+}
+.part-div{
+  border: 1px solid black;
+  background-color: #A9A9A9;
+
+}
+.bg-white{
+  background-color: white;
+}
+.part-div-2{
+  border: 1px solid black;
+}
+.b-bottom{
+  border-bottom: 1px solid black;
+  height: 14px;
+}
+.b-left{
+  height: 15px;
+}
+.leftbox {
+  background-color:white;
+  width:40px;
+  height:22px;
+  margin-right: 0px;
+  margin-left: 10px;
+  text-align: left;
+  border-right: thin solid black;
+
+}
+.leftbox1 {
+  background-color:white;
+  width:30px;
+  height:15px;
+  margin-right: 0px;
+  margin-left: 10px;
+  text-align: left;
+  border-right: thin solid black;
+
+}
+.rightbox{
+    background-color:white;
+    width:120px;
+    height:15px;
+    text-align: left;
+}
+.right-boxq{
+    background-color:white;
+    width:75px;
+    height:22px;
+    text-align: left;
+}
+.right-boxq1{
+    background-color:white;
+    width:95px;
+    height:15px;
+    text-align: left;
+}
+.date-box{
+    background-color:white;
+    width:150px;
+    height:25px;
+    text-align: left;
+}
+.amended-return{
+  margin-top: 11px;
+  margin-left: -30px;
+}
+.amended-return1{
+  margin-top: 5px;
+  margin-left: 15px;
+}
+.tri-class{
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.tri-class-q{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.yesbox {
+  background-color:white;
+  width:20px;
+  height:20px;
+  border: thin black;
+  text-align: left;
+
+}
+.yesbox1 {
+  background-color:white;
+  width:20px;
+  height:10px;
+  border: thin black;
+  text-align: left;
+
+}
+.nobox{
+    background-color:white;
+    width:20px;
+    height:20px;
+    text-align: center;
+    border: thin  black;
+}
+.nobox1{
+    background-color:white;
+    width:20px;
+    height:10px;
+    text-align: center;
+    border: thin  black;
+}
+.number-sheet{
+  background-color:white;
+    width:80px;
+    height:13px;
+    text-align: left;
+    border: thin black;
+    margin-left: 60px;
+}
+.number-sheet-q{
+    background-color:white;
+    width:60px;
+    margin-top: 5px;
+    height:13px;
+    text-align: left;
+    border: thin black;
+}
+.part1{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  font-family: Arial;
+  font-size: 10px;
+}
+.tin-box{
+  background-color:white;
+  width:248px;
+  height:15px;
+  margin-top: 4px;
+  margin-left: 5px;
+  text-align: left;
+}
+.tin-box-q{
+  background-color:white;
+  width:100px;
+  height:15px;
+  margin-top: 4px;
+  margin-left: 1px;
+  text-align: left;
+}
+.tin-tri{
+  margin-right: 16px;
+  margin-top: 11px;
+}
+.mrleft{
+  margin-left: -3px;
+  height: 22px;
+}
+.rdocode-box{
+    background-color:white;
+    width:77px;
+    margin-top: 6px;
+    height:15px;
+    text-align: left;
+    margin-left: 15px;
+}
+.inline {
+  display: inline;
+}
+.div6{
+  margin-left: 28px;
+  height: 22px;
+}
+.mt13{
+  margin-top: 13px;
+}
+.business-style{
+  background-color:white;
+  width:240px;
+  height:15px;
+  margin-top: 4px;
+  margin-left: 5px;
+  text-align: left;
+}
+.zip{
+	  background-color:white;
+	    width:100px;
+	      height:22px;
+	        margin-top: 4px;
+		  margin-left: 13px;
+		    text-align: left;
+	    }
+
+.business-style-q{
+  background-color:white;
+  width:210px;
+  height:22px;
+  margin-top: 4px;
+  margin-left: 13px;
+  text-align: left;
+}
+.business-style-q1{
+  background-color:white;
+  width:210px;
+  height:15px;
+  margin-top: 4px;
+  margin-left: 5px;
+  text-align: left;
+}
+.business-style-m{
+  background-color:white;
+  width:295px;
+  height:22px;
+  margin-top: 4px;
+  margin-left: 13px;
+  text-align: left;
+}
+.contact-number{
+  background-color:white;
+  width:300px;
+  height:25px;
+  margin-top: 4px;
+  margin-left: 13px;
+  text-align: left;
+}
+.email-id{
+  background-color:white;
+  width:795px;
+  height:30px;
+  margin-top: 4px;
+  margin-left: 13px;
+  text-align: left;
+}
+.company-name{
+  background-color:white;
+  width:500px;
+  height:15px;
+  margin-top: 4px;
+  margin-left: 5px;
+  text-align: left;
+  border: 1px thin black;
+}
+.withholding0619{
+	  background-color:white;
+	    width:784px;
+	      height:22px;
+	        margin-left: 15px;
+		  text-align: left;
+		    border: 1px thin black;
+	    }
+.withholding1601{
+	  background-color:white;
+	    width:900px;
+	      height:22px;
+	        margin-left: 15px;
+		  text-align: left;
+		    border: 1px thin black;
+	    }
+
+.agent-name{
+  background-color:white;
+  width:921px;
+  height:22px;
+  margin-left: 15px;
+  text-align: left;
+  border: 1px thin black;
+}
+.reg_addr{
+  background-color:white;
+  width:250px;
+  height:22px;
+  margin-left: 15px;
+  text-align: left;
+  border: 1px thin black;
+}
+.zip_addr{
+  background-color:white;
+  width:90px;
+  height:22px;
+  margin-left: 12px;
+  text-align: left;
+  border: 1px thin black;
+}
+.email-address{
+  background-color:white;
+  width:918px;
+  height:22px;
+  margin-left: 15px;
+  text-align: left;
+  border: 1px thin black;
+}
+.email-address0619{
+	  background-color:white;
+	    width:918px;
+	      height:22px;
+	        margin-left: 15px;
+		  text-align: left;
+		    border: 1px thin black;
+	    }
+
+.address-name{
+  background-color:white;
+  width:600px;
+  height:22px;
+  margin-left: 10px;
+  text-align: left;
+  border: 1px thin black;
+}
+.address1601{
+	  background-color:white;
+	    width:685px;
+	      height:22px;
+	        margin-left: 10px;
+		  text-align: left;
+		    border: 1px thin black;
+	    }
+
+.companyname-left{
+  padding-right: 160px;
+}
+.box-left{
+  margin-left: -18px;
+}
+.div7{
+  margin-left: 20px;
+  margin-top: -27px;
+}
+.div8{
+  margin-left: 11px;
+  margin-top: -27px;
+}
+.phone-num{
+    background-color:white;
+    margin-top: 1px;
+    width:194px;
+    height:15px;
+    text-align: left;
+    border: thin black;
+    margin-left: 117px;
+}
+.phone-num-q{
+    background-color:white;
+    margin-top: 1px;
+    width:174px;
+    height:15px;
+    text-align: left;
+    border: thin black;
+    margin-left: 100px;
+}
+.company_name_border{
+  border-top:1px solid black ;
+  margin-left: auto;
+  margin-right: auto;
+  height: 36px;
+}
+.company_name_border1{
+  border-top:1px solid black ;
+  margin-left: auto;
+  margin-right: auto;
+  height: 34px;
+}
+.companyname-left1{
+  padding-right: 475px;
+  margin-left: 11px;
+}
+.tax-treaty{
+  margin-top: 13px;
+  margin-left: -149px;
+  padding-right: 93px;
+}
+.tax-treatybox{
+  background-color:white;
+  width:230px;
+  height:15px;
+  margin-top: 4px;
+  margin-left: 18px;
+  text-align: center;
+  border: 1px thin black;
+}
+.treaty-border{
+  border-top: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  height: 12px;
+}
+.treaty-border-q{
+  border-top: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  height: 25px;
+}
+.treaty-div{
+  margin-left: 85px;
+
+}
+.treaty-div-q{
+  margin-left: 48px;
+}
+.tax-valuebox{
+  background-color:white;
+  width:200px;
+  margin-top: 1px;
+  margin-left: 5px;
+  text-align: right;
+  border: 1px thin black;
+  height: 18px;
+}
+.sale-div{
+  margin-left: 7px;
+  padding-right: 230px;
+}
+.sale-div-q{
+  margin-left: 7px;
+  padding-right: 163px;
+}
+.box25{
+    background-color:white;
+    width:131px;
+    height:15px;
+    text-align: right;
+    border: thin black;
+    margin-left: 10px;
+}
+.box28-q{
+    background-color:white;
+    width:108px;
+    height:15px;
+    text-align: right;
+    border: thin black;
+    margin-left: 10px;
+}
+.table-border{
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.box29{
+  margin-top: 1px;
+  background-color:white;
+  width:76px;
+  height:10px;
+  text-align: right;
+
+}
+.box29-b{
+  margin-top: 0px;
+  background-color:white;
+  width:80px;
+  height:10px;
+  text-align: right;
+
+}
+.box29-b-1{
+  margin-top: 1px;
+  background-color:white;
+  width:20px;
+  height:10px;
+  text-align: center;
+  border-right: 0.5px solid black;
+
+}
+.box29-b-2{
+  margin-top: 1px;
+  background-color:white;
+  width:40px;
+  height:10px;
+  text-align: center;
+  border-right: 0.5px solid black;
+
+}
+.box29-b-3{
+  margin-top: 1px;
+  background-color:white;
+  width:100px;
+  height:10px;
+  text-align: center;
+  border-right: 0.5px solid black;
+
+}
+.last-div{
+  border-top: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sheet-tables{
+  border:1px solid black;
+  font-family: Arial;
+  font-size: 8px;
+}
+.bg-color{
+  background-color: #A9A9A9;
+}
+.font-style{
+  font-family: Arial;
+  font-size: 8px;
+}
+.sign-div{
+  padding-right: 426px;
+}
+.q2550-div{
+  padding-right: 427px;
+}
+.border-div{
+  border: 1px solid black;
+  border-right: 0px white;
+  margin-left: auto;
+  margin-right: auto;
+}
+.date-boxq{
+  background-color:white;
+    width:120px;
+    height:13px;
+    text-align: left;
+    border: thin black;
+    margin-left: 60px;
+}
+.div-q1{
+  border-top: 1px solid black;
+  margin-right: auto;
+}

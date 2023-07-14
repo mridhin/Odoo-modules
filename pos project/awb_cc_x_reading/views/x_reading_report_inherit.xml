@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!--added extra field in the
+    z-reading-->
+    <template id="x_reading_report_inherit" inherit_id="cc_x_reading.x_reading_report_template">
+        <!--
+        <xpath expr="//div[hasclass('text-center')]" position="after">
+            <div class="awb_zx_middle text-center">
+                <p class="awb_p">
+                    <span class="awb_p_1">BEGINNING ORDER NUMBER:</span>
+                    <span class="awb_p_2">
+                        <t t-if="o.begin_or_no">
+                            <span t-esc="o.begin_or_no" />
+                        </t>
+                        <t t-else="">
+                            <span t-esc="currency_id_symbol" />
+                            <span>0.00</span>
+                        </t>
+
+                    </span>
+
+                </p>
+                <p class="awb_p">
+                    <span>ENDING ORDER NUMBER:</span>
+                    <span class="awb_p_2">
+                        <t t-if="o.end_or_no">
+                            <span t-esc="o.end_or_no" />
+                        </t>
+                        <t t-else="">
+                            <span t-esc="currency_id_symbol" />
+                            <span>0.00</span>
+                        </t>
+                    </span>
+
+                </p>
+                <p class="awb_p">
+                    <span style="font-size:12px;">ACCUMULATED BEGINNING ADJUSTMENT:</span>
+                    <span class="awb_p_3">
+                        <t t-if="o.acc_beginning">
+                            <span t-esc="o.acc_beginning"
+                                t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                        </t>
+                        <t t-else="">
+                            <span t-esc="currency_id_symbol" />
+                            <span>0.00</span>
+                        </t>
+                    </span>
+
+                </p>
+                <p class="awb_p">
+                    <span style="font-size:12px;">ACCUMULATED ENDING ADJUSTMENT:</span>
+                    <span class="awb_p_3">
+                        <t t-if="o.acc_end">
+                            <span t-esc="o.acc_end"
+                                t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                        </t>
+                        <t t-else="">
+                            <span t-esc="currency_id_symbol" />
+                            <span>0.00</span>
+                        </t>
+                    </span>
+
+                </p>
+
+                <p class="awb_p" style="font-size:12px;">
+                    <span style="font-size:12px;">BEGINNING ADJUSTMENT NUMBER:</span>
+                    <span class="awb_p_3">
+                        <t t-if="o.acc_beginning_no">
+                            <span style="font-weight:bold;" t-esc="o.acc_beginning_no" />
+                        </t>
+                    
+                        <t t-else="">
+                            <span></span>
+                        </t>
+                    </span>
+
+                </p>
+                <p class="awb_p" style="font-size:12px;">
+                    <span style="font-size:12px;">ENDING ADJUSTMENT NUMBER:</span>
+                    <span class="awb_p_3">
+                        <t t-if="o.acc_end_no">
+                            <span style="font-weight:bold;" t-esc="o.acc_end_no" />
+                        </t>
+                        <t t-else="">
+                            <span></span>
+                        </t>
+                    </span>
+
+                </p>
+            </div>
+        </xpath>
+        -->
+    </template>
+
+    <record id="view_cc_x_reading_inherit" model="ir.ui.view">
+        <field name="name">cc.x.reading.inherit</field>
+        <field name="model">cc_x_reading.x_reading</field>
+        <field name="inherit_id" ref="cc_x_reading.x_reading_view_form" />
+        <field name="arch" type="xml">
+            <field name="ending_reading">
+                <field name="begin_or_no" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

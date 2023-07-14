@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="awb_inustry_cover_vat_data_immediate20" model="industry.covered.vat">
+            <field name="awb_name">Mining and Quarrying</field>
+            <field name="awb_atc_code">VQ 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate19" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Tobacco</field>
+            <field name="awb_atc_code">VM 110</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate18" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Alcohol</field>
+            <field name="awb_atc_code">VM 110</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate17" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Petroleum</field>
+            <field name="awb_atc_code">VM 120</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate16" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Automobiles</field>
+            <field name="awb_atc_code">VM 130</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate15" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Non-Essentials (Excisable Goods)</field>
+            <field name="awb_atc_code">VM 140</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate14" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Cement</field>
+            <field name="awb_atc_code">VM 030</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate13" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Food Products and Beverages</field>
+            <field name="awb_atc_code">VM 020</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate12" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Pharmaceuticals</field>
+            <field name="awb_atc_code">VM 150</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate11" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Flour</field>
+            <field name="awb_atc_code">VM 050</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate10" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Sugar</field>
+            <field name="awb_atc_code">VM 160</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate9" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Pesticides</field>
+            <field name="awb_atc_code">VM 100</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate7" model="industry.covered.vat">
+            <field name="awb_name">Non-Life Insurance</field>
+            <field name="awb_atc_code">VB 113</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate8" model="industry.covered.vat">
+            <field name="awb_name">Manufacturing - Others (General)</field>
+            <field name="awb_atc_code">VM 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate6" model="industry.covered.vat">
+            <field name="awb_name">Lending Investors/Dealer in securities/
+                Pawnshops/Pro-need Co./</field>
+            <field name="awb_atc_code">VB 102</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate2" model="industry.covered.vat">
+            <field name="awb_name">Construction</field>
+            <field name="awb_atc_code">VC 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_14" model="industry.covered.vat">
+            <field name="awb_name">Wholesale and Retail</field>
+            <field name="awb_atc_code">VI 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate5" model="industry.covered.vat">
+            <field name="awb_name">Hotel and Restaurants - Hotels, Motels</field>
+            <field name="awb_atc_code">VB 100</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate4" model="industry.covered.vat">
+            <field name="awb_name">Hotel and Restaurants - Restaurants, Caterers</field>
+            <field name="awb_atc_code">VB 101</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_13" model="industry.covered.vat">
+            <field name="awb_name">Transport Storage and Communications - Land Transport Cargo</field>
+            <field name="awb_atc_code">VB 105</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_6" model="industry.covered.vat">
+            <field name="awb_name">Transport Storage and Communications - Water Transport Cargo</field>
+            <field name="awb_atc_code">???</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_7" model="industry.covered.vat">
+            <field name="awb_name">Transport Storage and Communications - Domestic Ocean Going Vessels</field>
+            <field name="awb_atc_code">VB 106</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_8" model="industry.covered.vat">
+            <field name="awb_name">Transport Storage and Communications - Inter Island Shipping Vessels</field>
+            <field name="awb_atc_code">VB 107</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_9" model="industry.covered.vat">
+            <field name="awb_name">Transport Storage and Communications - Air Transport Cargo</field>
+            <field name="awb_atc_code">VB 108</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_10" model="industry.covered.vat">
+            <field name="awb_name">Transport Storage and Communications - Telephone and Telegraph</field>
+            <field name="awb_atc_code">VB 108</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_11" model="industry.covered.vat">
+            <field name="awb_name">Transport Storage and Communications - Radio/TV Broadcasting</field>
+            <field name="awb_atc_code">VB 111</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_12" model="industry.covered.vat">
+            <field name="awb_name">Transport Storage and Communications - Other Franchise</field>
+            <field name="awb_atc_code">VB 112</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_4" model="industry.covered.vat">
+            <field name="awb_name">Real Estate, Renting and Business Activity - Sale of Real Property</field>
+            <field name="awb_atc_code">VP 100</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_5" model="industry.covered.vat">
+            <field name="awb_name">Real Estate, Renting and Business Activity - Lease of Real Property</field>
+            <field name="awb_atc_code">VP 101</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate3" model="industry.covered.vat">
+            <field name="awb_name">Compulsory Social Security 
+                Public Administration and Defense</field>
+            <field name="awb_atc_code">VP 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_38" model="industry.covered.vat">
+            <field name="awb_name">Real Estate, Renting and Business Activity - Sale/Lease of Intangible Property</field>
+            <field name="awb_atc_code">VP 102</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_39" model="industry.covered.vat">
+            <field name="awb_name">Other Community Social and Personal Service Activity</field>
+            <field name="awb_atc_code">VH 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_40" model="industry.covered.vat">
+            <field name="awb_name">Other Community Social and Personal Service Activity</field>
+            <field name="awb_atc_code">VH 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_1" model="industry.covered.vat">
+            <field name="awb_name">Others - Storage and Warehousing</field>
+            <field name="awb_atc_code">VS 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_2" model="industry.covered.vat">
+            <field name="awb_name">Others - Business Services(In General)</field>
+            <field name="awb_atc_code">VB 010</field>
+        </record>
+        <record id="awb_inustry_cover_vat_data_immediate_3" model="industry.covered.vat">
+            <field name="awb_name">Others - Importation of Goods</field>
+            <field name="awb_atc_code">VI 010</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_e_2307_reports">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="text-left row" style="height:76px;">
+                        <div>
+                        </div>
+                        <img src="/awb_philippine_tax_app/static/src/img/company.png" style="
+                            max-height: 60px;margin-left:356px;margin-top:5px"/>
+                        <div style="margin-left:-5px;">
+                            <h7>Republic of the Philippines</h7><br/>
+                            <h9 style="margin-left:-405px;font-size:10px;margin-top:10px;">For BIR BCS/</h9>
+                            <h7 style="margin-left:340px;">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Department of Finance</h7><br/>
+                            <h9 style="margin-left:-405px;font-size:10px;">Use Only Item:</h9>
+                            <h7 style="margin-left:338px;">Bureau of Internal Revenue</h7>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                <table style="border:2pt solid black;width:100%;color:black;height:0px;margin-top:1px;" class="table-bordered">
+                    <tr>
+                        <td width="25%">
+                            <p style="text-align:center;">BIR Form No.<br/>
+                            <b style="font-size:35px;">2307</b><br/>
+                            <t t-esc="docs.awb_fiscal_quarter.date_start.strftime('%B')"/> <t t-esc="docs.awb_fiscal_quarter.date_start.strftime('%Y')"/> (ENCS)<br/>
+                            </p>
+                        </td>
+                        <td width="50%">
+                            <h1 style="text-align:center;font-size:30px;">Certificate of Creditable Tax <br/>
+                            Withheld at Source</h1>
+                        </td>
+                        <td width="25%">
+                            <img src="/awb_philippine_tax_app/static/src/img/qr.png" style="width:226px;margin-top:5px;margin-left:5px;height:65px"/>
+                            <p style="text-align:right">2307 01/18ENCS&amp;nbsp;</p>
+                        </td>
+                    </tr>
+                </table>
+                <t t-foreach="docs" t-as="o">
+                    <div class="part-div">
+                        <div class="row part-one" style="height:18px;">
+                                <div class="row" style="margin-left:30px;font-size:12px;">
+                                    <b class="period-start mb-4">1</b>
+                                    <p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For the Period &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; From</p>
+                                    <div class="date-box" style="margin-left:15px;margin-top:1px;">
+                                        <span t-esc="o.awb_fiscal_quarter.date_start.strftime('%m/%d/%Y')"/>
+                                    </div>
+                                    <p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (MM/ DD/ YYYY)</p>
+
+                                    <p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; To</p>
+                                    <div class="date-box" style="margin-left:15px;margin-top:1px;">
+                                        <span t-esc="o.awb_fiscal_quarter.date_stop.strftime('%m/%d/%Y')"/>
+                                    </div>
+                                    <p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (MM/ DD/ YYYY)</p>
+                                </div>
+                        </div>
+                        
+                        <div class="row sub_table_header part1">
+                            <b style="font-size:12px;">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Part I – Background Information &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</b>
+                        </div>
+                        <div class="row part-one  div-q1" style="height:25px;margin-left:15px;font-size:12px;">
+                            <b class="period-start mb-4">2</b>
+                            <p class="mb-4" style="margin-left:15px;"> Taxpayer Identification Number (TIN)</p>
+                            <div class="business-style-m" style="margin-top:1px;margin-left:70px;">
+                                <span t-esc="o.awb_partner_id.vat"/>   
+                            </div>
+                        </div>
+                        <div class="row part-one box-left company_name_border" style="height:45px;margin-left:15px;font-size:12px;">
+                            <b class="period-start mb-4">3</b>
+                            <p style="margin-left:11px;">
+                                Payee’s Name (Last Name, First Name, Middle Name for Individual OR Registered Name for Non-Individual)
+                                </p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;margin-top:-20px;">
+                            <div class="withholding0619" style="height:18px;margin-top:-3px;font-size:12px;">   
+                               <span t-esc="o.awb_partner_id.name"/>
+                            </div>
+                        </div>
+
+                        <div class="row part-one box-left company_name_border" style="height:45px;margin-left:15px;font-size:12px;">
+                            <b class="period-start mb-4">4</b>
+                            <p style="margin-left:11px;">
+                                Registered Address
+                                </p>
+                            <p style="margin-left:605px;;margin-top:1px;font-size:12px;">
+                                4A ZIP Code
+                            </p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;margin-top:-20px;font-size:12px;">
+                            <div class="withholding0619" style="height:18px;margin-top:-3px;">   
+                               <span t-esc="o.awb_partner_id.name"/>
+                            </div>
+                            <div class="zip_addr" style="height:18px;margin-top:-3px;">   
+                               <span t-esc="o.awb_partner_id.zip"/>
+                            </div>
+                        </div>
+
+                        <div class="row part-one box-left company_name_border" style="height:45px;margin-left:15px;font-size:12px;">
+                            <b class="period-start mb-4">5</b>
+                            <p style="margin-left:11px;">
+                                Foreign Address, if applicable
+                                </p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;margin-top:-20px;">
+                            <div class="withholding0619" style="height:18px;margin-top:-3px;">
+                              <span t-esc="o.awb_partner_id.awb_street"/>  
+                              <span t-esc="o.awb_partner_id.awb_street2 "/>
+                              <span t-esc="o.awb_partner_id.awb_city"/>   
+                              <span t-esc="o.awb_partner_id.awb_state_id.name"/>   
+                              <span t-esc="o.awb_partner_id.awb_country_id.name"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="part-div" style="margin-top:-3px;">
+                        <b style="margin-left:400px;font-size:12px;">Part II – Payor Information</b>
+
+                        <div class="row part-one  div-q1" style="height:25px;margin-left:15px;font-size:12px;">
+                            <b class="period-start mb-4">6</b>
+                            <p class="mb-4" style="margin-left:15px;"> Taxpayer Identification Number (TIN)</p>
+                            <div class="business-style-m" style="margin-top:1px;margin-left:70px;font-size:12px;">
+                                <span t-esc="o.awb_company_id.awb_vat_registration_no"/>
+                            </div>
+                        </div>
+                        <div class="row part-one box-left company_name_border" style="height:45px;margin-left:15px;font-size:12px;">
+                            <b class="period-start mb-4">7</b>
+                            <p style="margin-left:11px;">
+                                Payor’s Name (Last Name, First Name, Middle Name for Individual OR Registered Name for Non-Individual)
+                                </p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;margin-top:-20px;">
+                            <div class="withholding0619" style="height:18px;margin-top:-3px;font-size:12px;">   <span t-esc="o.awb_company_id.name"/>
+                            </div>
+                        </div>
+
+                        <div class="row part-one box-left company_name_border" style="height:45px;margin-left:15px;font-size:12px;">
+                            <b class="period-start mb-4">8</b>
+                            <p style="margin-left:11px;">
+                                Registered Address
+                                </p>
+                            <p style="margin-left:605px;;margin-top:1px;font-size:12px;">
+                                8A ZIP Code
+                            </p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;margin-top:-20px;">
+                            <div class="withholding0619" style="height:18px;margin-top:-3px;font-size:12px;">   <span t-esc="o.awb_company_id.street"/>   
+                              <span t-esc="o.awb_company_id.street2 "/>   
+                              <span t-esc="o.awb_company_id.city"/>   
+                              <span t-esc="o.awb_company_id.state_id.name"/>   
+                              <span t-esc="o.awb_company_id.country_id.name"/>
+                            </div>
+                            <div class="zip_addr" style="height:18px;margin-top:-3px;font-size:12px;">    <span t-esc="o.awb_company_id.zip"/>
+                            </div>
+                        </div>
+
+                        <div class="row part-one box-left company_name_border" style="height:45px;margin-left:15px;font-size:12px;">
+                            <b class="period-start mb-4">9</b>
+                            <p style="margin-left:11px;">
+                                Foreign Address, if applicable
+                                </p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;margin-top:-20px;">
+                            <div class="withholding0619" style="height:18px;margin-top:-3px;">   
+                              <span t-esc="o.awb_company_id.awb_street"/>  
+                              <span t-esc="o.awb_company_id.awb_street2 "/>
+                              <span t-esc="o.awb_company_id.awb_city"/>   
+                              <span t-esc="o.awb_company_id.awb_state_id.name"/>   
+                              <span t-esc="o.awb_company_id.awb_country_id.name"/>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="row part-one company_name_border bg-color" style="width:100%; margin:0px auto;height:20px;">
+                        <div>
+                            <b style="font-size:12px;">Part III – Details of Monthly Income Payments and Taxes Withheld &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</b>
+                        </div>
+                    </div>
+
+                    <div>
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:40%;color:black;text-align:center;">Income Payments Subject to Expanded Withholding Tax</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;text-align:center;">ACT</td>
+                            <td colspan="4" style="border:1pt solid grey;width:40%;color:black;text-align:center;">AMOUNT OF INCOME PAYMENTS</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;text-align:center;">Tax Withheld for the Quarter</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:40%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;">1st Month of the Quarter</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;">2nd Month of the Quarter</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;">3rd Month of the Quarter</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;">Total</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                        </tr>
+                    </table>
+		    <!--<table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr >
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"></td>
+                        </tr>
+		   </table>-->
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <t t-foreach="o.awb_income_ids" t-as="a">
+                            <tr>
+                                <td style="border:1pt solid grey;width:40%;color:black;"><span t-field="a.awb_income_payment"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="a.awb_act"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="a.awb_1st_month"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="a.awb_2st_month"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="a.awb_3st_month"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="a.awb_total"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="a.awb_tax_withheld"/></td>
+                            </tr>
+                        </t>
+                    </table>
+                    
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr >
+                            <td class="bg-color" style="border:1pt solid grey;width:40%;color:black;">Total</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_1st_month for rec in o.awb_money_ids])"/></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_2st_month for rec in o.awb_money_ids])"/></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_3st_month for rec in o.awb_money_ids])"/></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_total for rec in o.awb_money_ids])"/></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_tax_withheld for rec in o.awb_money_ids])"/></td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:40%;color:black;">Money Payments Subject to Withholding of Business Tax (Government &amp; Private)</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <t t-foreach="o.awb_money_ids" t-as="b">
+                            <tr >
+                                <td style="border:1pt solid grey;width:40%;color:black;"><span t-field="b.awb_money_payment"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="b.awb_act"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="b.awb_1st_month"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="b.awb_2st_month"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="b.awb_3st_month"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="b.awb_total"/></td>
+                                <td style="border:1pt solid grey;width:10%;color:black;"><span t-field="b.awb_tax_withheld"/></td>
+                            </tr>
+                        </t>
+                    </table>
+                    
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr >
+                            <td class="bg-color" style="border:1pt solid grey;width:40%;color:black;">Total</td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_1st_month for rec in o.awb_money_ids])"/></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_2st_month for rec in o.awb_money_ids])"/></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_3st_month for rec in o.awb_money_ids])"/></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_total for rec in o.awb_money_ids])"/></td>
+                            <td style="border:1pt solid grey;width:10%;color:black;"><span t-esc="sum([rec.awb_tax_withheld for rec in o.awb_money_ids])"/></td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr >
+                            <td class="bg-color" style="border:1pt solid grey;width:100%;color:black;">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;We declare under the penalties of perjury that this certificate has been made in good faith, verified by us, and to the best of our knowledge and belief, is true and
+correct, pursuant to the provisions of the National Internal Revenue Code, as amended, and the regulations issued under authority thereof. Further, we give our consent to
+the processing of our information as contemplated under the *Data Privacy Act of 2012 (R.A. No. 10173) for legitimate and lawful purposes.</td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr >
+                            <td style="border:1pt solid grey;width:100%;color:black;"></td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:100%;color:black;text-align:center">Signature over Printed Name of Payor/Payor’s Authorized Representative/Tax Agent<br/> (Indicate Title/Designation and TIN)</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td class="bg-color" style="border:1pt solid grey;width:20%;color:black;">Tax Agent Accreditation No./Attorney’s Roll No. (if applicable)</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td class="bg-color" style="border:1pt solid grey;width:15%;color:black;">Date of Issue (MM/DD/YYYY)</td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"><span t-field="o.awb_payor_issue_date"/></td>
+                            <td class="bg-color" style="border:1pt solid grey;width:15%;color:black;">Date of Expiry (MM/DD/YYYY)</td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"><span t-field="o.awb_payor_expiry_date"/></td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:100%;color:black;text-align:center"><b>CONFORME:</b></td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:100%;color:black;text-align:center">Signature over Printed Name of Payee/Payee’s Authorized Representative/Tax Agent<br/> (Indicate Title/Designation and TIN)</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td class="bg-color" style="border:1pt solid grey;width:20%;color:black;">Tax Agent Accreditation No./Attorney’s Roll No. (if applicable)</td>
+                            <td style="border:1pt solid grey;width:20%;color:black;"></td>
+                            <td class="bg-color" style="border:1pt solid grey;width:15%;color:black;">Date of Issue (MM/DD/YYYY)</td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"><span t-field="o.awb_payee_issue_date"/></td>
+                            <td class="bg-color" style="border:1pt solid grey;width:15%;color:black;">Date of Expiry (MM/DD/YYYY)</td>
+                            <td style="border:1pt solid grey;width:15%;color:black;"><span t-field="o.awb_payee_expiry_date"/></td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:100%;color:black;text-align:center">SCHEDULES OF ALPHANUMERIC TAX CODES </td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:40%;color:black;">A Income Payments subject to Expanded Withholding Tax</td>
+                            <td colspan="2" style="border:1pt solid grey;width:10%;color:black;text-align:center">ATC</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">A Income Payments subject to Expanded Withholding Tax</td>
+                            <td colspan="2" style="border:1pt solid grey;width:10%;color:black;text-align:center">ATC</td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:40%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;">Individual</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;">Corporation</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;">Individual</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;">Corporation</td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Professional (Lawyers, CPAs, Engineers, etc.)<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income for the current year did not exceed P 3M<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI010<br/>WI011</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;"></td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Payment by the General Professional Partnerships (GPPs) to its partners<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income for the current year did not exceed P 720,000<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI152<br/>WI153</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;"></td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Professional (Lawyers, CPAs, Engineers, etc.)<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income for the current year did not exceed P 720,000<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC010<br/>WC011</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments made by credit card companies<br/>
+Additional income payments to government personnel from importers, shipping<br/>
+and airline companies or their agents for overtime services</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI156<br/>WI157</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC156</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Professional entertainers such as, but not limited to actors and actresses, singers,
+lyricist, composers, emcees<br/>
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;If gross income for the current year did not exceed P 3M<br/>
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;If gross income is more than P 3M or VAT Registered regardless of amoun</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI020<br/>WI021</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC010<br/>WC011</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments made by the government and government-owned and
+controlled corporations (GOCCs) to its local/resident suppliers of goods
+other than those covered by other rates of withholding tax</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI640</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC640</td>
+                        </tr>
+                    </table>
+                            
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Professional entertainers such as, but not limited to actors and actresses, singers,
+lyricists, composers, emcees<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income for the current year did not exceed P 720,000<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income exceeds P 720,00</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC020<br/>WC021</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments made by the government and government-owned and
+controlled corporations (GOCCs) to its local/resident suppliers of services
+other than those covered by other rates of withholding tax<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+Income payment made by top withholding agents to their local/resident supplier
+of goods other than those covered by other rates of withholding tax<br/>Income payment made by top withholding agents to their local/resident supplier
+of goods other than those covered by other rates of withholding tax</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI157<br/>WI158</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC157<br/>WC158</td>
+                        </tr>
+                    </table>                   
+                    
+                     <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Professional athletes including basketball players, pelotaris and jockeys<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income for the current year did not exceed P 3M<br/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI030<br/>WI031</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payment made by top withholding agents to their local/resident supplier
+of services other than those covered by other rates of withholding tax</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI158</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC158</td>
+                        </tr>
+                    </table>
+
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Professional athletes including basketball players, pelotaris and jockeys<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC030<br/>WC031</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Commissions, rebates, discounts and other similar considerations paid/granted to
+independent and/or exclusive sales representatives and marketing agents and sub-
+agents of companies, including multi-level marketing companies<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI515<br/>WI516</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                        </tr>
+                    </table> 
+
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">All directors and producers involved in movies, stage, radio, television and musical
+productions<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI040<br/>WI041</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Commissions, rebates, discounts and other similar considerations paid/ granted
+to independent and/or exclusive sales representatives and marketing agents
+and sub-agents of companies, including multi-level marketing companies<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC515<br/>WC516</td>
+                        </tr>
+                    </table>
+
+
+                      <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">All directors and producers involved in movies, stage, radio, television and musical
+productions<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC040<br/>WC041</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Gross payments to embalmers by funeral parlors<br/>
+Payments made by pre-need companies to funeral parlors</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI530<br/>WI535</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"><br/>WC535</td>
+                        </tr>
+                    </table> 
+
+
+                      <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Management and technical consultants<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI050<br/>WI051</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Tolling fees paid to refineries<br/>
+Income payments made to suppliers of agricultural products in excess
+of cumulative amount of P 300,000 within the same taxable year</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI540<br/>WI610</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC540<br/>WC610</td>
+                        </tr>
+                    </table>
+
+
+                     <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Management and technical consultants<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC050<br/>WC051</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments on purchases of minerals, mineral products and quarry
+such as but not limited to silver, gold, marble, granite, gravel, sand, boulders
+and other mineral products except purchases by Bangko Sentral ng Pilipinas</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI630</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC630</td>
+                        </tr>
+                    </table>
+
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Business and bookkeeping agents and agencies<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI060<br/>WI061</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments on purchases of minerals, mineral products and quarry
+resources by Bangko Sentral ng Pilipinas (BSP) from gold miners/suppliers under
+PD 1899, as amended by RA No. 7076</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI632</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC630</td>
+                        </tr>
+                    </table>
+
+
+                     <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Business and bookkeeping agents and agencies<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC060<br/>WC061</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">On gross amount of refund given by MERALCO to customers with
+active contracts as classified by MERALCO<br/>
+On gross amount of refund given by MERALCO to customers with
+terminated contracts as classified by MERALCO</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI650<br/>WI651</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC650<br/>WC651</td>
+                        </tr>
+                    </table>
+
+
+                     <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Insurance agents and insurance adjusters<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI070<br/>WI071</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">On gross amount of interest on the refund of meter deposit whether paid directly to
+the customers or applied against customer’s billings of Residential and General
+Service customers whose monthly electricity consumption exceeds 200 kwh as
+classified by MERALCO</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI660</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC660</td>
+                        </tr>
+                    </table>
+
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Insurance agents and insurance adjusters<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC070<br/>WC071</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">On gross amount of interest on the refund of meter deposit whether paid directly to
+the customers or applied against customer’s billings of Non- Residential customers
+whose monthly electricity consumption exceeds 200 kwh as classified by
+MERALCO</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI661</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC661</td>
+                        </tr>
+                    </table>
+
+                       <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Other recipients of talent fees<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount<br/>Other recipients of talent fees<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI080<br/>WI081</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"><br/><br/><br/>WC080<br/>WC081</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">On gross amount of interest on the refund of meter deposit whether paid directly to
+the customers or applied against customer’s billings of Residential and General
+Service customers whose monthly electricity consumption exceeds 200 kwh as
+classified by other electric Distribution Utilities (DU)</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI662</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC662</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Fees of directors who are not employees of the company<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI090<br/>WI091</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"><br/><br/><br/>WC080<br/>WC081</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">On gross amount of interest on the refund of meter deposit whether paid directly to<br/>
+the customers or applied against customer’s billings of Non-Residential customers
+whose monthly electricity consumption exceeds 200 kwh as classified by other
+electric Distribution Utilities (DU)</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI663</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC663</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Rentals: On gross rental or lease for the continued use or possession of personal<br/>
+property in excess of Ten thousand pesos (P 10,000) annually and real property<br/>
+used in business which the payor or obligor has not taken title or is not taking title,<br/>
+or in which has no equity; poles, satellites, transmission facilities and billboards</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI100</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"><br/><br/><br/>WC100</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments made by political parties and candidates of local and national<br/>
+elections on all their purchases of goods and services related to campaign
+expenditures, and income payments made by individuals or juridical persons for<br/>
+their purchases of goods and services intended to be given as campaign
+contributions to political parties and candidates</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI680</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC680</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Cinematographic film rentals and other payments to resident individuals and<br/>
+corporate cinematographic film owners, lessors or distributors</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI110</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"><br/><br/><br/>WC110</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments received by Real Estate Investment Trust (REIT)</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC690</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments to certain contractors<br/>
+                        Income distribution to the beneficiaries of estates and trusts</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI120<br/>WI130</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"><br/><br/><br/>WC120</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Interest income derived from any other debt instruments not within the<br/>
+coverage of deposit substitutes and Revenue Regulations No. 14-2012</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI710</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC710</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Gross commissions or service fees of customs, insurance, stock, immigration and<br/>
+commercial brokers, fees of agents of professional entertainers and real estate<br/>
+service Practitioners (RESPs), (i.e. real estate consultants, real estate appraisers<br/>
+and real estate brokers)<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC139<br/>WC140</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Income payments on locally produced raw sugar<br/>Sale of Real Property (Ordinary Asset)  1.50%<br/>3%<br/>5%<br/>6%</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI720<br/>WI555<br/>WI556<br/>WI557<br/>WI558</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC720<br/>WC555<br/>WC556<br/>WC557<br/>WC558</td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Gross commissions or service fees of customs, insurance, stock, immigration and<br/>
+commercial brokers, fees of agents of professional entertainers and real estate<br/>
+service Practitioners (RESPs), (i.e. real estate consultants, real estate appraisers<br/>
+and real estate brokers)<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC139<br/>WC140</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">B Money Payments Subject to Withholding of Business Tax by Government or Private
+Payor (Individual &amp; Corporate)<br/>Persons Exempt from VAT under Sec. 109BB (creditable)-Government Withholding
+Agent</td>
+                            <td colspan="2" style="border:1pt solid grey;width:10%;color:black;text-align:center">WB080</td>
+                            
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Professional fees paid to medical practitioners (includes doctors of medicine,<br/>
+doctors of veterinary science &amp; dentists) by hospitals &amp; clinics or paid directly by<br/>
+Health Maintenance Organizations (HMOs) and/or similar establishments<br/>
+If gross income for the current year did not exceed P 3M<br/>
+If gross income is more than P 3M or VAT Registered regardless of amount</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WI151<br/>WI150</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Persons Exempt from VAT under Sec. 109BB (creditable)-Government Withholding
+Agent<br/>Persons Exempt from VAT under Sec. 109BB (creditable)-Private Withholding
+Agent<br/>VAT Withholding on Purchases of Goods (with waiver of privilege to claim input tax
+credit) (creditable)<br/>VAT Withholding on Purchases of Services (with waiver of privilege to claim input
+tax credit) (creditable)</td>
+                            <td colspan="2" style="border:1pt solid grey;width:10%;color:black;text-align:center">WB080<br/>WB082<br/>WV012<br/>WV022</td>
+                            
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:40%;color:black;">Professional fees paid to medical practitioners (includes doctors of medicine<br/>
+doctors of veterinary science &amp; dentists) by hospitals &amp; clinics or paid directly by<br/>
+Health Maintenance Organizations (HMOs) and/or similar establishments<br/>
+If gross income for the current year did not exceed P 720,000<br/>
+If gross income exceeds P 720,000</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center"></td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WC151<br/>WC150</td>
+                            <td style="border:1pt solid grey;width:40%;color:black;"></td>
+                            <td colspan="2" style="border:1pt solid grey;width:10%;color:black;text-align:center"></td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr class="bg-color">
+                            <td style="border:1pt solid grey;width:100%;color:black;text-align:center;">C Money Payments Subject to Withholding of Business Tax by Government Payor Only</td>
+                            
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:45%;color:black;">Tax on Carriers and Keepers of Garages<br/>
+                            Franchise Tax on Gas and Utilities<br/>
+                            Franchise Tax on radio &amp; radio &amp; TV broadcasting companies whose annual gross receipts do<br/>not exceed P10M &amp; who are not VAT-registered taxpayers<br/>Tax on Life Insurance Premiums<br/>Tax on Overseas Dispatch, Message or Conversation from the Philippines</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WB030<br/>WB040<br/>WB050<br/>WB070<br/>WB090</td>
+                            <td style="border:1pt solid grey;width:45%;color:black;">Tax on Other Non-Banks Financial Intermediaries not Performing Quasi-Banking<br/>Function<br/>A On interest, commissions and discounts from lending activities as well as Income<br/>from financial leasing, on the basis of the remaining maturities of instrument from<br/>which such receipt are derived<br/>- Maturity period is five years or less 5%<br/>- Maturity period is more than five years 1%<br/>B  On all other items treated as gross income under the code 5%</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WB108<br/>WB109<br/>WB110</td>
+                            
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:45%;color:black;">Tax on Banks and Non-Bank Financial Intermediaries Performing Quasi Banking Functions<br/>
+                            A. On interest, commissions and discounts from lending activities as well as income from financial
+                            <br/>
+                            leasing, on the basis of the remaining maturities of instrument from which such receipt are derived
+
+                            <br/>- Maturity period is five years or less 5%
+                            <br/> - Maturity period is more than five years 1%
+                            <br/>B. On dividends and equity shares and net income of subsidiaries 0%<br/>
+                            C. On royalties, rentals of property, real or personal, profits from exchange 7%<br/>
+                            and all other items treated as gross income under the Code<br/>
+                            D. On net trading gains within the taxable year on foreign currency, debt<br/>
+                            securities, derivatives and other similar financial instruments 7%
+                        </td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WB301<br/>WB303<br/>WB102<br/>WB103<br/>WB104</td>
+                            <td style="border:1pt solid grey;width:45%;color:black;">Tax on Cockpits<br/>Tax on amusement places, such as cabarets, night and day clubs, videoke bars, karaoke bars,<br/>karaoke television, karaoke boxes, music lounges and other similar establishments<br/>Tax on Boxing exhibitions<br/>Tax on Professional basketball games<br/>Tax on jai-alai and race tracks<br/>Tax on sale, barter or exchange of stocks listed and traded through Local Stock exchange</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WB140<br/>WB150<br/>WB160<br/>WB170<br/>WB180<br/>WB200</td>
+                            
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; margin:0px auto;height:10px;font-size:10px;" class="table-condensed table-sm">
+                        <tr>
+                            <td style="border:1pt solid grey;width:45%;color:black;">Business tax on Agents of Foreign Insurance Companies - Owner of the Property<br/>Tax on International Carriers<br/>Business Tax on Agents of Foreign Insurance Companies - Insurance Age<br/>Business Tax on Agents of Foreign Insurance Companies - Owner of the Property<br/>Tax on International Carriers
+                            </td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WB121<br/>WB130<br/>WB120<br/>WB121<br/>WB130</td>
+                            <td style="border:1pt solid grey;width:45%;color:black;">Tax on shares of stock sold or exchanged through initial and secondary public offering<br/>- Not over 25% 4%<br/>- Over 25% but not exceeding 33 1/3% 2%<br/>- Over 33 1/3% 1%</td>
+                            <td style="border:1pt solid grey;width:5%;color:black;text-align:center">WB201<br/>WB202<br/>WB203</td>
+                            
+                        </tr>
+                    </table>                    
+
+
+                    <!-- *NOTE: Please read the BIR Data Privacy Policy found in the BIR website (www.bir.gov.ph) -->
+
+                    <!-- <div class="bg-color row sub_table_header part1" style="width:100%;">
+                    <b style="margin-left:400px;">Schedule of Alphanumeric Tax Codes (ATC)</b>
+                    </div> -->
+
+                    
+
+                </div>
+                </t>                    
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

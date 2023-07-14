@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <!-- External page: rate and submit feedback -->
+        <template id="rating_external_page_submit" name="Rating Page Submit">
+            <t t-call="web.frontend_layout">
+                <div class="container mb-5 mt-4 o_rating_page_submit">
+                    <div class="row text-center justify-content-center">
+                        <h2 class="col-12 mt-5">Thank you for rating our services!</h2>
+                        <h2 class="col-12 mt-3">How do you rate SMILESERVE Service experience.</h2>
+                        <form class="col-md-6" t-attf-action="/rate/#{token}/submit_feedback" method="post">
+                            <div class="btn-group btn-group-toggle row flex-nowrap justify-content-center mt-5" data-toggle="buttons">
+                                <t t-foreach="rate_names" t-as="rate_name">
+                                    <label t-attf-class="col star_pad btn o_rating_label shadow-none {{rate == rate_name and 'active' or ''}}">
+                                        <input type="radio" name="rate" t-attf-id="rate_{{rate_name}}" t-att-value="rate_name" t-att-checked="rate == rate_name"/>
+                                        <a class="o_rating d-block bg-white rounded-circle" href="#">
+                                            <img class="rate-imgs" t-attf-src='/awb_rating_custom/static/src/img/rating_#{rate_name}.svg' t-att-alt="rate_name_value" t-att-title="rate_name_value"/>
+                                        </a>
+                                    </label>
+                                </t>
+                            </div>
+                            <h2 class="mt-5">
+                               How can we serve you better?
+                            </h2>
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <textarea class="form-control" name="feedback" rows="8" t-att-value="rating.feedback"></textarea>
+                            <div class="col-12 mt-5" style="color: #7f8fa4; text-align: justify;">
+                                <p>
+                                    I agree that Smile Serve may collect, use, and disclose my personal data which be used for the purpose of processing my transaction and
+                                    managing my accounts, in accordance with the Data Privacy Act of 2012. I hereby confirm that all information I have provided are true and
+                                    correct.
+                                </p>
+                                <br/>
+                                <p>
+                                    I'm also giving my permission/consent to publish or share my commendation and photos on any Smile Serve platform and marketing materials.
+                                    i.e. Website, Facebook, Instagram, and flyers.
+                                </p>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-4" style="margin-top:8px;">Send Feedback</button>
+                        </form>
+                    </div>
+                </div>
+            </t>
+        </template>
+</odoo>

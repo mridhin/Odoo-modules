@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_account_input_vat" model="account.account">
+        <field name="name">Input VAT</field>
+        <field name="code">X</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+    </record>
+    <record id="account_account_output_vat" model="account.account">
+        <field name="code">Y</field>
+        <field name="name">Output VAT</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+    <record id="account_account_input_ewt" model="account.account">
+        <field name="name">EWT</field>
+        <field name="code">A</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+    <!-- <record id="account_account_output_ewt" model="account.account">
+        <field name="code">B</field>
+        <field name="name">Output EWT</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record> -->
+</odoo>

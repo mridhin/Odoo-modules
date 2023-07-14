@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="atdr_view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.atdr.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="dr_doc_no" string="TDS/RS No."/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

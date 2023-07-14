@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="x_reading_report_style">
+            <div class="header">
+                <style>
+                    div.text-center > p {
+                        margin-bottom: .5em;
+                    } 
+                </style>
+                <div class="text-center" style="font-size: 12px;font-family: 'Helvetica', 'Arial', sans-serif;line-height: 80%;">
+                    <t t-set="company" t-value="env.company" />
+                    <!-- <t t-foreach="company" t-as="c"> -->
+                    <p t-esc="company.name" />
+                    <p t-esc="company.street" />
+                    <p t-esc="company.street2" />
+                    <p t-esc="company.city" />
+                    <p t-esc="company.taxpayer_info" />
+                    <!-- </t> -->
+                </div>
+            </div>
+            <div class="article">
+                <t t-out="0" />
+            </div>
+            <div class="footer o_standard_footer">
+                 <style>
+                    div.text-center > p {
+                        margin-bottom: .5em;
+                    } 
+                </style>               
+                <!-- Added padding top class -->
+                <div class="text-center pt-2" style="font-size: 12px;font-family: 'Helvetica', 'Arial', sans-serif;line-height: 100%;">
+
+                    <p>
+                        POS Provider
+                    </p>
+                    <t t-if='company.awb_pos_provider_id'>
+                        <p t-esc="company.awb_pos_provider_id.name" />
+                    </t>
+                    <t t-if='company.awb_pos_provider_display_address'>
+                        <p t-esc="company.awb_pos_provider_display_address"
+                            style="line-height: 1.5em;" />
+                    </t>
+                    <br/>
+                    <t t-if='company.awb_pos_provider_tin'>
+                        <p> TIN: <t t-esc="company.awb_pos_provider_tin" />
+                        </p>
+                    </t>
+                    <t t-if='company.awb_pos_provider_accreditation_no'>
+                        <p> Accreditation No.: <t
+                                t-esc="company.awb_pos_provider_accreditation_no" />
+                        </p>
+                    </t>
+                    <t t-if='company.awb_pos_provider_display_date'>
+                        <p> Date Issued: <t t-esc="company.awb_pos_provider_display_date" />
+                        </p>
+                    </t>
+                    <t t-if='company.awb_pos_provider_display_valid_until'>
+                        <p> Valid Until: <t t-esc="company.awb_pos_provider_display_valid_until" />
+                        </p>
+                    </t>
+                    <br />
+                    <p> PTU No.: <t t-if="o.awb_pos_provider_ptu">
+                            <span t-esc="o.awb_pos_provider_ptu" />
+                        </t>
+                    </p>
+                    <p> MIN#: <t t-if="o.taxpayer_min">
+                            <span t-esc="o.taxpayer_min" />
+                        </t>
+                    </p>
+                    <p> S/N: <t t-if="o.taxpayer_machine_serial_number">
+                            <span t-esc="o.taxpayer_machine_serial_number" />
+                        </t>
+                    </p>
+                    <br />
+                </div>
+            </div>
+        </template>
+
+        <template id="x_reading_report_template" name="X Reading">
+            <div class="page" style="font-size: 12px;font-family: 'Helvetica', 'Arial', sans-serif;">
+                <t t-set="company" t-value="env.company" />
+                <t t-set="currency_id" t-value="company.currency_id" />
+                <t t-set="currency_id_symbol" t-value="company.currency_id.symbol" />
+
+                <div class="text-center">
+                    <!-- For reducing margin per element and conserve space.-->
+                    <style>
+                        div.text-center > p {
+                        margin-bottom: .5em;
+                        }
+                    </style>
+
+                    <p style="font-size: 75%; line-height: 80%;">
+                        <p if="o.cashier_ids">
+                            <span>Cashier/s: </span>
+                            <t t-set="cashiers" t-value="', '.join(o.cashier_ids.mapped('name'))" />
+                            <t t-esc="cashiers" />
+                        </p>         
+                        <t
+                            t-if="o.start_date">
+                            <t t-esc="o.start_date" t-options="{'widget': 'datetime'}" />
+                        </t>
+                        - <t t-if="o.end_date">
+                            <t t-esc="o.end_date" t-options="{'widget': 'datetime'}" />
+                        </t>
+                    </p>
+                    <p style="font-weight:bold;">
+                        <br /> Reference: <t t-if="o.reference">
+                            <span t-esc="o.reference" />
+                        </t>
+                    </p>
+                    <h4>
+                        <br /> X-Reading 
+                    </h4>
+                </div>
+                <div class="text-center">
+                    <table class="table table-sm"
+                        style="text-align: left; table-layout: fixed; margin-left: auto; margin-right: auto;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Description</th>
+                                <th style="text-align:right;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total Sales</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.total_sales">
+                                        <span t-esc="o.total_sales"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total Refunds</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.total_voids">
+                                        <span t-esc="o.total_voids"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total Discounts</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.total_discounts">
+                                        <span t-esc="o.total_discounts"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr class="table-active">
+                                <td>
+                                    <strong>Subtotal</strong>
+                                </td>
+                                <td style="text-align:right;">
+                                    <strong>
+                                        <t t-if="o.subtotal">
+
+                                            <span t-esc="o.subtotal"
+                                                t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                        </t>
+
+                                        <t t-else="">
+                                            <span t-esc="currency_id_symbol" />
+                                            <span>0.00</span>
+                                        </t>
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>VATable Sales</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.vatable_sales">
+                                        <span t-esc="o.vatable_sales"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>12% VAT</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.vat_12">
+
+                                        <span t-esc="o.vat_12"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>VAT Exempt Sales</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.vat_exempt_sales">
+                                        <span t-esc="o.vat_exempt_sales"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>VAT Zero-Rated Sales</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.zero_rated_sales">
+                                        <span t-esc="o.zero_rated_sales"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr class="table-active">
+                                <td>
+                                    <strong>Register Total</strong>
+                                </td>
+                                <td style="text-align:right;">
+                                    <strong>
+                                        <t t-if="o.register_total">
+                                            <span t-esc="o.register_total"
+                                                t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                        </t>
+                                        <t t-else="">
+                                            <span t-esc="currency_id_symbol" />
+                                            <span>0.00</span>
+                                        </t>
+                                    </strong>
+                                </td>
+                            </tr>
+                            <!-- Pseudocode for fetching the payment names and totals -->
+                            <!-- for (o.payments_ids): 
+                                            p.name = o.payments...name
+                                            
+                                            for o.payments_ids.payment_method_id.name:
+                                                p.name = o.payments...name
+
+                                        for payment_method_id:
+                                            for payments_ids:
+                                                if payment_method_id == payments_ids.payment_method_id:
+                                                    payment_total += payments_ids.amount
+
+                                            t-esc="payment_method_id.name"
+                                            t-esc="payment_total"
+                                            account_move.pos_order_id
+                                    -->
+                            <t t-set="media_total" t-value="0" />
+                            <t t-if="o.payments_ids">
+                                <tr t-foreach="o.payments_ids.payment_method_id" t-as="pm">
+                                    <t t-set="payment_total" t-value="0" />
+                                    <t t-foreach="o.payments_ids" t-as="p">
+                                        <t t-if="p.payment_method_id == pm">
+                                            <t t-set="payment_total"
+                                                t-value="p.amount + payment_total" />
+                                        </t>
+                                    </t>
+                                    <td>
+                                        <span t-esc="pm.name" />
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <span t-esc="payment_total"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                        <t t-set="media_total"
+                                            t-value="payment_total + media_total" />
+                                    </td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td>
+                                    <strong>Media Tender Subtotal:</strong>
+                                </td>
+                                <td style="text-align:right;">
+                                    <strong>
+                                        <t t-if="media_total">
+                                            <span t-esc="media_total"
+                                                t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                        </t>
+                                        <t t-else="">
+                                            <span t-esc="currency_id_symbol" />
+                                            <span>0.00</span>
+                                        </t>
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Regular Discount</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.regular_discount">
+                                        <span t-esc="o.regular_discount"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SC/PWD 5%</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.sc_pwd_vat_in">
+                                        <span t-esc="o.sc_pwd_vat_in"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SC 20%</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.sc_vat_ex">
+                                        <span t-esc="o.sc_vat_ex"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PWD 20%</td>
+                                <td style="text-align:right;">
+                                    <t t-if="o.pwd_vat_ex">
+                                        <span t-esc="o.pwd_vat_ex"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </t>
+
+                                    <t t-else="">
+                                        <span t-esc="currency_id_symbol" />
+                                        <span>0.00</span>
+                                    </t>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="page-break-before:always;"> </p>
+            </div>
+        </template>
+
+        <template id="x_reading_report">
+            <t t-set="company" t-value="env.company" />
+            <t t-call="web.html_container">
+                <t t-call="cc_x_reading.x_reading_report_style">
+                    <t t-foreach="docs" t-as="o">
+                        <t t-call="cc_x_reading.x_reading_report_template" />
+                        <!-- <t t-set="lang" t-value="o.partner_id.lang" /> -->
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pos_session_form_inherit" model="ir.ui.view">
+        <field name="name">cc_z_reading.pos.session.form.view.inherit</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stop_at']" position="after">
+               <field name="last_z_reading" /> 
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

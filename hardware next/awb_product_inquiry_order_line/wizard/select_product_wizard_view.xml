@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_select_products_form_inherit" model="ir.ui.view">
+        <field name="name">select.products.form</field>
+        <field name="model">select.products</field>
+        <field name="inherit_id" ref="fl_so_po_multi_products.view_select_products_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="replace">
+                <form string="Select Products" id="pass">
+                    <sheet>
+                        <script>
+                            $(document).ready(function(){ $(".o_cp_bottom_left").hide(); });
+                            $(".product_search").keyup(function (event) {
+                            if (event.keyCode === 13) {
+                            $(".product_search").click();
+                            }
+                            });
+                        </script>
+                        <div class="bg-light d-flex">
+                            <div>
+                                Product Search
+                                <field name="product_name" class="searchInput oe_inline product_search"
+                                       placeholder="Search Products"/>
+                                <button string="Search" style="margin-left: 40px;" type="object"
+                                        class="btn btn-sm btn-primary product_search"
+                                        name="search_products"/>
+                            </div>
+
+                            <div style="margin-left: 70px;">
+                                Warehouse
+                                <field name="location_id" class="oe_inline product_search" placeholder="Search Location"
+                                       domain="[('usage', '=', 'internal')]"/>
+                                <field name="product_line" invisible="1"/>
+                                <field name="customer_type" invisible="1"/>
+                            </div>
+                            <div style="margin-left: 40px;" class="font-weight-bold"
+                                 attrs="{'invisible':[('product_line','=',False)]}">
+                                WS
+                                <field name="ws_col_selection" class="oe_inline"/>
+                                <field name="ws_count" invisible="1"/>
+                                RT
+                                <field name="rt_col_selection" class="oe_inline"/>
+                                <field name="rt_count" invisible="1"/>
+                                EU
+                                <field name="eu_col_selection" class="oe_inline"/>
+                                <field name="eu_count" invisible="1"/>
+                                PV
+                                <field name="pv_col_selection" class="oe_inline"/>
+                                <field name="pv_count" invisible="1"/>
+                            </div>
+                        </div>
+                        <field name="ws_lines" invisible="1"/>
+                        <field name="pv_lines" invisible="1"/>
+                        <field name="rt_lines" invisible="1"/>
+                        <field name="eu_lines" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="display_all_types" invisible="0"/>
+                            </group>
+                            <group>
+                                <div style="margin-left:80px; color:black;">
+                                    <field name="selected_warehouse"/>
+                                </div>
+                            </group>
+                        </group>
+                        <field name="product_line_ids" class="product_search_list">
+                            <tree editable="bottom">
+                                <field name="is_selsected"/>
+                                <field name="display_all_types" />
+                                <field name="ws_count" />
+                                <field name="eu_count" />
+                                <field name="pv_count" />
+                                <field name="rt_count" />
+                                <field name="line_check" invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="carton_packing"/>
+                                <field name="packing"/>
+                                <field name="inventory"/>
+                                <field name="reserve"/>
+                                <field name="list"/>
+                                <field name="is_default_rt"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_date"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_comm"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_1"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',1),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_2"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',2),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_3"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',3),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_4"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',4),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_5"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',5),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_6"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',6),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_7"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',7),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_8"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',8),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_9"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',9),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_9"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',9),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_9"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',9),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_9"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',9),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_9"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',9),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_9"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',9),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_9"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',9),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_9"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',9),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_sel_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_vol_package_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_qty_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_free_product_pkg_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_com_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_price_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="rt_disc_10"
+                                       attrs="{'column_invisible': ['|',('parent.rt_count','&lt;',10),'&amp;',('parent.customer_type','!=','RT'),('parent.display_all_types','=',False)]}"/>
+                                <field name="is_default_pv"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>   
+                                <field name="pv_date"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_comm"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_1"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',1),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_1"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',1),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_1"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',1),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_1"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',1),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_2"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',2),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_2"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',2),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_2"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',2),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_2"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',2),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_3"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',3),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_3"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',3),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_3"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',3),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_3"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',3),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_4"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',4),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_4"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',4),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_4"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',4),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_4"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',4),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_5"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',5),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_5"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',5),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_5"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',5),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_5"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',5),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_6"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',6),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_6"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',6),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_6"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',6),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_6"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',6),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_7"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',7),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_7"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',7),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_7"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',7),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_7"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',7),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_8"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',8),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_8"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',8),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_8"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',8),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_8"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',8),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_9"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',9),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_9"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',9),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_9"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',9),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_9"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',9),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_sel_10"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',10),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_vol_10"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',10),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_price_10"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',10),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="pv_disc_10"
+                                       attrs="{'column_invisible': ['|',('parent.pv_count','&lt;',10),'&amp;',('parent.customer_type','!=','PV'),('parent.display_all_types','=',False)]}"/>
+                                <field name="is_default_eu"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_date"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_1"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',1),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_1"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',1),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_1"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',1),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_1"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',1),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_2"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',2),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_2"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',2),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_2"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',2),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_2"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',2),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_3"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',3),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_3"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',3),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_3"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',3),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_3"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',3),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_4"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',4),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_4"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',4),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_4"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',4),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_4"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',4),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_5"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',5),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_5"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',5),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_5"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',5),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_5"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',5),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_6"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',6),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_6"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',6),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_6"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',6),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_6"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',6),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_7"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',7),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_7"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',7),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_7"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',7),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_7"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',7),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_8"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',8),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_8"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',8),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_8"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',8),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_8"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',8),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_9"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',9),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_9"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',9),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_9"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',9),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_9"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',9),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_sel_10"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',10),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_vol_10"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',10),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_price_10"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',10),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="eu_disc_10"
+                                       attrs="{'column_invisible': ['|',('parent.eu_count','&lt;',10),'&amp;',('parent.customer_type','!=','EU'),('parent.display_all_types','=',False)]}"/>
+                                <field name="is_default_ws"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_date"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_comm"
+                                       attrs="{'column_invisible': [('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_1"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',1),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_2"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',2),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_3"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',3),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_4"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',4),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_5"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',5),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_6"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',6),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_7"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',7),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_7"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',7),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_7"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',7),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_7"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',7),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_7"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',7),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_7"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',7),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_7"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',7),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_7"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',7),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_8"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',8),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_9"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',9),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_sel_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_vol_package_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_qty_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_free_product_pkg_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_com_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_price_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                                <field name="ws_disc_10"
+                                       attrs="{'column_invisible': ['|',('parent.ws_count','&lt;',10),'&amp;',('parent.customer_type','!=','WS'),('parent.display_all_types','=',False)]}"/>
+                            </tree>
+                        </field>
+                        <div class="d-flex justify-content-end">
+                            <field name="date_frame" widget="radio" options="{'horizontal': true}"/>
+                        </div>
+                        <notebook>
+                            <page string="SO">
+                                <field name="sale_order_ids" attrs="{'invisible': [('date_frame','!=','all_dates')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="sale_order_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="sale_order_month_ids" attrs="{'invisible': [('date_frame','!=','current_month')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="sale_order_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="sale_order_10_ids" attrs="{'invisible': [('date_frame','!=','last_10_days')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="sale_order_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="SJ">
+                                <field name="sale_order_journal_ids" attrs="{'invisible': [('date_frame','!=','all_dates')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="sale_Journal_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="sale_order_jou_month_ids" attrs="{'invisible': [('date_frame','!=','current_month')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="sale_Journal_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="sale_order_jou_10_ids" attrs="{'invisible': [('date_frame','!=','last_10_days')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="sale_Journal_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="PO">
+                                <field name="purchase_order_ids" attrs="{'invisible': [('date_frame','!=','all_dates')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="purchase_order_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="purchase_order_month_ids" attrs="{'invisible': [('date_frame','!=','current_month')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="purchase_order_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="purchase_order_10_ids" attrs="{'invisible': [('date_frame','!=','last_10_days')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="purchase_order_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="PJ">
+                                <field name="purchase_jou_ids" attrs="{'invisible': [('date_frame','!=','all_dates')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="purchase_journal_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="purchase_jou_month_ids" attrs="{'invisible': [('date_frame','!=','current_month')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="purchase_journal_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="purchase_jou_10_ids" attrs="{'invisible': [('date_frame','!=','last_10_days')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="purchase_journal_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="CN">
+                                <field name="credit_note_ids" attrs="{'invisible': [('date_frame','!=','all_dates')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="credit_memo_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="credit_note_month_ids" attrs="{'invisible': [('date_frame','!=','current_month')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="credit_memo_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="credit_note_10_ids" attrs="{'invisible': [('date_frame','!=','last_10_days')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="credit_memo_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="DN">
+                                <field name="debit_note_ids" attrs="{'invisible': [('date_frame','!=','all_dates')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="debit_memo_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="debit_note_month_ids" attrs="{'invisible': [('date_frame','!=','current_month')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="debit_memo_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                                <field name="debit_note_10_ids" attrs="{'invisible': [('date_frame','!=','last_10_days')]}">
+                                    <tree editable="bottom">
+                                        <field name="date_of_document"/>
+                                        <field name="debit_memo_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <footer>
+                            <button name="select_products" string="Add" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

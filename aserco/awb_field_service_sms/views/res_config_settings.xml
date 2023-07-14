@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_awb_task" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.awb.field.service.sms</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority" eval="75" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='industry_fsm']/div[@id='fsm_tasks_management']" position="after">
+                <h2>Field Service SMS Configuration</h2>
+                <div class="row mt16 o_settings_container" id="field_service_sms_conf">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="field_service_sms_policy_tasks"/>
+                            <div class="text-muted">
+                                configure SMS Policy from the following choices
+                            </div>
+                            <div class="mt8">
+                                <field name="field_service_sms_policy_tasks" class="o_light_label" widget="radio" required="True"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

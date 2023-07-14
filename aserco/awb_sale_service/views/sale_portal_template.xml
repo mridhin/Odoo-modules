@@ -1,0 +1,12 @@
+<odoo>
+    <template id="customer_portal_service" name="My Sales Orders" inherit_id="sale.portal_my_orders">
+        <xpath expr="//thead/tr" position="inside">
+            <th>Service Status</th>
+        </xpath>
+        <xpath expr="//t[@t-foreach='orders']/tr" position="inside">
+            <td>
+                <span t-field="order.service_status"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

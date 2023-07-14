@@ -1,0 +1,41 @@
+<odoo>
+	<!-- eJournal Report paper format -->
+    <record id="ejournal_report_paperformat" model="report.paperformat">
+        <field name="name">eJournal Paper Format</field>
+        <field name="format">custom</field>
+        <field name="orientation">Portrait</field>
+        <field name="page_height">297</field>
+        <field name="page_width">80</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">70</field>
+        <field name="margin_left">2</field>
+        <field name="margin_right">2</field>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+	<!-- eJournal Report -->
+    <record id="action_ejournal_report" model="ir.actions.report">
+        <field name="name">eJournal Receipt</field>
+        <field name="model">pos_ejournal.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">awb_ejournal_report.ejournal_receipt_report</field>
+        <field name="report_file">awb_ejournal_report.ejournal_receipt_report</field>
+        <field name="paperformat_id" ref="awb_ejournal_report.ejournal_report_paperformat"/>
+        <field name="binding_model_id" ref="model_pos_ejournal_report"/>
+        <field name="binding_type">report</field>
+    </record>
+    
+    <!-- Text Report for ejournal Receipt -->
+   	<record id="action_ejournal_text_report" model="ir.actions.report">
+           <field name="name">eJournal Text Report</field>
+           <field name="model">pos_ejournal.report</field>
+           <field name="report_type">qweb-text</field>
+           <field name="report_name">awb_ejournal_report.ejournal_text_report</field>
+           <field name="report_file">awb_ejournal_report.ejournal_text_report</field>
+           <field name="binding_model_id" ref="model_pos_ejournal_report"/>
+           <field name="binding_type">report</field>
+           <field name="print_report_name">'e-journal - %s' % (object.taxpayer_min)</field>
+    </record>
+
+</odoo>

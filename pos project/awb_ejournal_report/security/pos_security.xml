@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Added new user Groups under Point of sale category  -->
+	<!-- Audit Group - can view ejournal report -->
+    <record id="group_pos_audit" model="res.groups">
+        <field name="name">Audit</field>
+        <field name="category_id" ref="base.module_category_sales_point_of_sale"/>
+    </record>
+</odoo>

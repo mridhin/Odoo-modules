@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="awb_pos_sc_pwdID.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('before-footer')]" position="after">
+        
+        	<div t-if="env.pos.get_order().getSCPWDID()">
+                SC/PWD ID : <t t-esc="env.pos.get_order().getSCPWDID()"/>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

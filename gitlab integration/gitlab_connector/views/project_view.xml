@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="gitlab_connector_edit_project_form_view_inherited" model="ir.ui.view">
+        <field name="name">gitlab.connector.view.inherited</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="gitlab_id" readonly="1" password="True"/>
+                <field name="is_gitlab" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="gitlab_connector_inherited_view_task_form2" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="gitlab_issue_id" readonly="1" password="True"/>
+                <field name="due_date"/>
+                <field name="milestone_id"/>
+            </xpath>
+
+            <xpath expr="//field[@name='recurring_task']" position="after">
+                <field name="estimate_time"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="gitlab_connector_inherited_project_tags_tree_view" model="ir.ui.view">
+        <field name="name">project.tags.tree</field>
+        <field name="model">project.tags</field>
+        <field name="inherit_id" ref="project.project_tags_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="gitlab_label_id" readonly="1" password="True"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="gitlab_connector_task_type_edit" model="ir.ui.view">
+        <field name="name">project.task.type.form</field>
+        <field name="model">project.task.type</field>
+        <field name="inherit_id" ref="project.task_type_edit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_ids']" position="after">
+                <field name="gitlab_id" readonly="1" password="True"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document" inherit_id="sale.report_saleorder_document">
+        <!-- TODO not the best thing to inherit... -->
+        <xpath expr="//t[@t-set='display_discount']" position="replace">
+            <t t-set="display_discount" t-value="any(l.multiple_disc for l in doc.order_line)" />
+        </xpath>
+        <xpath expr="//th[@name='th_discount']" position="replace">
+            <th name="th_discount" t-if="display_discount" class="text-right"
+                groups="product.group_discount_per_so_line">
+                <span>Disc.%</span>
+            </th>
+        </xpath>
+        <xpath expr="//td[@t-if='display_discount']" position="replace">
+            <td t-if="display_discount" class="text-right"
+                groups="product.group_discount_per_so_line">
+                <span t-field="line.multiple_disc" />
+            </td>
+        </xpath>
+    </template>
+</odoo>

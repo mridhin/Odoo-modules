@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_auto_lot_alert" model="ir.cron">
+        <field name="name">Lot/Serial Number Alert</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=2, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="stock.model_stock_production_lot"/>
+        <field name="code">model._auto_notify_expiry_alert()</field>
+        <field name="state">code</field>
+    </record>
+    
+    <record id="ir_cron_auto_minimumstock_alert" model="ir.cron">
+        <field name="name">Minimum Stock Alert</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=2, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="stock.model_stock_warehouse_orderpoint"/>
+        <field name="code">model._auto_notify_minimumstock_alert()</field>
+        <field name="state">code</field>
+    </record>
+    
+</odoo>

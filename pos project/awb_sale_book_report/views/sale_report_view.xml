@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<!-- Sales Book Widget form view -->
+    <record id="view_generate_pos_sale_form" model="ir.ui.view">
+        <field name="name">pos_sale.report.pdf.form</field>
+        <field name="model">pos.sale.report</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <form string="POS Report">
+                <group>
+                	<group>
+                		<field name="start_date"/>
+                	</group>
+                    <group>
+                		<field name="end_date"/>
+                	</group>
+                </group>
+                <group>
+                	<group>
+                    	<field name="company_name"/>
+                    	<field name="tin_number"/>
+                    	<field name="pos_terniman_number"/>
+                    </group>
+                    <group>
+	                    <!-- <field name="user_id" /> -->
+	                    <field name="acc_number_pos"/>
+ 	                    <!-- <field name="partner_id"/> -->
+	                    <field name="min"/>
+	                    <field name="ptu"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="generate_report" string="Print" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <!-- Action window -->
+    <record id="action_report_pos_sale_book" model="ir.actions.act_window">
+        <field name="name">Sales Book</field>
+        <field name="res_model">pos.sale.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'sequence': 1, 'view_mode': 'form', 'view_id': ref('awb_sale_book_report.view_generate_pos_sale_form')}),
+        ]"/>
+    </record>
+    <!-- Sales Book Menu -->
+    <menuitem id="menu_report_pos_sale_book" name="Sales Book" action="action_report_pos_sale_book" parent="point_of_sale.menu_point_rep" sequence="7"/>
+
+</odoo>

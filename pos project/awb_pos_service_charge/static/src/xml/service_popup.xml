@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+   <t t-name="ServicechargePopup" owl="1">
+       <div role="dialog" class="modal-dialog">
+           <div class="popup">
+               <p class="title">
+                   <t t-esc="props.title" />
+               </p>
+               <div class="body" style="width: 90%;display: inline-flex;margin-left: 5%;margin-right: 5%;">
+               
+					<div class="select_vat" style="width: 40%;margin-left: 5%;margin-right: 5%;">
+						
+						<select id="service_selection_id" name="service_selection_id" class="form-control service_selection_id" t-on-change="captureVat" required="required" placeholder="Select" style="width: -webkit-fill-available;height: -webkit-fill-available;font-size: initial;border-radius: 3px;border: none;box-shadow: 0px 0px 0px 1px rgb(220 220 220) inset;">
+							<option value="service_percentage" seleted="seleted">Percentage</option>
+							<option value="service_amount">Amount</option>
+						</select> 
+						
+					</div>
+					<div class="service_val" style="width:50%;">
+						<input id="serviceValue" type="number" value="0" style="text-align-last: end;" name="service" t-on-change="captureChange" />
+						<span class="percentage_symbol" style="margin-left:5px;">%</span>
+					</div>
+
+               </div>
+               <footer class="footer" >
+				   <div class="awb_footer_dialog">
+				   	
+                    <div class="button cancel" t-on-click="cancel">
+                        <span >Cancel</span>
+                    </div>
+                    <div class="button  apply_confirm" style="background: #875A7B;" t-on-click="applyConfirm">
+                       <span style="color: white;">Apply</span>
+                    </div>
+                   
+                    </div>
+                </footer>
+
+           </div>
+       </div>
+   </t>
+</templates>

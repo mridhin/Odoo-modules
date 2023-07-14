@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_tax_form_inherited_" model="ir.ui.view">
+            <field name="name">account.tax.form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <field name="type_tax_use" position="after">
+                    <field name="awb_vat_registration_status" attrs="{'invisible': [('awb_type','!=','ewt')],'required':[('awb_type','=','ewt')]}"/>
+                </field>
+                <field name="tax_group_id" position="after">
+                    <field name="awb_Tax_property" attrs="{'invisible': [('awb_tax_flag_fields','=',False)],'required':[('awb_tax_flag_fields','=',True)]}" options="{'no_create_edit': 1}"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="awb_tax_description" attrs="{'invisible': [('awb_tax_flag_fields','=',False)]}"/>
+                    <field name="awb_tax_flag" invisible="1"/>
+                    <field name="awb_tax_flag_fields" invisible="1"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="awb_tds" string="EWT" invisible="1"/>
+                    <field name="awb_type" required="1"/>
+                </field>
+                <field name="amount_type" position="before">
+                    <field name="awb_tds_applicable"
+                           attrs="{'invisible':[('awb_type','=', 'vat')],'required':[('awb_type','=', 'ewt')]}"/>
+                </field>
+                <field name="type_tax_use" position="after">
+                    <field name="awb_payment_excess" attrs="{'invisible':[('awb_type','=', 'vat')]}"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_tax_tree_inherited_" model="ir.ui.view">
+            <field name="name">account.tax.tree</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="awb_tax_description" attrs="{'invisible': [('awb_tax_flag_fields','=',False)]}"/>
+                    <field name="awb_tax_flag" invisible="1"/>
+                    <field name="awb_tax_flag_fields" invisible="1"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="awb_tds" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_tax_search_tis_inherit" model="ir.ui.view">
+            <field name="name">account.tax.search.tis</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_account_tax_search"/>
+            <field name="arch" type="xml">
+                <filter name="sale" position="before">
+                    <filter string="EWT" name="awb_type" domain="[('awb_type','=','ewt')]"/>
+                    <filter string="VAT" name="awb_type" domain="[('awb_type','=','vat')]"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="action_tds_form" model="ir.actions.act_window">
+            <field name="name">EWT / Withholding</field>
+            <field name="res_model">account.tax</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_tds': True}</field>
+            <field name="view_id" ref="view_account_tax_tree_inherited_"/>
+        </record>
+
+        <record id="action_account_moves_tds" model="ir.actions.act_window">
+            <field name="name">EWT Journal Items</field>
+            <field name="res_model">account.move.line</field>
+            <field name="domain">[('display_type', 'not in', ('line_section', 'line_note')), ('move_id.state', '!=',
+                'cancel'),('awb_tds_tag','=', True)]
+            </field>
+            <field name="view_id" ref="account.view_move_line_tree"/>
+            <field name="context">{'search_default_tds_tag': True,'journal_type':'general', 'search_default_posted':1}
+            </field>
+            <field name="view_mode">tree,pivot,graph,form,kanban</field>
+        </record>
+
+        <menuitem id="menu_tds_accounting" name="EWT"
+                  parent="account.menu_finance_entries" sequence="2"/>
+
+        <menuitem action="action_account_moves_tds" id="menu_action_tds_journals" parent="menu_tds_accounting"
+                  sequence="2"/>
+    </data>
+</odoo>

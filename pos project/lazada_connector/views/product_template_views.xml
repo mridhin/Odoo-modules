@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- Inherit Form View to Modify it -->
+		<record id="lc_product_template_from_branch" model="ir.ui.view">
+		    <field name="name">product.template.product.form.brand</field>
+		    <field name="model">product.template</field>
+		    <field name="inherit_id" ref="product_brand.product_template_form_brand_add"/>
+		    <field name="arch" type="xml">
+		        <xpath expr="//field[@name='product_brand_id']" position="replace">
+		        </xpath>
+		    </field>
+		</record>
+
+		<record id="product_template_form_view_add_lazada_tab" model="ir.ui.view">
+			<field name="name">product.template.form.view.add.lazada.tab</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_form_view" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="Lazada Details">
+						<group>
+							<group>
+								<field name="lazada_item_id"/>
+								<field name="lazada_shop_id"/>
+								<field name="lazada_shop_sku"/>
+							</group>
+							<group>
+								<field name="is_lazada_product"/>
+								<field name="lazada_category_id" attrs="{'required': [('is_lazada_product', '=', True)]}" />
+								<field name="product_brand_id" attrs="{'required': [('is_lazada_product', '=', True)]}" />
+								<field name="lazada_update_time"/>
+							
+							</group>
+						</group>
+					</page>
+				</notebook>
+			</field>
+		</record>
+
+	</data>
+</odoo>

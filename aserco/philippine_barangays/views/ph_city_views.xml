@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--State City Views      -->
+        <record id="res_state_city_search" model="ir.ui.view">
+            <field name="name">res.state.city.search</field>
+            <field name="model">res.state.city</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="city_code"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="res_state_city_tree" model="ir.ui.view">
+            <field name="name">res.state.city.tree</field>
+            <field name="model">res.state.city</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="city_code"/>
+                    <field name="state_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_state_city_form" model="ir.ui.view">
+            <field name="name">res.state.city.form</field>
+            <field name="model">res.state.city</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
+                                <field name="active" widget="boolean_button" options='{"terminology": "active"}'/>
+                            </button>
+                        </div>
+                        <h1 class="d-none d-md-block">
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <field name="name"/>
+                            <field name="city_code"/>
+                            <field name="state_id"/>
+                        </group>
+                        <notebook>
+                            <page name="Barangays" string="Barangays">
+                                <field name="brgy_ids" widget="one2many" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="brgy_code"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="res_state_city_action">
+            <field name="name">City / Municipality</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.state.city</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem id="menu_ph_city"
+                  name="City/Municipality"
+                  action="res_state_city_action"
+                  parent="contacts.menu_localisation"
+                  />
+    </data>
+</odoo>
+

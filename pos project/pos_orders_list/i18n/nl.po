@@ -1,0 +1,345 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_orders_list
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-10 13:31+0000\n"
+"PO-Revision-Date: 2022-10-10 19:07+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__last5
+msgid " Load last 5 Session's Orders"
+msgstr "Laad de bestellingen van de laatste 5 sessies"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Close"
+msgstr "Dichtbij"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Company:"
+msgstr "Bedrijf:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Customer"
+msgstr "Klant"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Customer:"
+msgstr "Klant:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Discard"
+msgstr "Weggooien"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Discount"
+msgstr "Korting"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Display Barcode in Receipt"
+msgstr "Barcode weergeven in ontvangstbewijs"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Display Orders in POS"
+msgstr "Toon bestellingen in POS"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Draft/New"
+msgstr "Concept/Nieuw"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Invoiced"
+msgstr "GefactureerdNieuw"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__all
+msgid "Load all Session's Orders"
+msgstr "Laad alle bestellingen van de sessie"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__last3
+msgid "Load last 3 Session's Orders"
+msgstr "Laad de bestellingen van de laatste 3 sessies"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Loading...."
+msgstr "Bezig met laden...."
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/js/Screens/POSOrdersScreen.js:0
+#, python-format
+msgid "Offline"
+msgstr "Offline"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__current_day
+msgid "Only Current Day Orders"
+msgstr "Alleen huidige dagbestellingen"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__current_session
+msgid "Only Current Session's Orders"
+msgstr "Alleen de bestellingen van de huidige sessie"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_order__barcode
+msgid "Order Barcode"
+msgstr "Barcode bestellen"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_order__barcode_img
+msgid "Order Barcode Image"
+msgstr "Bestel barcode afbeelding"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Date"
+msgstr "Besteldatum"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Date:"
+msgstr "Besteldatum:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Details"
+msgstr "Bestel Details"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Ref"
+msgstr "Bestelreferentie"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Ref:"
+msgstr "Bestelreferentie:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Orders"
+msgstr "Bestellingen"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Paid"
+msgstr "Betaald"
+
+#. module: pos_orders_list
+#: model:ir.model,name:pos_orders_list.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Configuratie van verkooppunt"
+
+#. module: pos_orders_list
+#: model:ir.model,name:pos_orders_list.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Verkooppunt bestellingen"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Posted"
+msgstr "Geplaatst"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Price"
+msgstr "Prijs"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Product"
+msgstr "Product"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Quantity"
+msgstr "Hoeveelheid"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Receipt Ref"
+msgstr "Ontvangstbewijs"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Receipt Ref:"
+msgstr "Ontvangstreferentie:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Search Orders"
+msgstr "Zoek bestellingen"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Session Limit Configuration"
+msgstr "Sessielimietconfiguratie"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__pos_session_limit
+msgid "Session limit"
+msgstr "Sessielimiet"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Session:"
+msgstr "Sessie:"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid ""
+"Set session limit to load pos orders. If you have more than 1000 orders, "
+"then we recommend not to use \"Load all\" option."
+msgstr ""
+"Stel een sessielimiet in om pos-orders te laden. Als u meer dan 1000 "
+"bestellingen heeft, raden we aan om de optie \"Alles laden\" niet te "
+"gebruiken."
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__show_barcode
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Show Barcode in Receipt"
+msgstr "Toon streepjescode in ontvangstbewijs"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__show_draft
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Show Draft Orders"
+msgstr "Toon conceptbestellingen"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__show_order
+msgid "Show Orders"
+msgstr "Toon bestellingen"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Show POS Orders in POS"
+msgstr "Toon POS-bestellingen in POS"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__show_posted
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Show Posted Orders"
+msgstr "Toon geplaatste bestellingen"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "State"
+msgstr "Staat"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Status:"
+msgstr "Toestand:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Total"
+msgstr "Totaal"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Total Amount:"
+msgstr "Totaalbedrag:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/js/Screens/POSOrdersScreen.js:0
+#, python-format
+msgid "Unable to load orders."
+msgstr "Kan bestellingen niet laden."
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "View Orders"
+msgstr "Bekijk bestellingen"

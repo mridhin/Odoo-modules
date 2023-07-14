@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_select_products_line,access.select.products.line,model_select_products_line,,1,1,1,1
+access_sale_order_wizard,access.sale.order.wizard,model_sale_order_wizard,,1,1,1,1
+access_sale_order_journal_wizard,access.sale.order.journal.wizard,model_sale_order_journal_wizard,,1,1,1,1
+access_purchase_order_wizard,access.purchase.order.wizard,model_purchase_order_wizard,,1,1,1,1
+access_purchase_order_journal_wizard,access.purchase.order.journal.wizard,model_purchase_order_journal_wizard,,1,1,1,1
+access_debit_note_wizard,access.debit.note.wizard,model_debit_note_wizard,,1,1,1,1
+access_credit_note_wizard,access.credit.note.wizard,model_credit_note_wizard,,1,1,1,1

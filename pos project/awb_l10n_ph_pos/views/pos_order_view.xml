@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_awb_pos_order_inherit_vat_info" model="ir.ui.view">
+        <field name="name">awb.pos.order.vat.form.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty']" position="after">
+                <field name="vatable_sales" />
+                <field name="vat_amount" />
+                <field name="zero_rated_sales" />
+                <field name="vat_exempt_sales" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

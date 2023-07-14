@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     <!-- Delivery Area menu Form View-->
+        <record id="res_partner_delivery_view_form" model="ir.ui.view">
+            <field name="name">Delivery Area</field>
+            <field name="model">res.partner.delivery.area</field>
+            <field name="arch" type="xml">
+                <form string="Delivery Area">
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+	<!-- Delivery Area menu Tree view -->
+        <record id="res_partner_delivery_area_view_tree" model="ir.ui.view">
+            <field name="name">Delivery Area</field>
+            <field name="model">res.partner.delivery.area</field>
+            <field eval="6" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Delivery Area" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+	<!-- Delivery Area Menu search view -->
+        <record id="res_partner_delivery_view_search" model="ir.ui.view">
+            <field name="name">res.partner.delivery.area.view.search</field>
+            <field name="model">res.partner.delivery.area</field>
+            <field name="arch" type="xml">
+                <search string="Search Partner Delivery Area">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+<!-- Delivery Area Menu action -->
+        <record id="res_partner_delivery_action" model="ir.actions.act_window">
+            <field name="name">Delivery Area</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner.delivery.area</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="res_partner_delivery_view_search"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create an Delivery Area
+              </p>
+            </field>
+        </record>
+       <menuitem id="res_partner_delivery_area_menu" name="Delivery Area"
+        action="awb_contacts_form.res_partner_delivery_action" parent="contacts.res_partner_menu_config"
+        sequence="4"/>
+    </data>
+ </odoo>

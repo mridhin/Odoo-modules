@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="lc_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">lc_sale_order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='order_lines']" position="after">
+                    <page name="lazada_informations" string="Lazada Informations">
+                        <group>
+                            <field name="lazada_order_id" />
+                            <field name="lazada_order_number" />
+                            <field name="lazada_status" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

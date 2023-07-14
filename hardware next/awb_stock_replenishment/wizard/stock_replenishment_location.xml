@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_replenishment_location" model="ir.ui.view">
+        <field name="name">Stock Replenishment Location Information</field>
+        <field name="model">stock.replenishment.location</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="orderpoint_id" invisible="1"/>
+                <field name="product_id" />
+                <notebook>
+                    <page name="location_line" string="Location Lines">
+                        <field name="location_line" widget="one2many" string="Location Line" readonly="True">
+                            <tree editable="bottom">
+                                <field name="stock_location_id" />
+                                <field name="qty_available" />
+
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+
+                <footer>
+                    <button string="Close" class="btn-default" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stock_replenishment_locations" model="ir.actions.act_window">
+        <field name="name">Replenishment Location Information</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.replenishment.location</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_stock_replenishment_location"/>
+        <field name="context">{'default_orderpoint_id': active_id}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

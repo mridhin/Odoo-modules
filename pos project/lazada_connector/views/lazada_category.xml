@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="lc_lazada_category_form_view" model="ir.ui.view">
+            <field name="name">lazada.category.form</field>
+            <field name="model">lazada.category</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Category" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="parent_id"/>
+                                <field name="lazada_category_id"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lc_lazada_category_tree_view" model="ir.ui.view">
+            <field name="name">lazada.category.tree</field>
+            <field name="model">lazada.category</field>
+            <field name="arch" type="xml">
+                <tree string="Lazada Category" create="false" edit="false">
+                    <field name="complete_name"/>
+                    <field name="parent_id"/>
+                    <field name="lazada_category_id"/>
+                </tree>
+            </field>
+        </record>
+    <record id="lc_lazada_category_search_view" model="ir.ui.view">
+       <field name="name">lazada.category.search</field>
+       <field name="model">lazada.category</field>
+        <field name="arch" type="xml">
+            <search string="Lazada Category">
+              <field name="name" string="string" filter_domain="[('name','ilike',self)]"/>
+            </search>
+       </field>
+    </record>
+        <record id="action_lazada_category" model="ir.actions.act_window">
+            <field name="name">Lazada Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lazada.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new record.
+                </p>
+            </field>
+        </record>
+
+    <menuitem name="Lazada Category" id="menu_lc_lazada_category"
+              parent="menu_settings_lazada_connector"
+              action="action_lazada_category"
+              sequence="2"
+              />
+    </data>
+</odoo>

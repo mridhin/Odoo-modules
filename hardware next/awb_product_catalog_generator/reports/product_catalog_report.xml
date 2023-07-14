@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_product_catalog" model="report.paperformat">
+            <field name="name">A4 Product Catalog Style 2, 4 and 5</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_report_product_catalog" model="ir.actions.report">
+            <field name="name">Product Catalog Report</field>
+            <field name="model">product.catalog</field>
+            <field name="binding_model_id" ref="model_product_catalog" />
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">awb_product_catalog_generator.report_product_catalog</field>
+            <field name="report_file">awb_product_catalog_generator.report_product_catalog</field>
+            <field name="paperformat_id" ref="paperformat_product_catalog" />
+            <field name="attachment_use">True</field>
+            <field name="binding_view_types">list</field>
+        </record>
+
+        <record id="action_report_product_catalog_1_3" model="ir.actions.report">
+            <field name="name">Product Catalog Report 1 &amp; 3</field>
+            <field name="model">product.catalog</field>
+            <field name="binding_model_id" ref="model_product_catalog" />
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">awb_product_catalog_generator.report_product_catalog</field>
+            <field name="report_file">awb_product_catalog_generator.report_product_catalog</field>
+            <field name="paperformat_id" ref="paperformat_product_catalog" />
+            <field name="attachment_use">True</field>
+            <field name="binding_view_types">list</field>
+        </record>
+    </data>
+</odoo>
+        

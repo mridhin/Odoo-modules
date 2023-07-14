@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="lc_lazada_payment_method_form_view" model="ir.ui.view">
+            <field name="name">lazada.payment.method.form</field>
+            <field name="model">lazada.payment.method</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Payment Method">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="journal_id"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lc_lazada_payment_method_tree_view" model="ir.ui.view">
+            <field name="name">lazada.payment.method.tree</field>
+            <field name="model">lazada.payment.method</field>
+            <field name="arch" type="xml">
+                <tree string="Lazada Payment Method">
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_lazada_payment_methods" model="ir.actions.act_window">
+            <field name="name">Lazada Payment Methods</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lazada.payment.method</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new record.
+                </p>
+            </field>
+        </record>
+
+    <menuitem name="Lazada Payment Methods" id="menu_lc_lazada_payment_method"
+              parent="menu_settings_lazada_connector"
+              action="action_lazada_payment_methods"
+              sequence="1"
+              />
+    </data>
+</odoo>

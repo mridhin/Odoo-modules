@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Added new user Groups under Point of sale category  -->
+	<!-- Cashier Group -->
+    <record id="group_pos_cashier" model="res.groups">
+        <field name="name">Cashier</field>
+        <field name="category_id" ref="base.module_category_sales_point_of_sale"/>
+    </record>
+   
+   <!-- Supervisor Group -->
+    <record id="group_pos_supervisor" model="res.groups">
+        <field name="name">Supervisor</field>
+        <field name="category_id" ref="base.module_category_sales_point_of_sale"/>
+    </record>
+    
+    <!-- Accountant Group-->
+    <record id="group_pos_accountant" model="res.groups">
+        <field name="name">Accountant</field>
+        <field name="category_id" ref="base.module_category_sales_point_of_sale"/>
+    </record>
+
+</odoo>

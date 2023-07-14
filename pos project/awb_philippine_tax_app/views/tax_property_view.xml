@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+        <record id="tax_property_view_form" model="ir.ui.view">
+            <field name="name">tax.property.form</field>
+            <field name="model">tax.property</field>
+            <field name="arch" type="xml">
+                <form string="Tax property">
+                    <sheet>
+                        <group>
+                            <field name="awb_tax_property_name" required="True"/>
+                            <field name="awb_tax_property_description" required="True"/>
+                            <field name="awb_type" required="True"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="tax_property_tree_view" model="ir.ui.view">
+            <field name="name">tax.property</field>
+            <field name="model">tax.property</field>
+            <field name="arch" type="xml">
+                <tree string="Tax property">
+                    <field name="awb_tax_property_name"/>
+                    <field name="awb_tax_property_description"/>
+                    <field name="awb_type"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_tax_property_form" model="ir.actions.act_window">
+            <field name="name">Tax Property</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tax.property</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_tax_property_sub" name="Philippine Tax" parent="account.menu_finance_configuration" sequence="10" groups="awb_philippine_tax_app.admin_Philippine_group_3"/>
+        <menuitem action="action_tax_property_form" id="menu_tax_property__form_submenu" parent="menu_tax_property_sub"/>
+  </data>
+</odoo>

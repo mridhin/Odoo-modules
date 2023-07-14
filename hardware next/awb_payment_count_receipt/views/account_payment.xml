@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Inherited and added new button action for account payment table -->
+ <record id="inherited_view_account_payment_form" model="ir.ui.view">
+      <field name="name">account.payment.form</field>
+      <field name="model">account.payment</field>
+      <field name="inherit_id" ref="account.view_account_payment_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//button[@name='action_post']" position="before">
+          	<button name="action_for_ctr_receipt" string="For CTR Receipt" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+          </xpath>
+          <xpath expr="//field[@name='state']" position="replace">
+          	<field name="state" widget="statusbar" statusbar_visible="draft,ctr_receipt,posted"/>
+          </xpath>
+          <xpath expr="//button[@name='action_post']" position="replace">
+          	<button name="action_post" string="Confirm" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('state', '!=', 'ctr_receipt')]}" data-hotkey="v"/>
+          </xpath>
+          
+          <xpath expr="//button[@name='action_cancel']" position="replace">
+          	<button name="action_cancel" string="Cancel" type="object"
+                                attrs="{'invisible': [('state', '!=', 'draft'),('state', '!=', 'ctr_receipt')]}" data-hotkey="z"/>
+          </xpath>
+          <xpath expr="//field[@name='ref']" position="after">
+          	<field name="ctr_reference" attrs="{'invisible': [('state', '!=', 'posted')]}"/>
+          </xpath>
+           <xpath expr="//div[@class='oe_title']" position="replace">
+           	 <h1 attrs="{'invisible': [('state', '!=', 'draft')]}"><span>Draft</span></h1>
+             <h1 attrs="{'invisible': [('state', 'in', ['draft','ctr_receipt'])]}"><field name="name" readonly="1"/></h1>
+              <h1 attrs="{'invisible': [('state', '!=', 'ctr_receipt')]}"><field name="ctr_reference_name" readonly="1"/></h1>
+           </xpath>
+      </field>
+  </record>
+  <!-- Auto generate sequence number for CTR Status -->
+   <record id="seq_ctr_reference" model="ir.sequence">
+            <field name="name">CTR Reference</field>
+            <field name="code">account.payment.seq</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">CTR%(year)s%(month)s</field>
+            <field name="padding">3</field>
+         </record>
+</odoo>

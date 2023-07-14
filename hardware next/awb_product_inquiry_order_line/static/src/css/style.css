@@ -1,0 +1,8 @@
+.product_search_list .o_list_view .o_list_table > thead > tr > th.o_column_sortable {
+    width: 100px !important;
+    max-width: 100px !important;
+}
+.product_search_list .o_list_view .o_list_table > thead > tr > th:nth-child(2) {
+   width:300px !important;
+   max-width:inherit !important;
+}

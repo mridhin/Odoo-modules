@@ -1,0 +1,34 @@
+<odoo>
+    <record id="z_reading_report_paperformat" model="report.paperformat">
+        <field name="name">Z-Reading Paper Format</field>
+        <field name="format">custom</field>
+        <field name="orientation">Portrait</field>
+        <field name="page_height">297</field>
+        <field name="page_width">80</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">70</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+    <!-- TODO: rename these action reports later-->
+    <record id="action_z_reading_report_3" model="ir.actions.report">
+        <field name="name">POS Report Document</field>
+        <field name="model">cc_z_reading.z_reading</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cc_z_reading.z_reading_report_2</field>
+        <field name="report_file">cc_z_reading.z_reading_report_2</field>
+        <field name="paperformat_id" ref="cc_z_reading.z_reading_report_paperformat"/>        
+    </record>
+    <record id="action_z_reading_report" model="ir.actions.report">
+        <field name="name">Document Report</field>
+        <field name="model">cc_z_reading.z_reading</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cc_z_reading.z_reading_report</field>
+        <field name="report_file">cc_z_reading.z_reading_report</field>
+        <field name="paperformat_id" ref="cc_z_reading.z_reading_report_paperformat"/>        
+        <field name="binding_model_id" ref="model_cc_z_reading_z_reading"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

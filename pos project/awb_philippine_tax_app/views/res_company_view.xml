@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_company_form_inherited_vat" model="ir.ui.view">
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[last()]" position="after">
+                    <page string="Philippine Tax" name="philippine_tax" groups ="base.group_erp_manager">
+                        <group>
+                            <field name="awb_vat_registration_status" required="True"/>
+                            <field name="awb_vat_registration_no" attrs='{"required": [("awb_vat_registration_status", "=", "registered")]}'/>
+                            <field name="awb_line_of_business" required="True"/>
+                            <field name="awb_business_style"/>
+                            <field name="awb_rdo_name" required="True"/>
+                            <field name="awb_rdo_code" required="True"/>
+                            <field name="awb_category_of_withholding_agent" required="1"/>
+                            <field name="awb_top_withholding_agent" attrs="{'invisible': [('awb_category_of_withholding_agent', '!=', 'private')],'required': [('awb_category_of_withholding_agent', '=', 'private')]}"/>
+                        </group>
+                    </page>
+                    <page string="Foreign Address">
+                        <group>
+                            <label for="awb_street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="awb_street" placeholder="Street..." class="o_address_street"/>
+                                <field name="awb_street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="awb_city" placeholder="City" class="o_address_city"/>
+                                <field name="awb_state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                                <field name="awb_zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="awb_country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                            </div>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gitlab_connector_user,gitlab.connector,model_gitlab_connector,base.group_user,1,1,1,1
+access_resource_allocation_report_user,resource.allocation.report,model_resource_allocation_report,base.group_user,1,1,1,1

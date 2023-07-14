@@ -1,0 +1,759 @@
+<odoo>
+    <template id="store_directory" name="Store Directory">
+        <t t-call="website.layout">
+            <div id="web_wrap" class="oe_structure oe_empty d-flex justify-content-center">
+                <section id="web_store" class="s_carousel_wrapper" data-snippet="s_carousel" data-name="Carousel">
+                    <a data-slide="prev" role="img"
+                       aria-label="Previous" title="Previous" href="#storecorosal">
+                        <span class="carousel-control-prev-icon web_nav" id="prev_icon"/>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </a>
+                    <div class="s_carousel s_carousel_default carousel slide" data-interval="false"
+                         id="storecorosal">
+
+                        <div class="carousel-inner">
+                            <div class="carousel-item active"
+                                 data-name="Slide">
+                                <div class="container oe_unremovable">
+                                    <div id="item_row" class="row content">
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Pasig
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        18 Evangelista St,
+                                                    </li>
+                                                    <li>
+                                                        Pasig, 1800 Metro Manila
+                                                    </li>
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        99999999999999991
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/Zjj8hUcuK19A4t2C9"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Makati
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        4/F Waltermart Center, Chino Roces Ave, Makati, 1231 Metro
+                                                        Manila
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                Makati, 1231 Metro Manila-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/DvKcx64gzgLkvBAN7"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Galleria
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        Ortigas Ave, Ortigas Center, Quezon City, Metro Manila
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                Quezon City, Metro Manila-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/R6LQou2iz1UimsUL6"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item"
+                                 data-name="Slide">
+                                <div class="container oe_unremovable">
+                                    <div id="item_row" class="row content">
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Manila
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        SM City Manila, Lower Ground floor Cyberzone, Manila, Metro
+                                                        Manila
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                Manila, Metro Manila-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/4HAc4mypmHzkdDXJ6"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Alabang
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        3, 13,14 Alabang–Zapote Rd, Cupang, Muntinlupa, Metro Manila
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                Muntinlupa, Metro Manila-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/JSXv3VmDWqPUMvJ5A"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Quezon Avenue
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        Quezon Avenue, corner Scout Albano,Quezon City, 1103 Metro
+                                                        Manila
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                Quezon City, 1103 Metro Manila-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/2P3Xe3dDaBXeWJZY8"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-name="Slide">
+                                <div class="container oe_unremovable">
+                                    <div id="item_row" class="row content">
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        North Edsa
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        Walter Mart North Edsa, 2nd Level, Project 7,Quezon City, 1105
+                                                        Metro
+                                                        Manila
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                Quezon City, 1105 Metro Manila-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/UDL9ZHAFyTC1eBvu8"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Dasmarinas
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        Waltermart, Ground Floor, Molino - Paliparan,Dasmariñas, Cavite
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                Dasmariñas, Cavite-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/tCWa7ghSveery3Gk7"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        SM North
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        5th Floor Cyberzone The Annex SM City North,
+                                                        EDSA Avenue corner,North Ave
+                                                    </li>
+                                                    <!--                                            EDSA Avenue corner,North Ave, Quezon City-->
+                                                    <!--                                            <li></li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/HLc3NiamAjVq6sdW7"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-name="Slide">
+                                <div class="container oe_unremovable">
+                                    <div id="item_row" class="row content">
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Pampanga
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        Waltermart, Ground Floor,San Fernando, 2000 Pampanga
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                San Fernando, 2000 Pampanga-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/rn5U75T2sCrvPVE48"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card" id="store_card">
+                                            <div class="my_no_image">
+                                                <span>
+                                                    <img src="/awb_website/static/src/images/default.png"
+                                                         class="img img-fluid store_img" alt="No Image Available"/>
+                                                </span>
+                                            </div>
+                                            <div class="card_body">
+                                                <ul class="fa-ul" id="store_ul">
+                                                    <li>
+                                                        <i class="fa-li fa fa-home fa-lg"></i>
+                                                        Sta. Rosa
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                        2nd Floor, Walter Mart Sta. Rosa, BalibagoRd,
+                                                        Balibago, Santa Rosa
+                                                    </li>
+                                                    <!--                                            <li>-->
+                                                    <!--                                                Balibago, Santa Rosa, Laguna-->
+                                                    <!--                                            </li>-->
+                                                    <li>
+                                                        <i class='fa-li fa fa-phone fa-lg'></i>
+                                                        9999999999999999
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                        smileserve@gmail.com
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card_footer">
+                                                <div class="bg-light clearfix">
+                                                    <a href="#"
+                                                       class="btn btn-primary float-left link_button">
+                                                        <span>
+                                                            Chat at facebook
+                                                        </span>
+                                                    </a>
+                                                    <a href="https://goo.gl/maps/9FhWfoH1wof9Rq347"
+                                                       target="_blank"
+                                                       class="btn btn-primary float-right link_button">
+                                                        <span>
+                                                            Direction
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a data-slide="next" role="img"
+                       aria-label="Next" title="Next" href="#storecorosal">
+                        <span class="carousel-control-next-icon web_nav" id="next_icon"/>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </a>
+                    <div id="mobile_nav" class="d-flex justify-content-center">
+                         <a data-slide="prev" role="img"
+                       aria-label="Previous" title="Previous" href="#storecorosal">
+                        <span class="carousel-control-prev-icon" id="prev_icon"/>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </a>
+                         <a data-slide="next" role="img"
+                       aria-label="Next" title="Next" href="#storecorosal">
+                        <span class="carousel-control-next-icon" id="next_icon"/>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </a>
+
+                    </div>
+                </section>
+
+
+            </div>
+        </t>
+    </template>
+    <template id="feedback" name="Customer Review">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                 <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"/>
+                <section class="pt-5 pb-5">
+                    <div class="container">
+                        <h2 class="text-center">What other say for us</h2>
+                        <hr class="midline"/>
+                        <h5 class="text-center mb-5">Our team created best services for you.</h5>
+                        <div class="myt-container">
+                            <div id="html-item-pagination" class="hip-grid">
+
+                                <t t-if="testimonial_ids">
+
+                                    <t t-foreach="testimonial_ids" t-as="test_ids">
+                                        <div class="hip-item">
+                                            <div class="card_asc">
+                                                <div class="reviewr_o text-left">
+                                                    <t t-esc="test_ids['name']"/>
+                                                </div>
+                                                <p class="testimonial_p">
+                                                    <t t-if="test_ids.review_text and len(test_ids.review_text) &gt; 65">
+                                                        <p>
+                                                            <t t-esc="test_ids.review_text[:65]"/>
+                                                            <span class="dots">...</span>
+                                                            <span class="more">
+                                                                <t t-esc="test_ids.review_text[65:]"/>
+                                                            </span>
+                                                        </p>
+                                                        <div class="read_more">Read more</div>
+                                                    </t>
+                                                    <t t-if="test_ids.review_text and len(test_ids.review_text) &lt; 65">
+                                                        <p>
+                                                            <t t-esc="test_ids.review_text"/>
+                                                        </p>
+                                                    </t>
+                                                </p>
+                                                <div class="footer d-flex">
+                                                    <div>
+                                                        <t t-set="qty" t-value="test_ids['rating']"/>
+                                                        <t t-foreach="range(int(qty))" t-as="item">
+                                                            <i style="color:#0088B4;" class="fa fa-star"/>
+                                                        </t>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <div class="reviewr_o">
+                                                            <t t-esc="test_ids['reviewer_name']"/>
+                                                        </div>
+                                                        <div class="reviewr_dest">
+                                                            <t t-esc="test_ids['reviewer_title']"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+
+                                </t>
+                                <t t-if="not testimonial_ids">
+                                    <div class="d-flex justify-content-center">
+                                        <p class="testimonial_p">
+                                            Please click <a href="/customer_testimonial">here</a> to add your feedback.
+                                        </p>
+                                    </div>
+                                </t>
+
+
+                            </div>
+                            <div id="footer-testimonials" class="owl-carousel owl-theme mt-5">
+                                    <t t-if="testimonial_ids">
+                                        <t t-foreach="testimonial_ids" t-as="test_ids">
+
+                                            <div class="owl-item" style="">
+                                                <div class="card_asc">
+                                                <p class="testimonial_p">
+                                                    <t t-if="test_ids.review_text and len(test_ids.review_text) &gt; 65">
+                                                        <p>
+                                                            <t t-esc="test_ids.review_text[:65]"/>
+                                                            <span class="dots">...</span>
+                                                            <span class="more">
+                                                                <t t-esc="test_ids.review_text[65:]"/>
+                                                            </span>
+                                                        </p>
+                                                        <div class="read_more">Read more</div>
+                                                    </t>
+                                                    <t t-if="test_ids.review_text and len(test_ids.review_text) &lt; 65">
+                                                        <p>
+                                                            <t t-esc="test_ids.review_text"/>
+                                                        </p>
+                                                    </t>
+                                                </p>
+                                                <div class="footer d-flex">
+                                                    <div>
+                                                        <t t-set="qty" t-value="test_ids['rating']"/>
+                                                        <t t-foreach="range(int(qty))" t-as="item">
+                                                            <i style="color:#0088B4;" class="fa fa-star"/>
+                                                        </t>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <div class="reviewr_o">
+                                                            <t t-esc="test_ids['reviewer_name']"/>
+                                                        </div>
+                                                        <div class="reviewr_dest">
+                                                            <t t-esc="test_ids['reviewer_title']"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+
+                                        </t>
+                                    </t>
+                                    <t t-if="not testimonial_ids">
+                                        <div class="owl-item">
+                                            <div class="card_asc">
+                                                <div class="testimonial_h2">
+                                                    No Reviews
+                                                </div>
+                                                <div class="testimonial_p">
+                                                    Please add your review
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+        </t>
+    </template>
+</odoo>

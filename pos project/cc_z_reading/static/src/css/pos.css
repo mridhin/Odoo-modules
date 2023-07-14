@@ -1,0 +1,6 @@
+/* It is used to add scroll when the contents in the popup exceeds. */
+/* [FIX] Dialog Box Is Too Big Upon Clicking PWD or SC Buttons. */
+.pos .modal-dialog .close-pos-popup {
+    height: 95% !important;
+    overflow: auto !important;
+}

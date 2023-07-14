@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--Qweb report for the voided transaction-->
+	<record id="action_pos_void" model="ir.actions.report">
+	   <field name="name">Voided Transaction</field>
+	   <field name="model">pos.void</field>
+	   <field name="report_type">qweb-pdf</field>
+	   <field name="report_name">awb_pos_void.report_form_void</field>
+	   <field name="report_file">awb_pos_void.report_form_void</field>
+	   <field name="print_report_name">'Voided Transaction - s'</field>
+	   <field name="binding_model_id" ref="model_pos_void"/>
+	</record>
+	
+	<template id="report_form_void">
+    <t t-call="web.html_container">
+		<t t-foreach="docs" t-as="o">
+			<t t-call="web.external_layout">
+			<style>
+				td{
+					border:1px solid black;
+					border-left: none;
+					border-right: none;
+					line-height:3rem;
+				}
+			</style>
+			<table style="width:100%;text-align:right;">
+				<div style="width:100%;text-align:right;">
+						<h5>
+							<span>Customer: <t t-esc="o.partner_id.name"/></span>
+						</h5>
+						
+							<span><t t-esc="o.partner_id.street"/></span><br/>
+							<span><t t-esc="o.partner_id.street2"/></span><br/>
+							<span><t t-esc="o.partner_id.zip"/></span><br/>
+							<span><t t-esc="o.partner_id.state_id.name"/></span><br/>
+							<span><t t-esc="o.partner_id.country_id.name"/></span>
+						
+				</div>
+			</table>
+			
+			<table  style="width:100%;">
+				
+					<div class="sequence_name"  style="width:100%;font-size:xx-large;font-weight:bold;">
+						<span><t t-esc="o.name"/></span>
+					</div>
+					<div>
+						<span style="width:50%;">Voided Date: <span t-field="o.date_void" t-options='{"widget": "date"}'/></span>
+						<span style="width:50%;margin-left:25%;">Sales Person: <t t-esc="o.pos_user_id.name"/></span>
+					</div>
+				
+			</table>
+			<br/>
+			<table style="width:100%;font-size:large;">
+				<tr style="width:100%;background:black;color:white;font-size:large;">
+					<td>Product</td>
+					<td>Description</td>
+					<td>Quantity</td>
+					<td>Unit Price</td>
+					<td>Discount%</td>
+					<td>Subtotal</td>
+				</tr>
+				<t t-foreach="o.pos_void_line_ids" t-as="line">
+					<tr>
+					<td>
+						<t t-if="line.product_id">
+							<t t-esc="line.product_id.name" />
+						</t>
+						<t t-else="">
+							-
+						</t>
+					</td>
+					<td>
+						<t t-if="line.product_description">
+							<t t-esc="line.product_description" />
+						</t>
+						<t t-else="">
+							-
+						</t>
+					</td>
+					<td>
+						<t t-if="line.qty">
+							<t t-esc="line.qty" />
+						</t>
+						<t t-else="">
+							-
+						</t>
+					</td>
+					<td>
+						<t t-if="line.unit_price">
+							<t t-esc="line.unit_price" />
+						</t>
+						<t t-else="">
+							-
+						</t>
+					</td>
+					<td>
+						<t t-if="line.discount">
+							<t t-esc="line.discount" />
+						</t>
+						<t t-else="">
+							-
+						</t>
+					</td>
+					<td>
+						<t t-if="line.subtotal">
+							<t t-esc="line.subtotal" />
+						</t>
+						<t t-else="">
+							-
+						</t>
+					</td>
+				</tr>
+				</t>
+			</table>
+			<br/>
+			<table  style="width:100%;text-align:right;">
+				
+					<div class="total"  style="width:100%;font-size:x-large;font-weight:bold;text-align:right;">
+						<span>Total: <t t-esc="o.total"/></span>
+					</div>
+				
+			</table>
+		</t>
+    	</t>
+    </t>
+	</template>
+</odoo>

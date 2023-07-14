@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SUB TREES PER BUTTON CATEGORY -->
+    <record id="x_reading_view_returns_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.returns.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+                <tree string="POS Orders" create="0" sample="1" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                    <field name="currency_id" invisible="1"/>
+                    <field name="name" decoration-bf="1"/>
+                    <field name="session_id"/>
+                    <field name="date_order"/>
+                    <field name="pos_reference"/>
+                    <field name="partner_id"/>
+                    <field string="Cashier" name="user_id" widget="many2one_avatar_user"/>
+                    <field name="amount_total" sum="Amount total" widget="monetary" decoration-bf="1"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state not in ('draft','cancel')"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="x_reading_view_void_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.void.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+                <tree string="POS Orders" create="0" sample="1" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                    <field name="currency_id" invisible="1"/>
+                    <field name="name" decoration-bf="1"/>
+                    <field name="session_id"/>
+                    <field name="date_order"/>
+                    <field name="pos_reference"/>
+                    <field name="partner_id"/>
+                    <field string="Cashier" name="user_id" widget="many2one_avatar_user"/>
+                    <field name="amount_total" sum="Amount total" widget="monetary" decoration-bf="1"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state not in ('draft','cancel')"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="x_reading_view_sales_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.sales.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <tree string="POS Orders" create="0" sample="1" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                <field name="currency_id" invisible="1"/>
+                <field name="name" decoration-bf="1"/>
+                <field name="session_id"/>
+                <field name="date_order"/>
+                <field name="pos_reference"/>
+                <field name="partner_id"/>
+                <field string="Cashier" name="user_id" widget="many2one_avatar_user"/>
+                <field name="amount_total" sum="Amount total" widget="monetary" decoration-bf="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state not in ('draft','cancel')"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="x_reading_view_discounts_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.discounts.tree</field>
+        <field name="model">pos.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="POS Order Lines">
+                <!-- <field name="currency_id" invisible="1"/> -->
+                <field name="name" decoration-bf="1"/>
+                <field name="order_id" decoration-bf="1"/>
+                <field name="write_date"/>
+                <field name="discount"/>
+                <!-- add discount price -->
+                <!-- <t t-set="discount_price" t-value="(qty * price_unit) * \ (discount / 100)"/>
+                <t t-esc="discount_price"/> -->
+                <field name="price_subtotal_incl" sum="Amount total" widget="monetary" decoration-bf="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="x_reading_view_vat_sales_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.vat_sales.tree</field>
+        <field name="model">pos.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="POS Order Lines">
+                <field name="name" decoration-bf="1"/>
+                <field name="order_id" decoration-bf="1"/>
+                <field name="write_date"/>
+                <field name="tax_ids_after_fiscal_position" widget="many2many_tags" string="Taxes"/>
+                <field name="tax_ids" widget="many2many_tags" invisible="1"/>
+                <field name="price_subtotal" sum="Amount total" widget="monetary" decoration-bf="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="x_reading_view_vat_12_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.vat_12.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <tree string="POS Orders" create="0" sample="1" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                <field name="currency_id" invisible="1"/>
+                <field name="name" decoration-bf="1"/>
+                <field name="session_id"/>
+                <field name="date_order"/>
+                <field name="pos_reference"/>
+                <field name="partner_id"/>
+                <field string="Cashier" name="user_id" widget="many2one_avatar_user"/>
+                <field name="amount_tax" sum="Amount Tax" widget="monetary" decoration-bf="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state not in ('draft','cancel')"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="x_reading_view_vat_exempt_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.vat_exempt.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <tree string="POS Orders" create="0" sample="1" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                <field name="currency_id" invisible="1"/>
+                <field name="name" decoration-bf="1"/>
+                <field name="session_id"/>
+                <field name="date_order"/>
+                <field name="pos_reference"/>
+                <field name="partner_id"/>
+                <field string="Cashier" name="user_id" widget="many2one_avatar_user"/>
+                <field name="amount_total" sum="Amount Total" widget="monetary" decoration-bf="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state not in ('draft','cancel')"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="x_reading_view_zero_rated_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.zero_rated.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <tree string="POS Orders" create="0" sample="1" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                <field name="currency_id" invisible="1"/>
+                <field name="name" decoration-bf="1"/>
+                <field name="session_id"/>
+                <field name="date_order"/>
+                <field name="pos_reference"/>
+                <field name="partner_id"/>
+                <field string="Cashier" name="user_id" widget="many2one_avatar_user"/>
+                <field name="amount_total" sum="Amount Total" widget="monetary" decoration-bf="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state not in ('draft','cancel')"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- MAIN TREE -->
+    <record id="x_reading_view_tree" model="ir.ui.view">
+        <field name="name">x_reading.view.tree</field>
+        <field name="model">cc_x_reading.x_reading</field>
+        <field name="arch" type="xml">
+            <tree string="Reports" create="0" default_order="id desc">
+                <field name="id" />
+                <field name="reference" />
+                <field name="crm_team_id" string="Sales Team" />
+                <field name="is_x_reading" optional="hide"/>
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="total_sales" />
+                <!-- <field name="total_returns" /> -->
+                <field name="total_voids" />
+                <field name="total_discounts" />
+                <field name="subtotal" />
+                <field name="beginning_reading" optional="hide"/>
+                <field name="ending_reading" optional="hide"/>
+                <field name="vatable_sales" optional="hide"/>
+                <field name="vat_12" optional="hide"/>
+                <field name="vat_exempt_sales" optional="hide"/>
+                <field name="zero_rated_sales" optional="hide"/>
+                <field name="register_total" optional="hide"/>
+                <!-- ADD PAYMENTS -->
+                <field name="regular_discount" optional="hide"/>
+                <field name="sc_pwd_vat_in" optional="hide"/>
+                <field name="sc_vat_ex" optional="hide"/>
+                <field name="pwd_vat_ex" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- MAIN FORM -->
+    <record id="x_reading_view_form" model="ir.ui.view">
+        <field name="name">cc_x_reading.x_reading.form</field>
+        <field name="model">cc_x_reading.x_reading</field>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="Reports" create="false" edit="false">
+                <sheet> 
+                    <h1 class="oe_title">
+                        <field name="reference" class="oe_inline"/>
+                    </h1>
+                    <group col="4" colspan="4">
+                        <!-- <field name="id" string="X-Reading Id" options="{'no_create': True}"/> -->
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="beginning_reading"/>
+                        <field name="ending_reading"/>
+                    </group>
+                    <notebook>                        
+                        <page string="Cashier/s">
+                            <group>
+                                <field name="cashier_ids" /> 
+                            </group>
+                        </page>
+                        <page string="Totals"> 
+                            <group>
+                                <label class="o_form_label o_readonly_modifier" for="action_view_sales">Total Sales</label>
+                                <button name="action_view_sales" class="btn btn-outline-dark btn-sm" type="object">
+                                    <field name="total_sales" />
+                                </button>
+                                <!-- <label class="o_form_label o_readonly_modifier" for="action_view_returns">Total Returns</label>
+                                <button name="action_view_returns" class="btn btn-outline-dark btn-sm" type="object">
+                                    <field name="total_returns" />
+                                </button> -->
+                                <label class="o_form_label o_readonly_modifier" for="action_view_voids">Total Voids</label>
+                                <button name="action_view_voids" class="btn btn-outline-dark btn-sm" type="object">
+                                    <field name="total_voids" />
+                                </button>
+                                <!-- <field name="total_voids"/> -->
+                                <label class="o_form_label o_readonly_modifier" for="action_view_discounts">Total Discounts</label>
+                                <button name="action_view_discounts" class="btn btn-outline-dark btn-sm" type="object">
+                                    <field name="total_discounts"/>
+                                </button>
+
+                                <field name="subtotal" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="VAT info">
+                            <group>
+                                <label class="o_form_label o_readonly_modifier" for="action_view_vat_sales">Vatable Sales</label>
+                                <button name="action_view_vat_sales" class="btn btn-outline-dark btn-sm" type="object">
+                                    <field name="vatable_sales" />
+                                </button>
+                                <label class="o_form_label o_readonly_modifier" for="action_view_vat_12">12% VAT</label>
+                                <button name="action_view_vat_12" class="btn btn-outline-dark btn-sm" type="object">
+                                    <field name="vat_12" />
+                                </button>
+                                <label class="o_form_label o_readonly_modifier" for="action_view_vat_exempt">VAT Exempt Sales</label>
+                                <button name="action_view_vat_exempt" class="btn btn-outline-dark btn-sm" type="object">
+                                    <field name="vat_exempt_sales" />
+                                </button>
+                                <label class="o_form_label o_readonly_modifier" for="action_view_zero_rated">Zero Rated Sales</label>
+                                <button name="action_view_zero_rated" class="btn btn-outline-dark btn-sm" type="object">
+                                    <field name="zero_rated_sales" />
+                                </button>
+                                <field name="register_total" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Payments">
+                            <group>
+                                <field name="payments_ids" />
+                            </group>
+                        </page>
+                        <page string="Discounts">
+                            <group>
+                                <field name="regular_discount"/>
+                                <field name="sc_pwd_vat_in" string="SC/PWD 5% Discount"/>
+                                <field name="sc_vat_ex" string="SC 20% Discount"/>
+                                <field name="pwd_vat_ex" string="PWD 20% Discount"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH FILTERS -->
+    <record id="x_reading_view_search" model="ir.ui.view">
+        <field name="name">x_reading.view.search</field>
+        <field name="model">cc_x_reading.x_reading</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="X-Reading" name="is_x_reading" domain="[('is_x_reading', '=', True)]" />
+                <filter string="POS Report" name="is_x_reading" domain="[('is_x_reading', '=', False)]" />
+            </search>
+        </field>
+    </record>
+
+    <record id="x_reading_view_action" model="ir.actions.act_window">
+        <field name="name">X-reading View Reports</field>
+        <field name="res_model">cc_x_reading.x_reading</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_orders_pos_x_reading" action="x_reading_view_action" parent="point_of_sale.menu_point_of_sale" sequence="5"/>
+</odoo>

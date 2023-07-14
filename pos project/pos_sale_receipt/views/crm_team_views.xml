@@ -1,0 +1,57 @@
+<odoo>
+    <record id="sales_team_form_view_in_pos_sale_receipt" model="ir.ui.view">
+        <field name="name">crm.team.form.inherit</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position='after'>
+                <field name="starting_sequence_number"/>
+                <field name="current_sequence_number" readonly="1"/>
+                <field name="ending_sequence_number"/>
+                <field name="sale_team_prefix_id" attrs="{'domain': [('name', '=', 'TEST')]}" groups = "base.group_system"/>
+<!--                <field name="name" invisible="1" />-->
+                <field name="threshold_sequence_number"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pos_sale_receipt_inherited_crm_team_view_tree" model="ir.ui.view">
+        <field name="name">crm.team.tree</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="sale_team_prefix_id"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position='after'>
+                <field name="current_sequence_number"/>
+                <field name="ending_sequence_number"/>
+                <field name="threshold_sequence_number"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_sales_prefix" model="ir.actions.act_window">
+	   <field name="name">Sales Prefix</field>
+	   <field name="res_model">sale.team.prefix</field>
+	   <field name="view_mode">tree,form</field>
+	</record>
+
+    <menuitem id="menu_sale_team_prefix_config"
+              parent="sale.menu_sale_config"
+              sequence="2"
+              name="Sales Teams"/>
+
+    <menuitem id="sale.sales_team_config"
+            name="Sales Teams"
+            parent="pos_sale_receipt.menu_sale_team_prefix_config"
+            action="sales_team.crm_team_action_config"
+            sequence="1"/>
+
+    <menuitem id="menu_sales_prefix"
+            name="Sales Prefixes"
+            parent="pos_sale_receipt.menu_sale_team_prefix_config"
+            action="action_sales_prefix"
+            sequence="2"/>
+
+</odoo>

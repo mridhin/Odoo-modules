@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.rule" id="x_reading_comp_rule">
+        <field name="name">Z Reading multi-company</field>
+        <field name="model_id" ref="model_cc_x_reading_x_reading"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

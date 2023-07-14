@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="province" name="How to Update Province">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">
+                            <div class="container">
+                                <h1>How to Update Province</h1>
+                                <p>
+                                    Go to Configuration => Provinces => select provience to update value.
+                                </p>
+                                <img src="/web/image/philippine_barangays.s_province_image_1" class="img img-fluid mx-auto" data-index="6" alt=""/>
+                                <br/>
+                                <img src="/web/image/philippine_barangays.s_province_image" class="img img-fluid mx-auto" data-index="6" alt=""/>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <record id="province_page" model="website.page">
+            <field name="url">/province</field>
+            <field name="is_published">True</field>
+            <field name="view_id" ref="province"/>
+            <field name="cache_time">0</field>
+            <field name="track">True</field>
+        </record>
+
+        <record id="philippine_barangays.s_province_image" model="ir.attachment">
+            <field name="public" eval="True"/>
+            <field name="name">s_province_image.png</field>
+            <field name="type">url</field>
+            <field name="url">/philippine_barangays/static/img/province.png</field>
+        </record>
+
+        <record id="philippine_barangays.s_province_image_1" model="ir.attachment">
+            <field name="public" eval="True"/>
+            <field name="name">s_province_image_1.png</field>
+            <field name="type">url</field>
+            <field name="url">/philippine_barangays/static/img/province_1.png</field>
+        </record>
+
+        <template id="city" name="How to Update City">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">
+                            <div class="container">
+                                <h1>How to Update City</h1>
+                                <p>
+                                    Go to Configuration => Cities => select City to update value.
+                                </p>
+                                <img src="/web/image/philippine_barangays.s_city_image_1" class="img img-fluid mx-auto" data-index="6" alt=""/>
+                                <br/>
+                                <img src="/web/image/philippine_barangays.s_city_image_2" class="img img-fluid mx-auto" data-index="6" alt=""/>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <record id="city_page" model="website.page">
+            <field name="url">/city</field>
+            <field name="is_published">False</field>
+            <field name="view_id" ref="city"/>
+            <field name="cache_time">0</field>
+            <field name="track">True</field>
+        </record>
+
+        <record id="philippine_barangays.s_city_image_2" model="ir.attachment">
+            <field name="public" eval="True"/>
+            <field name="name">s_city_image_2.png</field>
+            <field name="type">url</field>
+            <field name="url">/philippine_barangays/static/img/city_2.png</field>
+        </record>
+
+        <record id="philippine_barangays.s_city_image_1" model="ir.attachment">
+            <field name="public" eval="True"/>
+            <field name="name">s_city_image_1.png</field>
+            <field name="type">url</field>
+            <field name="url">/philippine_barangays/static/img/city_1.png</field>
+        </record>
+
+        <template id="barangay" name="How to Update City">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">
+                            <div class="container">
+                                <h1>How to Update Barangay</h1>
+                                <p>
+                                    Go to Configuration => Barangay => select Barangay to update value.
+                                </p>
+                                <img src="/web/image/philippine_barangays.s_barangay_image_1" class="img img-fluid mx-auto" data-index="6" alt=""/>
+                                <br/>
+                                <img src="/web/image/philippine_barangays.s_barangay_image_2" class="img img-fluid mx-auto" data-index="6" alt=""/>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <record id="barangay_page" model="website.page">
+            <field name="url">/barangay</field>
+            <field name="is_published">False</field>
+            <field name="view_id" ref="barangay"/>
+            <field name="cache_time">0</field>
+            <field name="track">True</field>
+        </record>
+
+        <record id="philippine_barangays.s_barangay_image_2" model="ir.attachment">
+            <field name="public" eval="True"/>
+            <field name="name">s_barangay_image_2.png</field>
+            <field name="type">url</field>
+            <field name="url">/philippine_barangays/static/img/barangay_2.png</field>
+        </record>
+
+        <record id="philippine_barangays.s_barangay_image_1" model="ir.attachment">
+            <field name="public" eval="True"/>
+            <field name="name">s_barangay_image_1.png</field>
+            <field name="type">url</field>
+            <field name="url">/philippine_barangays/static/img/barangay_1.png</field>
+        </record>
+    </data>
+</odoo>

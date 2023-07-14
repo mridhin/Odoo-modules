@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_awb_city,access.awb.city,model_awb_city,,1,1,1,1
+access_territory_territory,access.territory.territory,model_territory_territory,,1,1,1,1

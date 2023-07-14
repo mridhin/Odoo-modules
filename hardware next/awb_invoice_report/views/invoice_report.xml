@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="awb_sale_invoice_document">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+            <!--<div class="header">
+                <div class="row">
+                    <div class="col-3">
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </div>
+                    <div class="col-2 offset-2 text-center">
+                        <span t-esc="company.name"/>
+                    </div>
+                    <div class="col-2 offset-3 text-right">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><span class="page"/></li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item"><span class="topage"/></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+             <br />
+                <table border="0" cellpadding="0" cellspacing="0" style="width:100%; height:170px;">
+                 <tr>
+                     <td style="width:7%"></td>
+                     <td  style="width:28%">
+                         <t t-esc="o.partner_id.name" />
+                         <p t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}' />
+                         <div style="margin-top:-10px;"><t t-esc="o.partner_shipping_id.name" /></div>
+
+                     </td>
+                     <td  style="width:15%"></td>
+                     <td  style="width:20%"><span t-field="o.partner_id.vat"/><br /></td>
+                     <td style="width:13%"></td>
+                     <td style="width:17%">
+                         <t t-esc="o.invoice_date" /> <small><t t-esc="o.x_studio_doc" /></small><br />
+                         <t t-esc="o.invoice_payment_term_id.name" /><br />
+
+                     </td>
+                 </tr>
+             </table>
+                <table border="0" cellpadding="0" cellspacing="0" style="width:100%; height:590px;" >
+                    <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+
+                    <t t-foreach="lines" t-as="line">
+                        <tr>
+                            <td style="width:7%;"><t t-esc="line.quantity" /></td>
+                            <td style="width:5%;"><t t-esc="line.product_uom_id.name" /></td>
+                            <td  style="width:55%;"><t t-esc="line.product_id.name" /></td>
+                            <td  style="width:15%;"><t t-esc="line.price_unit" /></td>
+                            <td style="width:15%;"><t t-esc="line.discount" /></td>
+                            <td style="width:15%;"><t t-esc="line.price_subtotal" /></td>
+                        </tr>
+                    </t>
+                </table>
+                <table border="0" cellpadding="0" cellspacing="0" style="width:100%; " >
+                    <tr>
+                        <td colspan="3" style="width:85%;"></td>
+                        <td style="width:15%; text-align:right;"><t t-esc="o.amount_total_signed" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="width:85%;"></td>
+                        <td style="width:15%;text-align:right;"><t t-esc="o.amount_untaxed_signed" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"  style="width:85%;"></td>
+                        <td style="width:15%;text-align:right;"><t t-esc="o.amount_total_signed - o.amount_untaxed_signed" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:59%;"></td>
+                        <td style="width:8%;"></td>
+                        <td style="width:18%;"></td>
+                        <td style="width:15%;text-align:right;"><br /></td>
+
+                    </tr>
+                    <tr>
+                        <td style="width:59%;"></td>
+                        <td style="width:8%;"></td>
+                        <td style="width:18%;"></td>
+                        <td style="width:15%;text-align:right;"><br /></td>
+
+                    </tr>
+                    <tr>
+                        <td style="width:59%;"></td>
+                        <td style="width:8%;"></td>
+                        <td style="width:22%;"></td>
+                        <td style="width:11%;text-align:right;"><t t-esc="o.amount_residual_signed" /></td>
+
+                    </tr>
+                    <tr>
+                        <td style="width:59%;"></td>
+                        <td style="width:8%;"></td>
+                        <td style="width:22%;"></td>
+                        <td style="width:11%;text-align:right;"><br /></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="width:89%;"></td>
+                        <td style="width:11%;text-align:right;"><t t-esc="o.amount_residual_signed" /></td>
+                    </tr>
+                </table>
+
+            </div>
+        </template>
+
+        <template id="awb_sale_invoice_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="o.partner_id.lang"/>
+                    <t t-call="awb_invoice_report.awb_sale_invoice_document" t-lang="lang"/>
+                </t>
+            </t>
+
+        </template>
+
+        <record id="hnext_paperformat_us" model="report.paperformat">
+            <field name="name">US Letter - Hnext</field>
+            <field name="default" eval="True" />
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!-- QWeb Reports -->
+        <record id="awb_invoice_report" model="ir.actions.report">
+            <field name="name">Sales Invoice</field>
+            <field name="model">account.move</field>
+            <field name="paperformat_id" ref="awb_invoice_report.hnext_paperformat_us"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">awb_invoice_report.awb_sale_invoice_report</field>
+            <field name="report_file">awb_invoice_report.awb_sale_invoice_report</field>
+            <field name="print_report_name">(object._get_report_base_filename())</field>
+            <field name="attachment">(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice')),
+ (4, ref('account.group_account_readonly'))]"/>
+        </record>
+    </data>
+</odoo>

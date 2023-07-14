@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="menu_page11" model="website.menu">
+        <field name="name">Accreditation</field>
+        <field name="url">/ASC_accreditation_form</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+
+    <!-- ASC_accreditation_form Designs -->
+    <template id="ecom" name="ASC_accreditation_form">
+        <t t-call="web.frontend_layout">
+            <div class="wrapper">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-md my_requirements">
+                            <div>
+                                <h2 class="join-our-team control-label-left_side">
+                                    Join Our Team!
+                                    <br></br>
+                                    Become
+                                    <b>our partner</b>
+                                    today!
+                                </h2>
+                            </div>
+                            <div class="align-full-left">
+                                <img src="/awb_asc_accreditation/static/img/banner.png"
+                                     class="asc_img"/>
+                            </div>
+                            <div>
+                                <h4 class="control-label-left_side_fst_te">How to Join:</h4>
+                            </div>
+                            <div class="how-to-join">
+                                <h4 class="">1. Requirements
+                                </h4>
+                                <p class="req-desc">
+                                    Make sure you have the following documents
+                                    <br></br>
+                                    ready to upload when you register:
+                                </p>
+                                <section class="s_text_image o_colored_level"
+                                         data-snippet="s_image_text" data-name="Image - Text"
+                                         style="background-image: none;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="o_colored_level col-lg"
+                                                 style="background-image: none;">
+                                                <ul class="requirements">
+                                                    <li>
+                                                        <span>Letter of Intent</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Company Profile</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>DTI Business Name Registration
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>DTI Certificate of Accreditation
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Business / Mayor’s Permit</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>BIR Registration Certificate (Form 2303)
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Scanned copy of Official Receipt
+                                                            and Billing/Service Invoice
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Brand Accreditation Certificate
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>
+                                                            SEC Article of Incorporation (if corporation)
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>
+                                                            Comprehensive Gen. Liability Insurance Policy w/ OR
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>PCAB Contractor’s License</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>COSH / BOSCH Training Certificate
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Certificate of PHILGEPS Registration
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="how-to-join">
+                                <h4 class="">2. Register
+                                </h4>
+                                <p class="req-desc">
+                                    Sign up and attached the required documents
+                                    <br/> <br/>
+                                    Our Administrator will contact you to complete your registration (Assess, Validate
+                                    Interview and Process Implementation)
+                                </p>
+                            </div>
+                            <div class="how-to-join">
+                                <h4 class="">3. Complete</h4>
+                                <p class="req-desc">
+                                    Once completed, you will receive an email invitation
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md my_register">
+                            <h3 class="bg">Register Here
+                            </h3>
+                            <div class="form-main-container">
+                                <div class="bar">
+                                    <span class="bar-circle active"></span>
+                                    <span class="bar-circle"></span>
+                                </div>
+
+                                <div class="form-container">
+                                    <form id="registration-form" role="form" action="/join_now" method="post"
+                                          enctype="multipart/form-data">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="country" t-att-value="country_id.id"/>
+                                        <div class="form-page" id="fields_tab">
+                                            <div class="row mb-3">
+                                                <label for="lname" class=" col-lg-5 col-form-label col-form-label-sm">
+                                                    Company Name
+                                                </label>
+                                                <div class="col-lg-7">
+
+                                                    <input type="text"
+                                                           placeholder="Enter Name"
+                                                           name="company_name" t-att-value="name"
+                                                           class="form-control form-control-sm company_name" id="lname"
+                                                           required="required"/>
+                                                </div>
+
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="region" class="col-lg-5 col-form-label col-form-label-sm">
+                                                    Region
+                                                    /
+                                                    Province
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <select class="address form-control form-control-sm s_website_form_input"
+                                                            name="state_id"
+                                                            required="1" id="region" style="">
+                                                        <option value="">-select-</option>
+                                                        <t t-foreach="state or []" t-as="area">
+                                                            <option t-esc="area.name" t-att-value="area.id"/>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="city"
+                                                       class="col-lg-5 col-form-label col-form-label-sm">City
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <select class="address form-control form-control-sm s_website_form_input"
+                                                            id="city"
+                                                            name='city' aria-label=".form-select-lg example">
+                                                        <option selected="selected">-select-</option>
+                                                        <t t-foreach="cities or []" t-as="city">
+                                                            <option t-esc="city.name" t-att-value="city.id"/>
+                                                        </t>
+                                                    </select>
+                                                    <i class="loading hidden">Loading ...</i>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="lname"
+                                                       class="col-lg-5 col-form-label col-form-label-sm">Mobile
+                                                    Number
+                                                </label>
+                                                <div class="col-lg-7" style="display: flex;">
+                                                    <div style="padding-right: 5px; width: 20%">
+                                                        <input type="text"
+                                                               name="mob_no_code" class="form-control form-control-sm"
+                                                               style="font-family: 'Outfit';font-style: normal;font-weight: 500;font-size: 12px;line-height: 18px;"
+                                                               id="mob_no_code" placeholder="+63" maxlength="3"
+                                                               value="&#43;63"
+                                                               required="required">
+                                                        </input>
+                                                    </div>
+                                                    <div style="width: 80%">
+                                                        <input type="text"
+                                                               name="mob_no" class="form-control form-control-sm"
+                                                               style="width: 100%; font-family: 'Outfit';font-style: normal;font-weight: 500;font-size: 12px;line-height: 18px;"
+                                                               id="mob_no" placeholder="xxx-xxx-xxxx" maxlength="10"
+                                                               required="required">
+
+                                                            <p id="mob_no_code_check" style="color: red;display:none">
+                                                                **Mobile code is invalid.
+                                                            </p>
+                                                            <p id="mob_no_check" style="color: red;display:none">
+                                                                **Mobile is invalid.
+                                                            </p>
+                                                            <t t-if="val_mob=='true'">
+
+                                                                <div class="alert alert-danger" style="padding: 0px;"
+                                                                     role="status">
+                                                                    Please Enter 10 Numbers!
+                                                                </div>
+
+
+                                                            </t>
+                                                        </input>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="lname"
+                                                       class="col-lg-5 col-form-label col-form-label-sm">E-Mail
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input type="email" name="email" t-att-value="email"
+                                                           class="form-control form-control-sm" id="email"
+                                                           placeholder="Email" required="required"/>
+                                                    <p id="email_check" style="color: red;display:none">
+                                                        **Email cannot be empty or invalid.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="city"
+                                                       class="col-lg-5 col-form-label col-form-label-sm">Nature of
+                                                    Business
+                                                </label>
+                                                <!-- Added placeholder and start with empty value -->
+                                                <div class="col-lg-7">
+                                                    <select name="name_of_bs" t-att-value="name_of_bs"
+                                                            class="address form-control form-control-sm" id="city"
+                                                            aria-label=".form-select-lg example"
+                                                            placeholder="-select-">
+                                                        <option hidden="hidden">-select-</option>
+
+
+                                                        <t t-foreach='submit_rec' t-as="submit">
+                                                            <option t-esc='submit.name'
+                                                                    t-att-value='submit.id'/>
+                                                        </t>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="city"
+                                                       class="col-lg-5 col-form-label col-form-label-sm">Products
+                                                    Catered
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <select id="prod_team_user_ids" multiple="multiple" name="products"
+                                                            t-att-value="products"
+                                                            class="address chosen dt_cq form-control prod_team_user_ids dt_select_text form-control-sm"
+                                                            aria-label=".form-select-lg example">
+                                                        <t t-foreach='products_off' t-as="products_off_get">
+                                                            <option t-esc='products_off_get.name'
+                                                                    t-att-value='products_off_get.id'/>
+                                                        </t>
+                                                    </select>
+                                                </div>
+                                                <div class="prod_empty">
+                                                    <input class="form-control prod_empty_ser hidden"
+                                                           type="text" hidden="hidden" name="products_emp"
+                                                           t-att-value="products_emp" id="prod_existing_value"/>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="city"
+                                                       class="col-lg-5 col-form-label col-form-label-sm">Services
+                                                    Offered
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <select id="team_user_ids" name="ser_off" multiple="multiple"
+                                                            t-att-value="ser_off"
+                                                            class="address chosen dt_cq form-control team_user_ids dt_select_text form-control-sm"
+                                                            aria-label=".form-select-lg example">
+                                                        <t t-foreach='service_off' t-as="service_off_get">
+                                                            <option t-esc='service_off_get.name'
+                                                                    t-att-value='service_off_get.id'/>
+                                                        </t>
+                                                    </select>
+                                                </div>
+                                                <div class="empty">
+                                                    <input class="form-control empty_ser hidden"
+                                                           type="text" hidden="hidden" name="ser_off_emp"
+                                                           t-att-value="ser_off_emp" id="existing_value"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group_join_now">
+                                                <button type="button" class="form-control_join_now form_button"
+                                                        name="proceed"
+                                                        id="proceed">
+                                                    Proceed
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-page" id="attachments_tab">
+                                            <div class="row mb-3">
+                                                <div>
+                                                    <input id="radio-1" class="radio-custom" name="asc_type"
+                                                           type="radio" value="sole"/>
+                                                    <label for="radio-1" class="radio-custom-label">Sole</label>
+                                                </div>
+                                                <div>
+                                                    <input id="radio-2" class="radio-custom" name="asc_type"
+                                                           type="radio" value="trading"/>
+                                                    <label for="radio-2" class="radio-custom-label">Trading</label>
+                                                </div>
+                                                <div>
+                                                    <input id="radio-3" class="radio-custom" name="asc_type"
+                                                           type="radio" value="corp"/>
+                                                    <label for="radio-3" class="radio-custom-label">
+                                                        Incorporation/Corp.
+                                                    </label>
+                                                </div>
+                                                <div class="empty">
+                                                    <input class="form-control empty_ser hidden"
+                                                           type="text" hidden="hidden" name="type_emp"
+                                                           t-att-value="type_emp" id="existing_value"/>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">Letter of
+                                                    Intent
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="letter_of_intent" type="file" placeholder="default.png"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="letter_of_intent show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">Company Profile
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="company_profile" type="file" placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="company_profile show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">DTI Business
+                                                    Name
+                                                    Registration
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="dti_business_name_registration" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="dti_business_name_registration show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">DTI Certificate
+                                                    of
+                                                    Accreditation
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="dti_certificate_of_accreditation" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="dti_certificate_of_accreditation show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">Business /
+                                                    Mayor’s
+                                                    Permit
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="business_mayors_permit" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="business_mayors_permit show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">BIR
+                                                    Registration
+                                                    Certificate (Form 2303)
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="bir_registration_certificate" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="bir_registration_certificate show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">Scanned copy of
+                                                    Official Receipt and Billing/Service Invoice
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="official_receipt_and_billing_service_invoice"
+                                                           type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="official_receipt_and_billing_service_invoice show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">Brand
+                                                    Accreditation
+                                                    Certificate
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="brand_accreditation_certificate" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="brand_accreditation_certificate show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3" id="sec_article_of_incorporation">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">SEC Article of
+                                                    Incorporation (if corporation)
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="sec_article_of_incorporation" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="sec_article_of_incorporation show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">Comprehensive
+                                                    Gen.
+                                                    Liability Insurance Policy w/ OR
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="comprehensive_gen_liability_insurance_policy"
+                                                           type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="comprehensive_gen_liability_insurance_policy show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">PCAB
+                                                    Contractor’s
+                                                    License
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="pcab_contractors_license" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="pcab_contractors_license show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">COSH / BOSCH
+                                                    Training Certificate
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="cosh_bosch_training_certificate" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="cosh_bosch_training_certificate show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-lg-5 col-form-label col-form-label-sm">Certificate of
+                                                    PHILGEPS Registration
+                                                </label>
+                                                <div class="col-lg-7">
+                                                    <input name="certificate_of_philgeps_registration" type="file"
+                                                           placeholder="Choose File"
+                                                           class="form-control attachment_input" disabled="true">
+                                                        <p class="certificate_of_philgeps_registration show_error">
+                                                            Please add the file
+                                                        </p>
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group_back">
+                                                <button type="button" name="back"
+                                                        t-att-value="back" id="back"
+                                                        class="form-control_back form_button" value="">Back
+                                                </button>
+                                                <button type="submit" name="join_now"
+                                                        t-att-value="join_now" id="join_now"
+                                                        class="form-control_join_now form_button" value="">Join Now!
+                                                </button>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="form-page" id="final_message">
+                                            <p class="final-message">Joined Successfully.</p>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

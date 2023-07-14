@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_pos_pos_form" model="ir.ui.view">
+            <field name="name">pos.order.form.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook//page[@name='products']//field[@name='discount']" position="after">
+                    <field name="discount_name" attrs="{'invisible': [('is_total_cost_computed','=', False)]}"
+                           optional="hide"/>
+                    <field name="discount_amount" optional="hide"/>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

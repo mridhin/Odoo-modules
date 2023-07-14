@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    Field Service Template
+    -->
+    <record id="service_template_list" model="ir.ui.view">
+        <field name="name">Service Template List</field>
+        <field name="model">project.service.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="project_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="service_template_form" model="ir.ui.view">
+        <field name="name">Service Template Form</field>
+        <field name="model">project.service.template</field>
+        <field name="arch" type="xml">
+            <form string="Service Template Records">
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1" force_save="1"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="project_id" domain="[('active','=', True)]"/>
+                            <field name="active" invisible = "1"/>
+                        </group>
+                        <group>
+                            <field name="service_product"  domain = "[('detailed_type', '=', 'service')]"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Templates">
+                            <field name="template_details_lines" widget="one2many_list" mode="tree">
+                                <tree editable="bottom" colspan="4">
+                                    <field name="template_id" invisible="1"/>
+                                    <field name="stage_id" domain="[('project_ids', 'in', parent.project_id)]" options="{'no_create': True}"/>
+                                    <field name="sms_template_id"/>
+                                    <field name="remark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="service_template_action" model="ir.actions.act_window">
+        <field name="name">Service Templates</field>
+        <field name="res_model">project.service.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--
+    SMS Template field
+    -->
+      <record id="product_template_form_sms_template" model="ir.ui.view">
+        <field name="name">product.template.inherit.sms</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="industry_fsm_sale_report.view_product_timesheet_form_inherit"/>
+        <field name="arch" type="xml">
+            <field name="worksheet_template_id" position="after">
+                <field name="sms_template" attrs="{'invisible': [('detailed_type', 'not in', 'service')]}" groups="approvals.group_approval_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <!--
+        FSM Menus
+    -->
+        <menuitem id="sms_menu_main"
+              name="SMS"
+              parent="industry_fsm.fsm_menu_settings"
+              sequence="50"/>
+        <menuitem id="sms_template_menu"
+              name="Service Templates"
+              parent="sms_menu_main"
+              sequence="1"
+              action="service_template_action"/>
+</odoo>

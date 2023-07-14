@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_product_catalog_style_1">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <!-- <div class="oe_structure" /> -->
+                <table class="table table-sm o_main_table">
+                    <tr style="border-style: none;">
+                        <td style="border-style: none;text-transform: uppercase;">
+                            <center>
+                                <strong>Product Catalog</strong>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-sm o_main_table mb-0 text-center">
+                    <tr style="background:#e6e6e6;color:#000000;" width="100%">
+                        <td>
+                            <center>
+                                Sr.No
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                Image
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                Internal Referance
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                Product Name
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                Category Name
+                            </center>
+                        </td>
+                        <t t-if="data.get('price_check')">
+                            <td>
+                                <center>
+                                    Price
+                                </center>
+                            </td>
+                        </t>
+                        <t t-if="data.get('description_check')">
+                            <td>
+                                <center>
+                                    Description
+                                </center>
+                            </td>
+                        </t>
+                    </tr>
+
+                    <t t-set="count" t-value="1" />
+                    <tr t-foreach="get_product_details(data)" t-as="line" width="100%">
+                        <td>
+                            <span t-esc="count" />
+                            <t t-set="count" t-value="count+1" />
+                        </td>
+                        <td>
+                            <t t-if="data.get('image_size') == 'small'">
+                                <img t-if="line.image_1920"
+                                    t-att-src="image_data_uri(line.image_1920)"
+                                    style="height:100px;width:115px;text-align:center;"
+                                    alt="image" />
+                            </t>
+                            <t t-if="data.get('image_size') == 'medium'">
+                                <img t-if="line.image_1920"
+                                    t-att-src="image_data_uri(line.image_1920)"
+                                    style="height:125px;width:150px;text-align:center;"
+                                    alt="image" />
+                            </t>
+                            <t t-if="data.get('image_size') == 'large'">
+                                <img t-if="line.image_1920"
+                                    t-att-src="image_data_uri(line.image_1920)"
+                                    style="height:150px;width:200px;text-align:center;"
+                                    alt="image" />
+                            </t>
+                        </td>
+                        <td>
+                            <span t-field="line.default_code" />
+                        </td>
+                        <td>
+                            <t t-set="product_link" t-value="get_product_link(line)" />
+                            <a style="width:150px;height:25%;" t-att-href="product_link">
+                                <span t-field="line.name" />
+                            </a>
+                        </td>
+                        <td>
+                            <span t-field="line.categ_id.complete_name" />
+                        </td>
+                        <t t-if="data.get('price_check')">
+                            <td>
+                                <t t-if="data.get('currency_id')">
+                                    <span t-esc="line.standard_price"
+                                        t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="line.standard_price" />
+                                </t>
+                            </td>
+                        </t>
+                        <t t-if="data.get('description_check')">
+                            <td>
+                                <span t-field="line.description_sale" />
+                            </td>
+                        </t>
+                    </tr>
+                    <t t-if="count % 9 == 0">
+                        <p style="page-break-before:always;"> </p>
+                    </t>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_product_catalog_style_2">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure" />
+                <table width="100%"
+                    style="font-size:24px;border-style: none;margin-bottom:20px;margin-top:-55px;">
+                    <tr style="border-style: none;">
+                        <td style="border-style: none;text-transform: uppercase;">
+                            <center>
+                                <strong>Product Catalog</strong>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+                <t t-if="data.get('print_box_per_row') == 'two_box_per_row'">
+                    <div style="width:100%;">
+                        <t t-foreach="get_product_details(data)" t-as='product'>
+                            <div
+                                style="display: inline-table; 
+                                height: 3.75in;
+                                border:1px solid black;
+                                width:4.25in;">
+                                <table style="height: 3.75in;;width:4.25in;">
+                                    <tr style="text-align:center;">
+                                        <td style="padding-bottom:20px;padding-top:10px;"
+                                            colspan="2">
+                                            <t t-if="data.get('image_size') == 'small'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:100px;width:115px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'medium'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:125px;width:150px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'large'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:150px;width:200px;text-align:center;" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td
+                                            style="padding-left:15px;border:none;padding-bottom:10px;"
+                                            colspan="2"> [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.default_code' />]&#160;&#160;&#160; [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.categ_id.complete_name' />] </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;"
+                                            colspan="2">
+                                            <t t-set="name" t-value='product.name' />
+                                            <span style="font-weight:bold;font-size:18px;"
+                                                t-esc='name[:25]' />
+                                            <br />
+                                            <span>
+                                                -----------------------------------------------------------------</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;">
+                                            <t t-if="data.get('description_check')">
+                                                <div style="width:65%;">
+                                                    <t t-if="product.description_sale">
+                                                        <span
+                                                            style="font-weight:bold;font-size:12px;"
+                                                            t-esc='product.description_sale' />
+                                                    </t>
+                                                    <t t-else="">
+                                                        &#160;&#160;&#160;&#160;
+                                                    </t>
+                                                </div>
+                                            </t>
+                                            <t t-if="data.get('price_check')">
+                                                <div
+                                                    style="float:right;margin-right:20px;margin-top:-25px;width:30%;height:75px;text-align:center;background:#e6e6e6;">
+                                                    <br />
+                                                    <t t-if="data.get('currency_id')">
+                                                        <span
+                                                            style="font-weight:bold;font-size:16px;"
+                                                            t-esc="product.standard_price"
+                                                            t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span
+                                                            style="font-weight:bold;font-size:16px;"
+                                                            t-field='product.standard_price' />
+                                                    </t>
+                                                </div>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;">
+                                            <div>
+                                                <t t-set="product_link"
+                                                    t-value="get_product_link(product)" />
+                                                <a style="width:150px;height:25%;"
+                                                    t-att-href="product_link"
+                                                    class="btn btn-primary" role="button">
+                                                    <span style="font-size:18px;margin-top:10px;">Read
+                                                        More</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-if="data.get('print_box_per_row') == 'three_box_per_row'">
+                    <div style="width:100%;">
+                        <t t-foreach="get_product_details(data)" t-as='product'>
+                            <div
+                                style="display: inline-table; 
+                                height: 5.00in;
+                                border:1px solid black;
+                                width: 2.92in;">
+                                <table style="width:2.92in;height: 5.00in;">
+                                    <tr style="text-align:center;">
+                                        <td style="padding-bottom:20px;padding-top:10px;"
+                                            colspan="2">
+                                            <t t-if="data.get('image_size') == 'small'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:100px;width:115px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'medium'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:125px;width:150px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'large'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:150px;width:200px;text-align:center;" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td
+                                            style="padding-left:10px;border:none;padding-bottom:10px;"
+                                            colspan="2"> [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.default_code' />]&#160; [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.categ_id.complete_name' />] </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:10px;padding-bottom:15px;"
+                                            colspan="2">
+                                            <t t-set="name" t-value='product.name' />
+                                            <span style="font-weight:bold;font-size:20px;"
+                                                t-esc='name[:25]' />
+                                            <br />
+                                            <span>--------------------------------------------</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:10px;padding-bottom:15px;">
+                                            <t t-if="data.get('description_check')">
+                                                <div style="width:65%;">
+                                                    <t t-if="product.description_sale">
+                                                        <span
+                                                            style="font-weight:bold;font-size:12px;"
+                                                            t-esc='product.description_sale' />
+                                                    </t>
+                                                    <t t-else="">
+                                                        &#160;&#160;&#160;&#160;
+                                                    </t>
+                                                </div>
+                                            </t>
+                                            <t t-if="data.get('price_check')">
+                                                <div
+                                                    style="float:right;margin-right:20px;margin-top:-25px;width:30%;height:75px;text-align:center;background:#e6e6e6;">
+                                                    <br />
+                                                    <t t-if="data.get('currency_id')">
+                                                        <span
+                                                            style="font-weight:bold;font-size:16px;"
+                                                            t-esc="product.standard_price"
+                                                            t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span
+                                                            style="font-weight:bold;font-size:16px;"
+                                                            t-field='product.standard_price' />
+                                                    </t>
+                                                </div>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;">
+                                            <div>
+                                                <t t-set="product_link"
+                                                    t-value="get_product_link(product)" />
+                                                <a style="width:150px;height:25%;"
+                                                    t-att-href="product_link"
+                                                    class="btn btn-primary" role="button">
+                                                    <span style="font-size:18px;margin-top:10px;">Read
+                                                        More</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-if="data.get('print_box_per_row') == 'four_box_per_row'">
+                    <div style="width:100%;">
+                        <t t-foreach="get_product_details(data)" t-as='product'>
+                            <div
+                                style="display: inline-table; 
+                                height: 5.00in;
+                                border:1px solid black;
+                                width: 2.15in;">
+                                <table style="height: 5.00in;width: 2.15in;">
+                                    <tr style="text-align:center;height:170px;">
+                                        <td style="padding-top:10px;padding-bottom:10px;"
+                                            colspan="2">
+                                            <t t-if="data.get('image_size') == 'small'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:65px;width:75px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'medium'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:115px;width:115px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'large'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:135px;width:150px;text-align:center;" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;height:80px;">
+                                        <td
+                                            style="padding-left:10px;border:none;padding-bottom:10px;"
+                                            colspan="2"> [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.default_code' />]&#160; [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.categ_id.complete_name' />] </td>
+                                    </tr>
+                                    <tr style="text-align:left;height:50px;">
+                                        <td style="padding-left:10px;" colspan="2">
+                                            <t t-set="name" t-value='product.name' />
+                                            <span style="font-weight:bold;font-size:14px;"
+                                                t-esc='name[:25]' />
+                                            <br />
+                                            <span>-------------------------------</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:10px;padding-bottom:10px;">
+                                            <t t-if="data.get('description_check')">
+                                                <div style="width:65%;">
+                                                    <t t-if="product.description_sale">
+                                                        <span
+                                                            style="font-weight:bold;font-size:12px;"
+                                                            t-esc='product.description_sale' />
+                                                    </t>
+                                                    <t t-else="">
+                                                        &#160;&#160;&#160;&#160;
+                                                    </t>
+                                                </div>
+                                            </t>
+                                            <t t-if="data.get('price_check')">
+                                                <t t-if="product.description_sale">
+                                                    <div
+                                                        style="float:right;margin-right:10px;margin-top:-20px;width:40%;height:75px;text-align:center;background:#e6e6e6;">
+                                                        <br />
+                                                        <t t-if="data.get('currency_id')">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-esc="product.standard_price"
+                                                                t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-field='product.standard_price' />
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                                <t t-else="">
+                                                    <div
+                                                        style="float:right;margin-right:20px;margin-top:5px;width:40%;height:75px;text-align:center;background:#e6e6e6;">
+                                                        <br />
+                                                        <t t-if="data.get('currency_id')">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-esc="product.standard_price"
+                                                                t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-field='product.standard_price' />
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;">
+                                            <div>
+                                                <t t-set="product_link"
+                                                    t-value="get_product_link(product)" />
+                                                <a style="width:150px;height:25%;"
+                                                    t-att-href="product_link"
+                                                    class="btn btn-primary" role="button">
+                                                    <span style="font-size:18px;margin-top:10px;">Read
+                                                        More</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_product_catalog_style_3">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure" />
+                <table width="100%"
+                    style="font-size:24px;border-style: none;margin-bottom:20px;margin-top:-55px;">
+                    <tr style="border-style: none;">
+                        <td style="border-style: none;text-transform: uppercase;">
+                            <center>
+                                <strong>Product Catalog</strong>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+                <div style="width:100%;">
+                    <t t-set="count" t-value="0" />
+                    <t t-foreach="get_product_details(data)" t-as='product'>
+                        <div class="row">
+                            <t t-set="count" t-value="count + 1" />
+                            <div class="col-lg-4" style="border:1px solid #e6e6e6;">
+                                <div class="row">
+                                    <div class="col-xs-10"
+                                        style="width:15%;margin-top:20px;margin-left:30px;height:2in;text-align:center;">
+                                        <t t-if="data.get('image_size') == 'small'">
+                                            <img t-if="product.image_1920"
+                                                t-att-src="image_data_uri(product.image_1920)"
+                                                style="height:100px;width:115px;text-align:center;border: 5px solid #e6e6e6;border-radius: 5px;padding:5px;" />
+                                        </t>
+                                        <t t-if="data.get('image_size') == 'medium'">
+                                            <img t-if="product.image_1920"
+                                                t-att-src="image_data_uri(product.image_1920)"
+                                                style="height:125px;width:150px;text-align:center;border: 5px solid #e6e6e6;border-radius: 5px;padding:5px;" />
+                                        </t>
+                                        <t t-if="data.get('image_size') == 'large'">
+                                            <img t-if="product.image_1920"
+                                                t-att-src="image_data_uri(product.image_1920)"
+                                                style="height:165px;width:200px;text-align:center;border: 5px solid #e6e6e6;border-radius: 5px;padding:5px;" />
+                                        </t>
+                                    </div>
+                                    <div class="col-lg-4"
+                                        style="width:85%;margin-top:17px;margin-left:25px;height:2in;text-align:center;">
+                                        <t t-set="name" t-value='product.name' />
+                                        <span
+                                            style="font-weight:bold;font-size:28px;margin-left:20px;padding-top:10px;text-transform: uppercase;"
+                                            t-esc='name[:25]' />
+                                        <br />
+                                        <span
+                                            style="margin-left:20px;font-weight:bold;font-size:18px;background:#e6e6e6;color:#000000;">
+                                        [<t t-esc='product.default_code' />]</span>&#160; <span
+                                            style="font-weight:bold;font-size:20px;background:#e6e6e6;color:#000000;">
+                                        [<t t-esc='product.categ_id.complete_name' />]</span>
+                                        <br />
+                                        <t
+                                            t-if="data.get('description_check')">
+                                            <t t-if="product.description_sale">
+                                                <span style="font-size:20px;margin-left:20px;"
+                                                    t-esc='product.description_sale' />
+                                                <br />
+                                            </t>
+                                        </t>
+                                        <t
+                                            t-if="data.get('price_check')">
+                                            <t t-if="data.get('currency_id')">
+                                                <span style="font-weight:bold;font-size:20px;"
+                                                    t-esc="product.standard_price"
+                                                    t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                            </t>
+                                            <t t-else="">
+                                                <span style="font-weight:bold;font-size:20px;"
+                                                    t-field='product.standard_price' />
+                                            </t>
+                                            <br />
+                                        </t>
+                                        <t
+                                            t-set="product_link" t-value="get_product_link(product)" />
+                                        <a
+                                            style="margin-left:20px;width:25%;height:25%;"
+                                            t-att-href="product_link" class="btn btn-primary"
+                                            role="button">
+                                            <span style="font-size:20px;margin-top:10px;">Read More</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <t t-if="count % 5 == 0">
+                                    <p style="page-break-before:always;"> </p>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_product_catalog_style_4">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure" />
+                <table width="100%"
+                    style="font-size:24px;border-style: none;margin-bottom:20px;margin-top:-55px;">
+                    <tr style="border-style: none;">
+                        <td style="border-style: none;text-transform: uppercase;">
+                            <center>
+                                <strong>Product Catalog</strong>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+                <t t-foreach="get_product_details(data)" t-as='product'>
+                    <div
+                        style="display: inline-table; 
+                        height: 4.4in;
+                        border:1px solid black;
+                        width:4.25in;
+                        padding-left:5px;
+                        box-shadow: 0 0 8px 8px rgb(153, 153, 153);">
+                        <table style="width:4.25in;">
+                            <tr style="text-align:center;">
+                                <td style="padding-bottom:20px;padding-top:10px;" colspan="2">
+                                    <t t-if="data.get('image_size') == 'small'">
+                                        <img t-if="product.image_1920"
+                                            t-att-src="image_data_uri(product.image_1920)"
+                                            style="height:100px;width:115px;text-align:center;border-radius: 50%;border:2px solid #999999;" />
+                                    </t>
+                                    <t t-if="data.get('image_size') == 'medium'">
+                                        <img t-if="product.image_1920"
+                                            t-att-src="image_data_uri(product.image_1920)"
+                                            style="height:125px;width:150px;text-align:center;border-radius: 50%;border:2px solid #999999;" />
+                                    </t>
+                                    <t t-if="data.get('image_size') == 'large'">
+                                        <img t-if="product.image_1920"
+                                            t-att-src="image_data_uri(product.image_1920)"
+                                            style="height:150px;width:200px;text-align:center;border-radius: 50%;border:2px solid #999999;" />
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td style="padding-left:15px;border:none;padding-bottom:10px;"
+                                    colspan="2">
+                                    <span
+                                        style="font-weight:bold;font-size:14px;background:#e6e6e6;color:#000000;border:1px solid black;border-radius:12px;background-color:black;color:white;"
+                                        t-esc='product.default_code' />&#160;&#160;&#160; <span
+                                        style="font-weight:bold;font-size:14px;background:#e6e6e6;color:#000000;border:1px solid black;border-radius:12px;background-color:black;color:white;"
+                                        t-esc='product.categ_id.complete_name' />
+                                </td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td style="padding-left:15px;padding-bottom:15px;" colspan="2">
+                                    <t t-set="name" t-value='product.name' />
+                                    <span style="font-weight:bold;font-size:25px;"
+                                        t-esc='name[:25]' />
+                                    <br />
+                                    <span>
+                                        ------------------------------------------------------------------</span>
+                                </td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td style="padding-left:15px;padding-bottom:15px;">
+                                    <t t-if="data.get('description_check')">
+                                        <div style="width:65%;">
+                                            <t t-if="product.description_sale">
+                                                <span style="font-weight:bold;font-size:14px;"
+                                                    t-esc='product.description_sale' />
+                                            </t>
+                                            <t t-else="">
+                                                &#160;&#160;&#160;&#160;
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-if="data.get('price_check')">
+                                        <div
+                                            style="float:right;margin-right:20px;margin-top:-25px;width:30%;height:75px;text-align:center;background:#e6e6e6;border-radius:12px;">
+                                            <br />
+                                            <t t-if="data.get('currency_id')">
+                                                <span style="font-weight:bold;font-size:20px;"
+                                                    t-esc="product.standard_price"
+                                                    t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                            </t>
+                                            <t t-else="">
+                                                <span style="font-weight:bold;font-size:20px;"
+                                                    t-field='product.standard_price' />
+                                            </t>
+                                        </div>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td style="padding-left:15px;padding-bottom:15px;">
+                                    <div>
+                                        <t t-set="product_link" t-value="get_product_link(product)" />
+                                        <a
+                                            style="margin-left:20px;width:150px;height:30%;border-radius:12px;"
+                                            t-att-href="product_link" class="btn btn-primary"
+                                            role="button">
+                                            <span style="font-size:16px;margin-top:10px;">Read More</span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_product_catalog_style_5">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure" />
+                <table width="100%"
+                    style="font-size:21px;border-style: none;margin-bottom:20px;margin-top:-55px;">
+                    <tr style="border-style: none;">
+                        <td style="border-style: none;text-transform: uppercase;">
+                            <center>
+                                <strong>Product Catalog</strong>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+                <t t-if="data.get('print_box_per_row') == 'two_box_per_row'">
+                    <div style="width:100%;">
+                        <t t-foreach="get_product_details(data)" t-as='product'>
+                            <div
+                                style="display: inline-table; 
+                                height: 4.4in;
+                                border:3px solid #999999;
+                                border-radius:15px;
+                                width:4.25in;">
+                                <table style="height: 4.4in;width:4.25in;">
+                                    <tr style="text-align:center;">
+                                        <td style="padding-bottom:20px;padding-top:10px;"
+                                            colspan="2">
+                                            <t t-if="data.get('image_size') == 'small'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:100px;width:115px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'medium'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:125px;width:150px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'large'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:150px;width:200px;text-align:center;" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td
+                                            style="padding-left:15px;padding-right:10px;border:none;padding-bottom:10px;"
+                                            colspan="2"> [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.default_code' />]&#160;&#160;&#160; [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.categ_id.complete_name' />] </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;"
+                                            colspan="2">
+                                            <t t-set="name" t-value='product.name' />
+                                            <span style="font-weight:bold;font-size:18px;"
+                                                t-esc='name[:25]' />
+                                            <br />
+                                            <span>
+                                                ------------------------------------------------------------------</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;">
+                                            <t t-if="data.get('description_check')">
+                                                <div style="width:65%;">
+                                                    <t t-if="product.description_sale">
+                                                        <span
+                                                            style="font-weight:bold;font-size:12px;"
+                                                            t-esc='product.description_sale' />
+                                                    </t>
+                                                    <t t-else="">
+                                                        &#160;&#160;&#160;&#160;
+                                                    </t>
+                                                </div>
+                                            </t>
+                                            <t t-if="data.get('price_check')">
+                                                <div
+                                                    style="float:right;margin-right:20px;margin-top:-25px;width:30%;height:75px;text-align:center;background:#e6e6e6;">
+                                                    <br />
+                                                    <t t-if="data.get('currency_id')">
+                                                        <span
+                                                            style="font-weight:bold;font-size:16px;"
+                                                            t-esc="product.standard_price"
+                                                            t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span
+                                                            style="font-weight:bold;font-size:16px;"
+                                                            t-esc='product.standard_price' />
+                                                    </t>
+                                                </div>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;">
+                                            <div>
+                                                <t t-set="product_link"
+                                                    t-value="get_product_link(product)" />
+                                                <a
+                                                    style="width:150px;height:25%;border-radius:12px;"
+                                                    t-att-href="product_link"
+                                                    class="btn btn-primary" role="button">
+                                                    <span style="font-size:16px;margin-top:10px;">Read
+                                                        More</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-if="data.get('print_box_per_row') == 'three_box_per_row'">
+                    <div style="width:100%;">
+                        <t t-foreach="get_product_details(data)" t-as='product'>
+                            <div
+                                style="display: inline-table; 
+                                height: 5.00in;
+                                border:3px solid #999999;
+                                border-radius:15px;
+                                width: 2.87in;">
+                                <table style="width:2.87in;height: 5.00in;">
+                                    <tr style="text-align:center;">
+                                        <td style="padding-bottom:20px;padding-top:10px;"
+                                            colspan="2">
+                                            <t t-if="data.get('image_size') == 'small'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:100px;width:115px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'medium'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:125px;width:150px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'large'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:150px;width:200px;text-align:center;" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td
+                                            style="padding-left:10px;padding-right:10px;border:none;padding-bottom:10px;"
+                                            colspan="2"> [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.default_code' />]&#160; [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.categ_id.complete_name' />] </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:10px;padding-bottom:15px;"
+                                            colspan="2">
+                                            <t t-set="name" t-value='product.name' />
+                                            <span style="font-weight:bold;font-size:18px;"
+                                                t-esc='name[:25]' />
+                                            <br />
+                                            <span>--------------------------------------------</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:10px;padding-bottom:15px;">
+                                            <t t-if="data.get('description_check')">
+                                                <div style="width:65%;">
+                                                    <t t-if="product.description_sale">
+                                                        <span
+                                                            style="font-weight:bold;font-size:12px;"
+                                                            t-esc='product.description_sale' />
+                                                    </t>
+                                                    <t t-else="">
+                                                        &#160;&#160;&#160;&#160;
+                                                    </t>
+                                                </div>
+                                            </t>
+                                            <t t-if="data.get('price_check')">
+                                                <t t-if="product.description_sale">
+                                                    <div
+                                                        style="float:right;margin-right:20px;margin-top:-10px;width:35%;height:75px;text-align:center;background:#e6e6e6;">
+                                                        <br />
+                                                        <t t-if="data.get('currency_id')">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-esc="product.standard_price"
+                                                                t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-field='product.standard_price' />
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                                <t t-else="">
+                                                    <div
+                                                        style="float:right;margin-right:20px;margin-top:10px;width:35%;height:75px;text-align:center;background:#e6e6e6;">
+                                                        <br />
+                                                        <t t-if="data.get('currency_id')">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-esc="product.standard_price"
+                                                                t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-field='product.standard_price' />
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;">
+                                            <div>
+                                                <t t-set="product_link"
+                                                    t-value="get_product_link(product)" />
+                                                <a
+                                                    style="width:150px;height:25%;border-radius:12px;"
+                                                    t-att-href="product_link"
+                                                    class="btn btn-primary" role="button">
+                                                    <span style="font-size:16px;margin-top:10px;">Read
+                                                        More</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-if="data.get('print_box_per_row') == 'four_box_per_row'">
+                    <div style="width:100%;">
+                        <t t-foreach="get_product_details(data)" t-as='product'>
+                            <div
+                                style="display: inline-table; 
+                                height: 5.00in;
+                                border:2px solid #999999;
+                                border-radius:15px;
+                                width: 2.15in;">
+                                <table style="height: 5.00in;width: 2.15in;">
+                                    <tr style="text-align:center;height:170px;">
+                                        <td style="padding-top:10px;padding-bottom:10px;"
+                                            colspan="2">
+                                            <t t-if="data.get('image_size') == 'small'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:65px;width:75px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'medium'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:115px;width:115px;text-align:center;" />
+                                            </t>
+                                            <t t-if="data.get('image_size') == 'large'">
+                                                <img t-if="product.image_1920"
+                                                    t-att-src="image_data_uri(product.image_1920)"
+                                                    style="height:135px;width:150px;text-align:center;" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;height:80px;">
+                                        <td
+                                            style="padding-left:10px;border:none;padding-bottom:10px;"
+                                            colspan="2"> [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.default_code' />]&#160; [<span
+                                                style="font-weight:bold;font-size:12px;background:#e6e6e6;color:#000000;"
+                                                t-esc='product.categ_id.complete_name' />] </td>
+                                    </tr>
+                                    <tr style="text-align:left;height:50px;">
+                                        <td style="padding-left:10px;" colspan="2">
+                                            <t t-set="name" t-value='product.name' />
+                                            <span style="font-weight:bold;font-size:14px;"
+                                                t-esc='name[:25]' />
+                                            <br />
+                                            <span>--------------------------------</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:10px;padding-bottom:10px;">
+                                            <t t-if="data.get('description_check')">
+                                                <div style="width:65%;">
+                                                    <t t-if="product.description_sale">
+                                                        <span
+                                                            style="font-weight:bold;font-size:12px;"
+                                                            t-esc='product.description_sale' />
+                                                    </t>
+                                                    <t t-else="">
+                                                        &#160;&#160;&#160;&#160;
+                                                    </t>
+                                                </div>
+                                            </t>
+                                            <t t-if="data.get('price_check')">
+                                                <t t-if="product.description_sale">
+                                                    <div
+                                                        style="float:right;margin-right:10px;margin-top:-20px;width:40%;height:75px;text-align:center;background:#e6e6e6;">
+                                                        <br />
+                                                        <t t-if="data.get('currency_id')">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-esc="product.standard_price"
+                                                                t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-field='product.standard_price' />
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                                <t t-else="">
+                                                    <div
+                                                        style="float:right;margin-right:20px;margin-top:5px;width:40%;height:75px;text-align:center;background:#e6e6e6;">
+                                                        <br />
+                                                        <t t-if="data.get('currency_id')">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-esc="product.standard_price"
+                                                                t-options="{'widget': 'monetary', 'display_currency':data.get('currency_id')}" />
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span
+                                                                style="font-weight:bold;font-size:16px;"
+                                                                t-field='product.standard_price' />
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:left;">
+                                        <td style="padding-left:15px;padding-bottom:15px;">
+                                            <div>
+                                                <t t-set="product_link"
+                                                    t-value="get_product_link(product)" />
+                                                <a
+                                                    style="width:150px;height:25%;border-radius:10px;"
+                                                    t-att-href="product_link"
+                                                    class="btn btn-primary" role="button">
+                                                    <span style="font-size:18px;margin-top:10px;">Read
+                                                        More</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_product_catalog">
+        <t t-call="web.html_container">
+            <t t-set="company" t-value="data.get('company')" />
+            <t t-if="data.get('report_style') == 'style_1'">
+                <t t-call="awb_product_catalog_generator.report_product_catalog_style_1" />
+            </t>
+            <t t-if="data.get('report_style') == 'style_2'">
+                <t t-call="awb_product_catalog_generator.report_product_catalog_style_2" />
+            </t>
+            <t t-if="data.get('report_style') == 'style_3'">
+                <t t-call="awb_product_catalog_generator.report_product_catalog_style_3" />
+            </t>
+            <t t-if="data.get('report_style') == 'style_4'">
+                <t t-call="awb_product_catalog_generator.report_product_catalog_style_4" />
+            </t>
+            <t t-if="data.get('report_style') == 'style_5'">
+                <t t-call="awb_product_catalog_generator.report_product_catalog_style_5" />
+            </t>
+        </t>
+    </template>
+</odoo>

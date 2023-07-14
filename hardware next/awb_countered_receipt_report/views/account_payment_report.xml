@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <!-- Action for Countered receipt report -->
+    	 <record id="action_report_countered_receipt" model="ir.actions.report">
+            <field name="name">Countered Receipt</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">awb_countered_receipt_report.report_countered_receipt</field>
+            <field name="report_file">awb_countered_receipt_report.report_countered_receipt</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="binding_type">report</field>
+        </record>
+        <!-- payment matching button visible for CTR Receipt state in payment table -->
+	    <record id="inherit_view_account_payment_form" model="ir.ui.view">
+	        <field name="name">account.payment.form.inherit.account_accountant</field>
+	        <field name="model">account.payment</field>
+	        <field name="inherit_id" ref="account_accountant.view_account_payment_form_inherit_account_accountant"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//button[@name='action_open_manual_reconciliation_widget']" position="attributes">
+	            	<attribute name="attrs">{'invisible': ['|', ('is_reconciled', '=', True), ('state', 'not in', ['ctr_receipt','posted'])]} </attribute>
+	            </xpath>
+	        </field>
+    </record>
+    </data>
+</odoo>

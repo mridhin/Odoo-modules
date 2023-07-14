@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<!-- Order Receipt Template -->
+    	<template id="ejournal_text_report">
+    		<t t-set="company" t-value="env.company" /><t t-set="currency_id" t-value="env.company.currency_id" /><t t-set="currency_id_symbol" t-value="env.company.currency_id.symbol" />
+    		<t t-translation="off">
+            <t t-foreach="order_details" t-as="order">
+                 <t t-esc="company.name" />
+       <t t-if="company.street"> <t t-esc="company.street" /></t>
+                 <t t-if="company.street2"> <t t-esc="company.street2" /></t>
+                 <t t-if="company.city"> <t t-esc="company.city" /></t> <t t-if="company.state_id"><t t-esc="company.state_id.name" /></t> <t t-if="company.zip"><t t-esc="company.zip" /></t>
+                      <t t-if="company.country_id"><t t-esc="company.country_id.name" /></t>
+           <t t-if="company.taxpayer_info"><t t-esc="company.taxpayer_info" /></t>
+	                 
+	               <t t-if="order['cashier']"><t t-esc="order['cashier']" /></t>
+	                 
+    <t t-if="order['receipt_number']"><t t-esc="order['receipt_number']" /></t>                     <t t-if="order['order_date']"><t t-esc="order['order_date']" t-options="{'widget': 'datetime'}"/></t>
+
+                     <t t-if="order['sale_team_prefix'] == 'OR'">Official Receipt <t t-if="(order['order_type'] == 'voided')">- Void</t></t>
+                     <t t-if="order['sale_team_prefix'] == 'SI'">Sales Invoice <t t-if="(order['order_type'] == 'voided')">- Void</t></t>
+
+<t t-foreach="order['lines']" t-as="line">
+    <t t-esc="line['name']" />
+      <t t-if="line['is_vat_exclusive'] and line['pricelist_discount_amount'] == 0"><t t-esc="line['qty']" /> x <t t-esc="currency_id_symbol" /> <t t-esc="line['price']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />                    <t t-esc="currency_id_symbol" /> <t t-esc="line['subtotal']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /> E</t>
+      <t t-else=""><t t-esc="line['qty']" /> x <t t-esc="currency_id_symbol" /> <t t-esc="line['price']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />                    <t t-esc="currency_id_symbol" /> <t t-esc="line['subtotal']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t>
+      <t t-if='line["discount"] != 0'><t t-if="line['pricelist_discount_amount'] != 0">        -<t t-esc="line['pricelist_discount_amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-if="line['sc_discount'] != 0 and line['sc_discount'] == 5">SC Discount: <t t-esc="line['sc_discount']"/>%              -<t t-esc="line['sc_discount_amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-elif="line['pwd_discount'] != 0 and line['pwd_discount'] == 5">PWD Discount: <t t-esc="line['pwd_discount']"/>%              -<t t-esc="line['pwd_discount_amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-elif="line['sc_discount'] == 0 and line['pwd_discount'] == 0 and line['regular_discount'] != 0">Regular Discount: <t t-esc="line['regular_discount']" />%        - <t t-esc="line['discount_value']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"  /></t></t></t>
+
+                                      ------------
+<t t-if="order['senior_citizen_disc'] > 0">
+    Sales: Senior citizen             <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_total']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Less: VAT                         <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_vat']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Sales Without VAT                 <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_without_vat']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Less: Senior citizen
+    20% Discount                      <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_disc']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+</t>
+<t t-if="order['pwd_citizen_disc'] > 0">
+    Sales: PWD                        <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_total']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Less: VAT                         <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_vat']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Sales Without VAT                 <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_without_vat']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Less: PWD
+    20% Discount                      <t t-esc="currency_id_symbol" /> <t t-esc="order['pwd_citizen_disc']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+</t>
+<t t-if="order['solo_parent_disc'] > 0">
+    Sales: Solo Parent                <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_total']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Less: VAT                         <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_vat']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Sales Without VAT                 <t t-esc="currency_id_symbol" /> <t t-esc="order['senior_citizen_pwd_without_vat']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+    Less: Solo Parent
+    10% Discount                      <t t-esc="currency_id_symbol" /> <t t-esc="order['solo_parent_disc']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+</t>
+               Amount Due             <t t-esc="currency_id_symbol" /> <t t-esc="order['amount_total']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+
+
+<t t-foreach="order['payment_lines']" t-as="payment">
+    <t t-esc="payment['name']" />                              <t t-esc="payment['amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+			
+</t>
+               CHANGE                 <t t-esc="currency_id_symbol" /> <t t-esc="order['change_amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+
+    -------------------------------------------
+
+<t t-if="company.taxpayer_is_vat_registered">
+    VATable Sales:                    <t t-esc="currency_id_symbol" /> <t t-esc="order['vatable_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+    VAT Amount                        <t t-esc="currency_id_symbol" /> <t t-esc="order['vat_amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+    Zero Rated Sales:                 <t t-esc="currency_id_symbol" /> <t t-esc="order['zero_rated']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+    VAT Exempt Sales:                 <t t-esc="currency_id_symbol" /> <t t-esc="order['vat_exempt']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+</t>
+<t t-else="">
+    EXEMPT Sales:                     <t t-esc="currency_id_symbol" /> <t t-esc="order['amount_total']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+</t>
+
+<t t-if="order['sale_team_prefix'] == 'OR' or order['sale_team_prefix'] == 'SI'">
+    Buyers Name:          <t t-if="order['buyer_name']" t-esc="order['buyer_name']"/>
+    SC/PWD ID:            <t t-if="order['sc_id']" t-esc="order['sc_id']"/><t t-elif="order['pwd_id']" t-esc="order['pwd_id']"/>
+    Address:              <t t-if="order['street']" t-esc="order['street']"/> <t t-if="order['street2']" t-esc="order['street2']"/>
+                          <t t-if="order['city']" t-esc="order['city']" /> <t t-if="order['state']" t-esc="order['state']" /> <t t-if="order['zip']" t-esc="order['zip']" />
+	                  <t t-if="order['country']"><t t-esc="order['country']" /></t>
+    TIN #:                <t t-if="order['tin']" t-esc="order['tin']"/>
+    Bus. Style:           <t t-if="order['bus_style']" t-esc="order['bus_style']"/>
+</t>
+
+
+                  POS Provider
+          <t t-if='env.company.awb_pos_provider_id'><t t-esc="env.company.awb_pos_provider_id.name" /></t>
+          <t t-if='env.company.awb_pos_provider_display_address'><t t-esc="env.company.awb_pos_provider_display_address"/></t>
+          <t t-if='env.company.awb_pos_provider_tin'>TIN: <t t-esc="env.company.awb_pos_provider_tin" /></t>
+          
+          <t t-if='env.company.awb_pos_provider_accreditation_no'>Accreditation No.: <t t-esc="env.company.awb_pos_provider_accreditation_no" /></t>
+		  <t t-if='env.company.awb_pos_provider_display_date'>Date Issued: <t t-esc="env.company.awb_pos_provider_display_date" /></t>
+		  <t t-if='env.company.awb_pos_provider_display_valid_until'>Valid Until: <t t-esc="env.company.awb_pos_provider_display_valid_until" /></t>
+		  
+		  <t t-if="order['awb_pos_provider_ptu']">PTU No.: <t  t-esc="order['awb_pos_provider_ptu']" /></t>
+		  <t t-if="order['taxpayer_min']">MIN: <t t-esc="order['taxpayer_min']" /></t>
+		  <t t-if="order['taxpayer_serial_number']">S/N: <t t-esc="order['taxpayer_serial_number']" /></t>
+		  <t t-if="order['awb_pos_provider_remarks']"><t t-esc="order['awb_pos_provider_remarks']" /></t>
+       
+           <t t-if="company.taxpayer_remarks"><t t-esc="company.taxpayer_remarks" /></t>
+____________________________________________________
+</t>
+
+<t t-foreach="x_reading" t-as="x">
+                 <t t-esc="company.name" />
+    <t t-if="company.street"> <t t-esc="company.street" /></t>
+    <t t-if="company.street2"> <t t-esc="company.street2" /></t>
+    <t t-if="company.city"> <t t-esc="company.city" /></t> <t t-if="company.state_id"><t t-esc="company.state_id.name" /> </t><t t-if="company.zip"><t t-esc="company.zip" /></t>
+    <t t-if="company.country_id"><t t-esc="company.country_id.name" /></t>
+    <t t-if="company.taxpayer_info"><t t-esc="company.taxpayer_info" /></t>
+                  
+                  <t t-if="x['cashier_ids']">Cashier/s: <t t-foreach="x['cashier_ids']" t-as="c"><t t-esc="c['name']"/></t></t>
+    <t t-if="x['start_date']" t-esc="x['start_date']" t-options="{'widget': 'datetime'}" /> - <t t-if="x['end_date']" t-esc="x['end_date']" t-options="{'widget': 'datetime'}" />
+    
+        Reference: <t t-if="x['reference']" t-esc="x['reference']" />
+
+                  X-Reading
+
+    -------------------------------------
+      Description                Amount
+    -------------------------------------
+    Total Sales               <t t-if="x['total_sales']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['total_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    Total Refunds             <t t-if="x['total_voids']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['total_voids']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    Total Discounts           <t t-if="x['total_discounts']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['total_discounts']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________
+    Subtotal                  <t t-if="x['subtotal']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['subtotal']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________
+    VATable Sales             <t t-if="x['vatable_sales']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['vatable_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    12% VAT                   <t t-if="x['vat_12']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['vat_12']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    VAT Exempt Sales          <t t-if="x['vat_exempt_sales']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['vat_exempt_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    VAT Zero-Rated Sales      <t t-if="x['zero_rated_sales']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['zero_rated_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________
+    Register Total            <t t-if="x['register_total']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['register_total']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________<t t-set="x_media_total" t-value="0" />
+    <t t-foreach="x['payments']" t-as='payment'>
+    <t t-esc="payment['name']" />                      <t t-esc="currency_id_symbol" /> <t t-esc="payment['total']" /><t t-set="x_media_total" t-value="payment['total'] + x_media_total" /></t>
+    _____________________________________
+    Media Tender Subtotal:    <t t-if="x_media_total"> <t t-esc="currency_id_symbol" /> <t t-esc="x_media_total" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________
+    Regular Discount          <t t-if="x['regular_discount']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['regular_discount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    SC/PWD 5%                 <t t-if="x['sc_pwd_vat_in']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['sc_pwd_vat_in']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    SC 20%                    <t t-if="x['sc_vat_ex']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['sc_vat_ex']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    PWD 20%                   <t t-if="x['pwd_vat_ex']"> <t t-esc="currency_id_symbol" /> <t t-esc="x['pwd_vat_ex']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    
+    
+                  POS Provider
+              <t t-if='env.company.awb_pos_provider_id'><t t-esc="env.company.awb_pos_provider_id.name" /></t>
+          <t t-if='env.company.awb_pos_provider_display_address'><t t-esc="env.company.awb_pos_provider_display_address"/></t>
+          <t t-if='env.company.awb_pos_provider_tin'>TIN: <t t-esc="env.company.awb_pos_provider_tin" /></t>
+          
+          <t t-if='env.company.awb_pos_provider_accreditation_no'>Accreditation No.: <t t-esc="env.company.awb_pos_provider_accreditation_no" /></t>
+		  <t t-if='env.company.awb_pos_provider_display_date'>Date Issued: <t t-esc="env.company.awb_pos_provider_display_date" /></t>
+		  <t t-if='env.company.awb_pos_provider_display_valid_until'>Valid Until: <t t-esc="env.company.awb_pos_provider_display_valid_until" /></t>
+		  
+		  <t t-if="order['awb_pos_provider_ptu']">PTU No.: <t  t-esc="x['awb_pos_provider_ptu']" /></t>
+		  <t t-if="order['taxpayer_min']">MIN: <t t-esc="x['taxpayer_min']" /></t>
+		  <t t-if="order['taxpayer_serial_number']">S/N: <t t-esc="x['taxpayer_machine_serial_number']" /></t>
+
+__________________________________________________________
+</t>
+<t t-foreach="z_reading" t-as="z">
+                 <t t-esc="company.name" />
+    <t t-if="company.street"> <t t-esc="company.street" /></t>
+    <t t-if="company.street2"> <t t-esc="company.street2" /></t>
+    <t t-if="company.city"> <t t-esc="company.city" /></t> <t t-if="company.state_id"><t t-esc="company.state_id.name" /></t> <t t-if="company.zip"><t t-esc="company.zip" /></t>
+    <t t-if="company.country_id"><t t-esc="company.country_id.name" /></t>
+    <t t-if="company.taxpayer_info"><t t-esc="company.taxpayer_info" /></t>
+                  
+                  <t t-if="z['cashier_ids']">Cashier/s: <t t-foreach="z['cashier_ids']" t-as="c"><t t-esc="c['name']"/></t></t>
+    <t t-if="z['start_date']" t-esc="z['start_date']" t-options="{'widget': 'datetime'}" /> - <t t-if="z['end_date']" t-esc="z['end_date']" t-options="{'widget': 'datetime'}" />
+    
+        Reference: <t t-if="z['reference']" t-esc="z['reference']" />
+    
+    
+                  Z-Reading
+
+    Beginning Reading Balance:<t t-if="z['beginning_reading']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['beginning_reading']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t>
+    Ending Reading Balance:<t t-if="z['ending_reading']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['ending_reading']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t>
+    Beginning Sales Invoice Number:<t t-if="z['begin_or_no']"> <t t-esc="z['begin_or_no']" /></t>
+    Ending Sales Invoice Number:<t t-if="z['end_or_no']"> <t t-esc="z['end_or_no']" /></t>
+    Accumulated Beginning Adjustment:<t t-if="z['acc_beginning']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['acc_beginning']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t>
+    Accumulated Ending Adjustment:<t t-if="z['acc_end']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['acc_end']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t>
+    Beginning Adjustment Number:<t t-if="z['acc_beginning_no']"> <t t-esc="z['acc_beginning_no']" /></t>
+    Ending Adjustment Number:<t t-if="z['acc_end_no']"> <t t-esc="z['acc_end_no']" /></t>
+    
+    -------------------------------------
+      Description                Amount
+    -------------------------------------
+    Total Sales             <t t-if="z['total_sales']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['total_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    Total Refunds            <t t-if="z['total_voids']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['total_voids']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    Total Discounts          <t t-if="z['total_discounts']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['total_discounts']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________
+    Subtotal                 <t t-if="z['subtotal']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['subtotal']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________
+    VATable Sales            <t t-if="z['vatable_sales']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['vatable_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    12% VAT                  <t t-if="z['vat_12']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['vat_12']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    VAT Exempt Sales         <t t-if="z['vat_exempt_sales']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['vat_exempt_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    VAT Zero-Rated Sales     <t t-if="z['zero_rated_sales']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['zero_rated_sales']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________
+    Register Total            <t t-if="z['register_total']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['register_total']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=" "><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________<t t-set="z_media_total" t-value="0" />
+    <t t-foreach="z['payments']" t-as='payment'>
+    <t t-esc="payment['name']" />                      <t t-esc="currency_id_symbol" /> <t t-esc="payment['total']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/><t t-set="z_media_total" t-value="payment['total'] + z_media_total" /></t>
+    _____________________________________
+    Media Tender Subtotal:    <t t-if="z_media_total"> <t t-esc="currency_id_symbol" /> <t t-esc="z_media_total" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=""><t t-esc="currency_id_symbol" /> 0.00</t>
+    _____________________________________
+    Regular Discount          <t t-if="z['regular_discount']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['regular_discount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=""><t t-esc="currency_id_symbol" /> 0.00</t>
+    SC/PWD 5%                <t t-if="z['sc_pwd_vat_in']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['sc_pwd_vat_in']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=""><t t-esc="currency_id_symbol" /> 0.00</t>
+    SC 20%                    <t t-if="z['sc_vat_ex']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['sc_vat_ex']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=""><t t-esc="currency_id_symbol" /> 0.00</t>
+    PWD 20%                   <t t-if="z['pwd_vat_ex']"> <t t-esc="currency_id_symbol" /> <t t-esc="z['pwd_vat_ex']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" /></t><t t-else=""><t t-esc="currency_id_symbol" /> 0.00</t>
+    
+    
+                   POS Provider
+              <t t-if='env.company.awb_pos_provider_id'><t t-esc="env.company.awb_pos_provider_id.name" /></t>
+          <t t-if='env.company.awb_pos_provider_display_address'><t t-esc="env.company.awb_pos_provider_display_address"/></t>
+          <t t-if='env.company.awb_pos_provider_tin'>TIN: <t t-esc="env.company.awb_pos_provider_tin" /></t>
+          
+          <t t-if='env.company.awb_pos_provider_accreditation_no'>Accreditation No.: <t t-esc="env.company.awb_pos_provider_accreditation_no" /></t>
+		  <t t-if='env.company.awb_pos_provider_display_date'>Date Issued: <t t-esc="env.company.awb_pos_provider_display_date" /></t>
+		  <t t-if='env.company.awb_pos_provider_display_valid_until'>Valid Until: <t t-esc="env.company.awb_pos_provider_display_valid_until" /></t>
+
+		  <t t-if="order['awb_pos_provider_ptu']">PTU No.: <t  t-esc="z['awb_pos_provider_ptu']" /></t>
+		  <t t-if="order['taxpayer_min']">MIN: <t t-esc="z['taxpayer_min']" /></t>
+		  <t t-if="order['taxpayer_serial_number']">S/N: <t t-esc="z['taxpayer_machine_serial_number']" /></t>
+
+__________________________________________________________
+</t>
+</t>
+	    </template>
+	</data>
+</odoo>

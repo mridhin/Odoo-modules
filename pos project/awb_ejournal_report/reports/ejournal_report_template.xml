@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- eJournal Report template -->
+		<template id="ejournal_report_style">
+			<!-- Header -->
+			<div class="header">
+				<!-- Company Logo -->
+				<div>
+					<t t-call="awb_ejournal_report.eJournalCompanyLogo" />
+				</div>
+				<!-- Company details -->
+				<div>
+					<t t-call="awb_ejournal_report.OrderReceiptTaxpayerInfo" />
+				</div>
+			</div>
+			
+			<div class="article o_report_layout_standard"
+				t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+				t-att-data-oe-lang="o and o.env.context.get('lang')">
+				<div class="pt-1">
+	                <!-- This div ensures that the address is not cropped by the header. -->
+	                <t t-call="web.address_layout"/>
+	            </div>
+	            <t t-out="0"/>
+			</div>
+			<!-- Footer -->
+			<div class="footer ejournal_footer" style="margin: 1em 0em;text-align:center;">
+				<div class="text-start pt-2 pb-2" style="font-size: 75%;border-bottom: 1px solid;">
+					<div>
+						POS Provider
+					</div>
+					<div t-if='env.company.awb_pos_provider_id'>
+						<t t-esc="env.company.awb_pos_provider_id.name" />
+					</div>
+					<div t-if='env.company.awb_pos_provider_display_address'>
+						<t t-esc="env.company.awb_pos_provider_display_address" style="line-height: 1em;"/>
+					</div>
+					<div t-if='env.company.awb_pos_provider_tin'>
+						TIN: <t t-esc="env.company.awb_pos_provider_tin" />
+					</div>
+					<div t-if='env.company.awb_pos_provider_accreditation_no'>
+						Accreditation No.: <t t-esc="env.company.awb_pos_provider_accreditation_no" />
+					</div>
+					<div t-if='env.company.awb_pos_provider_display_date'>
+						Date Issued: <t t-esc="env.company.awb_pos_provider_display_date" />
+					</div>
+					<div t-if='env.company.awb_pos_provider_display_valid_until'>
+						Valid Until: <t t-esc="env.company.awb_pos_provider_display_valid_until" />
+					</div>
+					<div t-if="order['awb_pos_provider_ptu']" class="pt-1">
+						PTU No.: <t  t-esc="order['awb_pos_provider_ptu']" />
+					</div>
+					<div t-if="order['taxpayer_min']">
+						MIN: <t t-esc="order['taxpayer_min']" />
+					</div>
+					<div t-if="order['taxpayer_serial_number']">
+						S/N: <t t-esc="order['taxpayer_serial_number']" />
+					</div>
+					<div t-if="order['awb_pos_provider_remarks']" class="pt-1">
+						<t t-esc="order['awb_pos_provider_remarks']" />
+					</div>
+					<div t-if="order['sale_team_prefix'] == 'OR' or order['sale_team_prefix'] == 'SI'">
+							<div class="pt-2">
+								<p style="font-size:10px;line-height: 1em;">
+									<span>
+										THIS INVOICE/RECEIPT SHALL BE VALID FOR 
+										<span t-esc="order['total_year']" />
+										YEARS FROM THE DATE OF THE PERMIT TO USE OR UNTIL YEAR
+										<span
+											t-esc="company.awb_pos_provider_display_valid_until.split('/')[2]" />
+									</span>
+								</p>
+							</div>
+					</div>
+					<div class="pt-2" style="font-size:75%; margin:2mm 0mm;">
+						<div t-if="company.taxpayer_remarks" style="line-height: 1em;">
+							<t t-esc="company.taxpayer_remarks" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+
+		<!-- Company logo -->
+		<template id="eJournalCompanyLogo">
+			<div class="logo pb-2" style="text-align: center;">
+				<t t-if="company.logo">
+					<img class="ejournal-logo" t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+						alt="Logo" style="width: auto; height: 3em;" />
+					<br />
+				</t>
+				<t t-if="not company.logo">
+					<h2 class="ejour-receipt-center-align" style="text-align: center;">
+						<t t-esc="company.name" />
+					</h2>
+					<br />
+				</t>
+			</div>
+		</template>
+
+		<!-- TaxPayerInfo -->
+		<template id="OrderReceiptTaxpayerInfo">
+			<div style="text-align:center; font-size:75%;">
+				<div class="taxpayer-info">
+					<div t-if='company.name'>
+						<t t-esc="company.name" />
+					</div>
+
+					<div class="company-address">
+						<div t-if='company.street'>
+							<t t-esc="company.street" />
+						</div>
+						<div t-if='company.street2'>
+							<t t-esc="company.street2" />
+						</div>
+						<div t-if='company.company_display_address'>
+							<t t-esc="company.company_display_address" />
+						</div>
+						<div t-if='company.country_id'>
+							<t t-esc="company.country_id.name" />
+						</div>
+					</div>
+					<div t-if='company.taxpayer_info'>
+						<t t-esc="company.taxpayer_info" />
+					</div>
+				</div>
+			</div>
+		</template>
+
+		<!-- Report template -->
+		<template id="ejournal_receipt_report">
+			<t t-set="company" t-value="env.company" />
+			<t t-call="web.html_container">
+				<t t-foreach="order_details" t-as="order">
+					<t t-call="awb_ejournal_report.ejournal_report_style">
+						<div class="page pt-3" style="font-size: 14px;">
+							<t t-set="currency_id" t-value="env.company.currency_id" />
+							<t t-set="currency_id_symbol" t-value="env.company.currency_id.symbol" />
+							<!-- Orderlines -->
+							<div style="text-align:center;font-size: 12px;">
+								<span>
+									<t t-esc="order['cashier']" />
+								</span>
+							</div>
+							<div style="font-size: 12px;">
+								<span>
+									<t t-esc="order['receipt_number']" />
+								</span>
+								<t t-if="order['order_date']">
+									<span style="float: right;">
+										<t t-esc="order['order_date']" t-options="{'widget': 'datetime'}"
+											class="ejour-receipt-right-align" />
+									</span>
+								</t>
+							</div>
+							<t t-if="order['sale_team_prefix'] == 'OR'">
+								<div style="text-align: center;font-size: 16px;">
+										<p>
+											<span>Official Receipt <t t-if="(order['order_type'] == 'voided')">- Void</t></span>
+										</p>
+								</div>
+							</t>
+							<t t-if="order['sale_team_prefix'] == 'SI'">
+								<div style="text-align: center;font-size: 18px;">
+										<p>
+											<span>Sales Invoice <t t-if="(order['order_type'] == 'voided')">- Void</t></span>
+										</p>
+								</div>
+							</t>
+							<div class="orderlines">
+								<t t-call="awb_ejournal_report.OrderLinesReceipt" />
+							</div>
+
+						</div>
+						<div calss="before_footer" style="padding-top: 3rem !important;">
+							<div t-if="order['sale_team_prefix'] == 'OR' or order['sale_team_prefix'] == 'SI'" class="ejournal_buyer-info"
+								style="font-size: 14px;text-align:inherit;margin-bottom: 10mm;">
+								<!-- Turned this into a table to make the _________ dynamic -->
+								<table class="ejournal_buyer-info-table" style="border-collapse: collapse;width: 100%;">
+									<tr>
+										<td style="width: 30%;">
+											<span>
+												Buyers Name:
+											</span>
+										</td>
+										<td style="width: 70%;">
+											<span t-esc="order['buyer_name']"/>
+										</td>
+									</tr>
+									<tr>
+										<td style="width: 30%;">
+											<span>
+												SC/PWD ID:
+											</span>
+										</td>
+										<td style="width: 70%;">
+											<span t-if="(order['sc_pwd']) and (order['sc_id'])" t-esc="order['sc_id']"/>
+											<span t-if="(order['sc_pwd']) and (order['pwd_id'])" t-esc="order['pwd_id']"/>
+										</td>
+									</tr>
+									<tr>
+										<td style="width: 30%;">
+											<span>
+												Address:
+											</span>
+										</td>
+										<td style="width: 70%;">
+											<span> 
+												<t t-if="order['street']"><t t-esc="order['street']"/></t>
+												<t t-if="order['street2']">, <t t-esc="order['street2']"/></t>
+												<t t-if="order['city']">, <t t-esc="order['city']"/></t>
+												<t t-if="order['state']">, <t t-esc="order['state']"/></t>
+												<t t-if="order['zip']">, <t t-esc="order['zip']"/></t>
+												<t t-if="order['country']">, <t t-esc="order['country']"/></t>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td style="width: 30%;">
+											<span>
+												TIN #:
+											</span>
+										</td>
+										<td style="width: 70%;">
+											<span t-esc="order['tin']">
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td style="width: 30%;">
+											<span>
+												Bus. Style:
+											</span>
+										</td>
+										<td style="width: 70%;">
+											<span t-esc="order['bus_style']">
+											</span>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+
+		<!-- OrderReceiptPosProvider -->
+		<template id="OrderLinesReceipt">
+			<t t-foreach="order['lines']" t-as="line">
+				<div>
+					<t t-esc="line['name']" />
+				</div>
+				<div style="padding-left: 2em;">
+					<span>
+						<t t-esc="line['qty']" />
+						x
+						<t t-esc="currency_id_symbol" />
+						<t t-esc="line['price']"
+							t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</span>
+					<span style="float: right;">
+						<t t-esc="line['subtotal']"
+							t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</span>
+				</div>
+				<!-- Discount lines -->
+				<div>
+					<t t-call="awb_ejournal_report.OrderLinesReceiptDiscount" />
+				</div>
+			</t>
+			<!-- Total -->
+			<div style="float: right;">--------</div>
+			<br />
+			<div class="pos-receipt-amount" style="font-size: 110%; padding-left: 6em;">
+				TOTAL
+				<span style="float: right;">
+					<t t-esc="currency_id_symbol" />
+					<t t-esc="order['amount_total']"
+						t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+				</span>
+			</div>
+			<br />
+			<!-- Payment Lines -->
+			<t t-foreach="order['payment_lines']" t-as="payment">
+				<div>
+					<t t-esc="payment['name']" />
+					<span t-esc="payment['amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" style="float: right;" />
+				</div>
+			</t>
+			<br />
+			<div class="pos-receipt-amount receipt-change" style="font-size: 110%; padding-left: 6em;">
+				CHANGE
+				<span style="float: right;">
+					<t t-esc="currency_id_symbol" />
+					<t t-esc="order['change_amount']"
+						t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+				</span>
+			</div>
+			<br />
+			<!-- OrderReceiptTaxIncluded -->
+			<t t-call="awb_ejournal_report.OrderReceiptTaxIncluded" />
+		</template>
+
+		<template id="OrderReceiptTaxIncluded">
+			<div t-if="company.taxpayer_is_vat_registered">
+				<div
+					style="border-top:1px dashed black; padding-top: 5mm; margin-top: 5mm;">
+					VATable Sales:
+					<span style="float: right;">
+						<t t-esc="currency_id_symbol" />
+						<t t-esc="order['vatable_sales']"
+							t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</span>
+				</div>
+				<div class="vatable" style="padding-top:1mm;">
+					VAT Amount
+					<span style="float: right;">
+						<t t-esc="currency_id_symbol" />
+						<t t-esc="order['vat_amount']"
+							t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</span>
+				</div>
+				<div class="zero-rated" style="padding-top:1mm;">
+					Zero Rated Sales:
+					<span style="float: right;">
+						<t t-esc="currency_id_symbol" />
+						<t t-esc="order['zero_rated']"
+							t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</span>
+				</div>
+				<div class="vat-exempt" style="padding-top:1mm; padding-bottom:1mm;">
+					VAT Exempt Sales:
+					<span style="float: right;">
+						<t t-esc="currency_id_symbol" />
+						<t t-esc="order['vat_exempt']"
+							t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</span>
+				</div>
+				<div style="float: right;">--------</div>
+                <br/>
+                <div class="pos-receipt-amount" style="font-size: 110%; padding-left: 6em;">
+                    TOTAL
+                    <span style="float: right;">
+						<t t-esc="currency_id_symbol" />
+						<t t-esc="order['sales_total']"
+							t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</span>
+                </div>
+			</div>
+			<div t-else="">
+				<div
+					style="border-top:1px dashed black; padding-top: 5mm; margin-top:5mm;">
+					EXEMPT Sales:
+					<!-- For now the exempt sales is equal to the subtotal(total without 
+						taxes). Please alter this later if there is an update regarding the computation -->
+					<span style="float: right;">
+						<t t-esc="currency_id_symbol" />
+						<t t-esc="order['amount_total']"
+							t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</span>
+				</div>
+			</div>
+		</template>
+
+		<template id="OrderLinesReceiptDiscount">
+			<!-- Check if there is a pricelist discount -->
+			<t t-if="line['pricelist_discount_amount'] != 0">
+				<div style="padding-left: 2em;">
+					<!-- <t t-esc="receipt.pricelist.name" /> -->
+					<div class="pos-receipt-right-align">
+						-
+						<t t-esc="line['pricelist_discount_amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</div>
+				</div>
+			</t>
+			<!-- <t t-if="line['sc_discount'] != 0">
+				<div style="padding-left: 2em;">
+					SC Discount:
+					<t t-esc="line['sc_discount']" />
+					%
+					<div style="float: right;">
+						-
+						<t t-esc="line['sc_discount_amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</div>
+				</div>
+			</t>
+			<t t-elif="line['pwd_discount'] != 0">
+				<div style="padding-left: 2em;">
+					PWD Discount:
+					<t t-esc="line['pwd_discount']" />
+					%
+					<div style="float: right;">
+						-
+						<t t-esc="line['pwd_discount_amount']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}" />
+					</div>
+				</div>
+			</t> -->
+			<!-- If there is a manual discount -->
+			<t t-if="line['regular_discount'] != 0">
+				<div style="padding-left: 2em;">
+					Regular Discount:
+					<t t-esc="line['regular_discount']" />
+					%
+					<div style="float: right;">
+						-
+						<t t-esc="line['discount_value']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"  />
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

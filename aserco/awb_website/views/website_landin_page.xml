@@ -1,0 +1,775 @@
+<odoo>
+    <template id="acerco_homepage" name="Home">
+        <t t-call="website.layout">
+            <t t-set="pageName" t-value="'homepage'"/>
+            <div class="my_template">
+                <div class="wrapper-my-header">
+                    <div class="container">
+                        <div class="row my_header">
+                            <div class="header-right col-lg-8 col-md-8 order-md-2">
+
+                                <div class="my_carousel carousel slide" data-interval="10000"
+                                     id="myCarousel1675938064787"
+                                     style="background-image: none;">
+                                    <ol class="carousel-indicators o_we_no_overlay">
+                                        <li class="dot" data-slide-to="0" data-target="#myCarousel1675938064787"/>
+                                        <li class="dot" data-slide-to="1" data-target="#myCarousel1675938064787"/>
+                                        <li data-slide-to="2" data-target="#myCarousel1675938064787"
+                                            class="dot"/>
+                                        <li data-slide-to="3" data-target="#myCarousel1675938064787"
+                                            class="active dot"/>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                        <img class="carousel-item" id="slider_image"
+                                             src="/awb_website/static/src/images/Rectangle 289.png"/>
+                                        <img class="carousel-item" id="slider_image"
+                                             src="/awb_website/static/src/images/Rectangle 280.png"/>
+                                        <img class="carousel-item" id="slider_image"
+                                             src="/awb_website/static/src/images/Rectangle 281.png"/>
+                                        <img class="carousel-item active" id="slider_image"
+                                             src="/awb_website/static/src/images/Rectangle 281.png"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-left col-lg-4 col-md-4 order-md-1">
+                                <div id="image_div">
+                                    <img src="/awb_website/static/src/images/viber_image_2022-12-01_17-27-20-811 2.png"
+                                         class="img img-fluid mx-auto" alt="" loading="lazy"
+                                         data-original-src="/awb_website/static/src/images/viber_image_2022-12-01_17-27-20-811 2.png"
+                                         data-mimetype="image/png"/>
+                                </div>
+                                <h1 class="head-line">
+                                    A trusted provider of
+                                    <strong>home services</strong>
+                                </h1>
+                                <p class="banner_desc" id="body_0">We deliver the best quality services right at your
+                                    door
+                                </p>
+                                <a id="booking_link" href="/booking"
+                                   class="btn btn-primary mb-2 o_default_snippet_text">Book
+                                    Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper-my-offer">
+                    <div class="container">
+                        <div class="row my_offer">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <h3 class="blog_cust_h3">OUR TOP SERVICES</h3>
+                                        <h1 class="blog_cus_h1">WHAT WE OFFER</h1>
+                                    </div>
+                                </div>
+
+
+                                <div class="grid-container">
+                                    <t t-foreach="web_my_service_ids" t-as="services_ids">
+                                        <div class="grid-item">
+                                            <t t-set="service_id" t-value="services_ids.id"/>
+                                            <a class="home-page-a"
+                                               t-attf-href="{{'#' if services_ids.is_coming_soon else '/booking?service_id=' + str(service_id)}}">
+                                                <div class="my-card">
+                                                    <!--                                                    <t t-set="coming_soon" t-value="False"/>-->
+                                                    <t t-if="services_ids.blog_image">
+                                                        <div t-att-class="'my_image_soon' if services_ids.is_coming_soon else 'my_image'">
+                                                            <span t-field="services_ids.blog_image"
+                                                                  t-options="{'widget': 'image','itemprop': 'image'}"/>
+                                                        </div>
+                                                    </t>
+                                                    <t t-if="not services_ids.blog_image">
+                                                        <div class="my_no_image">
+                                                            <span>
+                                                                <img src="/awb_website/static/src/images/default.png"
+                                                                     class="img img-fluid" alt="No Image Available"/>
+                                                            </span>
+                                                        </div>
+                                                    </t>
+                                                    <div class="my-card-body">
+                                                        <h4 t-if="services_ids"
+                                                            t-esc="services_ids['name']"/>
+                                                        <p t-if="services_ids.subtitle"
+                                                           t-esc="services_ids['subtitle']">
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </t>
+                                </div>
+
+                                <div class="show-btn row text-center">
+                                    <div class="col text-center">
+                                        <button class="btn-primary" id="show-more">See More</button>
+                                        <button class="btn-primary" id="show-less" style="display:none;">See Less
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper-my-widget">
+                    <div class="container">
+                        <div class="row my_widget">
+                            <div class="widget_accomplishments text-center o_colored_level col-lg-3 col-md-3 col-sm-6">
+                                <img id="feature_icon" src="/awb_website/static/src/images/IconSpace_Map_24Px.png"/>
+                                <h3>
+                                    <font>65+</font>
+                                </h3>
+                                <p class="feature_para">States Covered
+                                    <br/>
+                                </p>
+                            </div>
+                            <div class="widget_accomplishments text-center o_colored_level col-lg-3 col-md-3 col-sm-6">
+                                <img id="feature_icon" src="/awb_website/static/src/images/iconspace_Man_25px.png"/>
+                                <h3>
+                                    <font>
+                                        689K+
+                                    </font>
+                                </h3>
+                                <p class="feature_para">Happy clients
+                                    <br/>
+                                </p>
+                            </div>
+                            <div class="widget_accomplishments text-center o_colored_level col-lg-3 col-md-3 col-sm-6">
+                                <img id="feature_icon" src="/awb_website/static/src/images/LINE---COLOR.png"/>
+                                <h3>
+                                    <font>
+                                        130M+
+                                    </font>
+                                </h3>
+                                <p class="feature_para">Service completed
+                                    <br/>
+                                </p>
+                            </div>
+                            <div class="widget_accomplishments text-center o_colored_level col-lg-3 col-md-3 col-sm-6">
+                                <img id="feature_icon"
+                                     src="/awb_website/static/src/images/iconspace_Business-Bag_25px.png"/>
+                                <h3>
+                                    <font>
+                                        130M+
+                                    </font>
+                                </h3>
+                                <p class="feature_para">Business hours
+                                    <br/>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"/>
+                <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>-->
+                <div class="wrapper-my-testimonial">
+                    <div class="container">
+                        <div class="row my_testimonial">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <h3 class="testimonial_h3">TESTIMONIAL</h3>
+                                        <h1 class="testimonial_h1">OUR AWESOME CLIENTS</h1>
+                                    </div>
+                                </div>
+                                <div id="home-testimonials" class="owl-carousel owl-theme mt-5">
+                                    <t t-if="testimonial_ids">
+                                        <t t-foreach="testimonial_ids" t-as="test_ids">
+
+                                            <div class="owl-item" style="">
+                                                <div class="card_asc">
+
+                                                    <h2 class="testimonial_h2">
+                                                        <t t-esc="test_ids['name']"/>
+                                                    </h2>
+                                                    <p class="testimonial_p">
+                                                        <t t-esc="test_ids['review_text']"/>
+                                                    </p>
+                                                    <div class="footer d-flex">
+                                                        <div>
+                                                            <t t-set="qty"
+                                                               t-value="test_ids['rating']"/>
+                                                            <t t-foreach="range(int(qty))" t-as="item">
+                                                                <i style="color:#0088B4;"
+                                                                   class="fa fa-star"/>
+                                                            </t>
+                                                        </div>
+                                                        <div class="ml-auto">
+                                                            <div class="reviewr_o">
+                                                                <t t-esc="test_ids['reviewer_name']"/>
+                                                            </div>
+                                                            <div class="reviewr_dest">
+                                                                <t t-esc="test_ids['reviewer_title']"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </t>
+                                    </t>
+                                    <t t-if="not testimonial_ids">
+                                        <div class="owl-item">
+                                            <div class="card_asc">
+                                                <div class="testimonial_h2">
+                                                    No Reviews
+                                                </div>
+                                                <div class="testimonial_p">
+                                                    Please add your review
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="owl-item">
+                                            <div class="card_asc">
+                                                <div class="testimonial_h2">
+                                                    No Reviews
+                                                </div>
+                                                <div class="testimonial_p">
+                                                    Please add your review
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="owl-item">
+                                            <div class="card_asc">
+                                                <div class="testimonial_h2">
+                                                    No Reviews
+                                                </div>
+                                                <div class="testimonial_p">
+                                                    Please add your review
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper-my-promos">
+                    <div class="container my_promos">
+                        <div class="row promos_head">
+                            <div class="col">
+                                <h3 id="promos_h3">LOREM IPSUM</h3>
+                                <h1 id="promos_h1">PROMOS</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-center o_colored_level col-lg-3 col-md-3 col-sm-6">
+                                <img class="img img-fluid d-block"
+                                     src="/awb_website/static/src/images/Rectangle 297.png" data-index="0"
+                                     data-name="Image"
+                                     loading="lazy" data-original-id="210"
+                                     data-original-src="/awb_website/static/src/images/Rectangle 297.png"
+                                     data-mimetype="image/jpeg" style=""/>
+                            </div>
+                            <div class="text-center o_colored_level col-lg-3 col-md-3 col-sm-6">
+                                <img class="img img-fluid d-block"
+                                     src="/awb_website/static/src/images/Rectangle 298.png" data-index="0"
+                                     data-name="Image"
+                                     loading="lazy" data-original-id="210"
+                                     data-original-src="/awb_website/static/src/images/Rectangle 298.png"
+                                     data-mimetype="image/jpeg" style=""/>
+                            </div>
+                            <div class="text-center o_colored_level col-lg-3 col-md-3 col-sm-6">
+                                <img class="img img-fluid d-block"
+                                     src="/awb_website/static/src/images/Rectangle 299.png" data-index="0"
+                                     data-name="Image"
+                                     loading="lazy" data-original-id="210"
+                                     data-original-src="/awb_website/static/src/images/Rectangle 299.png"
+                                     data-mimetype="image/jpeg" style=""/>
+                            </div>
+                            <div class="text-center o_colored_level col-lg-3 col-md-3 col-sm-6">
+                                <img class="img img-fluid d-block"
+                                     src="/awb_website/static/src/images/Rectangle 300.png" data-index="0"
+                                     data-name="Image"
+                                     loading="lazy" data-original-id="210"
+                                     data-original-src="/awb_website/static/src/images/Rectangle 300.png"
+                                     data-mimetype="image/jpeg" style=""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="s_text_image pt32 pb32 o_colored_level" data-snippet="s_image_text"
+                         data-name="Image - Text" style="background-image: none;">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="pt16 pb16 o_colored_level col-lg-12">
+                                <img src="https://www.youtube.com/embed/tgbNymZ7vqY" width="1000" height="400"
+                                     class="img img-fluid mx-auto" alt="" loading="lazy" data-original-id="254"
+                                     data-original-src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                                     data-mimetype="video"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="wrapper-my-find-us">
+                    <div class="container">
+                        <div class="row my_find_us">
+                            <div class="col">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <h3 class="find_us_h3">FIND US</h3>
+                                            <h1 class="find_us_h1">ACCESS US EASILY</h1>
+                                        </div>
+                                    </div>
+                                    <div class="row my_map_wrapper">
+                                        <div class="col-sm-7 my_map">
+                                            <iframe class="my_map"
+                                                    src="https://maps.google.com/maps?q=%2318%20Evangelista%20St.%20Brgy%20Santolan%20Pasig%20City&amp;t=m&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                                                    scrolling="no" marginheight="0" marginwidth="0" width="100%"
+                                                    height="100%"
+                                                    frameborder="0"/>
+                                        </div>
+                                        <div class="col-sm-5 my_contact_us">
+                                            <h2 class="contact_us">Contact us</h2>
+                                            <ul class="fa-ul">
+                                                <li>
+                                                    <i class="fa-li fa fa-map-marker fa-lg"></i>
+                                                    18 Evangelista St. Pasig 1800 Metro Manila
+                                                </li>
+                                                <li>
+                                                    <i class="fa-li fa fa-clock-o fa-lg"></i>
+                                                    Monday - Friday 9am - 5pm<br/>Saturday 9am - 5pm
+                                                </li>
+                                                <li>
+                                                    <i class="fa-li fa fa-envelope-o fa-lg"></i>
+                                                    smileserve@gmail.com
+                                                </li>
+                                            </ul>
+                                            <div class="row" style="padding-left: 10px">
+                                                <a href="https://fb.me/smileserveph" target="_blank">
+                                                    <img class="o_social_div"
+                                                         src="/awb_website/static/src/images/1.png"/>
+                                                </a>
+                                                <a href=" https://www.instagram.com/smileserveph" target="_blank">
+                                                    <img class="o_social_div"
+                                                         src="/awb_website/static/src/images/2.png"/>
+                                                </a>
+                                                <a href="http://bit.ly/SmileServeHub" target="_blank">
+                                                    <span class='fab fa-viber'/>
+                                                    <img class="o_social_div"
+                                                         src="/awb_website/static/src/images/viber_images.png"
+                                                         style="width: 22px;height:22px;"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 contact_us_button">
+                                            <a id="booking_link" href="tel:+0286466190"
+                                               class="btn call_us">
+                                                <span>
+                                                    <i class="fa fa-phone"/>
+                                                    Call us: (02) 8646 6190
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="landing_page_footer" inherit_id="website.layout" name="Footer">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <section id="footer_id" class="" data-snippet="s_text_block" data-name="Text"
+                     style="background-image: none;">
+                <div class="wrapper-my-newsletter">
+                    <div class="container">
+                        <div class="row my_newsletter">
+                            <div class="col-sm-6">
+                                <h3 class="news_h">Get an update every month!</h3>
+                                <p class="news_p">We’ll let you know if there’s new
+                                    services
+                                    in store that we can offer you!
+                                </p>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div id="mc_embed_signup">
+                                    <form action="https://abenson.us15.list-manage.com/subscribe/post?u=2997036baed3f2e2c50727d54&amp;id=e25edaf512&amp;f_id=008bc1e1f0"
+                                          method="post" id="mc-embedded-subscribe-form"
+                                          name="mc-embedded-subscribe-form" class="validate" target="_blank"
+                                          novalidate="novalidate">
+                                        <div>
+                                            <div class="input-group">
+                                                <input type="email" value="" name="EMAIL"
+                                                       class="required email form-control" id="mce-EMAIL"
+                                                       required="True" placeholder="Enter your mail"
+                                                       aria-required="true"/>
+                                                <div id="inout_append" class="input-group-append">
+                                                    <input type="submit" value="Subscribe" name="subscribe"
+                                                           id="mc-embedded-subscribe" class="button"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                                <input type="text" name="b_2997036baed3f2e2c50727d54_e25edaf512"
+                                                       tabindex="-1" value=""/>
+                                            </div>
+                                            <div id="mce-responses" class="clear">
+                                                <div class="response" id="mce-error-response" style="display:none"/>
+                                                <div class="response" id="mce-success-response" style="display:none"/>
+                                            </div>
+
+
+                                            <div class="confirmation">
+                                                <strong>Please confirm your subscription</strong>
+                                                <br/>
+
+<!--                                                <input type="checkbox" value="1" name="group[36][1]"-->
+<!--                                                       id="mce-group[36]-36-0"/>-->
+<!--                                                <label for="mce-group[36]-36-0">Yes, I agree to receive email-->
+<!--                                                    newsletters from Smile Serve-->
+<!--                                                </label>-->
+                                                <input type="checkbox"  name="group[36][1]"
+                                                       id="mail-checkbox"/>
+                                                <label for="mail-checkbox">Yes, I agree to receive email
+                                                    newsletters from Smile Serve
+                                                </label>
+
+                                            </div>
+
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <script type="text/javascript"
+                                        src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"/>
+                                <script type="text/javascript">(function($) {window.fnames = new Array();
+                                    window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var
+                                    $mcj = jQuery.noConflict(true);
+                                </script>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="wrapper-my-header">
+                    <div class="container">
+                        <div class="row footer-link">
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <h5>Help Center</h5>
+                                <ul>
+                                    <li>
+                                        <a href="/faq-1" data-original-title="" title="">FAQ</a>
+                                    </li>
+                                    <li>
+                                        <a href="/payment-offers-1" data-original-title="" title=""
+                                           aria-describedby="popover280633">Payment Offers
+                                        </a>
+                                    </li>
+                                    <li>
+                                        Buyers Guide
+                                    </li>
+                                    <li>
+                                        <a href="/feedback" data-original-title="" title="">Feedback</a>
+                                    </li>
+                                    <li>
+                                        <a href="/privacy-policy-1" data-original-title="" title="">Privacy Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="/terms-of-use-1" data-original-title="" title="">Terms of Use</a>
+                                    </li>
+                                    <li data-original-title="" title="" aria-describedby="tooltip143236">
+                                        <a href="/warranty-1" data-original-title="" title="">Warranty</a>
+                                    </li>
+                                    <li data-original-title="" title="" aria-describedby="tooltip143236">
+                                        <a href="/testimonial" data-original-title="" title="">Testimonial</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <h5>Connect With Us</h5>
+                                <ul>
+                                    <li>
+                                        <a href="https://fb.me/smileserveph" target="_blank" data-original-title=""
+                                           title="">Facebook
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com/smileserveph" target="_blank"
+                                           data-original-title="" title="">Instagram
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="http://bit.ly/SmileServeHub" target="_blank" data-original-title=""
+                                           title="">Viber Community
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/store_directory" data-original-title="" title="">Store Directory</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <h5>Company</h5>
+                                <ul>
+                                    <li>
+                                        <a href="/about-us" data-original-title="" title="">About Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="/pricing" data-original-title="" title="">Pricing</a>
+                                    </li>
+                                    <li>
+                                        <a href="/blog" data-original-title="" title="">Blog</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <h5>Join Us</h5>
+                                <ul>
+                                    <li>
+                                        <a href="/ASC_accreditation_form">Join as a Partner</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="footer-contact-us col-lg-3 col-md-6 col-sm-12">
+                                <h5>Contact Us</h5>
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-phone fa-lg"></i>
+                                        <a href="tel:+0286466190">
+
+                                            (02)8248-2399
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-mobile fa-2x"></i>
+                                        <a href="tel:0929-5438837">0929-5438837</a>
+                                        <br/>
+                                        <a href="tel:0998-9973164" style="margin-left: 22px;">0998-9973164</a>
+                                        <br/>
+                                        <a href="tel:0998-5821020" style="margin-left: 22px;">&#09;0998-5821020</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope-o fa-lg"></i>
+                                        <a href="mailto:info@smileserve.com.ph">info@smileserve.com.ph</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </xpath>
+        <xpath expr="//*[hasclass('o_footer_copyright')]" position="replace">
+            <div class="o_footer_copyright o_colored_level o_cc">
+                <div class="container py-3">
+                    <div class="row">
+                        <div class="col text-center">
+                            <p class="news_p">All right Reserved &#169; Smile Serve, 2023
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <template id="acercom_header" inherit_id="website.layout" name="Header">
+        <xpath expr="//header" position="replace">
+            <header id="top" data-anchor="true" data-name="Header" class="o_header_standard o_top_fixed_element">
+                <nav data-name="Navbar" class="navbar navbar-expand-lg navbar-light o_colored_level o_cc shadow-sm">
+                    <div id="top_menu_container" class="container justify-content-start justify-content-lg-between">
+                        <a href="/" class="navbar-brand logo mr-4">
+                            <span data-oe-model="website" data-oe-id="1" data-oe-field="logo" data-oe-type="image"
+                                  data-oe-expression="website.logo" role="img"
+                                  aria-label="Logo of Smile Serve" title="Smile Serve">
+                                <img src="/awb_website/static/src/images/viber_image_2022-12-01_17-27-20-811 2.png"
+                                     class="img img-fluid"
+                                     alt="Smile Serve" loading="lazy" style=""/>
+                            </span>
+                        </a>
+                        <div id="top_menu_collapse" class="collapse navbar-collapse order-last order-lg-0">
+                            <ul id="top_menu" class="nav navbar-nav ml-auto nav-pills">
+                                <li class="nav-item">
+                                    <a id="nav1" role="menuitem" href="/" class="nav-link">
+                                        <span>Home
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="nav2" role="menuitem" href="/booking" class="nav-link">
+                                        <span>Book
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="nav3" role="menuitem" href="/ASC_accreditation_form" class="nav-link">
+                                        <span>Join our team
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <t t-if="not request.session.uid">
+                                        <a id="nav4" href="/web/login" class="nav-link">Sign Up | Login
+                                        </a>
+                                    </t>
+                                    <t t-if="request.session.uid">
+                                        <li class="nav-item dropdown ml-lg-auto o_no_autohide_item">
+                                            <a id="nanl" href="#" role="button" data-toggle="dropdown"
+                                               class="dropdown-toggle nav-link font-weight-bold"
+                                            >
+                                                <span class="">
+                                                    <t t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                                                </span>
+                                            </a>
+                                            <div role="menu" class="dropdown-menu js_usermenu ">
+                                                <a id="nanl" href="/my/home" role="menuitem" class="dropdown-item">My
+                                                    Account
+                                                </a>
+                                                <div id="o_logout_divider" class="dropdown-divider"></div>
+                                                <a role="menuitem" id="o_logout" class="dropdown-item"
+                                                   href="/web/session/logout?redirect=/">Logout
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </t>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <form method="get" class="o_searchbar_form s_searchbar_input dropdown show"
+                                  action="/website/search" data-snippet="s_searchbar_input">
+                                <div role="search">
+                                    <div>
+                                        <button id="menu-search" type="submit" aria-label="Search" title="Search"
+                                                class="btn oe_search_button btn-primary">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="oe_structure oe_structure_solo ml-lg-4" style="margin-right: 0px !important;">
+                            <section class="o_colored_level" data-snippet="s_text_block" data-name="Text"
+                                     style="background-image: none;">
+                                <div id="booking_button" class="container">
+                                    <t t-if="request.httprequest.path != '/booking' and request.httprequest.path != '/ASC_accreditation_form'">
+                                        <a href="/booking" class="_cta btn btn-primary">Book Now
+                                        </a>
+                                    </t>
+                                </div>
+                            </section>
+                        </div>
+                        <button type="button" data-toggle="collapse" data-target="#top_menu_collapse"
+                                class="navbar-toggler ml-auto">
+                            <span class="navbar-toggler-icon o_not_editable"></span>
+                        </button>
+                    </div>
+                </nav>
+            </header>
+            <header id="top_mobile" data-anchor="true" data-name="Header"
+                    class="o_header_standard position-relative d-none">
+                <nav data-name="Navbar" class="navbar navbar-expand-lg navbar-light o_colored_level o_cc shadow-sm">
+                    <div id="top_menu_container" class="container justify-content-start d-flex">
+                        <button type="button" data-toggle="collapse" data-target="#top_menu_collapse"
+                                class="navbar-toggler">
+                            <span class="navbar-toggler-icon o_not_editable"></span>
+                        </button>
+                        <a href="/" class="navbar-brand logo ml-auto">
+                            <span data-oe-model="website" class="ml-auto"
+                                  data-oe-expression="website.logo" role="img"
+                                  aria-label="Logo of Smile Serve" title="Smile Serve">
+                                <img src="/awb_website/static/src/images/viber_image_2022-12-01_17-27-20-811 2.png"
+                                     class="img img-fluid"
+                                     alt="Smile Serve" loading="lazy"/>
+                            </span>
+                        </a>
+                        <div id="top_menu_collapse" class="collapse navbar-collapse order-last order-lg-0">
+                            <ul id="top_menu" class="nav navbar-nav ml-auto nav-pills">
+                                <li class="nav-item">
+                                    <a role="menuitem" href="/" class="nav-link">
+                                        <span>Home
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a role="menuitem" href="/booking" class="nav-link">
+                                        <span>Book
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a role="menuitem" href="/ASC_accreditation_form" class="nav-link">
+                                        <span>Join our team
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <t t-if="not request.session.uid">
+                                        <a id="nav4" href="/web/login" class="nav-link">Sign Up | Login
+                                        </a>
+                                    </t>
+                                    <t t-if="request.session.uid">
+                                        <li class="nav-item dropdown ml-lg-auto o_no_autohide_item">
+                                            <a id="nanl" href="#" role="button" data-toggle="dropdown"
+                                               class="dropdown-toggle nav-link font-weight-bold"
+                                            >
+                                                <span class="">
+                                                    <t t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                                                </span>
+                                            </a>
+                                            <div role="menu" class="dropdown-menu js_usermenu ">
+                                                <a id="nanl" href="/my/home" role="menuitem" class="dropdown-item">My
+                                                    Account
+                                                </a>
+                                                <div id="o_logout_divider" class="dropdown-divider"></div>
+                                                <a role="menuitem" id="o_logout" class="dropdown-item"
+                                                   href="/web/session/logout?redirect=/">Logout
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </t>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="width: 100%;">
+                        <form method="get" class="o_searchbar_form s_searchbar_input" action="/website/search"
+                              data-snippet="s_searchbar_input">
+                            <div role="search" class="input-group mt8">
+                                <input class="form-control border-end-0" type="search" name="search"
+                                       id="example-search-input" placeholder="Search in smileserve.com"
+                                       autocomplete="off"/>
+                                <span class="input-group-append">
+                                    <button class="btn btn-my-search btn-outline-secondary ms-n5"
+                                            type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                            <input name="order" type="hidden" class="o_search_order_by" data-oe-model="ir.ui.view"
+                                   data-oe-id="1628" data-oe-field="arch" data-oe-xpath="/data/xpath[3]/form/input[1]"
+                                   value="name asc"/>
+                        </form>
+                    </div>
+                </nav>
+            </header>
+        </xpath>
+    </template>
+
+
+</odoo>

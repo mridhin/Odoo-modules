@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+awb_ejournal_report.access_pos_ejournal_report,access_pos_ejournal.report,awb_ejournal_report.model_pos_ejournal_report,base.group_user,1,1,1,0
+awb_ejournal_report.access_ejournal_ir_attachment,access_ejournal_ir_attachment,base.model_ir_attachment,awb_ejournal_report.group_pos_audit,1,0,0,0

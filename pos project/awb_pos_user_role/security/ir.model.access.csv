@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_order_cashier,pos.order.cashier,point_of_sale.model_pos_order,awb_pos_user_role.group_pos_cashier,1,1,1,1
+access_pos_order_line_cashier,pos.order.line.cashier,point_of_sale.model_pos_order_line,awb_pos_user_role.group_pos_cashier,1,0,1,0
+access_product_product_cashier,product.product.cashier,product.model_product_product,awb_pos_user_role.group_pos_cashier,1,0,0,0
+access_pos_payment_cashier,pos.payment cashier,point_of_sale.model_pos_payment,awb_pos_user_role.group_pos_cashier,1,1,1,1
+access_pos_config_cashier,pos.config.cashier,point_of_sale.model_pos_config,awb_pos_user_role.group_pos_cashier,1,1,1,1
+access_product_product_supervisor,product.product.supervisor,product.model_product_product,awb_pos_user_role.group_pos_supervisor,1,0,0,0
+access_pos_order_supervisor,pos.order.supervisor,point_of_sale.model_pos_order,awb_pos_user_role.group_pos_supervisor,1,0,0,0
+access_pos_order_line_supervisor,pos.order.line.supervisor,point_of_sale.model_pos_order_line,awb_pos_user_role.group_pos_supervisor,1,0,1,1
+access_pos_order_accountant,pos.order.accountant,point_of_sale.model_pos_order,awb_pos_user_role.group_pos_accountant,1,0,0,0
+access_pos_order_line_accountant,pos.order.line.accountant,point_of_sale.model_pos_order_line,awb_pos_user_role.group_pos_accountant,1,0,1,0
+access_product_product_accountant,product.product.accountant,product.model_product_product,awb_pos_user_role.group_pos_accountant,1,1,1,0
+access_pos_config_manager,pos.config.manager,point_of_sale.model_pos_config,point_of_sale.group_pos_manager,1,1,1,1
+access_pos_user_manager,pos.user.manager,base.model_res_users,point_of_sale.group_pos_manager,1,1,1,1
+access_pos_user_partner_manager,pos.user.partner.manager,base.model_res_partner,point_of_sale.group_pos_manager,1,1,1,1

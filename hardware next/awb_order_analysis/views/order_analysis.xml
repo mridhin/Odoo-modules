@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="aoa_order_analysis_form_view" model="ir.ui.view">
+            <field name="name">aoa.order.analysis.form</field>
+            <field name="model">order.analysis</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle">
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="product_name"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <button name="generate" type="object" string="Generate"/>
+                        </group>
+                        <notebook>
+                            <page name="order_analyses_line" string="Lines">
+                            <field name="line_ids" widget="one2many" mode="tree" readonly="True" >
+                                 <tree string="Order Analyses Lines" editable="bottom">
+                                    <field name="product_id" />
+                                    <field name="size" />
+                                    <field name="qty_ctn" />
+                                    <field name="inventory_qty" />
+                                    <field name="uom_id" />
+                                    <field name="min" />
+                                    <field name="max" />
+                                    <field name="movement_qty" />
+                                    <field name="movement_uom_id" />
+                                    <field name="per_day" />
+                                    <field name="ma" />
+                                 </tree>
+                            </field>
+
+                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="aoa_order_analysis_act_window" model="ir.actions.act_window">
+            <field name="name">Order Analysis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">order.analysis</field>
+            <field name="view_mode">form</field>
+
+        </record>
+
+        <menuitem name="Order Analysis" id="aoa_order_analysis_menu" parent="purchase.purchase_report_main" action="aoa_order_analysis_act_window"/>
+
+    </data>
+</odoo>

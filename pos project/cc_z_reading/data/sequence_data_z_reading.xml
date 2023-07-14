@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_z_reading" model="ir.sequence">
+        <field name="name">Z Reading</field>
+        <field name="code">cc_z_reading.z_reading</field>
+        <field name="prefix">Z/</field>
+        <field name="padding">8</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

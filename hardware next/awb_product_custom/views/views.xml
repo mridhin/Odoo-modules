@@ -1,0 +1,556 @@
+<odoo>
+    <data>
+        <record id="view_product_template_customisation" model="ir.ui.view">
+            <field name="name">product.template.customisation</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="carton_packing"/>
+                    <field name="price_change_date"/>
+                </field>
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page name="price_variances" string="Price Variances">
+                        <notebook>
+                            <page string="WS">
+                                <field name="product_wspricevarience_id">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                        <field name="commission"/>
+                                        <field name="ws_vol_1"/>
+                                        <field name="ws_vol_package_1"/>
+                                        <field name="ws_free_product_1"/>
+                                        <field name="ws_free_product_qty_1"/>
+                                        <field name="ws_free_product_pkg_1"/>
+                                        <field name="ws_com_1"/>
+                                        <field name="ws_price_1"/>
+                                        <field name="ws_disc_1"/>
+                                        <field name="ws_vol_2"/>
+                                        <field name="ws_vol_package_2"/>
+                                        <field name="ws_free_product_2"/>
+                                        <field name="ws_free_product_qty_2"/>
+                                        <field name="ws_free_product_pkg_2"/>
+                                        <field name="ws_com_2"/>
+                                        <field name="ws_price_2"/>
+                                        <field name="ws_disc_2"/>
+                                        <field name="ws_vol_3"/>
+                                        <field name="ws_vol_package_3"/>
+                                        <field name="ws_free_product_3"/>
+                                        <field name="ws_free_product_qty_3"/>
+                                        <field name="ws_free_product_pkg_3"/>
+                                        <field name="ws_com_3"/>
+                                        <field name="ws_price_3"/>
+                                        <field name="ws_disc_3"/>
+                                        <field name="ws_vol_4"/>
+                                        <field name="ws_vol_package_4"/>
+                                        <field name="ws_free_product_4"/>
+                                        <field name="ws_free_product_qty_4"/>
+                                        <field name="ws_free_product_pkg_4"/>
+                                        <field name="ws_com_4"/>
+                                        <field name="ws_price_4"/>
+                                        <field name="ws_disc_4"/>
+                                        <field name="ws_vol_5"/>
+                                        <field name="ws_vol_package_5"/>
+                                        <field name="ws_free_product_5"/>
+                                        <field name="ws_free_product_qty_5"/>
+                                        <field name="ws_free_product_pkg_5"/>
+                                        <field name="ws_com_5"/>
+                                        <field name="ws_price_5"/>
+                                        <field name="ws_disc_5"/>
+                                        <field name="ws_vol_6"/>
+                                        <field name="ws_vol_package_6"/>
+                                        <field name="ws_free_product_6"/>
+                                        <field name="ws_free_product_qty_6"/>
+                                        <field name="ws_free_product_pkg_6"/>
+                                        <field name="ws_com_6"/>
+                                        <field name="ws_price_6"/>
+                                        <field name="ws_disc_6"/>
+                                        <field name="ws_vol_7"/>
+                                        <field name="ws_vol_package_7"/>
+                                        <field name="ws_free_product_7"/>
+                                        <field name="ws_free_product_qty_7"/>
+                                        <field name="ws_free_product_pkg_7"/>
+                                        <field name="ws_com_7"/>
+                                        <field name="ws_price_7"/>
+                                        <field name="ws_disc_7"/>
+                                        <field name="ws_vol_8"/>
+                                        <field name="ws_vol_package_8"/>
+                                        <field name="ws_free_product_8"/>
+                                        <field name="ws_free_product_qty_8"/>
+                                        <field name="ws_free_product_pkg_8"/>
+                                        <field name="ws_com_8"/>
+                                        <field name="ws_price_8"/>
+                                        <field name="ws_disc_8"/>
+                                        <field name="ws_vol_9"/>
+                                        <field name="ws_vol_package_9"/>
+                                        <field name="ws_free_product_9"/>
+                                        <field name="ws_free_product_qty_9"/>
+                                        <field name="ws_free_product_pkg_9"/>
+                                        <field name="ws_com_9"/>
+                                        <field name="ws_price_9"/>
+                                        <field name="ws_disc_9"/>
+                                        <field name="ws_vol_10"/>
+                                        <field name="ws_vol_package_10"/>
+                                        <field name="ws_free_product_10"/>
+                                        <field name="ws_free_product_qty_10"/>
+                                        <field name="ws_free_product_pkg_10"/>
+                                        <field name="ws_com_10"/>
+                                        <field name="ws_price_10"/>
+                                        <field name="ws_disc_10"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="EU">
+                                <field name="product_eupricevarience_id">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                        <field name="eu_vol_1"/>
+                                        <field name="eu_price_1"/>
+                                        <field name="eu_disc_1"/>
+                                        <field name="eu_vol_2"/>
+                                        <field name="eu_price_2"/>
+                                        <field name="eu_disc_2"/>
+                                        <field name="eu_vol_3"/>
+                                        <field name="eu_price_3"/>
+                                        <field name="eu_disc_3"/>
+                                        <field name="eu_vol_4"/>
+                                        <field name="eu_price_4"/>
+                                        <field name="eu_disc_4"/>
+                                        <field name="eu_vol_5"/>
+                                        <field name="eu_price_5"/>
+                                        <field name="eu_disc_5"/>
+                                        <field name="eu_vol_6"/>
+                                        <field name="eu_price_6"/>
+                                        <field name="eu_disc_6"/>
+                                        <field name="eu_vol_7"/>
+                                        <field name="eu_price_7"/>
+                                        <field name="eu_disc_7"/>
+                                        <field name="eu_vol_8"/>
+                                        <field name="eu_price_8"/>
+                                        <field name="eu_disc_8"/>
+                                        <field name="eu_vol_9"/>
+                                        <field name="eu_price_9"/>
+                                        <field name="eu_disc_9"/>
+                                        <field name="eu_vol_10"/>
+                                        <field name="eu_price_10"/>
+                                        <field name="eu_disc_10"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="RT">
+                                <field name="product_rtpricevarience_id">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                        <field name="commission"/>
+                                        <field name="rt_vol_1"/>
+                                        <field name="rt_vol_package_1"/>
+                                        <field name="rt_free_product_1"/>
+                                        <field name="rt_free_product_qty_1"/>
+                                        <field name="rt_free_product_pkg_1"/>
+                                        <field name="rt_com_1"/>
+                                        <field name="rt_price_1"/>
+                                        <field name="rt_disc_1"/>
+                                        <field name="rt_vol_2"/>
+                                        <field name="rt_vol_package_2"/>
+                                        <field name="rt_free_product_2"/>
+                                        <field name="rt_free_product_qty_2"/>
+                                        <field name="rt_free_product_pkg_2"/>
+                                        <field name="rt_com_2"/>
+                                        <field name="rt_price_2"/>
+                                        <field name="rt_disc_2"/>
+                                        <field name="rt_vol_3"/>
+                                        <field name="rt_vol_package_3"/>
+                                        <field name="rt_free_product_3"/>
+                                        <field name="rt_free_product_qty_3"/>
+                                        <field name="rt_free_product_pkg_3"/>
+                                        <field name="rt_com_3"/>
+                                        <field name="rt_price_3"/>
+                                        <field name="rt_disc_3"/>
+                                        <field name="rt_vol_4"/>
+                                        <field name="rt_vol_package_4"/>
+                                        <field name="rt_free_product_4"/>
+                                        <field name="rt_free_product_qty_4"/>
+                                        <field name="rt_free_product_pkg_4"/>
+                                        <field name="rt_com_4"/>
+                                        <field name="rt_price_4"/>
+                                        <field name="rt_disc_4"/>
+                                        <field name="rt_vol_5"/>
+                                        <field name="rt_vol_package_5"/>
+                                        <field name="rt_free_product_5"/>
+                                        <field name="rt_free_product_qty_5"/>
+                                        <field name="rt_free_product_pkg_5"/>
+                                        <field name="rt_com_5"/>
+                                        <field name="rt_price_5"/>
+                                        <field name="rt_disc_5"/>
+                                        <field name="rt_vol_6"/>
+                                        <field name="rt_vol_package_6"/>
+                                        <field name="rt_free_product_6"/>
+                                        <field name="rt_free_product_qty_6"/>
+                                        <field name="rt_free_product_pkg_6"/>
+                                        <field name="rt_com_6"/>
+                                        <field name="rt_price_6"/>
+                                        <field name="rt_disc_6"/>
+                                        <field name="rt_vol_7"/>
+                                        <field name="rt_vol_package_7"/>
+                                        <field name="rt_free_product_7"/>
+                                        <field name="rt_free_product_qty_7"/>
+                                        <field name="rt_free_product_pkg_7"/>
+                                        <field name="rt_com_7"/>
+                                        <field name="rt_price_7"/>
+                                        <field name="rt_disc_7"/>
+                                        <field name="rt_vol_8"/>
+                                        <field name="rt_vol_package_8"/>
+                                        <field name="rt_free_product_8"/>
+                                        <field name="rt_free_product_qty_8"/>
+                                        <field name="rt_free_product_pkg_8"/>
+                                        <field name="rt_com_8"/>
+                                        <field name="rt_price_8"/>
+                                        <field name="rt_disc_8"/>
+                                        <field name="rt_vol_9"/>
+                                        <field name="rt_vol_package_9"/>
+                                        <field name="rt_free_product_9"/>
+                                        <field name="rt_free_product_qty_9"/>
+                                        <field name="rt_free_product_pkg_9"/>
+                                        <field name="rt_com_9"/>
+                                        <field name="rt_price_9"/>
+                                        <field name="rt_disc_9"/>
+                                        <field name="rt_vol_10"/>
+                                        <field name="rt_vol_package_10"/>
+                                        <field name="rt_free_product_10"/>
+                                        <field name="rt_free_product_qty_10"/>
+                                        <field name="rt_free_product_pkg_10"/>
+                                        <field name="rt_com_10"/>
+                                        <field name="rt_price_10"/>
+                                        <field name="rt_disc_10"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="PV">
+                                <field name="product_pvpricevarience_id">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                        <field name="commission"/>
+                                        <field name="pv_vol_1"/>
+                                        <field name="pv_price_1"/>
+                                        <field name="pv_disc_1"/>
+                                        <field name="pv_vol_2"/>
+                                        <field name="pv_price_2"/>
+                                        <field name="pv_disc_2"/>
+                                        <field name="pv_vol_3"/>
+                                        <field name="pv_price_3"/>
+                                        <field name="pv_disc_3"/>
+                                        <field name="pv_vol_4"/>
+                                        <field name="pv_price_4"/>
+                                        <field name="pv_disc_4"/>
+                                        <field name="pv_vol_5"/>
+                                        <field name="pv_price_5"/>
+                                        <field name="pv_disc_5"/>
+                                        <field name="pv_vol_6"/>
+                                        <field name="pv_price_6"/>
+                                        <field name="pv_disc_6"/>
+                                        <field name="pv_vol_7"/>
+                                        <field name="pv_price_7"/>
+                                        <field name="pv_disc_7"/>
+                                        <field name="pv_vol_8"/>
+                                        <field name="pv_price_8"/>
+                                        <field name="pv_disc_8"/>
+                                        <field name="pv_vol_9"/>
+                                        <field name="pv_price_9"/>
+                                        <field name="pv_disc_9"/>
+                                        <field name="pv_vol_10"/>
+                                        <field name="pv_price_10"/>
+                                        <field name="pv_disc_10"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_product_product_customisation" model="ir.ui.view">
+            <field name="name">product.product.customisation</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="carton_packing"/>
+                    <field name="price_change_date"/>
+                </field>
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page name="price_variances" string="Price Variances">
+                        <notebook>
+                            <page string="WS">
+                                <field name="product_wspricevarience_id">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                        <field name="commission"/>
+                                        <field name="ws_vol_1"/>
+                                        <field name="ws_vol_package_1"/>
+                                        <field name="ws_free_product_1"/>
+                                        <field name="ws_free_product_qty_1"/>
+                                        <field name="ws_free_product_pkg_1"/>
+                                        <field name="ws_com_1"/>
+                                        <field name="ws_price_1"/>
+                                        <field name="ws_disc_1"/>
+                                        <field name="ws_vol_2"/>
+                                        <field name="ws_vol_package_2"/>
+                                        <field name="ws_free_product_2"/>
+                                        <field name="ws_free_product_qty_2"/>
+                                        <field name="ws_free_product_pkg_2"/>
+                                        <field name="ws_com_2"/>
+                                        <field name="ws_price_2"/>
+                                        <field name="ws_disc_2"/>
+                                        <field name="ws_vol_3"/>
+                                        <field name="ws_vol_package_3"/>
+                                        <field name="ws_free_product_3"/>
+                                        <field name="ws_free_product_qty_3"/>
+                                        <field name="ws_free_product_pkg_3"/>
+                                        <field name="ws_com_3"/>
+                                        <field name="ws_price_3"/>
+                                        <field name="ws_disc_3"/>
+                                        <field name="ws_vol_4"/>
+                                        <field name="ws_vol_package_4"/>
+                                        <field name="ws_free_product_4"/>
+                                        <field name="ws_free_product_qty_4"/>
+                                        <field name="ws_free_product_pkg_4"/>
+                                        <field name="ws_com_4"/>
+                                        <field name="ws_price_4"/>
+                                        <field name="ws_disc_4"/>
+                                        <field name="ws_vol_5"/>
+                                        <field name="ws_vol_package_5"/>
+                                        <field name="ws_free_product_5"/>
+                                        <field name="ws_free_product_qty_5"/>
+                                        <field name="ws_free_product_pkg_5"/>
+                                        <field name="ws_com_5"/>
+                                        <field name="ws_price_5"/>
+                                        <field name="ws_disc_5"/>
+                                        <field name="ws_vol_6"/>
+                                        <field name="ws_vol_package_6"/>
+                                        <field name="ws_free_product_6"/>
+                                        <field name="ws_free_product_qty_6"/>
+                                        <field name="ws_free_product_pkg_6"/>
+                                        <field name="ws_com_6"/>
+                                        <field name="ws_price_6"/>
+                                        <field name="ws_disc_6"/>
+                                        <field name="ws_vol_7"/>
+                                        <field name="ws_vol_package_7"/>
+                                        <field name="ws_free_product_7"/>
+                                        <field name="ws_free_product_qty_7"/>
+                                        <field name="ws_free_product_pkg_7"/>
+                                        <field name="ws_com_7"/>
+                                        <field name="ws_price_7"/>
+                                        <field name="ws_disc_7"/>
+                                        <field name="ws_vol_8"/>
+                                        <field name="ws_vol_package_8"/>
+                                        <field name="ws_free_product_8"/>
+                                        <field name="ws_free_product_qty_8"/>
+                                        <field name="ws_free_product_pkg_8"/>
+                                        <field name="ws_com_8"/>
+                                        <field name="ws_price_8"/>
+                                        <field name="ws_disc_8"/>
+                                        <field name="ws_vol_9"/>
+                                        <field name="ws_vol_package_9"/>
+                                        <field name="ws_free_product_9"/>
+                                        <field name="ws_free_product_qty_9"/>
+                                        <field name="ws_free_product_pkg_9"/>
+                                        <field name="ws_com_9"/>
+                                        <field name="ws_price_9"/>
+                                        <field name="ws_disc_9"/>
+                                        <field name="ws_vol_10"/>
+                                        <field name="ws_vol_package_10"/>
+                                        <field name="ws_free_product_10"/>
+                                        <field name="ws_free_product_qty_10"/>
+                                        <field name="ws_free_product_pkg_10"/>
+                                        <field name="ws_com_10"/>
+                                        <field name="ws_price_10"/>
+                                        <field name="ws_disc_10"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="EU">
+                                <field name="product_eupricevarience_id">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                        <field name="eu_vol_1"/>
+                                        <field name="eu_price_1"/>
+                                        <field name="eu_disc_1"/>
+                                        <field name="eu_vol_2"/>
+                                        <field name="eu_price_2"/>
+                                        <field name="eu_disc_2"/>
+                                        <field name="eu_vol_3"/>
+                                        <field name="eu_price_3"/>
+                                        <field name="eu_disc_3"/>
+                                        <field name="eu_vol_4"/>
+                                        <field name="eu_price_4"/>
+                                        <field name="eu_disc_4"/>
+                                        <field name="eu_vol_5"/>
+                                        <field name="eu_price_5"/>
+                                        <field name="eu_disc_5"/>
+                                        <field name="eu_vol_6"/>
+                                        <field name="eu_price_6"/>
+                                        <field name="eu_disc_6"/>
+                                        <field name="eu_vol_7"/>
+                                        <field name="eu_price_7"/>
+                                        <field name="eu_disc_7"/>
+                                        <field name="eu_vol_8"/>
+                                        <field name="eu_price_8"/>
+                                        <field name="eu_disc_8"/>
+                                        <field name="eu_vol_9"/>
+                                        <field name="eu_price_9"/>
+                                        <field name="eu_disc_9"/>
+                                        <field name="eu_vol_10"/>
+                                        <field name="eu_price_10"/>
+                                        <field name="eu_disc_10"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="RT">
+                                <field name="product_rtpricevarience_id">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                        <field name="commission"/>
+                                        <field name="rt_vol_1"/>
+                                        <field name="rt_vol_package_1"/>
+                                        <field name="rt_free_product_1"/>
+                                        <field name="rt_free_product_qty_1"/>
+                                        <field name="rt_free_product_pkg_1"/>
+                                        <field name="rt_com_1"/>
+                                        <field name="rt_price_1"/>
+                                        <field name="rt_disc_1"/>
+                                        <field name="rt_vol_2"/>
+                                        <field name="rt_vol_package_2"/>
+                                        <field name="rt_free_product_2"/>
+                                        <field name="rt_free_product_qty_2"/>
+                                        <field name="rt_free_product_pkg_2"/>
+                                        <field name="rt_com_2"/>
+                                        <field name="rt_price_2"/>
+                                        <field name="rt_disc_2"/>
+                                        <field name="rt_vol_3"/>
+                                        <field name="rt_vol_package_3"/>
+                                        <field name="rt_free_product_3"/>
+                                        <field name="rt_free_product_qty_3"/>
+                                        <field name="rt_free_product_pkg_3"/>
+                                        <field name="rt_com_3"/>
+                                        <field name="rt_price_3"/>
+                                        <field name="rt_disc_3"/>
+                                        <field name="rt_vol_4"/>
+                                        <field name="rt_vol_package_4"/>
+                                        <field name="rt_free_product_4"/>
+                                        <field name="rt_free_product_qty_4"/>
+                                        <field name="rt_free_product_pkg_4"/>
+                                        <field name="rt_com_4"/>
+                                        <field name="rt_price_4"/>
+                                        <field name="rt_disc_4"/>
+                                        <field name="rt_vol_5"/>
+                                        <field name="rt_vol_package_5"/>
+                                        <field name="rt_free_product_5"/>
+                                        <field name="rt_free_product_qty_5"/>
+                                        <field name="rt_free_product_pkg_5"/>
+                                        <field name="rt_com_5"/>
+                                        <field name="rt_price_5"/>
+                                        <field name="rt_disc_5"/>
+                                        <field name="rt_vol_6"/>
+                                        <field name="rt_vol_package_6"/>
+                                        <field name="rt_free_product_6"/>
+                                        <field name="rt_free_product_qty_6"/>
+                                        <field name="rt_free_product_pkg_6"/>
+                                        <field name="rt_com_6"/>
+                                        <field name="rt_price_6"/>
+                                        <field name="rt_disc_6"/>
+                                        <field name="rt_vol_7"/>
+                                        <field name="rt_vol_package_7"/>
+                                        <field name="rt_free_product_7"/>
+                                        <field name="rt_free_product_qty_7"/>
+                                        <field name="rt_free_product_pkg_7"/>
+                                        <field name="rt_com_7"/>
+                                        <field name="rt_price_7"/>
+                                        <field name="rt_disc_7"/>
+                                        <field name="rt_vol_8"/>
+                                        <field name="rt_vol_package_8"/>
+                                        <field name="rt_free_product_8"/>
+                                        <field name="rt_free_product_qty_8"/>
+                                        <field name="rt_free_product_pkg_8"/>
+                                        <field name="rt_com_8"/>
+                                        <field name="rt_price_8"/>
+                                        <field name="rt_disc_8"/>
+                                        <field name="rt_vol_9"/>
+                                        <field name="rt_vol_package_9"/>
+                                        <field name="rt_free_product_9"/>
+                                        <field name="rt_free_product_qty_9"/>
+                                        <field name="rt_free_product_pkg_9"/>
+                                        <field name="rt_com_9"/>
+                                        <field name="rt_price_9"/>
+                                        <field name="rt_disc_9"/>
+                                        <field name="rt_vol_10"/>
+                                        <field name="rt_vol_package_10"/>
+                                        <field name="rt_free_product_10"/>
+                                        <field name="rt_free_product_qty_10"/>
+                                        <field name="rt_free_product_pkg_10"/>
+                                        <field name="rt_com_10"/>
+                                        <field name="rt_price_10"/>
+                                        <field name="rt_disc_10"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="PV">
+                                <field name="product_pvpricevarience_id">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="price"/>
+                                        <field name="discount"/>
+                                        <field name="commission"/>
+                                        <field name="pv_vol_1"/>
+                                        <field name="pv_price_1"/>
+                                        <field name="pv_disc_1"/>
+                                        <field name="pv_vol_2"/>
+                                        <field name="pv_price_2"/>
+                                        <field name="pv_disc_2"/>
+                                        <field name="pv_vol_3"/>
+                                        <field name="pv_price_3"/>
+                                        <field name="pv_disc_3"/>
+                                        <field name="pv_vol_4"/>
+                                        <field name="pv_price_4"/>
+                                        <field name="pv_disc_4"/>
+                                        <field name="pv_vol_5"/>
+                                        <field name="pv_price_5"/>
+                                        <field name="pv_disc_5"/>
+                                        <field name="pv_vol_6"/>
+                                        <field name="pv_price_6"/>
+                                        <field name="pv_disc_6"/>
+                                        <field name="pv_vol_7"/>
+                                        <field name="pv_price_7"/>
+                                        <field name="pv_disc_7"/>
+                                        <field name="pv_vol_8"/>
+                                        <field name="pv_price_8"/>
+                                        <field name="pv_disc_8"/>
+                                        <field name="pv_vol_9"/>
+                                        <field name="pv_price_9"/>
+                                        <field name="pv_disc_9"/>
+                                        <field name="pv_vol_10"/>
+                                        <field name="pv_price_10"/>
+                                        <field name="pv_disc_10"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

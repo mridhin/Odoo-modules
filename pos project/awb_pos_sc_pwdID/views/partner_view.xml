@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id='awb_res_partner_form_inherit_sc_pwd' model='ir.ui.view'>
+        <field name='name'>awb.res.partner.form.inherit.sc_pwd</field>
+        <field name='model'>res.partner</field>
+        <field name='inherit_id' ref='base.view_partner_form' />
+        <field name='arch' type='xml'>
+            <field name='property_payment_term_id' position='before'>
+                <field name="sc_id" attrs="{'invisible': [('check_sc_pwd', '=', False)], 'required': [('pwd_id', '=', False), ('sc_id', '=', False), ('check_sc_pwd', '=', True)]}" groups='base.group_system'/>
+                <field name="pwd_id" attrs="{'invisible': [('check_sc_pwd', '=', False)], 'required': [('pwd_id', '=', False), ('sc_id', '=', False), ('check_sc_pwd', '=', True)]}" groups='base.group_system'/>
+            </field>
+        </field>
+    </record>
+</odoo>
