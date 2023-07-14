@@ -1,0 +1,26 @@
+<odoo>
+    <record id="awb_sales_team_views" model="ir.ui.view">
+        <field name="name">crm.team.form.inherit.awb</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//page[1]" position='after'>
+            <page name="machine_info_page" string="Machine Information">
+                <group>
+                    <field name="taxpayer_min" string="MIN" invisible="1" />
+                    <field name="taxpayer_machine_serial_number" string="Serial Number" invisible="1"/>
+                    <field name="awb_pos_provider_ptu" string="PTU" invisible="1"/>
+                </group>
+                <group>
+                    <field name="current_sequence_number"  invisible="1"/>
+                    <field name="awb_pos_provider_is_training_mode" string="Training Mode"
+                           attrs="{'readonly': [('current_sequence_number', '!=', 0)]}"
+                           groups="base.group_system,point_of_sale.group_pos_manager" />
+                    <field name="awb_pos_provider_remarks" string="Remarks"
+                           groups="base.group_system,point_of_sale.group_pos_manager"/>
+                </group>
+            </page>
+          </xpath>
+        </field>
+    </record>
+  </odoo>

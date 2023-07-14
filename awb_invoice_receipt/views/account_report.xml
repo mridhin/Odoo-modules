@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 
+        Create a renamed report action that does the same as base to enable printing even if module
+            custom_payment_receipt_v15 is installed together with this module.
+    -->
+    <record id="awb_invoice_receipt_action_report_payment_receipt" model="ir.actions.report">
+        <field name="name">Payment Receipt</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account.report_payment_receipt</field>
+        <field name="report_file">account.report_payment_receipt</field>
+        <field name="binding_model_id" ref="model_account_payment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Hides base report action to prevent duplicates if module custom_payment_receipt_v15 is not installed.-->
+    <record id="account.action_report_payment_receipt" model="ir.actions.report">
+        <field name="name">Payment Receipt</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account.report_payment_receipt</field>
+        <field name="report_file">account.report_payment_receipt</field>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

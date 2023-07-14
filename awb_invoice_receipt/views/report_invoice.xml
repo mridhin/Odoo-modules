@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="awb_report_invoice_document" inherit_id="account.report_invoice_document">
+            <!-- Exchanged web.external_layout to custom external layout -->
+            <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+                <attribute name="t-call">awb_invoice_receipt.awb_custom_external_layout</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('page')]" position="attributes">
+                <attribute name="style">font-size: .7em;</attribute>
+            </xpath>
+            <!-- Add title to address -->
+            <xpath expr="//address" position="before">
+                <h5>Invoicing Address:</h5>
+            </xpath>
+            <!-- Change font-size of address -->
+            <xpath expr="//address" position="attributes">
+                <attribute name="style">font-size: .7em;</attribute>
+            </xpath>
+            <!-- Alter h2-->
+            <xpath expr="//h2" position="replace">
+                <h2>
+                    <t t-if="o.journal_id.journal_type_selection == 'si'">
+                        <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">Sales Invoice</span>
+                        <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Draft Sales Invoice</span>
+                        <span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Cancelled Sales Invoice</span>
+                        <span t-if="o.move_type == 'out_refund'">Credit Note</span>
+                        <span t-if="o.move_type == 'in_refund'">Debit Note</span>
+                        <span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+                        <span t-if="o.name != '/'" t-field="o.name"/>
+                    </t>
+                    <t t-elif="o.journal_id.journal_type_selection == 'bs'">
+                        <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">Billing Statement</span>
+                        <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Draft Billing Statement</span>
+                        <span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Cancelled Billing Statement</span>
+                        <span t-if="o.move_type == 'out_refund'">Credit Note</span>
+                        <span t-if="o.move_type == 'in_refund'">Debit Note</span>
+                        <span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+                        <span t-if="o.name != '/'" t-field="o.name"/>
+                    </t>
+                </h2>
+            </xpath>
+            <!-- Add word REPRINT if the invoice is reprinted -->
+            <xpath expr="//span[@t-field='o.name']" position="after">
+                <span t-if='o.print_increment > 1'>
+                    (REPRINT)
+                </span>
+            </xpath>
+            <!-- Add other customer info -->
+            <xpath expr="//t[@t-set='address']" position="replace">
+                <t t-set="address">
+                    <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                    <div class="container" >
+                        <div class="row mt16" t-if="o.partner_id.vat" style="line-height: 1.2;">
+                            <div class="col-5 p-0"> 
+                                <span t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                                <span t-else="">Tax ID:</span>
+                            </div>
+                            <div class="col-7 p-0"> 
+                                <span t-field="o.partner_id.vat"/>-<span t-if="o.partner_id.branch_code" t-field="o.partner_id.branch_code"/>
+                            </div>
+                        </div>
+                        <div class="row" t-if="o.partner_id.awb_invoice_receipt_business_style" style="font-size: .8em;">
+                            <div class="col-5 pl-0">
+                                Business Style: 
+                            </div>
+                            <div class="col-7 pl-0">
+                                <span t-out="o.partner_id.awb_invoice_receipt_business_style"/>
+                            </div>
+                        </div>
+                        <!-- IF SC/PWD IS TRUE -->
+                        <div t-if="o.partner_id.check_sc_pwd" style="font-size: .8em">
+                            <div class="row">
+                                <div class="col-5 pl-0">
+                                    SC/PWD ID:
+                                </div>
+                                <div class="col-7 pl-0" style="border-bottom: 1px solid black; line-height: 1;"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-5 pl-0">
+                                    SC/PWD TIN:
+                                </div>
+                                <div class="col-7 pl-0" style="border-bottom: 1px solid black; line-height: 1;"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+            <!-- Change font-size of VAT -->
+            <xpath expr="//div[@t-if='o.partner_id.vat']" position="attributes">
+                <attribute name="style">font-size: .8em;</attribute>
+            </xpath>
+            <!-- Add margin-top to move down body -->
+            <xpath expr="//h2" position="attributes">
+                <attribute name="style">margin-top: 1em;</attribute>
+            </xpath>
+
+            <!-- SC/PWD Discounts Breakdown -->
+            <xpath expr="//t[@t-call='account.document_tax_totals']" position="replace">
+                <t t-if="o.partner_id.check_sc_pwd">
+                    <t t-call="awb_invoice_receipt.sales_breakdown"/>
+                </t>
+                <t t-else="">
+                    <t t-call="account.document_tax_totals"/>
+                </t>
+            </xpath>
+            <!-- Add space after table breakdowns -->
+            <xpath expr="//div[hasclass('clearfix')]" position="attributes">
+                <attribute name="style">margin-bottom: 5em;</attribute>
+            </xpath>
+            <!-- VAT Breakdown -->
+            <xpath expr="//table[@class='table table-sm']" position="after">
+                <table class="table table-sm mt4" style="page-break-inside: avoid;">
+                    <th colspan="2">VAT Breakdown</th>
+                    <tr class="border-black">
+                        <td>VATable Sales:</td>
+                        <td class="text-right">
+                            <span t-field="o.amount_vatable_sales"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>VAT Amount:</td>
+                        <td class="text-right">
+                            <span t-field="o.amount_vat_amount"/>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td>VAT Exempt Sales:</td>
+                        <td class="text-right">
+                            <span t-field="o.amount_vat_exempt_sales"/>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td>Zero-Rated Sales:</td>
+                        <td class="text-right">
+                            <span t-field="o.amount_zero_rated_sales"/>
+                        </td>
+                    </tr>
+                </table>
+            </xpath>
+            <xpath expr="//div[@id='qrcode']" position="before">
+                <!-- If Customer is SC/PWD, add signature-->
+                <!-- <div t-if="o.partner_id.check_sc_pwd" style="border-top: 1px dashed black; width: 30%; float: right; text-align: center; margin-right: 5em;">SC/PWD's Signature:</div> -->
+            </xpath>
+            <xpath expr="//div[@id='qrcode']" position="after">
+                <div>
+                    <strong>Acknowledgement Certificate No.:</strong>
+                    <span t-if="o.company_id.acknowledgement_certificate" t-field="o.company_id.acknowledgement_certificate"/>
+                </div>
+                <div>
+                    <strong>Date Issued:</strong>
+                    <span t-if="o.company_id.certificate_date_issued" t-field="o.company_id.certificate_date_issued"/>
+                </div>
+                <div>
+                    <strong>Series Range:</strong>
+                    <span t-if="o.company_id.series_range" t-field="o.company_id.series_range"/>
+                </div>
+                <div style="padding-top: 1em;">
+                    <strong t-if="o.company_id.taxpayer_remarks" t-field="o.company_id.taxpayer_remarks"/>
+                </div>
+                <div style="padding-top: 1em;">
+                    <strong t-if="o.journal_id.journal_remarks" t-field="o.journal_id.journal_remarks"/>
+                </div>
+                <div style="padding-top: 2em;">
+                    <div t-if="o.partner_id.check_sc_pwd" style="border-top: 1px dashed black; width: 30%; float: right; text-align: center; margin-right: 5em;">SC/PWD's Signature:</div>
+                </div>
+            </xpath>
+        </template>
+        <template id="sales_breakdown">
+            <!-- Custom Sales Breakdown Enabled for SC/PWD Customers-->
+            <t t-set="currency_id" t-value="o.company_id.currency_id"/>
+            
+            <!-- IF TRANSACTION IS TAX EXCLUSIVE OR BOTH -->
+
+            <t t-if="o.is_tax_exclusive">
+                <tr class="border-black">
+                    <td>Total Sales (with VAT)</td>
+                    <td class="text-right">
+                        <span t-field="o.amount_total_sales_w_vat"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Less: VAT (12%)</td>
+                    <td class="text-right">
+                        <span t-field="o.amount_less_vat"/>
+                    </td>
+                </tr>
+                <tr >
+                    <td>Amount (net of VAT):</td>
+                    <td class="text-right">
+                        <span t-field="o.amount_net_vat"/>
+                    </td>
+                </tr>
+                <tr >
+                    <td>Less: Discounts</td>
+                    <td class="text-right">
+                        <span t-field="o.amount_total_discounts"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Add: VAT (12%)</td>
+                    <td class="text-right">
+                        <span t-field="o.amount_add_vat"/>
+                    </td>
+                </tr>
+                <tr class="border-black o_total">
+                    <td><strong>Total Amount</strong></td>
+                    <td class="text-right">
+                        <t t-set="total_amount" t-value="o.amount_total_sales_w_vat-o.amount_less_vat-o.amount_total_discounts+o.amount_add_vat"/>
+                        <span t-out="total_amount" t-options="{'widget': 'monetary', 'display_currency': currency_id}"/>
+                    </td>
+                </tr>
+            </t>
+            
+            <!-- IF TRANSACTION IS TAX INCLUSIVE ONLY -->
+
+            <t t-elif="o.is_tax_exclusive != True">
+                <tr class="border-black">
+                    <td>Total Sales (with VAT)</td>
+                    <td class="text-right">
+                        <span t-field="o.amount_total_sales_w_vat"/>
+                    </td>
+                </tr>
+                <tr >
+                    <td>Less: Discounts</td>
+                    <td class="text-right">
+                        <span t-field="o.amount_total_discounts"/>
+                    </td>
+                </tr>
+                <tr class="border-black o_total">
+                    <td><strong>Total Amount</strong></td>
+                    <td class="text-right">
+                        <t t-set="total_amount" t-value="o.amount_total_sales_w_vat-o.amount_total_discounts"/>
+                        <span t-out="total_amount" t-options="{'widget': 'monetary', 'display_currency': currency_id}"/>
+                    </td>
+                </tr>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pos_session_form_inherit">
+            <field name="name">pos.session.form.inherit</field>
+            <field name="model">pos.session</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='config_id']" position="after">
+                    <field name="taxpayer_min"/>
+                    <field name="taxpayer_machine_serial_number"/>
+                    <field name="awb_pos_provider_ptu"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id='sh_pos_customer_dicount_configuration' model='ir.ui.view'>
+            <field name='name'>sh.pos.customer.discount.inherit.config</field>
+            <field name='model'>pos.config</field>
+            <field name='inherit_id' ref='point_of_sale.pos_config_view_form'/>
+            <field name='arch' type='xml'>
+                <xpath expr="//div[hasclass('o_settings_container')][1]" position='after'>
+                <!--<xpath expr="//div[@id='pos_accounting_section']" position="after">-->
+                <!-- <xpath expr="//div[15]" position="after"> -->
+                    <h2>Machine Information</h2>
+                        <group>
+                            <field name="taxpayer_min" string="MIN"/>
+                            <field name="taxpayer_machine_serial_number" string="Serial Number"/>
+                            <field name="awb_pos_provider_ptu" string="PTU"/>
+                        </group>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

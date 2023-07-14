@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Added VAT Breakdown to Invoice form. -->
+    <record id="awb_view_move_form" model="ir.ui.view">
+        <field name="name">awb.account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[hasclass('oe_subtotal_footer')]" position="after">
+                <group class="oe_subtotal_footer oe_right">
+                    <h4 colspan="2" class="text-center" style="border-bottom: 1px solid #C9CCD2;">VAT Breakdown:</h4>
+                    <field name="amount_vatable_sales" colspan="2"/>
+                    <field name="amount_vat_amount" colspan="2"/>
+                    <field name="amount_vat_exempt_sales" colspan="2"/>
+                    <field name="amount_zero_rated_sales" colspan="2"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

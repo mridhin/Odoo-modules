@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- This is for custom header and footer. -->
+    <template id="awb_custom_external_layout">
+        <t t-if="not o" t-set="o" t-value="docs" />
+        <t t-set="company" t-value="o.company_id" />
+        <div class="header">
+            <div class="row" style="font-family: 'Trebuchet MS', sans-serif;">
+                <div class="col-7 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 100px;" alt="Logo"/>
+                </div>
+                <div class="col-5 mb4" style="font-size: .8em;">
+                    <div t-field="company.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                    />
+                    <t t-if="company.awb_invoice_receipt_business_style">
+                        Business Style: 
+                        <span t-out="company.awb_invoice_receipt_business_style"/>
+                    </t>
+                    <div t-if="company.taxpayer_info" t-field="company.taxpayer_info"/>                        
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <ul class="list-inline mb4 text-nowrap">
+                    <li t-if="company.phone" class="list-inline-item d-inline">Phone: <span class="o_force_ltr" t-field="company.phone"/></li>
+                    <li t-if="company.email" class="list-inline-item d-inline">Email: <span t-field="company.email"/></li>
+                    <li t-if="company.website" class="list-inline-item d-inline">Web: <span t-field="company.website"/></li>
+                    <li t-if="company.vat" class="list-inline-item d-inline"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>
+                </ul>
+                <ul class="list-inline mb4 text-nowrap">
+                    <li t-if="report_type == 'pdf'" class="text-muted">
+                        Page: <span class="page"/> / <span class="topage"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name"
+            t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout" />
+            <t t-raw="0" />
+        </div>
+    </template> 
+
+</odoo>

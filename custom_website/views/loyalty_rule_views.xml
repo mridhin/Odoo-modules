@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="loyalty_rule_view_form_inherit">
+        <field name="name">loyalty.rule.form.inherit</field>
+        <field name="model">loyalty.rule</field>
+        <field name="inherit_id" ref="loyalty.loyalty_rule_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='minimum_qty']" position="after">
+                <label for="maximum_amount" attrs="{'invisible': [('program_type', '=', 'buy_x_get_y')]}"/>
+                <div class="d-flex flex-row">
+                    <field name="maximum_amount" class="oe_inline me-1"/>
+                    <span>tax</span>
+                    <field name="maximum_amount_tax_mode" class="ms-1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
