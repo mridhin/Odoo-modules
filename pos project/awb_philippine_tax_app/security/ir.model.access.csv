@@ -1,0 +1,26 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tax_property_tax_property,tax_property.tax_property,model_tax_property,base.group_user,1,1,1,0
+access_industry_covered_vat_industry_covered_vat,industry_covered_vat.industry_covered_vat,model_industry_covered_vat,base.group_user,1,1,1,0
+access_m_2550_m_2550,m_2550.m_2550,model_m_2550,base.group_user,1,1,1,1
+access_q_2550_q_2550,q_2550.q_2550,model_q_2550,base.group_user,1,1,1,1
+access_industry_covered_vat_admin,industry_covered_vat.industry_covered_vat.admin,model_industry_covered_vat,awb_philippine_tax_app.admin_Philippine_group_3,1,1,1,0
+access_industry_covered_vat_report,industry_covered_vat.industry_covered_vat.reporter,model_industry_covered_vat,awb_philippine_tax_app.report_Philippine_group_1,1,0,0,0
+access_industry_covered_vat_acc,industry_covered_vat.industry_covered_vat.acc,model_industry_covered_vat,awb_philippine_tax_app.acc_Philippine_grouop_2,1,0,0,0
+access_tax_property_admin,tax_property.tax_property.admin,model_tax_property,awb_philippine_tax_app.admin_Philippine_group_3,1,1,1,0
+access_tax_property_report,tax_property.tax_property.reporter,model_tax_property,awb_philippine_tax_app.report_Philippine_group_1,1,0,0,0
+access_tax_property_acc,tax_property.tax_property.acc,model_tax_property,awb_philippine_tax_app.acc_Philippine_grouop_2,1,0,0,0
+access_e_0619_user,e.0619,model_e_0619,base.group_user,1,1,1,1
+access_e_1604_user,e.1604,model_e_1604,base.group_user,1,1,1,1
+access_eq_1601_user,eq.1601,model_eq_1601,base.group_user,1,1,1,1
+access_e_2307_user,e.2307,model_e_2307,base.group_user,1,1,1,1
+access_writeoff_accounts,writeoff.accounts,model_tds_accounts,account.group_account_invoice,1,1,1,1
+access_writeoff_accounts_accountant,writeoff.accounts accountant,model_tds_accounts,account.group_account_user,1,0,0,0
+access_writeoff_accounts_user,writeoff.accounts user,model_tds_accounts,base.group_user,1,0,0,0
+access_tds_accounts_wizard,tds.accounts.wizard,model_tds_accounts_wizard,base.group_user,1,1,1,1
+access_wizard_sales_relief_reports,wizard.sales.relief.reports,model_wizard_sales_relief_reports,base.group_user,1,1,1,1
+access_wizard_purchase_relief_reports,wizard.purchase.relief.reports,model_wizard_purchase_relief_reports,base.group_user,1,1,1,1
+access_schedule1_1604,Schedule1.1604,model_schedule1_1604,base.group_user,1,1,1,0
+access_income_2307,Income.2307,model_income_2307,base.group_user,1,1,1,0
+access_money_2307,money.2307,model_money_2307,base.group_user,1,1,1,0
+access_schedule2_1604,Schedule2.1604,model_schedule2_1604,base.group_user,1,1,1,0
+access_eq_1601_line,eq_1601.line,model_eq_1601_line,base.group_user,1,1,1,0

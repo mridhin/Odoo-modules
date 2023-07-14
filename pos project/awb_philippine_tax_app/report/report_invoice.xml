@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_tds" inherit_id="account.report_invoice_document">
+        <xpath expr="//tr[hasclass('o_total')]" position="before">
+            <tr t-if="o.display_in_report">
+                <td>
+                    <span>Tds Amount</span>
+                </td>
+                <td class="text-right">
+                    <span t-field="o.tds_amt"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>

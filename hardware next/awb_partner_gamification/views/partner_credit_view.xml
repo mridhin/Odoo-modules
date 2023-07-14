@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_credit_form" model="ir.ui.view">
+        <field name="name">view_partner_credit_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='image_1920']" position="after">
+                <div class="oe_right"
+                    style="
+                        display: flex;
+                        flex-wrap: nowrap;
+                        align-content: flex-end;
+                        justify-content: space-between;
+                        align-items: stretch;
+                        margin-top: 3rem !important;
+                        margin-right: 2rem !important;
+                    ">
+                    <label for="partner_credit_limit" class="oe_inline" />
+                    <div>
+                        <field name="partner_credit_limit" class="oe_inline" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

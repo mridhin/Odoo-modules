@@ -1,0 +1,84 @@
+<odoo>
+    <record id="sale_order_service" model="ir.ui.view">
+        <field name="name">sale.order.service.status</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <group>
+                    <field name="service_status"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_assigned" model="ir.ui.view">
+        <field name="name">sale.order.line.assigned</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom']" position="after">
+                <field name="assigned_asc"/>
+                <field name="assign_other_asc"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_service_booking_form" model="ir.ui.view">
+        <field name="name">sale.order.service.status</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="groups_id" eval="[(4, ref('awb_sale_service.group_sale_booker'))]"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//form" position="attributes">-->
+<!--                <attribute name="edit">0</attribute>-->
+<!--            </xpath>-->
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][hasclass('btn-primary')]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_confirm'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_sale_order_form_view_booker" model="ir.actions.act_window">
+        <field name="name">Sales Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="view_id" ref="awb_sale_service.sale_order_service_booking_form"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new sale!
+            </p><p>
+            Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+        </p>
+        </field>
+    </record>
+
+
+    <menuitem id="sale_booker_menu_root"
+              web_icon="sale_management,static/description/icon.png"
+
+              name="Sales"/>
+
+    <menuitem id="sale_order_booker_menu"
+              name="Orders"
+              parent="awb_sale_service.sale_booker_menu_root"
+              sequence="1"/>
+    <menuitem id="sale_order_booker"
+              name="Quotations"
+              parent="awb_sale_service.sale_order_booker_menu"
+              groups="awb_sale_service.group_sale_booker"
+              action="awb_sale_service.action_sale_order_form_view_booker"
+    />
+
+</odoo>

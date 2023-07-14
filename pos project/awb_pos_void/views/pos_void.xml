@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--ui design for pos.vois with menu and action-->
+	<record id="pos_void_form_view" model="ir.ui.view">
+	<field name="name">Voided Transaction</field>
+	<field name="model">pos.void</field>
+	<field name="arch" type="xml">
+		<form string="Form 2306" class="form_2306_awb">
+			<header>
+				<field name="state" widget="statusbar" statusbar_visible="void" decoration-info="state=='void'"/>
+			</header>
+			<sheet>
+				<h1>
+					<field name="name"/>
+					</h1>
+			<group>
+				<group>
+					<field name="partner_id" widget="res_partner_many2one" context="{'show_address': 1}" options='{"always_reload": True}'/>
+					<field name="pos_config_id" readonly="1"/>
+					<field name="pos_user_id"/>
+				</group>
+				<group>
+					<field name="date_void"/>
+					<field name="pos_session_id" readonly="1"/>
+				</group>
+				<field name="pos_void_line_ids">
+					<tree editable="top" create="0" delete="0" >
+						<field name="product_id" readonly="1"/>
+						<field name="product_description" readonly="1"/>
+						<field name="qty" readonly="1"/>
+						<field name="unit_price" readonly="1"/>
+						<!--<field name="tax_id" readonly="1"/>-->
+						<field name="discount" readonly="1"/>
+						<field name="subtotal" readonly="1"/>
+					</tree>
+					
+				</field>
+				<group class="oe_subtotal_footer oe_right" colspan="2" name="posvoid_total">
+					<h2>
+						<label for="total">Total</label>
+						<field name="total" readonly="1" string="Total"/>
+					</h2>
+				</group>
+			</group>
+			
+			</sheet>
+		</form>
+	</field>
+</record>
+	
+	<record id="pos_void_tree_view" model="ir.ui.view">
+	<field name="name">Voided Transaction</field>
+	<field name="model">pos.void</field>
+	<field name="arch" type="xml">
+		<tree>
+			<field name="name"/>
+			<field name="partner_id"/>
+			<field name="state" decoration-info="state=='void'" />
+		</tree>
+	</field>
+</record>
+	
+	
+<record id="action_pos_void_transaction" model="ir.actions.act_window">
+   <field name="name">Voided Transaction</field>
+   <field name="res_model">pos.void</field>
+   <field name="view_mode">tree,form</field>
+   <field name="context">{'show_address': 1}</field>
+   <field name="view_id" ref="pos_void_tree_view"/>
+   <field name="help" type="html">
+	   <p class="o_view_nocontent_smiling_face">
+			Voided Transaction
+	   </p>
+   </field>
+</record>
+	
+	<menuitem name="Voided Transaction"
+          id="pos_void_transaction" 
+          action="action_pos_void_transaction"
+          parent="point_of_sale.menu_point_of_sale"
+          sequence="8"  />
+</odoo>

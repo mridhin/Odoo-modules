@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="act_website_customer_testimonial_form_view" model="ir.ui.view">
+            <field name="name">website.customer.testimonials.form</field>
+            <field name="model">website.customer.testimonials</field>
+            <field name="arch" type="xml">
+                <form string="Website Customer Testimonials">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Title"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="reviewer_title"/>
+                                <field name="reviewer_name"/>
+                                <field name="published"/>
+                            </group>
+                            <group>
+                                <field name="rating" widget="priority"/>
+                                <field name="review_text"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_website_customer_testimonial_tree_view" model="ir.ui.view">
+            <field name="name">website.customer.testimonials.tree</field>
+            <field name="model">website.customer.testimonials</field>
+            <field name="arch" type="xml">
+                <tree string="Website Customer Testimonials">
+
+                    <field name="name"/>
+                    <field name="reviewer_title"/>
+                    <field name="reviewer_name"/>
+                    <field name="rating" widget="priority"/>
+                    <field name="published" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="act_website_customer_testimonial_search_view" model="ir.ui.view">
+            <field name="name">website.customer.testimonials.search</field>
+            <field name="model">website.customer.testimonials</field>
+            <field name="arch" type="xml">
+                <search string="Website Customer Testimonials">
+                    <filter string="Published" name="published" domain="[('published', '=', True)]" help="Show only published reviews"/>
+                    <filter string="Unpublished" name="unpublished" domain="[('published', '=', False)]" help="Show only published reviews"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Rating" name="rating" context="{'group_by':'rating'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="act_website_customer_testimonial_act_window" model="ir.actions.act_window">
+            <field name="name">Customer Testimonials</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">website.customer.testimonials</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Website Customer Testimonials.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Customer Testimonials" id="act_website_customer_testimonial_menu" parent="website.website_visitor_menu" action="act_website_customer_testimonial_act_window"/>
+
+    </data>
+</odoo>

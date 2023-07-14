@@ -1,0 +1,68 @@
+<odoo>
+
+
+    <record id="resource_allocation_report_tree_view" model="ir.ui.view">
+        <field name="name">resource.allocation.report.tree</field>
+        <field name="model">resource.allocation.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="project_id" optional="show"/>
+                <field name="task_id" optional="show"/>
+                <field name="task_stage" optional="show" widget="many2many_tags"/>
+                <field name="resource_ids" widget="many2many_tags"/>
+                <field name="role"/>
+                <field name="story_points" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="search_view_resource_allocation_report" model="ir.ui.view">
+            <field name="name">resource.allocation.report.select</field>
+            <field name="model">resource.allocation.report</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="project_id" string="Project"/>
+                    <field name="task_id" string="Task"/>
+                    <field name="task_stage"/>
+                    <field name="resource_ids"/>
+                    <field name="role" />
+                    <field name="story_points"/>
+                    <separator/>
+<!--                    <filter string="My Projects" name="own_projects" domain="[('user_id', '=', uid)]"/>-->
+<!--                    <separator/>-->
+
+                    <group expand="0" string="Group By">
+                        <filter string="Project" name="Project" context="{'group_by': 'project_id'}"/>
+                        <filter string="Task" name="Task" context="{'group_by': 'task_id'}"/>
+                        <filter string="Task Stage" name="task_stage" context="{'group_by': 'task_stage'}"/>
+                        <filter string="Story Points" name="story_points" context="{'group_by': 'story_points'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--<record id="action_resource_allocation_report" model="ir.actions.act_window">
+            <field name="name">Resource Allocation</field>
+            <field name="res_model">resource.allocation.report</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No Resource Allocation found. Let's create one!
+              </p>
+            </field>
+        </record>-->
+
+        <!-- Action view -->
+        <record id="action_resource_allocation_report"  model="ir.actions.server">
+            <field name="name">Resource Allocation</field>
+            <field name="model_id" ref="gitlab_connector.model_resource_allocation_report"/>
+            <field name="state">code</field>
+            <field name="code">action = model.resource_allocation_report_action()</field>
+        </record>
+
+        <menuitem id="menu_resource_allocation_report"
+                name="Resource Allocation"
+                action="action_resource_allocation_report"
+                parent="project.menu_project_report"/>
+
+</odoo>

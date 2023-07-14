@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+               <field name="multiple_disc"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <label for="multiple_disc"/>
+                <div>
+                    <field name="multiple_disc" class="oe_inline" placeholder="e.g. 25/5"/>
+                    <button name="remove_discount" type="object"
+                        string="Apply"
+                        class="oe_inline"
+                        attrs="{'invisible': [('multiple_disc', 'not in', ['', ' ', '0'])]}"
+                        confirm="Are you sure you want to remove discount on all items?"/>
+
+                    <button name="distribute_discount"
+                        string="Apply"
+                        type="object"
+                        class="oe_inline"
+                        attrs="{'invisible': [('multiple_disc', 'in', ['', ' ', '0'])]}"
+                        confirm="Are you sure you want to distribute discount on all items?"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="awb_tax_property_name_immediate1" model="tax.property">
+            <field name="awb_tax_property_name">Applies to Service Items</field>
+            <field name="awb_tax_property_description">This tax code will be used for transactions related to services</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate2" model="tax.property">
+            <field name="awb_tax_property_name">Capital Goods</field>
+            <field name="awb_tax_property_description">This tax code will be used for transactions involving fixed assets or capital goods</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate3" model="tax.property">
+            <field name="awb_tax_property_name">Pos</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions where the tax invoice was issued by a cash register</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate4" model="tax.property">
+            <field name="awb_tax_property_name">Default Code</field>
+            <field name="awb_tax_property_description">This tax code will be selected by default on transactions</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate5" model="tax.property">
+            <field name="awb_tax_property_name">Exclude From VAT Reports</field>
+            <field name="awb_tax_property_description">This tax code will not appear on VAT reports</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate6" model="tax.property">
+            <field name="awb_tax_property_name">Exempt</field>
+            <field name="awb_tax_property_description">This tax code will be used to indicate that whatever this code applies to is exempt from tax</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate7" model="tax.property">
+            <field name="awb_tax_property_name">Export</field>
+            <field name="awb_tax_property_description">This tax code will be used for international sales</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate8" model="tax.property">
+            <field name="awb_tax_property_name">Government</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify government related transactions</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate9" model="tax.property">
+            <field name="awb_tax_property_name">Import</field>
+            <field name="awb_tax_property_description">This tax code will be used for transactions involving the importation of either goods or services</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate10" model="tax.property">
+            <field name="awb_tax_property_name">Import VAT</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions that are imposed taxes by the customs agency</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate11" model="tax.property">
+            <field name="awb_tax_property_name">No Tax Credit</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions that are not eligible for tax credits</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate12" model="tax.property">
+            <field name="awb_tax_property_name">No Tax Invoice</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions where a valid tax invoice was not issued or is not necessary</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate13" model="tax.property">
+            <field name="awb_tax_property_name">Non-Deductible</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions that have non-deductible tax</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate14" model="tax.property">
+            <field name="awb_tax_property_name">Nontaxable</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions that are not subject to the tax law</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate15" model="tax.property">
+            <field name="awb_tax_property_name">Outside Customs Territory</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions that are outside customs territory</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate16" model="tax.property">
+            <field name="awb_tax_property_name">Surcharge</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions that are subject to the tax law but have been suspended by a temporary legal measure</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate17" model="tax.property">
+            <field name="awb_tax_property_name">Suspended</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions where surcharges</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate18" model="tax.property">
+            <field name="awb_tax_property_name">Triplicate Invoice</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify transactions where triplicate copies of tax invoices need to be issued</field>
+            <field name="awb_type">vat</field>
+        </record>
+        <record id="awb_tax_property_name_immediate" model="tax.property">
+            <field name="awb_tax_property_name">Unknown Tax Credit</field>
+            <field name="awb_tax_property_description">This tax code will be used to identify purchase transactions where the tax credit is determined by the usage of goods and is unknown when the transaction was made</field>
+            <field name="awb_type">vat</field>
+        </record>
+
+        <record id="awb_tax_property_name_professional" model="tax.property">
+            <field name="awb_tax_property_name">Professional Fees</field>
+            <field name="awb_tax_property_description">This tax property is used for transactions related to Professional Services</field>
+            <field name="awb_type">ewt</field>
+        </record>
+        <record id="awb_tax_property_name_rental" model="tax.property">
+            <field name="awb_tax_property_name">Rental</field>
+            <field name="awb_tax_property_description">This tax property is used for rental of Real or Personal Property</field>
+            <field name="awb_type">ewt</field>
+        </record>
+        <record id="awb_tax_property_name_goods" model="tax.property">
+            <field name="awb_tax_property_name">Goods</field>
+            <field name="awb_tax_property_description">This tax property is used for purchases of Goods</field>
+            <field name="awb_type">ewt</field>
+        </record>
+        <record id="awb_tax_property_name_service" model="tax.property">
+            <field name="awb_tax_property_name">Service</field>
+            <field name="awb_tax_property_description">This tax property is used for purchases of Services not related to Professional Services</field>
+            <field name="awb_type">ewt</field>
+        </record>
+        <record id="awb_tax_property_name_commission" model="tax.property">
+            <field name="awb_tax_property_name">Commission &amp; Rebates</field>
+            <field name="awb_tax_property_description">This tax property is used to identify withholding taxes imposed on disbursement of Commissions and Rebates</field>
+            <field name="awb_type">ewt</field>
+        </record>
+        <record id="awb_tax_property_name_minerals" model="tax.property">
+            <field name="awb_tax_property_name">Minerals</field>
+            <field name="awb_tax_property_description">This tax property is used for purchases of minerals, mineral products, and quarry resources</field>
+            <field name="awb_type">ewt</field>
+        </record>
+        <record id="awb_tax_property_name_interest" model="tax.property">
+            <field name="awb_tax_property_name">Interest &amp; Refunds</field>
+            <field name="awb_tax_property_description">This tax property is used to identify withholding taxes imposed on disbursement of Interests and Refunds</field>
+            <field name="awb_type">ewt</field>
+        </record>
+        <record id="awb_tax_property_name_real" model="tax.property">
+            <field name="awb_tax_property_name">Real Property</field>
+            <field name="awb_tax_property_description">This tax property is used to identify withholding taxes imposed on purchases of Real Property considered as ordinary asset</field>
+            <field name="awb_type">ewt</field>
+        </record>
+        <record id="awb_tax_property_name_miscellaneous" model="tax.property">
+            <field name="awb_tax_property_name">Miscellaneous</field>
+            <field name="awb_tax_property_description">This tax property is used to identify withholding taxes not applicable to other taxes mentioned.</field>
+            <field name="awb_type">ewt</field>
+        </record>
+    </data>
+</odoo>

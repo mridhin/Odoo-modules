@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('accept-closing')]" position="after">
+            <div class="z_reading" style="text-align:left;">
+                <input id="is_z_reading" type="checkbox" style="all:revert; margin-right:10px;"/>
+                <label for="is_z_reading" style="color:red;font-weight:bold;font-size:1.1em">Are you the last user for today? Check to print Z-Reading.</label>
+            </div>
+        </xpath>
+    </t>
+</templates>

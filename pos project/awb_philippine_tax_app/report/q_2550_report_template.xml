@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_q_2550_reports">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="row part-one" style="height:10px;margin-left:15px;">
+                        <p>(To</p>&amp;nbsp;<p>be</p>&amp;nbsp;<p>filled</p>&amp;nbsp;<p>up</p>&amp;nbsp;<p>by</p>&amp;nbsp;<p>the</p>&amp;nbsp;<p>BIR)</p>
+                    </div>
+                    <div class="row part-one" style="height:10px;">
+                        <div class="row" style="margin-left:25px;">
+                            <p>&#9656;</p>&amp;nbsp;<p>DLN:</p>
+                        </div>
+                        <div class="row" style="margin-left:720px;">
+                            <p>&#9656;</p>&amp;nbsp;<p>PSIC:</p>
+                        </div>
+                    </div>
+                    <div class="main-headre-div" style="height:87px;">
+                    <div class="text-left row">
+                        <img src="/awb_philippine_tax_app/static/src/img/company.png" style="
+                            max-height: 75px;margin-left:28px;margin-top:5px"/>
+                        <div>
+                            <h7>Republika ng Pilipinas</h7><br/>
+                            <h6>Kagawaran ng Pananalapi</h6><br/>
+                            <h5 class="headre-div">Kawanihan ng Rentas Internas</h5><br/>
+                        </div>
+                        <div>
+                            <h4>Quarterly Value-Added</h4><br/>
+                            <h4 class="headre-div text-center">Tax Return</h4>
+                            <h7 class="headre-div text-center" style="margin-left:15px;">(Cumulative For 3 Months)</h7>
+                        </div>
+                        <div class="headre-div-2">
+                            <p class="text-right">BIR Form No.</p><br/>
+                            <h3 class="headre-div-1 text-right">2550Q</h3><br/>
+                            <p class="headre-div text-right">February 2007 (ENCS)</p><br/>
+                        </div>
+                    </div>
+                </div>
+                <t t-foreach="docs" t-as="o">
+                    <div class="part-div">
+                        <div class="part-zero b-bottom">
+                            <p>Fill in all applicable spaces. Mark all appropriate boxes with an “X”.</p>
+                        </div>
+                        <div class="row part-one" style="height:13px;">
+                            <!-- <div class="row"> -->
+                                <div class="row" style="margin-left:30px;">
+                                    <b style="margin-left:3px;">1</b>
+                                    <p style="margin-left:10px;">For the</p><p style="margin-left:10px;"></p>&amp;nbsp;&#9656;
+                                    <div class="yesbox1" style="margin-left:10px;">
+                                    </div>
+                                    <p style="margin-left:10px;">Calendar</p>
+                                    <div class="yesbox1" style="margin-left:10px;">
+                                    </div>
+                                    <p style="margin-left:10px;">Fiscal</p>
+                                    <b style="margin-left:15px;">2</b>
+                                     <p style="margin-left:10px;">Quarter</p>
+                                     <div class="yesbox1" style="margin-left:10px;">
+                                        <t t-if="o.awb_fiscal_quarter.sequence == 1">
+                                            <p class="text-center">&#10004; </p>   
+                                        </t>
+                                    </div>
+                                    <p style="margin-left:10px;">1st</p>
+                                    <div class="yesbox1" style="margin-left:10px;">
+                                        <t t-if="o.awb_fiscal_quarter.sequence == 3">
+                                            <p class="text-center">&#10004; </p>   
+                                        </t>
+                                    </div>
+                                    <p style="margin-left:10px;">3rd</p>
+                                    <b style="margin-left:15px;">3</b>
+                                    <p style="margin-left:10px;">Return
+                                    </p>
+                                    <p style="margin-left:15px;">From</p>
+                                    <div class="date-boxq" style="margin-left:10px;">
+                                        <span t-esc="o.awb_fiscal_quarter.date_start.strftime('%m/%d/%Y')"/>
+                                    </div>
+                                    <b style="margin-left:15px;">4</b>
+                                    <p style="margin-left:10px;">Amended</p>
+                                    <div class="yesbox1" style="margin-left:10px;">
+                                        <t t-if="o.awb_amended_return == 't'">
+                                            <p class="text-center">&#10004; </p>   
+                                        </t> 
+                                    </div>
+                                    <p style="margin-left:10px;">yes</p>
+                                    <b style="margin-left:15px;">5</b>
+                                    <p style="margin-left:10px;padding-right:5px;">Short</p>
+                                    <div class="yesbox1" style="margin-left:13px;">
+                                        <t t-if="o.awb_short_period_return == 'tru'">
+                                            <p class="text-center">&#10004; </p>   
+                                        </t> 
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                        <div class="row part-one" style="height:22px;">
+                            <p style="margin-left:32px;">Year </p>&amp;nbsp;
+                            <p>Ended</p>
+                            <p style="margin-top:13px;margin-left:-38px">( MM/ YYYY)</p>&#9656;
+                            <div class="leftbox1">
+                                <span t-esc="o.awb_month"/> 
+                            </div>
+                            <div class="right-boxq1">
+                                <span t-esc="o.awb_year"/> 
+                            </div>
+                            <p style="margin-left:51px;"></p>&#9656;
+                            <div class="yesbox1" style="margin-left:10px;">
+                                <t t-if="o.awb_fiscal_quarter.sequence == 2">
+                                    <p class="text-center">&#10004; </p>   
+                                </t> 
+                            </div>
+                            <p style="margin-left:10px;">2nd</p>
+                            <div class="yesbox1" style="margin-left:8px;">
+                                <t t-if="o.awb_fiscal_quarter.sequence == 4">
+                                    <p class="text-center">&#10004; </p>   
+                                </t>
+                            </div>
+                            <p style="margin-left:10px;">4th</p>
+
+                            <p style="margin-left:32px;">Period </p>&amp;nbsp;&amp;nbsp;&#9656;
+                            <p style="margin-top:13px;margin-left:-36px">(mm/dd/yy</p>&amp;nbsp;&amp;nbsp;&amp;nbsp;<p>To</p>
+                            <div class="date-boxq" style="margin-left:18px;">
+                                <span t-esc="o.awb_fiscal_quarter.date_stop.strftime('%m/%d/%Y')"/>
+                            </div>
+                            <p style="margin-left:29px;">Return? </p>&amp;nbsp;&amp;nbsp;&#9656;
+                            <div class="yesbox1" style="margin-left:8px;">
+                                <t t-if="o.awb_amended_return == 'f'">
+                                    <p class="text-center">&#10004; </p>   
+                                </t> 
+                            </div>
+                            <p style="margin-left:10px;">No</p>
+                            <p style="margin-left:30px;">Period </p>&amp;nbsp;
+                            <p style="margin-top:12px;margin-left:-31px">Return?</p>&amp;nbsp;&amp;nbsp;&#9656;
+                            <div class="yesbox1" style="margin-left:8px;">
+                                <t t-if="o.awb_short_period_return == 'fal'">
+                                    <p class="text-center">&#10004; </p>   
+                                </t> 
+                            </div>
+                        </div>
+                        <div class="row part-one  div-q1" style="height:25px;">
+                            <b class="mt-left-q30 mb-4">6</b>
+                            <p class="mb-4" style="margin-left:10px;">TIN</p>
+                            <p class="tin-tri"> &#9656;</p>
+                            <div class="tin-box-q">
+                                <span t-esc="o.awb_company_id.awb_vat_registration_no"/>   
+                            </div>
+                            <div class="row mrleft">
+                                <b class="mb-4" style="margin-left:15px;">7</b>
+                                <p class="mb-4" style="margin-left:10px;"> RDO</p><br/>
+                                <p class="mt-lfet1 mb-4"> Code</p>
+                                <p class="tri-class-q"> &#9656;</p>
+                                <div class="rdocode-box">
+                                  <span t-esc="o.awb_company_id.awb_rdo_code"/>   
+                                </div>
+                            </div>
+                            <div class="row mrleft">
+                                <b class="mb-4" style="margin-left:26px;">8</b>
+                                <p class="mb-4" style="margin-left:10px;"> No. of sheets</p><br/>
+                                <p class="mt-lfet1-q mb-4"> attached</p>
+                                <p class="tri-class"> &#9656;</p>
+                                <div class="number-sheet-q">
+                                  <span t-esc="o.awb_no_of_Sheets"/>
+                                </div>
+                            </div>
+                            <div class="row div6" >
+                                <b class="mb-4 ml-1">9</b>
+                                <p class=" ml-4 mb-4">Line of Business</p>
+                                <p class="mt13"> &#9656;</p>
+                                <div class="business-style-q1">
+                                  <span t-esc="o.awb_company_id.awb_business_style"/>   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row part-one box-left company_name_border" >
+                            <b class="ml-2 mb-4">10</b>
+                            <p style="margin-left:11px;">Taxpayer's</p>&amp;nbsp;<p>Name</p>&amp;nbsp;<p>(For</p>&amp;nbsp;<p>Individual)</p>&amp;nbsp;<p>Last</p>&amp;nbsp;<p>Name,</p>&amp;nbsp;<p>First</p>&amp;nbsp;<p>Name,</p>&amp;nbsp;<p>Middle</p>&amp;nbsp;<p>Name/</p>&amp;nbsp;<p>(For</p>&amp;nbsp;<p>Non-</p><p>individual)</p>&amp;nbsp;<p>Registered</p>&amp;nbsp;<p class="companyname-left">Name</p>
+                            <b style="margin-left:10px;">11</b>
+                            <p style="margin-left:10px;">Telephone</p>&amp;nbsp;<p>Number</p>
+                        </div>
+                        <div class="row part-one div7" style="height:18px;">
+                            <p class=""> &#9656;</p>
+                            <div class="company-name" style="height:11px;">
+                              <span t-esc="o.awb_company_id.name"/>   
+                               
+                            </div>
+                            <div class="phone-num-q">
+                              <span t-esc="o.awb_company_id.phone"/>   
+                            </div>
+                        </div>
+                        <div class="row part-one box-left company_name_border1" >
+                            <strong><p class="ml-2 mb-4">12</p></strong>
+                            <p class="companyname-left1 mb-4">Registered Address</p>
+                            <strong><p class="ml-2 mb-4">13</p></strong>
+                            <p class="ml-1 mb-4">Zip Code</p>
+                        </div>
+                        <div class="row part-one div8">
+                            <p class=""> &#9656;</p>
+                            <div class="company-name">
+                              <span t-esc="o.awb_company_id.street"/>   
+                              <span t-esc="o.awb_company_id.street2 "/>   
+                              <span t-esc="o.awb_company_id.city"/>   
+                              <span t-esc="o.awb_company_id.state_id.name"/>   
+                              <span t-esc="o.awb_company_id.country_id.name"/>  
+                            </div>
+                            <div class="number-sheet" style="margin-left:200px;">
+                              <span t-esc="o.awb_company_id.zip"/>   
+                            </div>
+                        </div>
+                        <div class="row part-one treaty-border-q" style="height:18px;">
+                            <strong><p class="mb-4" style="margin-left:6px;">14</p></strong>
+                            <p class="mb-4  ml-4" style="padding-bottom:15px;">Are you availing of tax relief under Special Law or International Tax Treaty?</p>
+                            <div class="yesbox1 amended-return1" style="margin-left:47px;">
+                                <t t-if="o.awb_special_tax_or_inter_tax_treaty == 'y'">
+                                    <p>&#10004; </p>  
+                                </t>
+                            </div>
+                            <p class="amended-return1">Yes</p>
+                            <div class="nobox1 amended-return1">
+                                <t t-if="o.awb_special_tax_or_inter_tax_treaty == 'n'">
+                                    <p>&#10004; </p> 
+                                </t>   
+                            </div>
+                            <p class="amended-return1">No</p>
+                            <div class="row treaty-div-q">
+                                <p class=" mb-4">If yes, specify </p>
+                                <div class="tax-treatybox">
+                                    <span t-esc="o.awb_specify"/>   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row sub_table_header part1">
+                            <b class="text-left">Part II</b>
+                            <b style="margin-left:300px;">Computation of Tax (Attach additional sheets, if necessary)</b>
+                        </div>
+                        <div class="row part-one" style="height:10px;">
+                            <p style="margin-left: 380px">
+                            Sales</p><p>/Receipts</p>&amp;nbsp;<p>for</p>&amp;nbsp;<p>the</p>&amp;nbsp;<p>Quarter</p>&amp;nbsp;<p>(Exclusive</p>&amp;nbsp;<p>of</p>&amp;nbsp;<p>VAT)</p>
+                            <p style="margin-left: 100px">Output</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>Due</p>&amp;nbsp;<p>for</p>&amp;nbsp;<p>the</p>&amp;nbsp;<p>Quarter</p>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4">15</p></strong>
+                            <p class="sale-div-q">Vatable Sales/Receipt- Private (Sch.1)</p>
+                            <strong><p style="margin-top:1px;padding-right:16px;">15A</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_15_a))"/> 
+                            </div>
+                            <strong><p  class= "ml-2" style="margin-top:1px;padding-right:16px;">15B</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_15_b))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4">16</p></strong>
+                            <p class="mb-4" style="margin-left: 7px;padding-right: 224px;">Sales to Government</p>
+                            <strong><p class="mt-1" style="padding-right:16px;margin-left:7px;">16A</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_16_a))"/> 
+                            </div>
+                            <strong><p class="mt-1 ml-2" style="padding-right:16px;">16B</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_16_b))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4 mb-4">17</p></strong>
+                            <p style="margin-left: 7px;">Zero</p>&amp;nbsp;<p>Rated</p>&amp;nbsp;<p>Sales/Receipts</p>
+                            <strong><p class="mt-1" style="margin-left:215px;padding-right:16px;">17</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_17))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <b class="ml-4">18</b>
+                            <p style="margin-left: 7px;width:10%">
+                                Exempt Sales/Receipts</p>
+                            <b class="mt-1" style="margin-left: 227px;padding-right:16px;">18</b>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_18))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4">19</p></strong>
+                            <p style="margin-left: 7px;">Total Sales/Receipts</p><p> and Output</p>&amp;nbsp;<p>Tax Due</p>
+                            <strong><p style="margin-left:153px;padding-right:16px;">19A</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_19_a))"/> 
+                            </div>
+                            <strong><p class="mt-1 ml-2" style="padding-right:16px;">19B</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_19_b))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4 mb-4">20</p></strong>
+                            <p style="margin-left: 30px">
+                                Less: Allowable</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">20A</p></strong>
+                            <p style="margin-left: 4px;">
+                                Input </p>&amp;nbsp;<p> Tax Carried</p>&amp;nbsp;<p> Over from Previous</p>&amp;nbsp;<p> Period</p>
+                            <strong><p style="margin-left: 345px; padding-right:16px;">20A</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_20_a))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">20B</p></strong>
+                            <p style="margin-left: 4px;">
+                            Input </p> &amp;nbsp; <p>Tax </p> &amp;nbsp;<p> Deferred</p>&amp;nbsp;<p>on Capital Goods</p>
+                            &amp;nbsp;<p>Exceeding </p>&amp;nbsp;<p> P1Million</p>&amp;nbsp;<p>from Previous Period</p>
+                            <strong><p  style="margin-left:208px;padding-right:16px;">20B</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_20_b))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">20C</p></strong>
+                            <p style="margin-left: 4px;">
+                            Transitional</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p>
+                            <strong><p style="margin-left:438px;padding-right:16px;">20C</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_20_c))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">20D</p></strong>
+                            <p style="margin-left: 4px;">
+                            Presumptive </p> &amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p>
+                            <strong><p style="margin-left: 434px;padding-right:16px;">20D</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_20_d))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">20E</p></strong>
+                            <p style="margin-left: 4px;">Others</p>
+                            <strong><p style="margin-left:500px;padding-right:16px;">20E</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_20_e))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:11px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">20F</p></strong>
+                            <p style="margin-left: 4px;">
+                              Total</p> <p>(Sum of Item</p>&amp;nbsp;<p>20A,20B,20C</p><p>,20D</p>   &amp;nbsp;<p>and</p>&amp;nbsp;<p>20E)</p>
+                            <strong><p style="margin-left:342px;padding-right:16px;">20F</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_20_f))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:10px;">
+                            <strong><p class="ml-4 mb-4">21</p></strong>
+                            <p style="margin-left: 30px">
+                                Current Transactions</p>
+                            <p style="margin-left: 310px">
+                                Purchases</p>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21A/B</p></strong>
+                            <p style="margin-left: 4px;">
+                            Purchase</p>&amp;nbsp;<p>of Capital</p>&amp;nbsp;<p>Goods not</p>&amp;nbsp;<p>exceeding</p>&amp;nbsp;<p>P1Million</p>&amp;nbsp;<p>(see sch.2)</p>
+                            <strong><p style="margin-left:28px;padding-right:16px;">21A</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_a))"/> 
+                            </div>
+                            <strong><p style="margin-left:9px;padding-right:16px;">21B</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_b))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21C/D</p></strong>
+                            <p style="margin-left: 4px;">
+                            </p>&amp;nbsp;<p>Purchase of</p> &amp;nbsp;<p>Capital Goods</p>&amp;nbsp;<p>exceeding</p>&amp;nbsp;<p>P1Million</p>&amp;nbsp;<p>(see sch.3)</p>
+                            <strong><p style="margin-left:40px;padding-right:16px;">21C</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_c))"/> 
+                            </div>
+                            <strong><p style="margin-left:9px;padding-right:16px;">21D</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_d))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21E/F</p></strong>
+                            <p style="margin-left: 4px;">
+                            Domestic</p>&amp;nbsp;<p> Purchases</p>&amp;nbsp;<p> of Goods</p>&amp;nbsp;<p> Other than</p>&amp;nbsp;<p>Capital</p>&amp;nbsp;<p>Goods</p>
+                            <strong><p style="margin-left:55px;padding-right:16px;">21E</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_e))"/> 
+                            </div>
+                            <strong><p style="margin-left:10px;padding-right:16px;">21F</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_f))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21G/H</p></strong>
+                            <p style="margin-left: 4px;">
+                            Importation of Goods Other than Capital Goods
+                            </p>
+                            <strong><p style="margin-left:87px;padding-right:16px;">21G</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_g))"/> 
+                            </div>
+                            <strong><p style="margin-left:9px;padding-right:16px;">21H</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_h))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21I/J</p></strong>
+                            <p style="margin-left: 4px;">
+                            Domestic Purchase of Services
+                            </p>
+                            <strong><p style="margin-left:164px;padding-right:16px;">21I</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_i))"/> 
+                            </div>
+                            <strong><p style="margin-left:10px;padding-right:18px;">21J</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_j))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21K/L</p></strong>
+                            <p style="margin-left: 4px;">
+                            Services</p>&amp;nbsp;<p>rendered</p>&amp;nbsp;<p>by</p>&amp;nbsp;<p>Non-residents</p>
+                            <strong><p style="margin-left:136px;padding-right:16px;">21K</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_k))"/> 
+                            </div>
+                            <strong><p style="margin-left:9px;padding-right:17px;">21L</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_l))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21M</p></strong>
+                            <p style="margin-left: 4px;">
+                            Purchases</p>&amp;nbsp;<p>Not</p>&amp;nbsp;<p>Qualified</p>&amp;nbsp;<p> for</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p>
+                            <strong><p style="margin-left:133px;padding-right:16px;">21M</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_m))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21N/O</p></strong>
+                            <p style="margin-left: 4px;">
+                            Others
+                            </p>
+                            <strong><p style="margin-left:250px;padding-right:16px;">21N</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_n))"/> 
+                            </div>
+                            <strong><p style="margin-left:9px;padding-right:16px;">21O</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_0))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:29px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">21P</p></strong>
+                            <p style="margin-left: 4px;">
+                            Total Current Purchases</p><p style="margin-top:10px;margin-left:-100px;">(Sum of Item,21A,21C,21E,21G,21I,21K,21M and 21N) </p>
+                            <strong><p style="margin-left:73px;padding-right:16px;">21P</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_21_p))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4 mb-4">22</p></strong>
+                            <p style="margin-left: 4px;">
+                            Total Current Purchases</p>&amp;nbsp;<p>(Sum</p>&amp;nbsp;<p>of Item </p> &amp;nbsp;<p>20F,21B,21D</p><p>,21F,21H,21J,21L</p>&amp;nbsp;<p>and</p>&amp;nbsp;<p> 21O)</p>
+                            <strong><p style="margin-left:267px;padding-right:19.1px;">19</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_22))" /> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:10px;">
+                            <strong><p class="ml-4 mb-4">23</p></strong>
+                            <p style="margin-left: 4px;">Less:</p>&amp;nbsp;<p>Deductions</p>&amp;nbsp; <p>from Input</p>&amp;nbsp;<p>Tax</p>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">23A</p></strong>
+                            <p style="margin-left: 4px;">
+                             Input</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>on Purchases</p>&amp;nbsp;<p>of Capital</p>&amp;nbsp;<p>Goods</p>&amp;nbsp;<p>exceeding</p>&amp;nbsp;<p>P1Million</p>&amp;nbsp;<p>deferred</p>&amp;nbsp;<p>for the</p>&amp;nbsp;<p> succeeding</p>&amp;nbsp;<p>period</p>&amp;nbsp;<p>(Sch.3)</p>
+                            <strong><p style="margin-left:118px;padding-right:16px;">23A</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_23_a))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">23B</p></strong>
+                            <p style="margin-left: 4px;">
+                           Input</p>&amp;nbsp;<p>Tax on</p>&amp;nbsp;<p>Sale to Govt</p><p>. closed</p>&amp;nbsp;<p>to expense</p>&amp;nbsp;<p>(Sch.4)</p>
+                            <strong><p style="margin-left:325px;padding-right:16px;">23B</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_23_b))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">23C</p></strong>
+                            <p style="margin-left: 4px;">
+                           Input</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>allocable</p>&amp;nbsp;<p>to Exempt</p>&amp;nbsp;<p>Sales</p>&amp;nbsp;<p>(Sch.5)</p>
+                            <strong><p style="margin-left:362px;padding-right:16px;">23C</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_23_c))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 65px;">23D</p></strong>
+                            <p style="margin-left: 4px;">
+                           VAT</p>&amp;nbsp;<p>Refund/</p><p>TCC</p>&amp;nbsp;<p>claimed</p>
+                            <strong><p style="margin-left:432px;padding-right:16px;">23D</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_23_d))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">23E</p></strong>
+                            <p style="margin-left: 4px;">
+                           Others
+                            </p>
+                            <strong><p style="margin-left:512px;padding-right:16px;">23E</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_23_e))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">23F</p></strong>
+                            <p style="margin-left: 4px;">
+                           Total (Sum of Item 23A,23B,23C,23D and 23E )
+                            </p>
+                            <strong><p style="margin-left:345px;padding-right:16px;">23F</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_23_f))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;" >
+                            <strong><p class="ml-4 mb-4">24</p></strong>
+                            <p style="margin-left: 4px;">
+                            Total</p>&amp;nbsp;<p>Allowable</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>(Item 22</p>&amp;nbsp;<p>less</p>&amp;nbsp;<p>Item</p>&amp;nbsp;<p>23F)</p>
+                            <strong><p style="margin-left:385px;padding-right:16px;">24</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_24))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4 mb-4">25</p></strong>
+                            <p style="margin-left: 4px;">
+                            Net VAT Payable (Item 19B less Item 24
+                            </p>
+                            <strong><p style="margin-left:420px;padding-right:16px;">25</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_25))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:10px;">
+                            <strong><p class="ml-4 mb-4">26</p></strong>
+                            <p style="margin-left: 30px">
+                            Less:</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>Credits</p><p>/Payments</p>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">26A</p></strong>
+                            <p style="margin-left: 4px;">
+                            Monthly</p>&amp;nbsp;<p>VAT</p>&amp;nbsp;<p> Payments</p>&amp;nbsp;<p> - previous</p>&amp;nbsp;<p> two</p>&amp;nbsp;<p> months</p>
+                            <strong><p style="margin-left:342px;padding-right:16px;">26A</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_26_a))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">26B</p></strong>
+                            <p style="margin-left: 4px;">
+                           Creditable</p>&amp;nbsp;<p>Value-Added</p>&amp;nbsp;<p>Tax Withheld</p>&amp;nbsp;<p>(Sch. 6)</p>
+                            <strong><p style="margin-left:343px;padding-right:16px;">26B</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_26_b))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">26C</p></strong>
+                            <p style="margin-left: 4px;">
+                           Advance</p>&amp;nbsp;<p>Payments</p>&amp;nbsp;<p>for</p>&amp;nbsp;<p> Sugar</p>&amp;nbsp;<p>and Flour</p>&amp;nbsp;<p>Industries</p>&amp;nbsp;<p>(Sch.7)</p>
+                            <strong><p style="margin-left:298px;padding-right:16px;">26C</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_26_c))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">26D</p></strong>
+                            <p style="margin-left: 4px;">
+                           VATwithheld on Sales to Government (Sch.8)
+                            </p>
+                            <strong><p style="margin-left:345px;padding-right:16px;">26D</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_26_d))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">26E</p></strong>
+                            <p style="margin-left: 4px;">
+                           VAT paid</p>&amp;nbsp;<p>in return</p>&amp;nbsp;<p>previously</p>&amp;nbsp;<p>filed,</p>&amp;nbsp;<p>if</p>&amp;nbsp;<p>this</p>&amp;nbsp;<p>is an</p>&amp;nbsp;<p>amended</p>&amp;nbsp;<p>return</p>
+                            <strong><p style="margin-left:272px;padding-right:16px;">26E</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_26_e))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">26F</p></strong>
+                            <p style="margin-left: 4px;">
+                          Advance</p>&amp;nbsp;<p>Payments made</p>&amp;nbsp;<p>(please attach</p>&amp;nbsp;<p>proof of </p>&amp;nbsp;<p>payments</p>&amp;nbsp;<p>-</p>&amp;nbsp;<p> BIR</p>&amp;nbsp;<p> Form</p>&amp;nbsp;<p> No.</p>&amp;nbsp;<p> 0605)</p> 
+                            <strong><p style="margin-left:201px;padding-right:16px;">26F</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_26_f))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">26G</p></strong>
+                            <p style="margin-left: 4px;">
+                          Others
+                            </p>
+                            <strong><p style="margin-left:501px;padding-right:16px;">26G</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_26_g))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="mb-4" style="margin-left: 60px;">26H</p></strong>
+                            <p style="margin-left: 4px;">
+                          Total</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>Credits</p><p>/Payments</p>&amp;nbsp;<p>(Sum</p>&amp;nbsp;<p>of Item</p>&amp;nbsp;<p>26A,26B,26C</p><p>,26D,</p>&amp;nbsp;<p> 26E,</p>&amp;nbsp;<p> 26F</p>&amp;nbsp;<p>and</p>&amp;nbsp;<p>23G)</p>
+                            <strong><p style="margin-left:208px;padding-right:16px;">26H</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_26_h))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4 mb-4">27</p></strong>
+                            <p style="margin-left: 4px;">
+                            Tax</p>&amp;nbsp;<p>Still</p>&amp;nbsp;<p> Payable/</p><p>(Overpayment)</p>&amp;nbsp;<p> (Item</p>&amp;nbsp;<p> 25</p>&amp;nbsp;<p> less</p>&amp;nbsp;<p> Item</p>&amp;nbsp;<p> 26H)</p>
+                            <strong><p style="margin-left:351px;padding-right:16px;">27</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_27))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:10px;">
+                            <strong><p class="ml-4 mb-4">28</p></strong>
+                            <p>
+                                Add: Penalties</p>
+                            <p style="margin-left: 91px">
+                                Surcharge</p>
+                            <p style="margin-left: 133px">
+                                Interest</p>
+                            <p style="margin-left: 120px">
+                                Compromise</p>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p style="margin-left:120px;">28A</p></strong>
+                            <div class="box28-q">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_28_a))"/> 
+                            </div>
+                            <strong><p class="ml-4">28B</p></strong>
+                            <div class="box28-q">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_28_b))"/> 
+                            </div>
+                            <strong><p class="ml-4">28C</p></strong>
+                            <div class="box28-q">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_28_c))"/>
+                            </div>
+                            <strong><p class="ml-4">28D</p></strong>
+                            <div class="tax-valuebox" style="margin-left:33.5px;">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_28_d))"/> 
+                            </div>
+                        </div>
+                        <div class="row part-one" style="height:14px;">
+                            <strong><p class="ml-4 mb-4">29</p></strong>
+                            <p style="margin-left:4px;">
+                            Total</p>&amp;nbsp;<p>Amount</p>&amp;nbsp;<p>Payable/</p><p>(Overpayment)</p>&amp;nbsp;<p>(Sum</p>&amp;nbsp;<p>of</p>&amp;nbsp;<p>Item 24</p>&amp;nbsp;<p>and</p>&amp;nbsp;<p>25D)</p>
+                            <strong><p style="margin-left:317px;padding-right:16px;">29</p></strong>
+                            <div class="tax-valuebox">
+                                <span t-esc="'{0:,.2f}'.format(abs(o.awb_29))"/> 
+                            </div>
+                        </div>
+                    </div>
+                <div class="part-div-2">
+                    <div class= "ml-4 row part-one" style="margin-left:auto;margin-right:auto;height:25px">
+                        <p>I declare, under the penalties of perjury, that this return has been made in good faith, verified by me, and to the best of my knowledge, and belief,
+                        is true and correct, pursuant to the provisions of the National Internal Revenue Code, as amended, and the regulations issued under authority thereof
+                        </p>
+                    </div>
+                    <div class="row ml-4 part-one" style="height:70px;">
+                        <strong><p class="ml-4 mb-4">27</p></strong>
+                        <p style="border-top:1px solid black;margin-top:40px;">
+                        President/Vice President/Principal Officer/Accredited Tax Agent/
+                        Authorized Representative/Taxpayer 
+                        (Signature Over Printed Name) 
+                        </p>
+                        <strong><p class="ml-4 mb-4">28</p></strong>
+                        <p style="border-top:1px solid black;margin-top:40px;">
+                        Treasurer/Assistant Treasurer
+                        (Signature Over Printed Name)
+                        </p>
+                    </div>
+                    <div class="row part-one" style="height:26px;">
+                        <p class="mt-3" style="margin-left:72px;border-top:1px solid black;margin-top:3px;">
+                        Title/Position of Signatory
+                        </p>
+                        <p class="mt-3" style="margin-left:175px;border-top:1px solid black;margin-top:3px;">
+                        TIN of Signatory
+                        </p>
+                        <p class="mt-3" style="margin-left:175px;border-top:1px solid black;margin-top:3px;">
+                        Title/Position of Signatory
+                        </p>
+                    </div>
+                    <div class="row part-one" style="height:26px;">
+                        <p class="mt-3" style="margin-left:50px; border-top:1px solid black;margin-top:5px;">
+                        Tax Agent Acc. No./Atty's Roll No.(if applicable)
+                        </p>
+                        <p class="mt-3" style="margin-left:82px;border-top:1px solid black;margin-top:3px;">
+                        Date of Issuance
+                        </p>
+                        <p class="mt-3" style="margin-left:82px;border-top:1px solid black;margin-top:3px;">
+                        Date of Expiry
+                        </p>
+                        <p class="mt-3" style="margin-left:81px;border-top:1px solid black;margin-top:3px;">
+                        TIN of Signatory
+                        </p>
+                    </div>
+                    <div class="row sub_table_header part1">
+                            <strong class="text-left"><b>Part III</b></strong>
+                            <strong style="margin-left:315px;" ><b>Details</b>
+                            &amp;nbsp; <b>of</b>&amp;nbsp; <b>Payment</b></strong>
+                    </div>
+                    <div class="row part-one">
+                        <table style="border:1px solid black;margin-left:14px;background-color: #A9A9A9;" width="590">
+                            <thead class="text-center">
+                                <th class="table-border" width="15%" rowspan="2">Particulars</th>
+                                <th class="table-border" width="15%" rowspan="2">Drawee Bank/Agency</th>
+                                <th class="table-border" width="20%" rowspan="2">Number</th>
+                                <th class="table-border" width="20%" colspan="3">date</th>
+                                <th class="table-border" width="25%" rowspan="3">Amount</th>
+                                <tr>
+                                    <th class="table-border">MM</th>
+                                    <th class="table-border">DD</th>
+                                    <th class="table-border">YYYY</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                    <td>
+                                    <strong>29</strong>Cash/Bank 29A
+                                </td>
+                                <td><div class="box29"></div></td>
+                                <td class="row"><p>29B</p><div class="box29-b"></div><p>29c</p></td>
+                                <td><div class="box29-b-1"></div></td>
+                                <td><div class="box29-b-1"></div></td>
+                                <td><div class="box29-b-2"></div></td>
+                                <td class="row">29D<div class="box29-b-3"></div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">Debit Memo------------------------------------------------------------------- </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <strong>30</strong>Check 30A
+                                </td>
+                                <td><div class="box29"></div></td>
+                                <td class="row"><p>30B</p><div class="box29-b"></div><p>30c</p></td>
+                                <td><div class="box29-b-1"></div></td>
+                                <td><div class="box29-b-1"></div></td>
+                                <td><div class="box29-b-2"></div></td>
+                                <td class="row">29D<div class="box29-b-3"></div></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <strong>31</strong>Tax Debit
+                                </td>
+                                <td></td>
+                                <td class="row"><p>31A</p><div class="box29-b"></div><p>31B</p></td>
+                                <td><div class="box29-b-1"></div></td>
+                                <td><div class="box29-b-1"></div></td>
+                                <td><div class="box29-b-2"></div></td>
+                                <td class="row">31C<div class="box29-b-3"></div></td>
+                            </tr>
+                            <tr>
+                                <td width="100%" colspan="5">Memo----------------------------------------------------------------------- </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <strong>32</strong>Others 32A
+                                </td>
+                                <td><div class="box29"></div></td>
+                                <td class="row"><p>32B</p><div class="box29-b"></div><p>32C</p></td>
+                                <td><div class="box29-b-1"></div></td>
+                                <td><div class="box29-b-1"></div></td>
+                                <td><div class="box29-b-2"></div></td>
+                                <td class="row">32D<div class="box29-b-3"></div></td>
+                            </tr>
+
+                        </table>
+                        <div>
+                            <p width="8%">Stamp ofReceiving Office/AAB
+                            and Date of Receipt
+                            (RO's Signature/
+                            Bank Teller's Initial</p>
+                        </div>
+                    </div>
+                    <div class="row part-one last-div" style="height:40px;">
+                        <div class="row" style="margin-bottom:30px;margin-left:4px">
+                            <p>Machine</p>&amp;nbsp;<p> Validation</p>&amp;nbsp;<p>(if</p>&amp;nbsp;<p>filed</p>&amp;nbsp;<p>with</p>&amp;nbsp;<p>an</p>&amp;nbsp;<p> accredited</p>&amp;nbsp;<p>agent</p>&amp;nbsp;<p> bank)</p>&amp;nbsp;<p>/Revenue</p>&amp;nbsp;<p> Official</p>&amp;nbsp;<p> Receipt</p>&amp;nbsp;<p> Details</p>&amp;nbsp;<p> (If</p>&amp;nbsp;<p> not</p>&amp;nbsp;<p> filed</p>&amp;nbsp;<p> with</p>&amp;nbsp;<p> an</p>&amp;nbsp; <p>Authorized</p>&amp;nbsp;<p> Agent</p>&amp;nbsp;<p> Bank)</p>
+                        </div>
+                    </div>
+                </div>
+                </t>
+                <div style="page-break-before: always;"/>
+                    <div class="row font-style" style="height:10px;margin-left:650px">
+                        <p>BIR</p>&amp;nbsp;<p>Form</p>&amp;nbsp;<p>2550Q</p>&amp;nbsp;<p>- February</p>&amp;nbsp;<p>2007</p>&amp;nbsp;<p>(EN</p>&amp;nbsp;<p>CS)</p><p class="ml-4">page</p>&amp;nbsp;<p>2</p>
+                    </div>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+
+                        <thead>
+                            <tr class="bg-color">
+                            <th class="sheet-tables">Schedule 1</th>
+                            <th class="text-center sheet-tables">Schedule of Sales/Receipts and Output Tax (Attach additional sheet, if necessary)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                            <th class="sheet-tables" style="font-family:Arial;font-size:7px;">Industries Covered by VAT</th>
+                            <th  class="text-center sheet-tables" style="font-family:Arial;font-size:7px;">A T C</th>
+                            <th  class="text-center sheet-tables" style="font-family:Arial;font-size:7px;">Amount of Sales/Receipts For the Quarter</th>
+                            <th  class="text-center sheet-tables">Output Tax For the Quarter</th>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="cell_hieght sheet-tables text-left bg-color" height="10px">To Item 15A/B</td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Schedule 2</th>
+                                <th class="sheet-tables">Purchases/Importation of Capital Goods (Aggregate Amount Not Exceeding P1 Million) (Attach additional sheet, if necessary)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Date Purchased (A)</th>
+                                <th  class="text-center sheet-tables">Description(B)</th>
+                                <th  class="text-center sheet-tables">Amount (Net of VAT) (C)</th>
+                                <th  class="text-center sheet-tables">Input Tax (D)</th>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="cell_hieght sheet-tables text-left bg-color" height="10px">Total (To Item 21A/B)</td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Schedule 3</th>
+                                <th class="sheet-tables">Purchases/Importation of Capital Goods (Aggregate Amount Exceeds P1 Million) (Attach additional sheet, if necessary)</th>
+                            </tr>
+                            <tr class="bg-color"><td class="sheet-tables" colspan="2">A) Purchases/Importations This Quarter</td></tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Date Purchased (A)</th>
+                                <th  class="text-center sheet-tables">Description (B)</th>
+                                <th  class="text-center sheet-tables">Amount (Net of VAT) (C)</th>
+                                <th  class="text-center sheet-tables">Input Tax (Cx12% ) (D)</th>
+                                <th  class="text-center sheet-tables">Est. Life (in months) (E)</th>
+                                <th  class="text-center sheet-tables">
+                                    Recognized Life (In Months)
+                                    Useful life or 60 mos.(whichever is shorter)
+                                    (F)
+                                </th>
+                                <th  class="text-center sheet-tables">Allowable Input Tax for the Period * (G)</th>
+                                <th  class="text-center sheet-tables">Balance of Input Tax to be carried to Next Period (D) less (G) (H)</th>
+
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="cell_hieght sheet-tables text-left bg-color" height="10px">Total (To Item 21C/D)</td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" class=" sheet-tables cell_hieght text-left bg-color" height="10px">B) Purchases/Importations Previous Quarter</td>
+                            </tr>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Date Purchased (A)</th>
+                                <th  class=" sheet-tables text-center">Description (B)</th>
+                                <th  class=" sheet-tables text-center">Amount (Net of VAT) (C)</th>
+                                <th  class="sheet-tables text-center">Balance of Input Tax fromPrevious Period (D)</th>
+                                <th  class="sheet-tables text-center">Est. Life (in months) (E)</th>
+                                <th  class="sheet-tables text-center">
+                                    Recognized Life (In Months)
+                                    Remaining Life
+                                    (F)
+                                </th>
+                                <th  class="sheet-tables text-center">Allowable Input Tax for the Period* (G)</th>
+                                <th  class="sheet-tables text-center">Balance of Input Tax to be carried to Next Period (D) less (G) (H)</th>
+
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="cell_hieght sheet-tables text-left bg-color" height="10px">Total</td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="sheet-tables cell_hieght text-left bg-color" height="10px">C) Total Input Tax Deferred for future period from current and previous purchases (To Item 23A)</td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" class="sheet-tables cell_hieght text-left bg-color" height="10px">* - D divided by F multiplied by Number of months in use during the quarter</td>
+                                <td class="sheet-tables cell_hieght" height="10px"></td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Schedule 4</th>
+                                <th class="text-center sheet-tables">Input Tax Attributable to Sale to Government</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="row font-style border-div">
+                        <div class="bg-color q2550-div">
+                            <div class="row" style="margin-left:30px;height:13px;">
+                                <p>Input</p>&amp;nbsp;<p> Tax</p>&amp;nbsp;<p>directly</p>&amp;nbsp;<p>attributable</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>sale</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>government</p>
+                            </div>
+                            <div class="row" style="margin-left:30px;height:13px;">
+                                <p>
+                                    Add:</p>&amp;nbsp;<p>Ratable</p>&amp;nbsp;<p>portion</p>&amp;nbsp;<p>of</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>not</p>&amp;nbsp;<p>directly</p>&amp;nbsp;<p>attributable</p>&amp;nbsp;<p> to</p>&amp;nbsp;<p>any</p>&amp;nbsp;<p>activity:</p>
+                            </div>
+                            
+                            <div class="row" style="height:15px;">
+                                <p style="margin-left:15px;">
+                                    Taxable sales to government
+                                </p><b style="margin-left:15px;">X</b>
+                                <p style="margin-left:15px;">Amount of Input</p>&amp;nbsp;<p> Tax</p> &amp;nbsp;<p>not</p>&amp;nbsp;<p>directly</p>&amp;nbsp;<p>attributable</p>
+                            </div>
+                            <div class="row" style="height:15px;margin-left:15px;">
+                               &amp;nbsp;&amp;nbsp;<p style="margin-left:15px;border-bottom:1px solid black;">
+                                    Total Sales      
+                                </p>&amp;nbsp;&amp;nbsp;
+                            </div>
+                            <div class="row ml-4" style="height:15px;">
+                                <p>Total</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p> &amp;nbsp;<p>attributable</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>sale</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>government</p>
+                            </div>
+                            <div class="row ml-2" style="height:11px;">
+                                <p>Less:</p>&amp;nbsp;<p>Standard</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>sale</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>government</p>
+                            </div>
+                            <div class="row ml-2" style="height:13px;">
+                                <p>Input</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>on</p>&amp;nbsp;<p>Sale</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>Govt.</p>&amp;nbsp;<p>closed</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>expense</p>&amp;nbsp;<p>(To</p>&amp;nbsp;<p>Item</p>&amp;nbsp;<p>23B)</p>
+                            </div> 
+                        </div>
+                        <div>
+                            <table style="margin-left:0px;border:1px solid black" width="180px">
+                                <thead>
+                                    <tr><td width="100%" style="border-bottom:1px solid black;height:10px"></td></tr>
+                                    <tr><td width="100%" style="border-bottom:1px solid black;height:40px"></td></tr>
+                                    <tr><td style="border-bottom:1px solid black;height:30px"></td></tr>
+                                    <tr><td style="border-bottom:1px solid black;height:10px"></td></tr>
+                                    <tr><td style="border-bottom:1px solid black;height:10px"></td></tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Schedule 5</th>
+                                <th class="text-center sheet-tables">Input Tax Attributable to Exempt Sales</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="row font-style border-div">
+                        <div class="bg-color" style="padding-right: 437px;">
+                            <div class="row" style="margin-left:30px;height:13px;">
+                                <p>Input</p>&amp;nbsp;<p> Tax</p>&amp;nbsp;<p>directly</p>&amp;nbsp;<p>attributable</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>exempt</p>&amp;nbsp;<p>sale</p>
+                            </div>
+                            <div class="row" style="margin-left:30px;height:13px;">
+                                <p>
+                                    Add:</p>&amp;nbsp;<p>Ratable</p>&amp;nbsp;<p>portion</p>&amp;nbsp;<p>of</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p>&amp;nbsp;<p>not</p>&amp;nbsp;<p>directly</p>&amp;nbsp;<p>attributable</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p> any</p>&amp;nbsp;<p> activity:</p>
+                            </div>
+                            <div class="row" style="height:15px;">
+                                <p style="margin-left:15px;border-top:1px">
+                                    Taxable exempt sale
+                                </p><b style="margin-left:15px;">X</b>
+                                <p style="margin-left:15px;">Amount of Input</p>&amp;nbsp;<p> Tax</p> &amp;nbsp; <p>not</p><p>directly</p>&amp;nbsp;<p>attributable</p>
+                            </div>
+                            <div class="row" style="height:20px;margin-left:15px;">
+                                <p style="margin-left:15px;border-top:1px solid black;">
+                                    Total Sales
+                                </p>
+                            </div>
+                            <div class="row ml-4" style="height:15px;">
+                                <p>Total</p>&amp;nbsp;<p>Input</p>&amp;nbsp;<p>Tax</p> &amp;nbsp;<p>attributable</p>&amp;nbsp;<p>to</p>&amp;nbsp;<p>exempt</p>&amp;nbsp;<p>sale</p>&amp;nbsp;<p>(To</p>&amp;nbsp;<p>Item</p>&amp;nbsp;<p>23C)</p>
+                            </div> 
+                        </div>
+                        <div>
+                            <table style="margin-left:0px;border:1px solid black" width="180px">
+                                <thead>
+                                    <tr><td width="100%" style="border-bottom:1px solid black;height:10px"></td></tr>
+                                    <tr><td width="100%" style="border-bottom:1px solid black;height:40px"></td></tr>
+                                    <tr><td style="border-bottom:1px solid black;height:30px"></td></tr>
+                                    <tr><td style="border-bottom:1px solid black;height:10px"></td></tr>
+                                    <tr><td style="border-bottom:1px solid black;height:10px"></td></tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Schedule 6</th>
+                                <th class="text-center sheet-tables">Tax Withheld Claimed as Tax Credit (Attach additional sheets, if necessary)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th rowspan="2" class="sheet-tables">Period Covered</th>
+                                <th rowspan="2" class="text-center sheet-tables">Name of Withholding Agent</th>
+                                <th rowspan="2" class="text-center sheet-tables">Income Payment</th>
+                                <th rowspan="2" class="text-center sheet-tables">Total Tax Withheld</th>
+                                <th rowspan="1" colspan="2" class="text-center sheet-tables">Applied Current mo.</th>
+                            </tr>
+                            <tr class="bg-color">
+                                <th rowspan="1" class="text-center sheet-tables">Previous 2 mos.</th>
+                                <th rowspan="1" class="text-center sheet-tables">Previous 2 mos.</th>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="cell_hieght sheet-tables text-left bg-color" height="10px">Total (To Item 26B)</td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr> 
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Schedule 7</th>
+                                <th class="text-center sheet-tables">Schedule of Advance Payment (Attach additional sheets, if necessary)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th rowspan="2" class="sheet-tables">Period Covered</th>
+                                <th  rowspan="2" class="text-center sheet-tables">Name of Miller</th>
+                                <th rowspan="2" class="text-center sheet-tables">Name of Taxpayer</th>
+                                <th rowspan="2" class="text-center sheet-tables">Official Receipt Number</th>
+                                <th rowspan="2" class="text-center sheet-tables">Amount Paid</th>
+                                <th rowspan="1" colspan="2" class="text-center sheet-tables">Applied Current mo.</th>
+                            </tr>
+                            <tr class="bg-color">
+                                <th rowspan="1" class="text-center sheet-tables">Previous 2 mos.</th>
+                                <th rowspan="1" class="text-center sheet-tables">Previous 2 mos.</th>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="cell_hieght sheet-tables text-left bg-color" height="10px">Total (To Item 26C)</td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th class="sheet-tables">Schedule 8</th>
+                                <th class="text-center sheet-tables">VAT Withheld on Sales to Government (Attach additional sheets, if necessary)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="sheet-tables" cellpadding="0" cellspacing="0" style="width:100%; margin:0px auto;">
+                        <thead>
+                            <tr class="bg-color">
+                                <th rowspan="2" class="sheet-tables">Period Covered</th>
+                                <th rowspan="2" class="text-center sheet-tables">Name of Withholding Agent</th>
+                                <th rowspan="2" class="text-center sheet-tables">Income Payment</th>
+                                <th rowspan="2" class="text-center sheet-tables">Total Tax Withheld</th>
+                                <th rowspan="1" colspan="2" class="text-center sheet-tables">Applied Current mo.</th>
+                            </tr>
+                            <tr class="bg-color">
+                                <th rowspan="1" class="text-center sheet-tables">Previous 2 mos.</th>
+                                <th rowspan="1" class="text-center sheet-tables">Previous 2 mos.</th>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="cell_hieght sheet-tables text-left bg-color" height="10px">Total (To Item 26D)</td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="cell_hieght sheet-tables" height="10px"></td>
+                                <td class="sheet-tables" height="10px"></td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div style="page-break-before: always;"/>
+                     <div class="row font-style" style="height:10px;margin-left:630px">
+                        <p>BIR</p>&amp;nbsp;<p>Form</p>&amp;nbsp;<p>2550Q</p>&amp;nbsp;<p>- February</p>&amp;nbsp;<p>2007</p>&amp;nbsp;<p>(EN</p>&amp;nbsp;<p>CS)</p><p class="ml-4">page</p>&amp;nbsp;<p>3</p>
+                    </div>
+                    <table class ="table-head" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="main_table_header"  colspan="12">ALPHANUMERIC TAX CODES (ATC)</th>
+                            </tr>
+                            <tr>
+                                <th class="sub_table_header" style="font-family:Arial;font-size:7px;" colspan="3">INDUSTRIES COVERED BY VAT</th>
+                                <th class="sub_table_header" style="font-family:Arial;font-size:7px;">ATC</th>
+                                <th class="sub_table_header" colspan="3" style="font-family:Arial;font-size:8px;">INDUSTRIES COVERED BY VAT</th>
+                                <th class="sub_table_header" style="font-family:Arial;font-size:7px;">ATC</th>
+                                <th class="sub_table_header" colspan="3" style="font-family:Arial;font-size:8px;">INDUSTRIES COVERED BY VAT</th>
+                                <th class="sub_table_header" style="font-family:Arial;font-size:7px;">ATC</th>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;">1.</td>
+                                <td style="font-family:Arial;font-size:6px;">Mining and Quarrying</td>
+                                <td style="font-family:Arial;font-size:6px;">  </td>
+                                <td style="font-family:Arial;font-size:6px;">VQ010</td>
+                                <td style="font-family:Arial;font-size:6px;" rowspan="2">4.</td>
+                                <td style="font-family:Arial;font-size:6px;" rowspan="2">Lending Investors/Dealer In securites/ 
+                                    Pawnshops/Pre-need Co./</td>
+                                <td style="font-family:Arial;font-size:6px;" rowspan="2"></td>
+                                <td style="font-family:Arial;font-size:6px;" rowspan="2">VB 102</td>
+                                <td style="font-family:Arial;font-size:6px;"> </td>
+                                <td style="font-family:Arial;font-size:6px;">8.6</td>
+                                <td style="font-family:Arial;font-size:6px;">Other Franchise</td>
+                                <td style="font-family:Arial;font-size:6px;">VB 112</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;">2.</td>
+                                <td style="font-family:Arial;font-size:6px;">Manufacturing</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">9.</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">Real Estate, Renting and Business Activity</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;"></td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.1</td>
+                                <td style="font-family:Arial;font-size:6px;">Tobacco</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 040</td>
+                                <td style="font-family:Arial;font-size:6px;">5.</td>
+                                <td style="font-family:Arial;font-size:6px;">Construction</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">VC 010</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.2</td>
+                                <td style="font-family:Arial;font-size:6px;">Alcohol</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 110</td>
+                                <td style="font-family:Arial;font-size:6px;">6.</td>
+                                <td style="font-family:Arial;font-size:6px;">Wholesale and Retail</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">VT 010</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">9.1</td>
+                                <td style="font-family:Arial;font-size:6px;">Sale of Real Property</td>
+                                <td style="font-family:Arial;font-size:6px;">VP 100</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.3</td>
+                                <td style="font-family:Arial;font-size:6px;">Petroleum</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 120</td>
+                                <td style="font-family:Arial;font-size:6px;">7.</td>
+                                <td style="font-family:Arial;font-size:6px;">Hotel and Restaurants</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td></td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">9.2</td>
+                                <td style="font-family:Arial;font-size:6px;">Lease of Real Property</td>
+                                <td style="font-family:Arial;font-size:6px;">VP 101</td>
+
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.4</td>
+                                <td style="font-family:Arial;font-size:6px;">Automobiles</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 130</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">7.1</td>
+                                <td style="font-family:Arial;font-size:6px;">Hotels, Motels</td>
+                                <td style="font-family:Arial;font-size:6px;">VB100</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">9.3</td>
+                                <td style="font-family:Arial;font-size:6px;">Sale/Lease of Intangible Property</td>
+                                <td style="font-family:Arial;font-size:6px;">VP 102</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.5</td>
+                                <td style="font-family:Arial;font-size:6px;">Non-Essentials (Excisable Goods)</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 140</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">7.2</td>
+                                <td style="font-family:Arial;font-size:6px;">Restaurants, Caterers</td>
+                                <td style="font-family:Arial;font-size:6px;">VB101</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">10.</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">Compulsory Social SecurityPublic Administration and Defens</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;"></td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">VD 010</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.6</td>
+                                <td style="font-family:Arial;font-size:6px;">Cement</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 030</td>
+                                <td style="font-family:Arial;font-size:6px;">8</td>
+                                <td style="font-family:Arial;font-size:6px;">Transport Storage and Communications</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.7</td>
+                                <td style="font-family:Arial;font-size:6px;">Food Products and Beverages</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 020</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">8.1</td>
+                                <td style="font-family:Arial;font-size:6px;">Land Transport-Cargo</td>
+                                <td style="font-family:Arial;font-size:6px;">VB105</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">11.</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">Other Community Social andPersonal Service Activity</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;"></td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">VH 010</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.8</td>
+                                <td style="font-family:Arial;font-size:6px;">Pharmaceuticals</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 150</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">8.2</td>
+                                <td style="font-family:Arial;font-size:6px;">Water Transport-Cargo</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.9</td>
+                                <td style="font-family:Arial;font-size:6px;">Flour</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 050</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">8.2.1 Domestic Ocean Going Vessels</td>
+                                <td style="font-family:Arial;font-size:6px;">VB106</td>
+                                <td style="font-family:Arial;font-size:6px;">12.</td>
+                                <td style="font-family:Arial;font-size:6px;">Others:</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.10</td>
+                                <td style="font-family:Arial;font-size:6px;">Sugar</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 160</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">8.2.2 Inter Island Shipping Vessels</td>
+                                <td style="font-family:Arial;font-size:6px;">VB 107</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">12.1</td>
+                                <td style="font-family:Arial;font-size:6px;">Storage and Warehousing</td>
+                                <td style="font-family:Arial;font-size:6px;">VS 010</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.11</td>
+                                <td style="font-family:Arial;font-size:6px;">Pesticides</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 100</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">8.3</td>
+                                <td style="font-family:Arial;font-size:6px;">Air Transport-Cargo</td>
+                                <td style="font-family:Arial;font-size:6px;">VB108</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;"></td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">12.2</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">Business Services
+                                                (In General)</td>
+                                <td rowspan="2" style="font-family:Arial;font-size:6px;">VB 010</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">2.12</td>
+                                <td style="font-family:Arial;font-size:6px;">Others (General)</td>
+                                <td style="font-family:Arial;font-size:6px;">VM 010</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">8.4</td>
+                                <td style="font-family:Arial;font-size:6px;">Telephone and Telegraph</td>
+                                <td style="font-family:Arial;font-size:6px;">VB109</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family:Arial;font-size:6px;">3.</td>
+                                <td style="font-family:Arial;font-size:6px;">Non Life Insurance</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">VB 113</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">8.5</td>
+                                <td style="font-family:Arial;font-size:6px;">Radio/TV Broadcasting</td>
+                                <td style="font-family:Arial;font-size:6px;">VB 111</td>
+                                <td style="font-family:Arial;font-size:6px;"></td>
+                                <td style="font-family:Arial;font-size:6px;">12.3</td>
+                                <td style="font-family:Arial;font-size:6px;">Importation of Goods</td>
+                                <td style="font-family:Arial;font-size:6px;">VI 010</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

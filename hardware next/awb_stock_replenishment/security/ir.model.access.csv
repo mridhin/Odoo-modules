@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_replenishment_location_manager,access.stock.replenishment.location,model_stock_replenishment_location,stock.group_stock_manager,1,1,1,0
+access_stock_replenishment_location_line_manager,access.stock.replenishment.location.line,model_stock_replenishment_location_line,stock.group_stock_manager,1,1,1,0

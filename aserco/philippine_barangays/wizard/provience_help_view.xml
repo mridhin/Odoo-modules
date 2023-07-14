@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_province_help_form">
+            <field name="name">provience.help.form</field>
+            <field name="model">provience.help</field>
+            <field name="arch" type="xml">
+                <form string="Instruction">
+                    <group>
+                        <field name="name" readonly="1"/>
+                    </group>
+                    <p>
+                        Go to Configuration => Provinces => select provience to update value.
+                    </p>
+                    <footer>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

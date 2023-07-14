@@ -1,0 +1,123 @@
+<odoo>
+  <data>
+        <record id="m_2550_view_form" model="ir.ui.view">
+            <field name="name">e.0619.form</field>
+            <field name="model">e.0619</field>
+            <field name="arch" type="xml">
+                <form string="E0619 PDF Report">
+                    <header>
+                        <button name="action_report" type="object" string="Generate Report" class="oe_highlight" attrs="{'invisible': [('awb_state', '=', 'draft')]}"/>
+
+                        <button name="action_resetdraft" type="object" string="Reset To Draft" class="oe_highlight" attrs="{'invisible': ['|',
+                            ('awb_state', '=', 'draft'),
+                            ('awb_entry_count','=',True)]}"/>
+                        <button name="action_validate" type="object" string="Validate" class="oe_highlight" attrs="{'invisible': [('awb_state', '!=', 'draft')]}"/>
+			<!--<button name="generate_journal_Entry" type="object" string="Generate Journal Entry" class="oe_highlight" attrs="{'invisible': ['|',('awb_state', '=', 'draft'),('awb_entry_count','=',True)]}"/>-->
+                        <field name="awb_state" statusbar_visible="draft,validated,amendment" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <field name="awb_entry_count" invisible="1"/>
+                        <field name="awb_move_id" invisible="1"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_journal_entry_2550q" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('awb_entry_count', '=', False)]}" string="Journal Entry">
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="awb_partner_id" options="{'no_create_edit':True,'no_create': True,'no_open': True}" attrs="{'readonly': [('awb_entry_count', '=',True)]}" invisible="1"/>
+                                <field name="awb_company_id" required="True" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                <field name="awb_fiscal_year" domain="[('company_id', '=', awb_company_id)]" attrs="{'invisible': [('awb_company_id','=', False)],'required':[('awb_company_id','!=', False)],'readonly': [('awb_state', '!=', 'draft')]}" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
+                                <!-- <field name="awb_fiscal_quarter" domain="['|', ('awb_type', '=', 'quarterly'),('fiscalyear_id_qua','=', awb_fiscal_year)]" attrs="{'invisible': ['|',('awb_company_id','=', False), ('awb_fiscal_year', '=', False)], 'required':['|',
+                                    ('awb_company_id','!=',False),
+                                    ('awb_fiscal_year','!=',False)],
+                                    'readonly': [('awb_state', '!=', 'draft')]}" 
+                                    options="{'no_create_edit': True,'no_create': True,'no_open':True}" required="1"/> -->
+                                <field name="awb_fiscal_month" attrs="{'invisible': ['|',('awb_company_id','=', False), ('awb_fiscal_year', '=', False)], 'required':['|',
+                                    ('awb_company_id','!=',False),
+                                    ('awb_fiscal_year','!=',False)],
+                                    'readonly': [('awb_state', '!=', 'draft')]}" 
+                                    options="{'no_create_edit': True,'no_create': True,'no_open':True}" required="1"/>
+                                <field name="awb_month" invisible="1"/>
+                                <field name="awb_year" invisible="1"/>
+                                
+                                <field name="awb_amended_return" required="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                <field name="awb_any_taxes_withheld" required="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                <div>
+                                    <button name="action_generate_report_values" id="action_generate_report_values" string="Generate Report Values" class="btn-primary" type="object" attrs="{'invisible': [('awb_state', '!=', 'draft')]}"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="awb_category_of_withholding_agent" required="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                <field name="awb_no_of_Sheets" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                <field name="awb_due_date" required="1" force_save="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                <field name="awb_issue_date" required="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                <field name="awb_expiry_date" required="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+                    <notebook >
+                        <page name="part_1" string="Computation of Tax">
+                            <group string="Penalties">
+                                <group>
+                                    <field name="awb_17a" required="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                    <field name="awb_17b" required="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                    <field name="awb_17c" required="1" attrs="{'readonly': [('awb_state', '!=', 'draft')]}"/>
+                                    <field name="awb_17d"/>
+                                </group>
+                                <group>
+                                    <field name="awb_remittance" readonly="1" force_save="1"/>
+                                    <field name="awb_less_remittance" readonly="1" force_save="1"/>
+                                    <field name="awb_net_remittance" readonly="1" force_save="1"/>
+                                    <field name="awb_total_remittance" readonly="1" force_save="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="part_2" string="Accounting" attrs="{'invisible': [('awb_state', '=', 'draft')]}">
+                            <group>
+                                <group>
+                                    <field name="awb_journal_id" attrs="{'required': [('awb_state', '!=', 'draft')],'readonly':[('awb_entry_count', '=',True)]}" options="{'no_create_edit': True,'no_create': True,'no_open': True}"/>
+                                    
+                                    <field name="awb_move_id" options="{'no_create_edit':True,'no_create': True}" attrs="{'invisible': [('awb_entry_count', '=',False)]}" readonly="1"/>
+                                </group>
+                                <!-- <group>
+                                    <field name="awb_barcode"/>
+                                </group> -->
+                            </group>
+                        </page>
+                    </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="e_0619_tree_view" model="ir.ui.view">
+            <field name="name">0619-E Report</field>
+            <field name="model">e.0619</field>
+            <field name="arch" type="xml">
+                <tree string="2550M PDF Report">
+                    <field name="create_date" widget="date" invisible="1"/>
+                    <field name="awb_company_id"/>
+                    <field name="awb_fiscal_year"/>
+                    <field name="awb_fiscal_month" string="Fiscal Month"/>
+                    <field name="awb_issue_date" string="Date of Issue"/>
+                    <field name="awb_state" string="Status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_e_0619_form" model="ir.actions.act_window">
+            <field name="name">0619-E</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">e.0619</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_e0619_reports"
+            name="0619-E"
+            parent="menu_ewt_reports"
+            action="action_e_0619_form"
+            />
+  </data>
+</odoo>

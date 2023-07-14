@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Added a res_level field in product_template -->
+	<record id="awb_product_template_inherit" model="ir.ui.view">
+		<field name="name">product.template.inherit</field>
+		<field name="model">product.template</field>
+		<field name="inherit_id"
+			ref="product.product_template_only_form_view" />
+		<field name="arch" type="xml">
+
+			<xpath
+				expr="//page[@name='general_information']//field[@name='invoice_policy']"
+				position="before">
+
+				<field name="res_level" />
+
+			</xpath>
+		</field>
+	</record>
+
+
+
+	<!-- <record id="awb_sale_order_inherit" model="ir.ui.view">
+		<field name="name">sale.order.inherit</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+
+			<xpath
+				expr="//field[@name='validity_date']"
+				position="after">
+
+				<field name="cus_type" />
+
+			</xpath>
+		</field>
+		
+
+	</record> -->
+
+
+</odoo>
+
+
+      

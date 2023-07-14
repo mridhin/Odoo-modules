@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="awb_temporary_delivery_slip_document">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+            <!--<div class="header">
+                <div class="row">
+                    <div class="col-3">
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </div>
+                    <div class="col-2 offset-2 text-center">
+                        <span t-esc="company.name"/>
+                    </div>
+                    <div class="col-2 offset-3 text-right">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><span class="page"/></li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item"><span class="topage"/></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+           <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+             <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                 <tr style="height:5px;">
+                     <td colspan="4"></td>
+                 </tr>
+                 <tr style="height:35px;">
+                     <td style="width:10%"></td>
+                     <td style="width:60%">
+                         <t t-if="o.sale_id and o.sale_id.partner_id">
+                                <span><t t-esc="o.sale_id.partner_id.name" /></span>
+                         </t>
+                         <t t-elif="o.partner_id">
+                             <span><t t-esc="o.partner_id.name" /></span>
+                         </t>
+                     </td>
+                     <td style="width:10%"></td>
+                     <td style="width:20%"><t t-esc="o.scheduled_date.strftime('%m/%d/%Y')" /> <small><t t-esc="o.dr_doc_no" /></small></td>
+                 </tr>
+                 <tr>
+                     <td style="width:10%"></td>
+                     <td style="width:60%">
+                         <t t-if="o.partner_id">
+                             <t t-if="o.partner_id.street">
+                                 <t t-esc="o.partner_id.street" />
+                             </t>
+                             <t t-if="o.partner_id.street2">
+                                 <t t-if="o.partner_id.street and o.partner_id.street2">
+                                     ,
+                                 </t>
+                                  <t t-esc="o.partner_id.street2" />
+                             </t>
+                             <t t-if="o.partner_id.city">
+                                 <t t-if="o.partner_id.city and o.partner_id.street2">
+                                     ,
+                                 </t>
+                                  <t t-esc="o.partner_id.city" />
+                             </t>
+                             <t t-if="o.partner_id.state_id">
+                                 <t t-if="o.partner_id.city and o.partner_id.state_id">
+                                     ,
+                                 </t>
+                                  <t t-esc="o.partner_id.state_id.name" />
+                             </t>
+                             <t t-if="o.partner_id.country_id">
+                                 <t t-if="o.partner_id.country_id and o.partner_id.state_id">
+                                     ,
+                                 </t>
+                                  <t t-esc="o.partner_id.country_id.name" />
+                             </t>
+                         </t>
+                     </td>
+                     <td style="width:10%"></td>
+                     <td style="width:20%"></td>
+                 </tr>
+             </table>
+                <br />
+                <table border="0" cellpadding="0" cellspacing="0" style="width:100%; height:360px;" >
+                    <t t-set="lines" t-value="o.move_ids_without_package"/>
+
+                    <t t-foreach="lines" t-as="line">
+                        <tr>
+                            <td style="width:7%;"><t t-esc="line.product_uom_qty" /></td>
+                            <td style="width:9%;"><t t-esc="line.product_uom.name" /></td>
+                            <td  style="width:51%;"><t t-esc="line.product_id.name" /></td>
+                            <td  style="width:11%;"><t t-if="line.sale_line_id"></t><t t-esc="line.sale_line_id.price_unit" /></td>
+                            <td style="width:11%;"><t t-if="line.sale_line_id"></t><t t-esc="line.sale_line_id.discount" /></td>
+                            <td style="width:9%;"><t t-if="line.sale_line_id"></t><t t-esc="line.sale_line_id.price_subtotal" /></td>
+                        </tr>
+                    </t>
+                </table>
+               <table border="1" cellpadding="0" cellspacing="0" style="width:100%;">
+                   <tr>
+                       <td style="width:91%"></td>
+                       <td style="width:9%;">
+                           <t t-if="o.sale_id">
+                               <span><t t-esc="o.sale_id.amount_total" /> </span>
+                           </t>
+                       </td>
+                   </tr>
+               </table>
+           </div>
+        </template>
+
+        <template id="awb_temporary_delivery_slip_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="awb_temporary_delivery_report.awb_temporary_delivery_slip_document"/>
+                </t>
+            </t>
+
+        </template>
+
+        <record id="paperformat_us_less_margin" model="report.paperformat">
+            <field name="name">Hnext Tempory Slip 8.6 * 5.7</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">145</field>
+            <field name="page_width">218</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!-- QWeb Reports -->
+        <record id="awb_temporary_delivery_slip" model="ir.actions.report">
+            <field name="name">Temporary Delivery Slip</field>
+            <field name="model">stock.picking</field>
+            <field name="paperformat_id" ref="awb_temporary_delivery_report.paperformat_us_less_margin"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">awb_temporary_delivery_report.awb_temporary_delivery_slip_report</field>
+            <field name="report_file">awb_temporary_delivery_report.awb_temporary_delivery_slip_report</field>
+            <field name="print_report_name">(object.name)</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="awb_return_slip" model="ir.actions.report">
+            <field name="name">Return Slip</field>
+            <field name="model">stock.picking</field>
+            <field name="paperformat_id" ref="awb_temporary_delivery_report.paperformat_us_less_margin"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">awb_temporary_delivery_report.awb_temporary_delivery_slip_report</field>
+            <field name="report_file">awb_temporary_delivery_report.awb_temporary_delivery_slip_report</field>
+            <field name="print_report_name">(object.name)</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

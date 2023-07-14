@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_pvpricevarience,access.product.pvpricevarience,model_product_pvpricevarience,,1,1,1,1
+access_product_wspricevarience,access.product.wspricevarience,model_product_wspricevarience,,1,1,1,1
+access_product_rtpricevarience,access.product.rtpricevarience,model_product_rtpricevarience,,1,1,1,1
+access_product_eupricevarience,access.product.eupricevarience,model_product_eupricevarience,,1,1,1,1

@@ -1,0 +1,9 @@
+<odoo>
+    <data noupdate="0">
+        <record model="ir.module.category" id="module_category_Philippine_0">
+            <field name="name">Philippine Tax App</field>
+            <field name="sequence">0</field>
+            <field name="description">Access rights of Philippine Tax App</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- MAIN TREE -->
+    <record id="pos_report_view_tree" model="ir.ui.view">
+        <field name="name">pos_report.view.tree</field>
+        <field name="model">cc_z_reading.z_reading</field>
+        <field name="arch" type="xml">
+            <tree string="Reports" create="0" default_order="id desc">
+                <field name="id" />
+                <field name="reference" />
+                <field name="crm_team_id" string="Sales Team" />
+                <field name="is_z_reading" optional="hide"/>
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="total_sales" />
+                <!-- <field name="total_returns" /> -->
+                <field name="total_voids" />
+                <field name="total_discounts" />
+                <field name="subtotal" />
+                <field name="beginning_reading" optional="hide"/>
+                <field name="ending_reading" optional="hide"/>
+                <field name="vatable_sales" optional="hide"/>
+                <field name="vat_12" optional="hide"/>
+                <field name="vat_exempt_sales" optional="hide"/>
+                <field name="zero_rated_sales" optional="hide"/>
+                <field name="register_total" optional="hide"/>
+                <!-- ADD PAYMENTS -->
+                <field name="regular_discount" optional="hide"/>
+                <field name="sc_pwd_vat_in" optional="hide"/>
+                <field name="sc_vat_ex" optional="hide"/>
+                <field name="pwd_vat_ex" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pos_report_view_action" model="ir.actions.act_window">
+        <field name="name">View POS Reports</field>
+        <field name="res_model">cc_z_reading.z_reading</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_z_reading', '=', False)]</field>
+    </record>
+    
+    <menuitem id="menu_orders_pos_report" action="pos_report_view_action" parent="point_of_sale.menu_point_of_sale" sequence="6"/>
+</odoo>

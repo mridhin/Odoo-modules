@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lazada_connector_base_user,lazada.connector,model_lazada_connector,base.group_public,1,0,0,0
+access_lazada_payment_method_base_user,lazada.payment_method,model_lazada_payment_method,base.group_public,1,0,0,0
+access_lazada_lazada_product_sync_base_user,lazada.product.sync.user,model_lazada_product_sync,base.group_public,1,0,0,0
+access_lazada_connector_user,lazada.connector,model_lazada_connector,lazada_connector.group_lazada_user,1,1,1,1
+access_lazada_payment_method_user,lazada.payment_method,model_lazada_payment_method,lazada_connector.group_lazada_user,1,1,1,1
+access_lazada_lazada_product_sync_user,lazada.product.sync.user,model_lazada_product_sync,lazada_connector.group_lazada_user,1,1,1,1
+access_lazada_order_sync_user,lazada.order.sync.user,model_lazada_order_sync,lazada_connector.group_lazada_user,1,1,1,1
+access_lazada_category_base_user,lazada.category.user,model_lazada_category,base.group_public,1,0,0,0
+access_lazada_category_lazada_user,lazada.category.lazada.user,model_lazada_category,lazada_connector.group_lazada_user,1,1,1,1

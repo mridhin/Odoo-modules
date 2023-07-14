@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<!-- e Journal form view -->
+    <record id="view_generate_pos_ejournal_form" model="ir.ui.view">
+        <field name="name">pos_ejournal.report.pdf.form</field>
+        <field name="model">pos_ejournal.report</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <form string="Generate e Journal">
+            	<span style="font-size:14px;">Note: If the start or end date is blank, the report will include all transactions from this terminal from start to end
+please confirm.</span>
+                <group>
+                	<group>
+                		<field name="start_date"/>
+                	</group>
+                    <group>
+                		<field name="end_date"/>
+                	</group>
+                </group>
+                <group>
+                	<!-- Added Terminal and MIN in form -->
+                	<group>
+                		<field name="config_id"/>
+                	</group>
+                    <group>
+                		<field name="taxpayer_min"/>
+                	</group>
+                </group>
+                <group>
+                	<group>
+                    	<field name="transaction_type"/>
+                    	<field name="partner_id"/>
+                    </group>
+                    <group>
+	                    <field name="user_id" />
+                    </group>
+                </group>
+                <footer>
+                    <!-- <button name="generate_report" string="Print" type="object" class="btn-primary" data-hotkey="q"/> -->
+                    <button name="generate_text_report" string="Print Text" type="object" class="btn-primary" data-hotkey="x"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <!-- Action window -->
+    <record id="action_report_pos_ejournal" model="ir.actions.act_window">
+        <field name="name">Generate e Journal</field>
+        <field name="res_model">pos_ejournal.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'sequence': 1, 'view_mode': 'form', 'view_id': ref('awb_ejournal_report.view_generate_pos_ejournal_form')}),
+        ]"/>
+    </record>
+    <!-- Attachments action -->
+    <record id="action_ejournal_attachment" model="ir.actions.act_window">
+            <field name="name">e Journal Text File</field>
+            <field name="res_model">ir.attachment</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <field name="domain">[('res_model', '=', 'pos_ejournal.report')]</field>
+    </record>
+    
+    <!-- e Journal Menu -->
+    <menuitem id="menu_report_pos_ejournal" name="Generate e Journal" action="action_report_pos_ejournal" parent="point_of_sale.menu_point_rep" sequence="6"/>
+    <menuitem id="menu_ejournal_attachments" name="e Journal Text File" action="action_ejournal_attachment" groups="awb_ejournal_report.group_pos_audit" parent="point_of_sale.menu_point_rep" sequence="6"/>
+
+</odoo>

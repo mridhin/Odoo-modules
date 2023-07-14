@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_partner_form_inherited_reg_docs" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="nature_of_business_industry"/>
+                    <field name="products_catered_ids" widget="many2many_tags"/>
+                    <field name="services_offered_ids" widget="many2many_tags"/>
+                </xpath>
+
+                <xpath expr="//page[@name='internal_notes']" position="after">
+                    <page name='registration_docs' string="Registration Documents">
+                        <group>
+                            <group>
+                                <field name="letter_of_intent"/>
+                                <field name="company_profile"/>
+                                <field name="dti_bnr"/>
+                                <field name="dti_coa"/>
+                                <field name="business_mp"/>
+                                <field name="bir_rc"/>
+                                <field name="orb_si"/>
+                            </group>
+                            <group>
+                                <field name="bac"/>
+                                <field name="sec_ai"/>
+                                <field name="cglip"/>
+                                <field name="pcab"/>
+                                <field name="cosh_bosch"/>
+                                <field name="cpr"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

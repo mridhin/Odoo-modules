@@ -1,0 +1,344 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_orders_list
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-10 13:25+0000\n"
+"PO-Revision-Date: 2022-10-10 19:01+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__last5
+msgid " Load last 5 Session's Orders"
+msgstr "تحميل أوامر آخر 5 جلسات"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Cancelled"
+msgstr "ألغيت"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Close"
+msgstr "قريب"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Company:"
+msgstr "شركة:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Customer"
+msgstr "عميل"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Customer:"
+msgstr "عميل:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Discard"
+msgstr "تجاهل"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Discount"
+msgstr "تخفيض"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Display Barcode in Receipt"
+msgstr "عرض الرمز الشريطي في الإيصال"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Display Orders in POS"
+msgstr "عرض الطلبات في نقاط البيع"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Draft/New"
+msgstr "مسودة / جديد"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Invoiced"
+msgstr "مفوترة"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__all
+msgid "Load all Session's Orders"
+msgstr "قم بتحميل جميع أوامر الجلسة"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__last3
+msgid "Load last 3 Session's Orders"
+msgstr "قم بتحميل طلبات آخر 3 جلسات"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Loading...."
+msgstr "جار التحميل...."
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/js/Screens/POSOrdersScreen.js:0
+#, python-format
+msgid "Offline"
+msgstr "غير متصل على الانترنت"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__current_day
+msgid "Only Current Day Orders"
+msgstr "أوامر اليوم الحالية فقط"
+
+#. module: pos_orders_list
+#: model:ir.model.fields.selection,name:pos_orders_list.selection__pos_config__pos_session_limit__current_session
+msgid "Only Current Session's Orders"
+msgstr "أوامر اليوم الحالية فقط"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_order__barcode
+msgid "Order Barcode"
+msgstr "اطلب الباركود"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_order__barcode_img
+msgid "Order Barcode Image"
+msgstr "طلب صورة الباركود"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Date"
+msgstr "تاريخ الطلب"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Date:"
+msgstr "تاريخ الطلب:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Details"
+msgstr "تفاصيل الطلب"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Ref"
+msgstr "مرجع الطلب"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Order Ref:"
+msgstr "مرجع الطلب:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Orders"
+msgstr "الطلب #٪ s"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Paid"
+msgstr "مدفوع"
+
+#. module: pos_orders_list
+#: model:ir.model,name:pos_orders_list.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "إعدادات نقطة البيع"
+
+#. module: pos_orders_list
+#: model:ir.model,name:pos_orders_list.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "أوامر نقاط البيع"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Posted"
+msgstr "تم النشر"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Price"
+msgstr "سعر"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Product"
+msgstr "منتج"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Quantity"
+msgstr "كمية"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Receipt Ref"
+msgstr "مرجع الاستلام"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Receipt Ref:"
+msgstr "مرجع الاستلام:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Search Orders"
+msgstr "تقسيمات البحث"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Session Limit Configuration"
+msgstr "تكوين حد الجلسة"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__pos_session_limit
+msgid "Session limit"
+msgstr "حد الجلسة"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Session:"
+msgstr "جلسة:"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid ""
+"Set session limit to load pos orders. If you have more than 1000 orders, "
+"then we recommend not to use \"Load all\" option."
+msgstr ""
+"تعيين حد الجلسة لتحميل أوامر نقاط البيع. إذا كان لديك أكثر من 1000 طلب ، "
+"فإننا نوصي بعدم استخدام خيار \"تحميل الكل\"."
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__show_barcode
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Show Barcode in Receipt"
+msgstr "إظهار الرمز الشريطي في الإيصال"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__show_draft
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Show Draft Orders"
+msgstr "إظهار أوامر المسودة"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__show_order
+msgid "Show Orders"
+msgstr "إظهار الطلبات"
+
+#. module: pos_orders_list
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Show POS Orders in POS"
+msgstr "إظهار أوامر نقاط البيع في نقاط البيع"
+
+#. module: pos_orders_list
+#: model:ir.model.fields,field_description:pos_orders_list.field_pos_config__show_posted
+#: model_terms:ir.ui.view,arch_db:pos_orders_list.custom_pos_config_extended_form_view
+msgid "Show Posted Orders"
+msgstr "إظهار الطلبات المرسلة"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "State"
+msgstr "حالة"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Status:"
+msgstr "حالة:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Total"
+msgstr "المجموع"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "Total Amount:"
+msgstr "المبلغ الإجمالي:"
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/js/Screens/POSOrdersScreen.js:0
+#, python-format
+msgid "Unable to load orders."
+msgstr "تعذر تحميل الطلبات."
+
+#. module: pos_orders_list
+#. openerp-web
+#: code:addons/pos_orders_list/static/src/xml/pos_orders_list.xml:0
+#, python-format
+msgid "View Orders"
+msgstr "عرض الطلبات"

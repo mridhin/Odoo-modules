@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            string="2550M"
+            id="action_report_m_2550_report"
+            model="m.2550"
+            report_type="qweb-pdf"
+            menu="False"
+            name="awb_philippine_tax_app.report_m_2550_reports"
+            file="awb_philippine_tax_app.report_m_2550_reports"
+            paperformat="awb_philippine_tax_app.paperformat_2550_report"/>
+        <report
+            string="2550Q"
+            id="action_report_q_2550_report"
+            model="q.2550"
+            report_type="qweb-pdf"
+            menu="False"
+            name="awb_philippine_tax_app.report_q_2550_reports"
+            file="awb_philippine_tax_app.report_q_2550_reports"
+            paperformat="awb_philippine_tax_app.paperformat_2550_report"/>
+
+        <report
+            string="0619-E"
+            id="action_report_e_0619_report"
+            model="e.0619"
+            report_type="qweb-pdf"
+            menu="False"
+            name="awb_philippine_tax_app.report_e_0619_reports"
+            file="awb_philippine_tax_app.report_e_0619_reports"
+            paperformat="awb_philippine_tax_app.paperformat_2550_report"/>
+
+            <report
+            string="1601-EQ"
+            id="action_report_eq_1601_report"
+            model="eq.1601"
+            report_type="qweb-pdf"
+            menu="False"
+            name="awb_philippine_tax_app.report_eq_1601_reports"
+            file="awb_philippine_tax_app.report_eq_1601_reports"
+            paperformat="awb_philippine_tax_app.paperformat_2550_report"/>
+
+            <report
+            string="1604-E"
+            id="action_report_e_1604_report"
+            model="e.1604"
+            report_type="qweb-pdf"
+            menu="False"
+            name="awb_philippine_tax_app.report_e_1604_reports"
+            file="awb_philippine_tax_app.report_e_1604_reports"
+            paperformat="awb_philippine_tax_app.paperformat_2550_report"/>
+
+            <report
+            string="2307"
+            id="action_report_2307_report"
+            model="e.2307"
+            report_type="qweb-pdf"
+            menu="False"
+            name="awb_philippine_tax_app.report_e_2307_reports"
+            file="awb_philippine_tax_app.report_e_2307_reports"
+            paperformat="awb_philippine_tax_app.paperformat_2550_report"/>
+    </data>
+</odoo>

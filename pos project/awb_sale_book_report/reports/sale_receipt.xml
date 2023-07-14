@@ -1,0 +1,24 @@
+<odoo>
+	
+<!-- SALE BOOK Report paper format -->
+    <record id="sale_book_report_paperformat" model="report.paperformat">
+        <field name="name">Sale Book Paper Format</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">32</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record> 
+	<!-- SALE BOOK Report -->
+    <record id="action_sale_report" model="ir.actions.report">
+        <field name="name">Sales Book</field>
+        <field name="model">pos.sale.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">awb_sale_book_report.sale_report</field>
+        <field name="report_file">awb_sale_book_report.sale_report</field>
+       <field name="paperformat_id" ref="awb_sale_book_report.sale_book_report_paperformat"/>
+    </record>
+</odoo>

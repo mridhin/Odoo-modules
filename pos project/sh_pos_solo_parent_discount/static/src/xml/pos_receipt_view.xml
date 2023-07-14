@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="OrderLinesReceiptDiscount" t-inherit="awb_l10n_ph_pos.OrderReceiptAmountVat" t-inherit-mode="extension"
+    owl="1">
+    <xpath expr="//t[@t-if='receipt.senior_citizen_disc > 0']" position="after">
+        <t t-if="receipt.solo_parent_disc">
+            <div style="padding-top:1mm;">
+                Sales: Solo Parent
+                <span t-esc="receipt.senior_citizen_pwd_total" class="pos-receipt-right-align"/>
+            </div>
+            <div style="padding-top:1mm;">
+                Less: VAT
+                <span t-esc="receipt.senior_citizen_pwd_vat" class="pos-receipt-right-align"/>
+            </div>
+            <div style="padding-top:1mm;">
+                Sales Without VAT
+                <span t-esc="receipt.senior_citizen_pwd_without_vat" class="pos-receipt-right-align"/>
+            </div>
+            <div style="padding-top: 1mm; padding-bottom:5mm;">
+                Less: Solo Parent<br/>
+                10% Discount
+                <span t-esc="receipt.solo_parent_disc" class="pos-receipt-right-align"/>
+            </div>
+        </t>
+    </xpath>
+</t>
+</templates>

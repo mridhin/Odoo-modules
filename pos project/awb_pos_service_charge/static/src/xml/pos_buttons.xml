@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<t t-name="ServicechargeButton" owl="1">
+    <button class="control-button" t-on-click="servicecharge_popup">
+            <i class="fa fa-money"/> <span> </span>
+            <span>Service Charge</span>
+    </button>
+
+</t>
+
+</templates>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_partner_form_inherited_vat" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='sales_purchases']" position="after">
+                    <page name="foreign_address" string="Foreign Address">
+                        <label for="awb_street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="awb_street" placeholder="Street..." class="o_address_street"/>
+                                <field name="awb_street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="awb_city" placeholder="City" class="o_address_city"/>
+                                <field name="awb_state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                                <field name="awb_zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="awb_country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                            </div>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('awb_flag', '=', False)]}</attribute>
+                 </xpath>
+                <field name="type" position="before">
+                    <field name="is_company" invisible="1"/>
+                    <field name="awb_first_name" attrs="{'invisible': [('is_company','=', True)],'readonly': [('awb_flag','=',False)]}"/>
+                    <field name="awb_middle_name" attrs="{'invisible': [('is_company', '=', True)],'readonly': [('awb_flag','=',False)]}"/>
+                    <field name="awb_last_name" attrs="{'invisible': [('is_company', '=', True)],'readonly': [('awb_flag','=',False)]}"/>
+                </field>
+                <group name="banks" position="before">
+                    <group string='Philippine Tax' name="partner_Philippine_tax">
+                        <field name="awb_flag" invisible="1"/>
+                        <field name="awb_vat_registration_status" attrs="{'readonly': [('awb_flag','=',False)],'required':[('awb_flag','=',True)]}"/>
+                        <field name="awb_vat_registration_no" attrs="{'required': [('awb_vat_registration_status', '=', 'registered')],'readonly': [('awb_flag','=',False)]}"/>
+                        <field name="awb_industries_id" attrs="{'readonly': [('awb_flag','=',False)]}"/>
+                        <field name="awb_business_style" attrs="{'readonly': [('awb_flag','=',False)]}"/>
+                        <field name="awb_default_customer_taxes_id" domain="[('type_tax_use', '=', 'sale'),('awb_type', '=', 'vat')]" attrs="{'readonly': [('awb_flag','=',False)]}"/>
+                        <field name="awb_default_vendor_taxes_id" domain="[('type_tax_use', '=', 'purchase'),('awb_type', '=', 'vat')]" attrs="{'readonly': [('awb_flag','=',False)]}"/>
+                        <field name="awb_default_customer_ewt_id" domain="[('type_tax_use', '=', 'sale'),('awb_type', '=', 'ewt')]" attrs="{'readonly': [('awb_flag','=',False)]}"/>
+                        <field name="awb_default_vendor_ewt_id" domain="[('type_tax_use', '=', 'purchase'),('awb_type', '=', 'ewt')]" attrs="{'readonly': [('awb_flag','=',False)]}"/>
+                    </group>
+                </group>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="string">Tax Identification No. (TIN)</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

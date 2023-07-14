@@ -1,0 +1,1066 @@
+<odoo>
+	
+    
+    <!-- records -action menu for 2316-->
+	<!--Complete form design for report 2316.-->
+	<record id="awb_form_compensation_form_view" model="ir.ui.view">
+		<field name="name">awb.form.compensation.form</field>
+		<field name="model">awb.form.compensation</field>
+		<field name="arch" type="xml">
+			<form string="Form-2316">
+	                <sheet>
+						<group col="4">
+	                    	<h2><field name="name" placeholder="NAME" required='1'/></h2>
+	                    	
+	                    	<field name="logo_bir" string="BIR-Logo"></field>
+	                  	</group>
+	                  </sheet>
+					<sheet>
+					<div class="form_2316_content">
+						
+						<section class="s_text_block  o_colored_level" data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+							<div class="form_sheet">
+								<div class="row ">
+									<div class="o_colored_level logo_left_content col-lg-4">
+										<span class="logo_text4">
+											<p class="bg-black-50">
+												For BIR
+												<br />
+												Use Only.
+											</p>
+										</span>
+										<span class="logo_text5">BCS/Item:</span>
+									</div>
+									<div class="o_colored_level logo_content_center col-lg-4">
+										<div class="logo_bir"><img  class="logo_bir_img" src="/awb_form_2316/static/src/img/BIR_logo.png" alt="BIR LOGO"></img></div>
+										<div class="logo_mean">
+											<span class="logo_text1">
+												Republic of the Philippines
+												<br />
+											</span>
+											<span class="logo_text2">
+												Department of Finance
+												<br />
+											</span>
+											<span class="logo_text3">Bureau of Internal Revenue</span>
+										</div>
+									</div>
+									<div class="o_colored_level col-lg-4"></div>
+								</div>
+							</div>
+						</section>
+						<!--section-2-->
+						<section class="s_text_block o_colored_level" data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+							<div class="form_sheet">
+								<div class="row awb_margin">
+									<div class="o_colored_level  col-lg-3" style="text-align: center; border-right: 1px solid black;">
+										<span class="logo_text6" style="font-size: 15px;">
+											BIR Form No:
+											<br />
+										</span>
+										<span style="font-size: xx-large; font-weight: bold;display: block">2316</span>
+										<span><field name="bir_form_month"/></span>
+									</div>
+									<div class="o_colored_level  col-lg-6" style="text-align: center; border-right: 1px solid black;">
+										<div class="title_mid">
+											<span style="font-size: x-large;">
+												Certificate of Compensation
+												<br />
+											</span>
+											<span style="font-size: x-large;">
+												Payment/Tax Withheld
+												<br />
+											</span>
+											<span>
+												For Compensation Payment With or Without Tax Withheld
+												<br />
+											</span>
+										</div>
+									</div>
+									<div class="o_colored_level col-lg-3" style="text-align: center; border-right: 1px solid black;max-width:25%;padding-left:15%;">
+										<span><field name="barcode_image" widget='image'/></span>
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12" style="width: 100%; border: 1px solid #000; border-top: none; border-bottom: none;">
+								<span>Fill in all applicable spaces. Mark all appropriate boxes with an "X".</span>
+							</div>
+							<div class="row" style="margin-right:0;">
+								<div class=" o_colored_level col-lg-6" style="border: 1px solid #000000; border-top: none; border-bottom: none;border-left:none;">
+									<section class="s_website_form o_colored_level" data-vcss="001" data-snippet="s_website_form" data-name="Form" style="background-image: none;">
+										<div class="container">
+											<div class="navinraj row bg-black-50">
+												<div style="border: 1px solid #000000; border-bottom: none;width:100%" data-visibility-condition="" data-visibility-between="" data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class="col-form-label  " style="width: 200px;margin-left: 15px;">1 For the Year</span>
+														<div class="col-sm " style="background-color:white;margin-right:18px;">
+															<field name="bir_for_year"/>
+															<!--<input type="number" class="" name="1 For the Year" step="1" placeholder="" id="ou54id4lgem" data-fill-with="name" />-->
+														</div>
+													</div>
+												</div>
+												<span class="col-form-label col-sm-autow-100 text-center" style="width: 100%; font-weight: bold; border: 1px solid #000000; border-bottom: none;">Part I - Employee Information</span>
+												<div style="border: 1px solid #000000; border-bottom: none;padding:0;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class="col-form-label " style="width: 200px;margin-left: 15px;">3 TIN</span>
+														<div class="col-sm " style="padding-right: 20px;margin-right: 18px;background-color:white;">
+															<field name="bir_tin_1"/>
+															<!--<input type="number" class="" name="3 TIN" step="1" placeholder="" id="o2mum8vllnr9" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding: 0;border: 1px solid #000000; border-bottom: none; border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-8 " data-type="char" data-name="Field">
+													<span class=" " style="width: 200px">4 Employee's Name (Last Name, First Name, Middle Name)</span>
+													<div class="bir_employee" style="background-color:white;padding-bottom:5px;">
+														<field name="bir_employee"/>
+													</div>
+													
+													<!--<input type="text" class="" name="4 Employee's Name (Last Name, First Name, Middle Name)" placeholder="" id="oqf517kwmiyp" data-fill-with="commercial_company_name" />-->
+												</div>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-4 " data-type="integer" data-name="Field">
+													<span class=" " style="width: 200px">5 RDO Code</span>
+													<div style="background-color:white;">
+													<field name="bir_rdo"/>
+													</div>
+													<!--<input type="number" class="" name="RDO Code" step="1" placeholder="" id="ow85pcyohaok" data-fill-with="commercial_company_name" />-->
+												</div>
+												<div style="padding: 0;border: 1px solid #000000; border-bottom: none; border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-8 " data-type="char" data-name="Field">
+													<span class=" " style="width: 200px">6 Registered Address</span>
+													<div style="background-color:white;">
+													<field name="bir_r_address_1"/>
+													</div>
+													<!--<input type="text" class="" name="Registered Address" placeholder="" id="osizjjux7mo" data-fill-with="commercial_company_name" />-->
+												</div>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-4 " data-type="char" data-name="Field">
+													<span class=" " style="width: 200px">6A ZIP Code</span>
+													<div style="background-color:white;">
+													<field name="bir_zip_1"/>
+													</div>
+													<!--<input type="text" class="" name="6A ZIP Code" placeholder="" id="o4y71iswyxlr" data-fill-with="commercial_company_name" />-->
+												</div>
+												<div style="padding: 0;border: 1px solid #000000; border-bottom: none; border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-8 " data-type="char" data-name="Field">
+													<span class=" " style="width: 200px">6B Local Home Address</span>
+													<div style="background-color:white;">
+													<field name="bir_local_address"/>
+													</div>
+													<!--<input type="text" class="" name="6B Local Home Address" placeholder="" id="o46h7v2moyil" data-fill-with="phone" />-->
+												</div>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-4 " data-type="integer" data-name="Field">
+													<span class=" " style="width: 200px">6C ZIP Code</span>
+													<div style="background-color:white;">
+													<field name="bir_zip_2"/>
+													</div>
+													<!--<input type="number" class="" name="6C ZIP Code" step="1" placeholder="" id="o3ksdwweoe2a" data-fill-with="phone" />-->
+												</div>
+												<div style="padding: 0;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="char" data-name="Field">
+													<span class=" " style="width: 200px">6D Foreign Address</span>
+													<div style="background-color:white;">
+													<field name="bir_f_address"/>
+													</div>
+													<!--<input type="text" class="" name="6D Foreign Address" placeholder="" id="o74mfg6zp4ge" data-fill-with="phone" />-->
+												</div>
+												<div style="padding: 0;border: 1px solid #000000; border-bottom: none; border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-6 " data-type="integer" data-name="Field">
+													<span class=" " style="width: 200px">7 Date of Birth (MM/DD/YYYY)</span>
+													<div style="background-color:white;">
+													<field name="bir_dob"/>
+													</div>
+													<!--<input type="number" class="" name="7 Date of Birth (MM/DD/YYYY)" step="1" placeholder="" id="owfr1sjzj7hr" data-fill-with="phone" />-->
+												</div>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-6 " data-type="integer" data-name="Field">
+													<span class=" " style="width: 200px">8 Contact Number</span>
+													<div style="background-color:white;">
+													<field name="bir_contact"/>
+													</div>
+													<!--<input type="number" class="" name="8 Contact Number" step="1" placeholder="" id="o731x1nveitr" data-fill-with="phone" />-->
+												</div>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left" style="margin-top:5px;margin-bottom:5px;">
+														<span class=" ">9 Statutory Minimum Wage rate per day</span>
+														<div class="col-sm " style="background-color:white;margin-right:15px;margin-left:50px;">
+															<field name="bir_min_wage_day"/>
+															<!--<input type="number" class="" name="9 Statutory Minimum Wage rate per day" step="1" placeholder="" id="o0p45mrclgcrn" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left" style="margin-top:5px;margin-bottom:5px;">
+														<span class=" ">10 Statutory Minimum Wage rate per month</span>
+														<div class="col-sm " style="background-color:white;margin-right:15px;margin-left:25px;">
+															<field name="bir_min_wage_month"/>
+															<!--<input type="number" class="" name="10 Statutory Minimum Wage rate per month" step="1" placeholder="" id="oidgib29xr4p" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="boolean" data-name="Field">
+													<div class="row awb_left">
+														<span class="d-flex">
+															11 Minimum Wage Earner (MWE) whose compensation is exempt from withholding tax and not subject to income tax
+															<div style="margin-right: 15px;" >
+																<field name="bir_mwe"/>
+																<!--<input type="checkbox" value="Yes" class="" name="11 Minimum Wage Earner (MWE) whose compensation is exempt from withholding tax and not subject to income tax" id="o4hvpgim8qxm" data-fill-with="undefined" />-->
+															</div>
+														</span>
+													</div>
+												</div>
+												<span class="col-form-label col-sm-autow-100 text-center" style="width: 100%; font-weight: bold; border: 1px solid #000000;  border-bottom: none;">Part II - Employer Information (Present)</span>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 200px">12 TIN</span>
+														<div class="col-sm " style="background-color:white;margin-right:15px;">
+															<field name="bir_tin_2"/>
+															<!--<input type="number" class="" name="12 TIN" step="1" placeholder="" id="omhv6ink12ik" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="char" data-name="Field">
+													<span class=" " style="width: 200px">13 Employer's Name</span>
+													<div class="bir_employee" style="background-color:white;padding-bottom:5px;">
+														<field name="bir_employer"/>
+													</div>
+													<!--<input type="text" class="" name="13 Employer's Name" value="" placeholder="" id="onsm5ngcdaa" data-fill-with="undefined" />-->
+												</div>
+												<div style="padding: 0;border: 1px solid #000000; border-bottom: none; border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-8 " data-type="char" data-name="Field">
+													<span class=" " style="width: 200px">14 Registered Address</span>
+													<div style="background-color:white;">
+													<field name="bir_r_address_2"/>
+													</div>
+													<!--<input type="text" class="" name="14 Registered Address" value="" placeholder="" id="o3mmtjcv612y" data-fill-with="undefined" />-->
+												</div>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none; border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-4 " data-type="integer" data-name="Field">
+													<span class=" " style="width: 200px">14A ZIP Code</span>
+													<div style="background-color:white;">
+													<field name="bir_zip_3"/>
+													</div>
+													<!--<input type="number" class="" name="14A ZIP Code" step="1" value="" placeholder="" id="olyf9hwpix2" data-fill-with="undefined" />-->
+												</div>
+												<div style="padding-right: 0;border: 1px solid #000000; border-bottom: none; border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-6 " data-type="boolean" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 200px">15 Main Employer</span>
+														<div class="col-sm " >
+															<div class="form-check">
+																<field name="bir_main"/>
+																<!--<input type="checkbox" value="Yes" class="" name="15 Main Employer" id="oo4uxnuat8lo" data-fill-with="phone" />-->
+															</div>
+														</div>
+													</div>
+												</div>
+												<div style="padding-right: 0;border: 1px solid #000000; border-bottom: none; border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-6 " data-type="boolean" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 200px">15 Secondary Employer</span>
+														<div class="col-sm ">
+															<div class="form-check">
+																<field name="bir_secondary"/>
+																<!--<input type="checkbox" value="Yes" class="" name="15 Secondary Employer" id="oaf684unk6p" data-fill-with="phone" />-->
+															</div>
+														</div>
+													</div>
+												</div>
+												<span style="border: 1px solid #000000; border-bottom: none; font-weight: bold; width: 100%;" class="col-form-label col-sm-autow-100 text-center">Part III - Employer Information (Previous)</span>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width:30%">16 TIN</span>
+														<div class="col-sm " style="background-color:white;margin-right:15px;">
+															<field name="bir_tin_3"/>
+															<!--<input type="number" class="" name="16 TIN" step="1" placeholder="" id="o1600hfrduo7" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="char" data-name="Field">
+													<span class=" " style="width: 70%">17 Employer's Name</span>
+													<div class="bir_employee" style="background-color:white;padding-bottom:5px;">
+														<field name="bir_employer_prev"/>
+													</div>
+													<!--<input type="text" class="" name="17 Employer's Name" placeholder="" id="o7fc5rq7azbe" data-fill-with="phone" />-->
+												</div>
+												<div style="padding: 0;border: 1px solid #000000; border-bottom: none;  border-right: none;" data-visibility-condition="" data-visibility-between="" class="col-12 col-lg-8 " data-type="char" data-name="Field">
+													<span class=" " style="width: 70%">18 Registered Address</span>
+													<div style="background-color:white;">
+													<field name="bir_r_address_3"/>
+													</div>
+													<!--<input type="text" class="" name="18 Registered Address" placeholder="" id="oo5olgcxqgml" data-fill-with="phone" />-->
+												</div>
+												<div style="padding-right: 5px;border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12  col-lg-4" data-type="integer" data-name="Field">
+													<span class=" " style="width: 70%">18A ZIP Code</span>
+													<div style="background-color:white;">
+													<field name="bir_zip_4"/>
+													</div>
+													<!--<input type="number" class="" name="18A ZIP Code" step="1" placeholder="" id="o8w40eg6ewjc" data-fill-with="phone" />-->
+												</div>
+												<span style="border: 1px solid #000000; border-bottom: none; font-weight: bold; width: 100%;" class="col-form-label col-sm-autow-100 text-center">Part IVA - Summary</span>
+												<div style="border: 1px solid #000000; border-bottom: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">19 Gross Compensation Income from Present Employer (Sum of Items 38 and 52)</span>
+														<div class="col-sm awb_col_sm" style="background: white; margin-bottom: 15px;margin-left: 15px;">
+															<field name="bir_gross"/>
+															<!--<input type="number" class="" name="19 Gross Compensation Income from Present Employer (Sum of Items 38 and 52)" step="1" placeholder="" id="o07o3ej747x1b" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">20 Less: Total Non-Taxable/Exempt Compensation Income from Present Employer (From Item 38)</span>
+														<div class="col-sm awb_col_sm" style="background: white; margin-bottom: 15px;margin-left: 15px;">
+															<field name="bir_less"/>
+															<!--<input type="number" class="" name="20 Less: Total Non-Taxable/Exempt Compensation Income from Present Employer (From Item 38)" step="1" placeholder="" id="o4m2crjwzk0x" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">21 Taxable Compensation Income from Present Employer (Item 19 Less Item 20) (From Item 52)</span>
+														<div class="col-sm awb_col_sm"  style="background: white; margin-bottom: 15px;margin-left: 15px;">
+															<field name="bir_tax_present"/>
+															<!--<input type="number" class="" name="21 Taxable Compensation Income from Present Employer (Item 19 Less Item 20) (From Item 52)" step="1" placeholder="" id="of7gmdozf364" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">22 Add: Taxable Compensation Income from Previous Employer, if applicable</span>
+														<div class="col-sm awb_col_sm" style="background-color: white;margin-left:15px;margin-bottom:15px;">
+															<field name="bir_add"/>
+															<!--<input type="number" class="" name="22 Add: Taxable Compensation Income from Previous Employer, if applicable" step="1" placeholder="" id="oieniqgubkfm" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">23 Gross Taxable Compensation Income (Sum of Items 21 and 22)</span>
+														<div class="col-sm awb_col_sm" style="background-color: white;margin-left:15px;margin-bottom:15px;">
+															<field name="bir_gross_income"/>
+															<!--<input type="number" class="" name="23 Gross Taxable Compensation Income (Sum of Items 21 and 22)" step="1" placeholder="" id="o0xc5vvx3j9dh" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding-right: 0;border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">24 Tax Due</span>
+														<div class="col-sm " style="padding-right: 20px;background-color:white;margin-left:4px;margin-right:16px;margin-bottom:2px;">
+															<field name="bir_tax_due"/>
+															<!--<input type="number" class="" name="24 Tax Due" step="1" placeholder="" id="o0zal0ebf50a" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding-right: 0;border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">25 Amount of Taxes Withheld: 25A Present Employer</span>
+														<div class="col-sm " style="padding-right: 20px;background-color:white;margin-left:4px;margin-right:16px;margin-bottom:2px;">
+															<field name="bir_present_emp"/>
+															<!--<input type="number" class="" name="25 Amount of Taxes Withheld 25A Present Employer" step="1" placeholder="" id="oap6fy2n1kbg" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding-right: 0;border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">   25B Previous Employer, if applicable</span>
+														<div class="col-sm " style="padding-right: 20px;background-color:white;margin-left:4px;margin-right:16px;margin-bottom:2px;">
+															<field name="bir_previous_emp"/>
+															<!--<input type="number" class="" name="   25B Previous Employer, if applicable" step="1" placeholder="" id="ob35n93dy3op" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding-right: 0;border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">26 Total Amount of Taxes Withheld as adjusted (Sum of Items 25A and 25B)</span>
+														<div class="col-sm " style="padding-right: 20px;background-color:white;margin-left:4px;margin-right:16px;margin-bottom:2px;">
+															<field name="bir_total_amount_tax"/>
+															<!--<input type="number" class="" name="26 Total Amount of Taxes Withheld as adjusted (Sum of Items 25A and 25B)" step="1" placeholder="" id="ojfjwkcds2kd" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding-right: 0;border: 1px solid #000000; border-bottom: none; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">27 5% Tax Credit (PERA Act of 2008)</span>
+														<div class="col-sm " style="padding-right: 20px;background-color:white;margin-left:4px;margin-right:16px;margin-bottom:2px;">
+															<field name="bir_tax_credit"/>
+															<!--<input type="number" class="" name="27 5% Tax Credit (PERA Act of 2008)" step="1" placeholder="" id="o5rfgy8geh7j" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+												<div style="padding-right: 0;border: 1px solid #000000; border-top: none;" data-visibility-condition="" data-visibility-between="" class="col-12 " data-type="integer" data-name="Field">
+													<div class="row awb_left">
+														<span class=" " style="width: 70%">28 Total Taxes Withheld (Sum of Items 26 and 27)</span>
+														<div class="col-sm " style="padding-right: 20px;background-color:white;margin-left:4px;margin-right:16px;margin-bottom:2px;">
+															<field name="bir_total_tax"/>
+															<!--<input type="number" class="" name="28 Total Taxes Withheld (Sum of Items 26 and 27)" step="1" placeholder="" id="om8slro54tmr" data-fill-with="phone" />-->
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+								<div class="o_colored_level col-lg-6 bg-black-50" style="padding-left: 1px; border-bottom:1px solid black;border-right:1px solid black;">
+									<section class="s_text_block o_colored_level" data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+										<div class="for_the_period  d-flex " style="color: black;">
+											<div class="for_the_period  d-flex">
+												<div>
+													<span>
+														2.For the Period
+														<br />
+													</span>
+													<span style="margin-left:13px">
+														From
+														<br />
+													</span>
+												</div>
+												<div style="margin-top:10px;margin-left: 15px;">
+													<field name="bir_for_period_from"/>
+													<!--<input type="date" class="   date_siged_4" name="Date Signed" value="" placeholder="" id="date_siged_4" data-fill-with="undefined" />-->
+												</div>
+											</div>
+											<div class="for_the_period d-flex">
+												<div class="">
+													<span>
+														<br />
+													</span>
+													<span style="margin-left:13px; padding-left:15px">
+														To
+														<br />
+													</span>
+												</div>
+												<div class="" style="margin-top:10px; padding-left:70px;">
+													<field name="bir_for_period_to"/>
+													<!--<input type="date" class="   date_siged_5" name="Date Signed" value="" placeholder="" id="date_siged_5" data-fill-with="undefined" />-->
+												</div>
+											</div>
+										</div>
+										<div class="details_compensation " style="text-align:center;color: black;">
+											<span style="font-weight: bold;">Part IV-B Details of Compensation Income and Tax Withheld from Present Employer </span>
+										</div>
+									</section>
+									<section class="s_text_block o_colored_level pt8" data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+										<div class="non_tax_income d-block">
+											<div class="d-flex">
+												<div class="nontax_1 " style="width:60%;color: black; font-weight: bold;">
+                                        A. NON-TAXABLE/EXEMPT COMPENSATION INCOME
+                                    </div>
+												<div class="nontax_1_input " style="width:40%;text-align:center;color: black;">
+                                        Amount
+                                    </div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_2" style="width:60%;color: black;">
+													<span>
+														29 Basic Salary (including the exempt P250,000 and below)
+														<br />
+													</span>
+													<span>or the Statutory Minimum Wage of the MWE</span>
+												</div>
+												<div class="nontax_2_i " style="width:40%;text-align:center;color:black;margin-bottom:30px;background-color:white;">
+													<field name="bir_basic_sal"/>
+													<!--<input type="number" value="" placeholder="" id="nontax_2_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_3 " style="width:60%;color: black;">
+													<span>30 Holiday Pay (MWE)</span>
+												</div>
+												<div class="nontax_3_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_h_pay"/>
+											<!--		<input type="number" value="" placeholder="" id="nontax_3_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_4 " style="width:60%;color: black;">
+													<span>31 Overtime Pay (MWE)</span>
+												</div>
+												<div class="nontax_4_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_o_pay"/>
+												<!--	<input type="number" value="" placeholder="" id="nontax_4_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_5 " style="width:60%;color: black;">
+													<span>32 Night Shift Differential (MWE</span>
+												</div>
+												<div class="nontax_5_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_night_shift"/>
+													<!--<input type="number" value="" placeholder="" id="nontax_5_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_6 " style="width:60%;color: black;">
+													<span>33 Hazard Pay (MWE)</span>
+												</div>
+												<div class="nontax_6_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_har_pay"/>
+													<!--<input type="number" value="" placeholder="" id="nontax_6_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_7 " style="width:60%;color: black;">
+													<span>
+														34 13th Month Pay and Other Benefits
+														<br />
+													</span>
+													<span>(maximum of P90,000)</span>
+												</div>
+												<div class="nontax_7_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_13th"/>
+													<!--<input type="number" value="" placeholder="" id="nontax_7_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_8 " style="width:60%;color: black;">
+													<span>35 De Minimis Benefits</span>
+												</div>
+												<div class="nontax_8_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_de_min"/>
+													<!--<input type="number" value="" placeholder="" id="nontax_8_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_9 " style="width:60%;color: black;">
+													<span>
+														36 SSS, GSIS, PHIC and PAG-IBIG Contributions
+														<br />
+													</span>
+													<span>and Union Dues (Employee share only)</span>
+												</div>
+												<div class="nontax_9_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_sss"/>
+													<!--<input type="number" value="" placeholder="" id="nontax_9_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_10 " style="width:60%;color: black;">
+													<span>37 Salaries and Other Forms of Compensation</span>
+												</div>
+												<div class="nontax_10_i" style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_sal"/>
+													<!--<input type="number" value="" placeholder="" id="nontax_10_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="nontax_11 " style="width:60%;color: black;">
+													<span>
+														38 Total Non-Taxable/Exempt Compensation
+														<br />
+													</span>
+													<span> Income (Sum of Items 29 to 37)</span>
+												</div>
+												<div class="nontax_11_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_total_nontax"/>
+													<!--<input type="number" value="" placeholder="" id="nontax_11_input" data-fill-with="name" />-->
+												</div>
+											</div>
+										</div>
+									</section>
+									<section class="s_text_block o_colored_level pt8" data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+										<div class="d-flex">
+											<div class="tax_1 " style="width:60%;color: black;">
+												<span style="font-weight: bold;"> B. TAXABLE COMPENSATION INCOME REGULAR</span>
+											</div>
+											<div class="tax_1_i " style="width:40%;text-align:center;"></div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_2 " style="width:60%;color: black;">
+												<span>39 Basic Salary</span>
+											</div>
+											<div class="tax_2_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_basic"/>
+												<!--<input type="number" value="" placeholder="" id="tax_2_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_3 " style="width:60%;color: black;">
+												<span> 40 Representation</span>
+											</div>
+											<div class="tax_3_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_representation"/>
+												<!--<input type="number" value="" placeholder="" id="tax_3_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_4" style="width:60%;color: black;">
+												<span> 41 Transportation</span>
+											</div>
+											<div class="tax_4_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_transportation"/>
+												<!--<input type="number" value="" placeholder="" id="tax_4_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_5 " style="width:60%;color: black;">
+												<span> 42 Cost of Living Allowance (COLA)</span>
+											</div>
+											<div class="tax_5_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_cola"/>
+												<!--<input type="number" value="" placeholder="" id="tax_5_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_6" style="width:60%;color: black;">
+												<span>43 Fixed Housing Allowance</span>
+											</div>
+											<div class="tax_6_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_fixed_housing"/>
+												<!--<input type="number" value="" placeholder="" id="tax_6_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_7  d-block" style="width:60%;color: black;">
+												<div style="width: 100%;display: inline-block;">44 Others (specify)</div>
+												<div style="width: 65%;display: inline-flex;margin-left: 2%;background-color:white;margin-top:2px;color:black;">
+													<span class="bg-black-50" style="color:black;">44A</span>
+													<div style="background-color:white;color:black;">
+													<field name="bir_other_1"/> </div>
+													<!--<input type="number" value="" placeholder="" id="tax_7a_input" data-fill-with="name" />-->
+												</div>
+												<div style="width: 65%;display: inline-flex;margin-left: 2%;background-color:white;margin-top:2px;color:black;">
+													<span class="bg-black-50" style="color:black;">44B</span>
+													<div style="background-color:white;color:black;">
+													<field name="bir_other_3"/></div>
+													<!--<input type="number" value="" placeholder="" id="tax_7b_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="tax_7_i d-block" style="width:40%;text-align:center;">
+												<span style="visibility:hidden;display: inline-block;width:100%">duplicate</span>
+												<span style="width: 100%;display: inline-block;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_other_2"/>
+													<!--<input type="number" value="" placeholder="" id="tax_7c_input" data-fill-with="name" />-->
+												</span>
+												<span style="width: 100%;display: inline-block;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_other_4"/>
+													<!--<input type="number" value="" placeholder="" id="tax_7d_input" data-fill-with="name" />-->
+												</span>
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_8 " style="width:60%;color: black;">
+												<span style="font-weight: bold;">SUPPLEMENTARY</span>
+											</div>
+											<div class="tax_8_i" style="width:40%;text-align:center;"></div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_9" style="width:60%;color: black;">
+												<span>45 Commission</span>
+											</div>
+											<div class="tax_9_i" style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_comission"/>
+												<!--<input type="number" value="" placeholder="" id="tax_9_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_10 " style="width:60%;color: black;">
+												<span>46 Profit Sharing</span>
+											</div>
+											<div class="tax_10_i" style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_profit_sharing"/>
+												<!--<input type="number" value="" placeholder="" id="tax_10_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_11" style="width:60%;color: black;">
+												<span>47 Fees Including Director's Fees</span>
+											</div>
+											<div class="tax_11_i" style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_fee_dir"/>
+												<!--<input type="number" value="" placeholder="" id="tax_11_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_12 " style="width:60%;color: black;">
+												<span>48 Taxable 13th Month Benefits</span>
+											</div>
+											<div class="tax_12_i" style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_tax_13th"/>
+												<!--<input type="number" value="" placeholder="" id="tax_12_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_13 " style="width:60%;color: black;">
+												<span>49 Hazard Pay</span>
+											</div>
+											<div class="tax_13_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_har_pay_1"/>
+												<!--<input type="number" value="" placeholder="" id="tax_13_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_14 " style="width:60%;color: black;">
+												<span>50 Overtime Pay</span>
+											</div>
+											<div class="tax_14_i " style="width:40%;text-align:center;background-color:white;margin-top:2px;color:black;">
+												<field name="bir_o_pay_2"/>
+												<!--<input type="number" value="" placeholder="" id="tax_14_input" data-fill-with="name" />-->
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_15  d-block" style="width:60%; display: block !important;color: black;">
+												<span style="width: 100%;display: inline-block;">51 Others (specify)</span>
+												<div style="width: 65%;display: inline-flex;margin-left: 2%;background-color:white;margin-top:2px;color:black;">
+													<span class="bg-black-50" style="color:black;">51A</span>
+													<div style="background-color:white;color:black;">
+													<field name="bir_other_5"/></div>
+													<!--<input type="number" value="" placeholder="" id="tax_15a_input" data-fill-with="name" />-->
+												</div>
+												<div style="width: 65%;display: inline-flex;;margin-left: 2%;background-color:white;margin-top:2px;color:black;">
+													<span class="bg-black-50" style="color:black;">51B</span>
+													<div style="background-color:white;color:black;">
+													<field name="bir_other_7"/></div>
+													<!--<input type="number" value="" placeholder="" id="tax_15b_input" data-fill-with="name" />-->
+												</div>
+											</div>
+											<div class="tax_15_i  d-block" style="width:40%;text-align:center;">
+												<span style="visibility:hidden;display: inline-block;width:100%">duplicate</span>
+												<span style="width: 100%;display: inline-block;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_other_6"/>
+													<!--<input type="number" value="" placeholder="" id="tax_15c_input" data-fill-with="name" />-->
+												</span>
+												<span style="width: 100%;display: inline-block;background-color:white;margin-top:2px;color:black;">
+													<field name="bir_other_8"/>
+													<!--<input type="number" value="" placeholder="" id="tax_15d_input" data-fill-with="name" />-->
+												</span>
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="tax_16 " style="width:60%;color: black;">
+												<span>
+													52 Total Taxable Compensation Income
+													<br />
+												</span>
+												<span>
+													(Sum of Items 39 to 51B)
+													<br />
+												</span>
+											</div>
+											<div class="tax_16_i " style="width:40%;text-align:center;background:white;color:black;margin-bottom:20px;">
+												<field name="bir_total_tax_income"/>
+												<!--<input type="number" value="" placeholder="" id="tax_16_input" data-fill-with="name" />-->
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</section>
+						<!--sction2- end-->
+						<section class="s_text_block o_colored_level " data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+							<div class="form_sheet bg-black-50">
+								<p style="margin:0;">
+									<span style="font-size: 14px; color: #000;">&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;I/We declare, under the penalties of perjury that this certificate has been made in good faith, verified by me/us, and to the best of my/our knowledge and belief, is true and correct, pursuant to the provisions of the National Internal Revenue Code, as amended, and the regulations issued under authority thereof. Further, I/we give my/our consent to the processing of my/our information as contemplated under the *Data Privacy Act of 2012 (R.A. No. 10173) for legitimate and lawful purposes.</span>
+									<br />
+								</p>
+							</div>
+						</section>
+						<!--section-->
+						<section class="s_text_block  o_colored_level o_cc" data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+							<div class="form_sheet">
+								<div class="row awb_margin">
+									<div class="o_colored_level col-lg-6">
+										<section class="s_website_form pt16 pb16 o_colored_level" data-vcss="001" data-snippet="s_website_form" data-name="Form" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip642517">
+											<div class="container">
+												<div class="s_website_form_rows row s_col_no_bgcolor">
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 s_website_form_custom   " data-type="integer" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label" style="width: 50px">53</span>
+															<div class="col-sm">
+																<field name="bir_a_employer" widget="signature"/>
+																<!--<input type="text" class="form-control present_employer_auth s_website_form_input" name="53" step="1" value="" placeholder="" id="present_employer_auth" data-fill-with="name" />-->
+																<div class="s_website_form_field_description small form-text text-muted">
+																	Present Employer/Authorized Agent Signature over Printed Name
+																	<br />
+																</div>
+															</div>
+														</div>
+													</div>
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 s_website_form_custom   " data-type="char" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label" style="width: 50px">54</span>
+															<div class="col-sm">
+																<field name="bir_a_employee" widget="signature"/>
+																<!--<input type="text" class="form-control employee_sign s_website_form_input" name="54" value="" placeholder="" id="employee_sign" data-fill-with="undefined" />-->
+																<div class="s_website_form_field_description small form-text text-muted">
+																	Employee Signature over Printed Name
+																	<br />
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+										<section class="s_website_form pt16 pb16 o_colored_level" data-vcss="001" data-snippet="s_website_form" data-name="Form" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip642517">
+											<div class="container">
+												<div class="s_website_form_rows row s_col_no_bgcolor" style="display: inline-flex;">
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 col-lg-6 s_website_form_custom s_website_form_required  " data-type="integer" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label" style="width: 100%">CTC/Valid ID No. of of Employee*</span>
+															<div class="col-sm">
+																<field name="bir_ctc"/>
+																<!--<input type="number" class="form-control s_website_form_input no_of_employee" name="CTC/Valid ID No. of of Employee" step="1" value="" placeholder="" id="no_of_employee" data-fill-with="name" />-->
+															</div>
+														</div>
+													</div>
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 col-lg-6 s_website_form_custom   " data-type="char" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label " style="width: 100%">Place of issue</span>
+															<div class="col-sm">
+																<field name="bir_issue"/>
+																<!--<input type="text" class="form-control s_website_form_input place_of_issue" name="Place of issue" value="" placeholder="" id="place_of_issue" />-->
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+									</div>
+									<div class="o_colored_level col-lg-4" style="">
+										<section class="s_website_form pt16 pb16 o_colored_level" data-vcss="001" data-snippet="s_website_form" data-name="Form" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip642517">
+											<div class="container">
+												<div class="s_website_form_rows row s_col_no_bgcolor">
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 s_website_form_custom   " data-type="date" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label" style="width: 125px">Date Signed</span>
+															<div class="col-sm">
+																<div class="s_website_form_date input-group date"  data-target-input="nearest">
+																	<field name="bir_date_sign_1"/>
+																	<!--<input type="date" class="form-control datetimepicker-input s_website_form_input date_siged_1" name="Date Signed" value="" placeholder="" id="date_siged_1" data-fill-with="name" />-->
+																</div>
+															</div>
+														</div>
+													</div>
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 s_website_form_custom   " data-type="date" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label " style="width: 125px">Date Signed</span>
+															<div class="col-sm">
+																<div class="s_website_form_date input-group date"  data-target-input="nearest">
+																	<field name="bir_date_sign_2"/>
+																	<!--<input type="date" class="form-control datetimepicker-input s_website_form_input date_siged_2" data-target="#datepicker441675904293654" name="Date Signed" value="" placeholder="" id="date_siged_2" data-fill-with="undefined" />-->
+																</div>
+															</div>
+														</div>
+													</div>
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 s_website_form_custom   " data-type="date" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label " style="width: 125px">Date Issued</span>
+															<div class="col-sm">
+																<div class="s_website_form_date input-group date"  data-target-input="nearest">
+																	<field name="bir_date_sign_3"/>
+																	<!--<input type="date" class="form-control datetimepicker-input s_website_form_input date_siged_3" name="Date Issued" value="" placeholder="" id="date_siged_3" data-fill-with="undefined" />-->
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="s_website_form_rows row s_col_no_bgcolor" style="display: inline-flex;">
+														<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 col-lg-12 s_website_form_custom   " data-type="char" data-name="Field">
+															<div class="row s_col_no_resize s_col_no_bgcolor" style="padding-left: 15px">
+																<span class="col-form-label col-sm-auto s_website_form_label " style="width: 109px">Amount paid, if CTC</span>
+																<div class="awm_col" style="width:49%;margin-left: 15px">
+																	<field name="bir_amount_ctc"/>
+																	<!--<input type="text" class="form-control s_website_form_input amount_paid" name="Amount paid, if CTC" value="" placeholder="" id="amount_paid" data-fill-with="undefined" />-->
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+									</div>
+									<div class="o_colored_level col-lg-2">
+										<section class="s_website_form pt16 pb16 o_colored_level" data-vcss="001" data-snippet="s_website_form" data-name="Form" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip642517">
+											<div class="container">
+												<!--<div class="s_website_form_rows row s_col_no_bgcolor" style="display: inline-flex;">
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 col-lg-12 s_website_form_custom   " data-type="char" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label " style="width: 200px">Amount paid, if CTC</span>
+															<div class="col-sm">
+																<input type="text" class="form-control s_website_form_input amount_paid" name="Amount paid, if CTC" value="" placeholder="" id="amount_paid" data-fill-with="undefined" />
+															</div>
+														</div>
+													</div>
+												</div>-->
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!--section-->
+						<section class="s_text_block o_colored_level " data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+							<div class="form_sheet">
+								<p class="bg-black-50" style="text-align: center; margin:0;">
+									<span style="font-size: 16px; color: #000;">
+										<strong>To be accomplished under substituted filing</strong>
+									</span>
+									<br />
+								</p>
+							</div>
+						</section>
+						<section class="s_text_block o_colored_level o_cc " data-snippet="s_text_block" data-name="Text" style="background-image: none;">
+							<div class="form_sheet">
+								<div class="row awb_margin">
+									<div class="o_colored_level col-lg-6">
+										<section class="s_website_form pt16 pb16 o_colored_level" data-vcss="001" data-snippet="s_website_form" data-name="Form" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip642517">
+											<div class="container">
+												<span>I declare, under the penalties of perjury that the information herein stated are reported under BIR Form No. 1604-C which has been filed with the Bureau of Internal Revenue.</span>
+												<br></br>
+												<div class="s_website_form_rows row s_col_no_bgcolor">
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 s_website_form_custom" data-type="integer" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label" style="width: 50px">55</span>
+															<div class="col-sm">
+																<!--<field name="name"/>-->
+																<field name="bir_a_employer_1"/>
+																<!--<input type="text" class="form-control s_website_form_input present_employer" name="55" step="1" value="" placeholder="" id="present_employer" data-fill-with="name" />-->
+																<div class="s_website_form_field_description small form-text text-muted">
+																	Present Employer/Authorized Agent Signature over Printed Name
+																	<br />
+																	(Head of Accounting/Human Resource or Authorized Representative)&amp;nbsp;
+																	<br />
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+									</div>
+									<div class="o_colored_level col-lg-6">
+										<section class="s_website_form  o_colored_level" data-vcss="001" data-snippet="s_website_form" data-name="Form" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip642517">
+											<div class="container">
+												<span>I declare, under the penalties of perjury that I am qualified under substituted filing of Income Tax Return (BIR Form No. 1700), since I received purely compensation income from only one employer in the Philippines for the calendar year; that taxes have been correctly withheld by my employer (tax due equals tax withheld); that the BIR Form No. 1604-C filed by my employer to the BIR shall constitute as my income tax return; and that BIR Form No. 2316 shall serve the same purpose as if BIR Form No. 1700 has been filed pursuant to the provisions of Revenue Regulations (RR) No. 3-2002, as amended.</span>
+												<br></br>
+												<div class="s_website_form_rows row s_col_no_bgcolor">
+													<div data-visibility-condition="" data-visibility-between="" class="form-group s_website_form_field col-12 s_website_form_custom" data-type="char" data-name="Field">
+														<div class="row s_col_no_resize s_col_no_bgcolor">
+															<span class="col-form-label col-sm-auto s_website_form_label" style="width: 50px !important;">56</span>
+															<div class="col-sm">
+																<field name="bir_a_employee_1" widget="signature"/>
+																<!--<input type="text" class="form-control s_website_form_input employer_signature" name="56" value="" placeholder="" id="employer_signature" data-fill-with="undefined" />-->
+																<div class="s_website_form_field_description small form-text text-muted">
+																	Employee Signature over Printed Name
+																	<br />
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</sheet>
+				<style>
+					.logo_bir{
+						padding-bottom: 5px;
+					}
+					.logo_bir_img{
+						width:75px;
+						height:75px;
+						}
+					.form_2316_content{
+						border: 0px solid black;
+    					margin: 5px;
+					}
+					.logo_left_content{
+						    display: inline-flex;
+						    font-size: small;
+						    font-weight: bold;
+					}
+					.logo_text5{
+						margin-left: 10px;
+					}
+					.logo_mean{
+						margin-top: 0px;
+					    margin-left: 5px;
+					    font-size: medium;
+					    font-weight: bold;
+					}
+					.logo_content_center{
+						display: inline-flex;
+						margin-left: 5%;
+					}
+					.form_sheet{
+						margin: 0px;
+					}
+					.logo_text2{
+						text-align: center;
+					}
+					.present_employer{
+						border: none; 
+						background-color: transparent; 
+						border-bottom: 1px solid black; 
+						box-shadow: none; 
+						border-radius: 0px;
+					}
+					.employer_signature{
+							border: none; 
+							background-color: transparent; 
+							border-bottom: 1px solid black; 
+							box-shadow: none; 
+							border-radius: 0px;
+					}
+					.present_employer_auth{
+						border: none; 
+						background-color: transparent; 
+						border-bottom: 1px solid black; 
+						box-shadow: none; 
+						border-radius: 0px;
+					}
+					.employee_sign{
+						border: none; 
+						background-color: transparent; 
+						border-bottom: 1px solid black; 
+						box-shadow: none; 
+						border-radius: 0px;
+					}
+					.awb_margin{
+						margin-left:0px;
+						margin-right:0px;
+						border: 1px solid black; 
+					}
+					 .navinraj input {
+                            width: 100% !important;
+                            margin-top: 4px;
+                            margin-left: 1px;
+                    
+                        }
+                        
+                        .awb_col_sm{
+                            padding-right: 5px;
+                        }
+                        .navinraj{
+                            color: #000000;
+                        }
+                        .bir_employee div{
+                        	width:100%;
+                        }
+				</style>
+            </form>
+		</field>
+	</record>
+	
+	<!--tree view-->
+	<record id="BIR_form2316_tree_view" model="ir.ui.view">
+		<field name="name">Form-2316</field>
+		<field name="model">awb.form.compensation</field>
+		<field name="arch" type="xml">
+			<tree>
+                <field name="name" />
+            </tree>
+		</field>
+	</record>
+	<!--act window-->
+	<record id="action_awb_form_2316_report" model="ir.actions.act_window">
+	   <field name="name">Form-2316</field>
+	   <field name="res_model">awb.form.compensation</field>
+	   <field name="view_mode">tree,form</field>
+	   <field name="view_id" ref="BIR_form2316_tree_view"/>
+	   <field name="help" type="html">
+	       <p class="o_view_nocontent_smiling_face">
+	          	Form-2316
+	       </p>
+	   </field>
+	</record>
+	<!-- menu -->
+	<menuitem name="Form-2316"
+                  id="menu_awb_form_2316_report_action"
+                  action="action_awb_form_2316_report"
+                  parent="account.menu_finance_reports"  />
+</odoo>

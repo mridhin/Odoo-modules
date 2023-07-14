@@ -1,0 +1,49 @@
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.pos.login</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="70"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='companies']" position="after">
+                <h2>Pos Details</h2>
+                            <div class="row mt16 o_settings_container" name="users_setting_container">
+                                <div class="col-12 col-lg-6 o_setting_box" id="invite_users_setting">
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Pos Name</span>
+                                        <field name="pos_name"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Pos Version</span>
+                                <field name="pos_version"/>
+                            </div>
+
+                                </div>
+                            </div>
+<!--                <div class="col-12 col-lg-6 o_setting_box"-->
+<!--                        id="pos_login_documents"-->
+<!--                        title="Pos Details">-->
+<!--                        <div class="o_setting_left_pane">-->
+<!--                            <field name="pos_name"/>-->
+<!--                        </div>-->
+<!--                        <div class="o_setting_right_pane">-->
+<!--                            <field name="pos_version"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                 <div class="app_settings_block" data-string="POOS" string="POS" data-key="pos">-->
+<!--                    <h2>Pos Login</h2>-->
+<!--                    <div class="row mt16 o_settings_container">-->
+<!--                        <div class="col-lg-6 o_setting_box">-->
+<!--                            <div class="o_setting_left_pane">-->
+<!--                                <field name="pos_name"/>-->
+<!--                            </div>-->
+<!--                            <div class="o_setting_right_pane">-->
+<!--                                <field name="pos_version"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </xpath>
+        </field>
+    </record>
+</odoo>

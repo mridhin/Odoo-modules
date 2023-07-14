@@ -1,0 +1,25 @@
+.pos .pos-receipt-container > div {
+    text-align: left;
+    font-size: 14px;
+}
+.pos-receipt .pos-receipt-amount {
+    font-size: 110%;
+    padding-left: 6em;
+}
+.buyer-info {
+    font-size: 14px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.buyer-info-table td{
+    border-bottom: 1px solid #555555;
+    vertical-align: bottom;
+    padding: 0;
+}
+.buyer-info-table td > span{
+    background-color: white;
+    position: relative;
+    bottom: -5px;
+}

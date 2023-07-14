@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="customer_testimonial_success" name="Customer Review">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="row">
+                    <div class="col-md-12 pt24 pb24 ">
+                        <div class="text-center">
+                            <h4>Thanks for submitting review.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="customer_booking_success" name="Customer booking success">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="row">
+                    <body>
+                        <div class="booking_card">
+                            <div class="booking_circle">
+                                <i class="checkmark booking_check">✓</i>
+                            </div>
+                            <h1 class="text-center">Awesome!</h1>
+                            <p class="text-center">You succesfully created your booking.
+                                <br/>
+                                Please expect a call from our call center<br/>within the day.
+                            </p>
+                        </div>
+                    </body>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="customer_booking_page" name="Customer Booking Page">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="container pt24">
+                    <form id="booking_form" action="/booking-success" method="post" class="checkout_autoformat" novalidate="True" >
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="container">
+                                    <h6 class="booking-section">Customer Details</h6>
+                                    <div class="row mb-3">
+                                        <label for="lname" class="col-sm-4 col-form-label col-form-label-sm">Last
+                                            Name
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" required="1"
+                                                   class="form-control form-control-sm s_website_form_input"
+                                                   id="lname" autocomplete="off"
+                                                   name="lname" placeholder="Enter Last Name"
+                                                   t-att-value="last_name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="fname" class="col-sm-4 col-form-label col-form-label-sm">First
+                                            Name
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" required="1"
+                                                   class="form-control form-control-sm s_website_form_input"
+                                                   id="fname" autocomplete="off"
+                                                   name="fname" placeholder="Enter First Name" t-att-value="first_name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="mobile" class="col-sm-4 col-form-label col-form-label-sm">Mobile
+                                            Number
+                                        </label>
+                                        <div class="col-sm-8 mobile">
+                                            <input type="text" class="form-control form-control-sm s_website_form_input"
+                                                   name="code" id="ccode" maxlength="3" size="3" value="&#43;63"
+                                                   autocomplete="off"/>
+                                            <input type="tel" minlength="10" maxlength="10"
+                                                   class="form-control form-control-sm s_website_form_input"
+                                                   id="mobile" autocomplete="off" pattern="(^[9]{1})([0-9]{9})"
+                                                   required="1"
+                                                   name="mobile" placeholder="Enter Mobile Number"
+                                                   t-att-value="mobile"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="email" class="col-sm-4 col-form-label col-form-label-sm">E-mail
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="email" required="1"
+                                                   class="form-control form-control-sm s_website_form_input"
+                                                   id="email"
+                                                   name="email" placeholder="Enter E-mail address"
+                                                   t-att-value="email" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <input type="hidden" required="1"
+                                               class="form-control form-control-sm s_website_form_input"
+                                               id="partner_id" name="partner_id" t-att-value="partner_id"/>
+                                    </div>
+
+                                </div>
+                                <div class="container">
+                                    <h6 class="booking-section">Service Address</h6>
+
+
+                                    <div class="row mb-3">
+                                        <label for="region" class="col-sm-4 col-form-label col-form-label-sm">Region
+                                            /
+                                            Province
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <select class="address form-control form-control-sm s_website_form_input"
+                                                    name="x_studio_area_id"
+                                                    required="1" id="region_booking">
+                                                <option>-select-</option>
+
+                                                <t t-foreach="states or []" t-as="state">
+                                                    <t t-if="partner_state and (state.id == partner_state.id)">
+                                                        <option t-esc="state.name" selected="selected"
+                                                                t-att-value="state.id"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <option t-esc="state.name" t-att-value="state.id"/>
+                                                    </t>
+                                                </t>
+                                            </select>
+                                            <i class="loading hidden">Loading ...</i>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="city" class="col-sm-4 col-form-label col-form-label-sm">City
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <select class="address form-control form-control-sm s_website_form_input"
+                                                    id="city" required="1"
+                                                    name='city' aria-label=".form-select-lg example">
+                                                <t t-foreach="cities or []" t-as="city">
+                                                    <t t-if="city.id == partner_city.id">
+                                                        <option t-esc="city.name" selected="selected"
+                                                                t-att-value="city.id"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <option t-esc="city.name" t-att-value="city.id"/>
+                                                    </t>
+
+                                                </t>
+                                            </select>
+                                            <i class="loading hidden">Loading ...</i>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="barangay" class="col-sm-4 col-form-label col-form-label-sm">
+                                            Barangay
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <select class="address form-control form-control-sm s_website_form_input"
+                                                    id="barangay" required="1"
+                                                    name="barangay" aria-label=".form-select-lg example">
+                                                <t t-foreach="barangays or []" t-as="barangay">
+                                                    <t t-if="barangay.id == partner_barangay.id">
+                                                        <option t-esc="barangay.name" selected="selected"
+                                                                t-att-value="barangay.id"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <option t-esc="barangay.name" t-att-value="barangay.id"/>
+                                                    </t>
+
+                                                </t>
+                                            </select>
+                                            <i class="loading hidden">Loading ...</i>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="street" class="col-sm-4 col-form-label col-form-label-sm">Street
+                                            Address
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" required="1"
+                                                   class="address form-control form-control-sm s_website_form_input"
+                                                   id="street"
+                                                   name="street" placeholder="Enter Street /Blk. / House No."
+                                                   t-att-value="street" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container">
+                                    <h6 class="booking-section">Booking Details</h6>
+                                    <input id="booking-count" type="hidden"/>
+
+                                    <div class="row mb-3">
+                                        <label for="region" class="col-sm-4 col-form-label col-form-label-sm">
+                                            Service
+                                            Needed
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <t t-set="service_id_var" t-value="service_id"/>
+                                            <select class="form-control form-control-sm s_website_form_input"
+                                                    name="x_studio_awb_service_type_id" required="1"
+                                                    id="service-needed"
+                                                    style="">
+                                                <option>-select-</option>
+
+                                                <t t-foreach="services or []" t-as="service">
+                                                    <t t-if="service_id != ''">
+                                                        <t t-if="service.id == service_id_var.id">
+                                                            <option t-esc="service.name" selected="selected"
+                                                                    t-att-value="service.id"/>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <option t-esc="service.name" t-att-value="service.id"/>
+                                                        </t>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <option t-esc="service.name" t-att-value="service.id"/>
+                                                    </t>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="city" class="col-sm-4 col-form-label col-form-label-sm">
+                                            Preferred
+                                            Time Slot
+                                        </label>
+                                        <div class="time-slot col-sm-8">
+                                            <input type="radio" class="btn-check" name="options" id="option1"
+                                                   autocomplete="off"
+                                                   checked="checked" value="am"/>
+                                            <label class="btn btn-radio mr_lt" for="option1">AM</label>
+
+                                            <input type="radio" class="btn-check" name="options" id="option2"
+                                                   autocomplete="off" value="pm"/>
+                                            <label class="btn btn-radio mr_rt" for="option2">PM</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="city" class="col-sm-4 col-form-label col-form-label-sm">
+                                            Preferred
+                                            Service Date
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <div style="display: inline"><input type="text" id="date_start" name="date_start"
+                                                   placeholder='MM/DD/YYYY' class="readonly" required="1"
+                                                   autocomplete="off" readonly='true'/></div>
+
+<!--                                            <div class="loader-container" style="display: none">-->
+<!--                                                <div class="loader"></div>-->
+<!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+
+                                    <div class="row justify-content-end">
+                                        <div class="col-4 text-center">
+                                            <button id="booking_button_submit" type="submit" class="btn booking_button">Submit</button>
+                                            <p class="terms_and_condition">By clicking submit, you agree to accept
+                                                our <a
+                                                        href="#" role="button" data-target="#terms-condition-popup"
+                                                        data-toggle="modal">terms and conditions
+                                                </a> for Smile Serve
+                                            </p>
+                                            <div tabindex="-1" class="modal pmd-modal fade"
+                                                 id="terms-condition-popup"
+                                                 style="display: none;" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h2 class="modal-title">Terms and Conditions</h2>
+                                                            <button data-dismiss="modal"
+                                                                    class="close" type="button">×
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body text-left">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button data-dismiss="modal"
+                                                                    class="btn d-flex justify-content-center"
+                                                                    type="button">Cancel
+                                                            </button>
+                                                            <button data-dismiss="modal"
+                                                                    class="btn d-flex justify-content-center"
+                                                                    type="button">Continue
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+        <record id="industry_covered_vat_view_form" model="ir.ui.view">
+            <field name="name">industry.covered.vat.form</field>
+            <field name="model">industry.covered.vat</field>
+            <field name="arch" type="xml">
+                <form string="Industry Covered By Vat">
+                    <sheet>
+                        <group>
+                            <field name="awb_flag"/>
+                            <field name="awb_name" required="True"/>
+                            <field name="awb_atc_code" required="True"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="industry_covered_vat_view_tree" model="ir.ui.view">
+            <field name="name">industry.covered.vat.tree</field>
+            <field name="model">industry.covered.vat</field>
+            <field name="arch" type="xml">
+                <tree string="Industry Covered By Vat">
+                    <field name="awb_name"/>
+                    <field name="awb_atc_code"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_industry_covered_vat" model="ir.actions.act_window">
+            <field name="name">Industry Covered by Vat</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">industry.covered.vat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_industry_covered_vat" id="menu_industry_covered_vat_form_submenu" parent="menu_tax_property_sub"/>
+        
+  </data>
+</odoo>

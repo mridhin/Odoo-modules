@@ -1,0 +1,96 @@
+<odoo>
+	<!-- sc discount and pwd discount columns added and filter added -->
+	<record id="view_pos_order_order_summary" model="ir.ui.view">
+		<field name="name">pos.order.summary.form.inherit</field>
+		<field name="model">pos.order</field>
+		<field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='pos_reference']" position="after">
+				<field name="void_reason_ids" widget="many2many_tags" />
+				<field name="voided_order" readonly="1" />
+				<field name="number_of_item_sold" />
+				<field name="vatable_tax" />
+				<field name="vat_exempt" />
+				<field name="zero_rated" />
+				<field name="sc_discount_total" />
+				<field name="pwd_discount_total" />
+			</xpath>
+		</field>
+	</record>
+	<!-- serach view and filters for report added -->
+	<record id="view_pos_order_summary_search" model="ir.ui.view">
+		<field name="name">pos.order.search.view</field>
+		<field name="model">pos.order</field>
+		<field name="arch" type="xml">
+			<search string="Point of Sale Orders">
+				<field name="name" />
+				<field name="config_id" />
+				<separator />
+				<!-- added filter for Vat Type -->
+				<filter string="Vattable Sales" name="vatable_tax"
+					domain="[('vatable_tax', '!=', 0)]" />
+					<filter string="VAT Exempt Sales" name="vat_exempt"
+					domain="[('vat_exempt', '!=', 0)]" />
+					<filter string="Zero Rated Sales" name="zero_rated"
+					domain="[('zero_rated', '!=', 0)]" />
+					
+				<!-- added filter for Status of Transaction -->
+				<filter string="Draft" name="draft"
+					domain="[('state', '=', 'draft')]" help="Posted Journal Items" />
+				<filter string="Cancel" name="cancel"
+					domain="[('state', '=', 'cancel')]" help="Posted Journal Items" />
+				<filter string="Paid" name="paid"
+					domain="[('state', '=', 'paid')]" help="Posted Journal Items" />
+				<filter string="Done" name="done"
+					domain="[('state', '=', 'done')]" help="Posted Journal Items" />
+				<filter string="Invoiced" name="invoiced"
+					domain="[('state', '=', 'invoiced')]" help="Posted Journal Items" />
+				<filter string="Voided" name="voided"
+					domain="[('state', '=', 'voided')]" help="Posted Journal Items" />
+				
+
+				<separator />
+			</search>
+		</field>
+	</record>
+	<!-- columns added in tree view -->
+	<record id="view_pos_order_tree_summary_form_inherit"
+		model="ir.ui.view">
+		<field name="name">pos.order.tree.summary.inherit</field>
+		<field name="model">pos.order</field>
+		<field name="inherit_id" ref="point_of_sale.view_pos_order_tree" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='amount_total']" position="replace" />
+			<xpath expr="//field[@name='pos_reference']" position="after">
+				<field name="number_of_item_sold" optional="hide" />
+				<field name="amount_total" />
+				<field name="vatable_tax" optional="hide" />
+				<field name="vat_exempt" optional="hide" />
+				<field name="zero_rated" optional="hide" />
+				<field name="amount_tax" optional="hide" />
+				<field name="discount" optional="hide" />
+				<field name="payment_methods" optional="hide" />
+				<field name="sc_discount_total" optional="hide" />
+				<field name="pwd_discount_total" optional="hide" />
+			</xpath>
+			<xpath expr="//field[@name='amount_tax']" position="attributes">
+				<attribute name="string">Vat</attribute>
+			</xpath>
+		</field>
+	</record>
+<!-- tree and form view added -->
+	<record id="action_report_pos_order_summary"
+		model="ir.actions.act_window">
+		<field name="name">POS Order Summary</field>
+		<field name="res_model">pos.order</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id"
+			ref="view_pos_order_tree_summary_form_inherit" />
+		<field name="search_view_id" ref="view_pos_order_summary_search" />
+		<field name="target">current</field>
+	</record>
+<!-- menu for the report -->
+	<menuitem id="menu_report_pos_order_summary"
+		name="Summary report" action="action_report_pos_order_summary"
+		parent="sale.menu_sale_report" sequence="6" />
+</odoo>

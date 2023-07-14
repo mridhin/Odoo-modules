@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Hide Cost Field For Non-Administrator User-->
+    <record id="view_product_product_hide_cost_form_inherit" model="ir.ui.view">
+        <field name="name">product.product.hide.cost.inherit.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price']" position="attributes">
+                <attribute name="groups">sales_team.group_sale_manager</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="sale_order_view_multi_product_selection_inherit">
+        <field name="name">sale.order.view.multi.product.selection.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="before">
+                <group>
+                    <button name="%(act_open_select_products_view)d" type="action" string="Select Products"
+                        context="{'default_flag_order': 'so'}" attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        class="oe_highlight" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

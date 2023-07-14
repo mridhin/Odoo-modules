@@ -1,0 +1,1480 @@
+<odoo>
+	<!-- print action button function.-->
+	<record id="action_form_2316_card" model="ir.actions.report">
+	   <field name="name">Form 2316</field>
+	   <field name="model">awb.form.compensation</field>
+	   <field name="report_type">qweb-pdf</field>
+	   <field name="report_name">awb_form_2316.report_form_card</field>
+	   <field name="report_file">awb_form_2316.report_form_card</field>
+	   <field name="print_report_name">'form 2316 - %s' % (object.name)</field>
+	   <field name="binding_model_id" ref="model_awb_form_compensation"/>
+	</record>
+	
+	<!--Complete template design for form 2316-->
+	<template id="report_form_card">
+    <t t-call="web.html_container">
+		<t t-foreach="docs" t-as="o">
+		<style>
+			.awb_table {
+			  border-spacing:0px;
+			}
+		</style>
+		<div class="page">
+			<!--table-1-->
+			<!--<table class="awb_table" style="width:100%; font-size:xx-small;">
+  				<thead >
+					<th style="width:25%;" >
+						<div style="text-align:left" >
+							<div style="display:inline-flex !important;">
+                            <span class="logo_text4">
+                                <span >For BIR Use Only.<br/>
+                                </span>
+                            </span>
+                            <span class="logo_text5">BCS/Item:</span>
+                        </div>
+						</div>
+					</th>
+					<th style="width:50%;text-align:center;">
+						<div >
+							<img t-attf-src="data:image/png;base64,{{o.logo_bir}}" style="width:100px;heigth:5px;color:black;"/>
+							<div class="logo_mean">
+                                <span class="logo_text1">Republic of the Philippines
+                                    
+                                    <br/>
+                                </span>
+                                <span class="logo_text2">Department of Finance
+                                    
+                                    <br/>
+                                </span>
+                                <span class="logo_text3">Bureau of Internal Revenue</span>
+                            </div>
+						</div>
+					</th>
+					<th style="background:blue;width:25%;visibility:hidden;">
+						<div >
+							<div class="" >
+								hai ya
+							</div>
+						</div>
+					</th>
+				</thead>
+  			</table>-->
+			<table style="width:100%; font-size:xx-small;">
+				<tr style="width:100%; ">
+					<th style="width:20%;text-align:left; ">
+						<span>
+							<span>
+								For BIR Use Only.
+								<br />
+							</span>
+						</span>
+						<span class="logo_text5">BCS/Item:</span>
+					</th>
+					<th style="width:10%;padding-left:15%">
+				     <img t-attf-src="data:image/png;base64,{{o.logo_bir}}" style="width:35px;color:black;"/>
+				    </th>
+					<th style="padding-right:15%">
+						<span class="logo_text1" >
+							Republic of the Philippines
+							<br />
+						</span>
+						<span class="logo_text2" >
+							Department of Finance
+							<br />
+						</span>
+						<span class="logo_text3" >Bureau of Internal Revenue</span>
+					</th>
+					<th style="width:25%"></th>
+				</tr>
+			</table>
+  			<!--table-1-->
+  			<!--table-2-->
+  			<table class="awb_table" style="width:100%;font-size:xx-small;">
+  				<thead >
+					<th style="text-align: center;width:20%;border: 1px solid black;">
+						<div >
+							<span >
+								BIR Form No:
+								<br />
+							</span>
+							<span style="font-size: x-small; font-weight: bold;display: block !important;">2316</span>
+							<span><t t-esc="o.bir_form_month"/></span>
+						</div>
+					</th>
+					<th  style="text-align: center;width:60%;border: 1px solid black;border-left: none;">
+							<div >
+								<div >
+									<span style="font-size: x-small;">
+										Certificate of Compensation
+										<br />
+									</span>
+									<span style="font-size: x-small;">
+										Payment/Tax Withheld
+										<br />
+									</span>
+									<span>
+										For Compensation Payment With or Without Tax Withheld
+										<br />
+									</span>
+								</div>
+							</div>
+					</th>
+					<th  style="text-align: center;width:20%;border: 1px solid black;border-left: none;">
+						<div>
+							<span><img t-attf-src="data:image/png;base64,{{o.barcode_image}}" style="width:35px;heigth:5px;color:black;margin:0;padding:0;"/></span>
+							<span><t t-esc="o.barcode_image_text"/></span>
+						</div>
+					</th>
+					
+				</thead>
+  			</table>
+  			<!--table-2-->
+  			<!--table-3-->
+  			<table class="awb_table"  style="width:100%;font-size:xx-small;">
+				<th style="border:1px solid black;text-align:left;">	  
+					<div >
+						<span>Fill in all applicable spaces. Mark all appropriate boxes with an "X".</span>
+					</div>
+				</th>
+			</table>
+			<!--table-3-->
+			<!--table-5-->
+			
+			<!--table-5-->
+				<table class="awb_table" style="width:100%;font-size:xx-small;">
+				  <tr>
+				    <td style="width:50%;border:1px solid black;"><div>
+				      <div class="container" style="font-size:xx-small;text-align:left;">
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div>1 For the Year</div>
+							    </th>
+							    <th style="width:60%;border-bottom:1px solid black;">
+							      <div style="background-color:white;">
+									  
+									<t t-if="o.bir_for_year">
+										<t t-esc="o.bir_for_year"/>  
+									</t>
+									<t t-else="">
+										-
+									</t>
+									
+								   </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table"  style="width:100%;font-size:x-small;background:rgba(0,0,0,0.5);font-weight:bold;text-align:center;">
+							  <th style="border-bottom:1px solid black;"> Part I- Employee Information</th>
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div>2 TIN</div>
+							    </th>
+							    <th style="width:60%;border-bottom:1px solid black;">
+							      <div style="background-color:white;"><t t-if="o.bir_tin_1">
+								    <t t-esc="o.bir_tin_1"/>  
+								</t>
+								<t t-else="">
+									-
+								</t> </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							    <tr style="width:100%;">
+							      <th style="width:75%;border-bottom:1px solid black;">
+							        <div>4 Employee's Name (Last Name, First Name, Middle Name) </div>
+							         <div style="background-color:white;margin:3px"><t t-if="o.bir_employee">
+									    <t t-esc="o.bir_employee.name"/>  
+									</t>
+									<t t-else="">
+										-
+									</t> </div>
+							       </th>
+							      <th style="width:25%;border-bottom:1px solid black;border-left:1px solid black;">
+							        <div >5 RDO Code</div>
+							         <div style="background-color:white;margin:3px">
+										 <t t-if="o.bir_rdo">
+											    <t t-esc="o.bir_rdo"/>  
+											</t>
+											<t t-else="">
+												-
+											</t> </div>
+							        </th>
+							    </tr>  
+							    <tr style="width:100%;">
+							      <th style="width:75%;border-bottom:1px solid black;">
+							        <div> 6 Registered Address  </div>
+							         <div style="background-color:white;margin:3px">
+											<t t-if="o.bir_r_address_1">
+										    <t t-esc="o.bir_r_address_1"/>  
+										</t>
+										<t t-else="">
+											-
+										</t>
+										 </div>
+							       </th>
+							      <th style="width:25%;border-bottom:1px solid black;border-left:1px solid black;">
+							        <div >6A ZIP Code</div>
+							         <div style="background-color:white;margin:3px">
+										 <t t-if="o.bir_zip_1">
+											    <t t-esc="o.bir_zip_1"/>  
+											</t>
+											<t t-else="">
+												-
+											</t>
+										  </div>
+							        </th>
+							    </tr>  
+							    <tr style="width:100%;">
+							      <th style="width:75%;border-bottom:1px solid black;">
+							        <div> 6B  Local Home Address  </div>
+							         <div style="background-color:white;margin:3px">
+										 <t t-if="o.bir_local_address">
+										    <t t-esc="o.bir_local_address"/>  
+										</t>
+										<t t-else="">
+											-
+										</t>
+										  </div>
+							       </th>
+							      <th style="width:25%;border-bottom:1px solid black;border-left:1px solid black;">
+							        <div >6C ZIP Code</div>
+							         <div style="background-color:white;margin:3px">
+										 
+										<t t-if="o.bir_zip_2">
+										    <t t-esc="o.bir_zip_2"/>  
+										</t>
+										<t t-else="">
+											-
+										</t>
+										 
+										  </div>
+							        </th>
+							    </tr>  
+							 </table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div>6D Foreign Address</div>
+							       <div style="background-color:white;margin:5px">
+										<t t-if="o.bir_f_address">
+										    <t t-esc="o.bir_f_address"/>  
+										</t>
+										<t t-else="">
+											-
+										</t>
+									 </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div>7 Date of Birth</div>
+							       <div style="background-color:white;margin:5px">
+									<t t-if="o.bir_dob">
+										    <t t-esc="o.bir_dob"/>  
+										</t>
+										<t t-else="">
+											-
+										</t>   
+																			   
+								    </div>
+							    </th>
+							   <th style="width:60%;border-bottom:1px solid black;border-left:1px solid black;">
+							      <div>8 contact</div>
+							       <div style="background-color:white;margin:5px">
+										<t t-if="o.bir_contact">
+										    <t t-esc="o.bir_contact"/>  
+										</t>
+										<t t-else="">
+											-
+										</t>   
+								   </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:60%;border-bottom:1px solid black;">
+							      <div>9 Statutory Minimum Wage rate per day</div>
+							    </th>
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div style="background-color:white;">
+										<t t-if="o.bir_min_wage_day">
+									    <t t-esc="o.bir_min_wage_day"/>  
+									</t>
+									<t t-else="">
+										-
+									</t>
+									 </div>
+							    </th>
+							  </tr> 
+							  <tr style="width:100%;">
+							    <th style="width:60%;border-bottom:1px solid black;">
+							      <div>10 Statutory Minimum Wage rate per month
+							</div>
+							    </th>
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div style="background-color:white;">
+									 <t t-if="o.bir_min_wage_month">
+										    <t t-esc="o.bir_min_wage_month"/>  
+										</t>
+										<t t-else="">
+											-
+										</t>
+ 
+									  </div>
+							    </th>
+							  </tr> 
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:75%;border-bottom:1px solid black;">
+							      <div>11 Minimum Wage Earner (MWE) whose compensation is exempt from
+							 withholding tax and not subject to income tax</div>
+							    </th>
+							    <th style="width:25%;border-bottom:1px solid black;">
+							      <div style="text-align:end">
+									  <t t-if="o.bir_mwe">
+									    <input type="checkbox" checked="checked"></input> 
+									</t>
+									<t t-else="">
+										<input type="checkbox"  ></input> 
+									</t>
+								  </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:x-small;background:rgba(0,0,0,0.5);font-weight:bold;text-align:center;">
+							  <th> Part II - Employer Information (Present)</th>
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div>12 TIN</div>
+							    </th>
+							    <th style="width:60%;border-bottom:1px solid black;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_tin_2">
+   <t t-esc="o.bir_tin_2"/>
+</t>
+<t t-else="">
+	-
+</t>
+									   </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div>13 Employer's Name</div>
+							       <div style="background-color:white;margin:5px">
+									   <t t-if="o.bir_employer">
+   <t t-esc="o.bir_employer.name"/>
+</t>
+<t t-else="">
+	-
+</t>
+									   
+									    </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							    <tr style="width:100%;">
+							      <th style="width:75%;border-bottom:1px solid black;">
+							        <div>14 Registered Address </div>
+							         <div style="background-color:white;margin:3px">
+										 <t t-if="o.bir_r_address_2">
+   <t t-esc="o.bir_r_address_2"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							       </th>
+							      <th style="width:25%;border-bottom:1px solid black;border-left:1px solid black;">
+							        <div >14A ZIP Code</div>
+							         <div style="background-color:white;margin:3px">
+										 <t t-if="o.bir_zip_3">
+   <t t-esc="o.bir_zip_3"/>
+</t>
+<t t-else="">
+	-
+</t>
+
+										 
+										 
+									 </div>
+							        </th>
+							    </tr> 
+							</table>
+							
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:25%;border-bottom:1px solid black;">
+							      <div>15A Main Employer</div>
+							    </th>
+							    <th style="width:25%;border-bottom:1px solid black;">
+							      <div style="text-align:end">
+									  <t t-if="o.bir_main">
+    <input type="checkbox" value="true" checked="checked"></input>
+</t>
+<t t-else="">
+	<input type="checkbox" value="true" ></input> 
+</t>
+									  
+									   </div>
+							    </th>
+							<th style="width:25%;border-bottom:1px solid black;border-left:1px solid black;">
+							      <div>15B Secondary Employer</div>
+							    </th>
+							    <th style="width:25%;border-bottom:1px solid black;">
+							      <div style="text-align:end">
+									  <t t-if="o.bir_secondary">
+   <input type="checkbox" value="true" checked="checked"></input>
+</t>
+<t t-else="">
+	<input type="checkbox" value="true" ></input> 
+</t>
+									  
+									  
+								  </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:x-small;background:rgba(0,0,0,0.5);font-weight:bold;text-align:center;">
+							  <th style="border-bottom:1px solid black;"> Part III - Employer Information (Previous)</th>
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div>16 TIN</div>
+							    </th>
+							    <th style="width:60%;border-bottom:1px solid black;">
+							      <div style="background-color:white;">
+									  
+									  <t t-if="o.bir_tin_3">
+   <t t-esc="o.bir_tin_3"/>
+</t>
+<t t-else="">
+	-
+</t>
+									   </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:40%;border-bottom:1px solid black;">
+							      <div>17 Employer's Name</div>
+							       <div style="background-color:white;margin:5px">
+									   <t t-if="o.bir_employer_prev">
+   <t t-esc="o.bir_employer_prev.name"/>
+</t>
+<t t-else="">
+	-
+</t>
+									   
+									    </div>
+							    </th>
+							  </tr> 			    
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							    <tr style="width:100%;">
+							      <th style="width:75%;border-bottom:1px solid black;">
+							        <div>18 Registered Address </div>
+							         <div style="background-color:white;margin:3px">
+										 <t t-if="o.bir_r_address_3">
+   <t t-esc="o.bir_r_address_3"/>
+</t>
+<t t-else="">
+	-
+</t>
+
+										 
+										  </div>
+							       </th>
+							      <th style="width:25%;border-bottom:1px solid black;border-left:1px solid black;">
+							        <div >18A ZIP Code</div>
+							         <div style="background-color:white;margin:3px">
+										 
+<t t-if="o.bir_zip_4">
+   <t t-esc="o.bir_zip_4"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							</table>
+							<table class="awb_table" style="width:100%;font-size:x-small;background:rgba(0,0,0,0.5);font-weight:bold;text-align:center;">
+							  <th style="border-bottom:1px solid black;"> Part IVA - Summary</th>
+							</table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;background:rgba(0,0,0,0.5);text-align:left;" >
+							  <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>19 Gross Compensation Income fromPresent Employer (Sumof Items 38
+							and 52)
+							</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_gross">
+   <t t-esc="o.bir_gross"/>
+</t>
+<t t-else="">
+	-
+</t>
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>20 Less: TotalNon-Taxable/Exempt Compensation Income fromPresent
+							Employer (FromItem38)</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_less">
+   <t t-esc="o.bir_less"/>
+</t>
+<t t-else="">
+	-
+</t>
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>21 Taxable Compensation Income fromPresent Employer (Item19 Less
+							Item20) (FromItem52)</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_tax_present">
+   <t t-esc="o.bir_tax_present"/>
+</t>
+<t t-else="">
+	-
+</t>
+
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>22 Add: Taxable Compensation Income fromPrevious Employer, if
+							applicable</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_add">
+   <t t-esc="o.bir_add"/>
+</t>
+<t t-else="">
+	-
+</t>
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>23 Gross Taxable Compensation Income (Sumof Items 21 and 22)</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_gross_income">
+   <t t-esc="o.bir_gross_income"/>
+</t>
+<t t-else="">
+	-
+</t>
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>24 TaxDue</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_tax_due">
+   <t t-esc="o.bir_tax_due"/>
+</t>
+<t t-else="">
+	-
+</t>
+
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>25 Amount of Taxes Withheld: 
+							</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;"> </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>25A Present Employer</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_present_emp">
+   <t t-esc="o.bir_present_emp"/>
+</t>
+<t t-else="">
+	-
+</t>
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>25B Previous Employer, ifapplicable</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  
+<t t-if="o.bir_previous_emp">
+   <t t-esc="o.bir_previous_emp"/>
+</t>
+<t t-else="">
+	-
+</t>
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>26 TotalAmount of Taxes Withheld as adjusted (Sumof Items 25A and
+							25B)
+							</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_total_amount_tax">
+   <t t-esc="o.bir_total_amount_tax"/>
+</t>
+<t t-else="">
+	-
+</t>
+									  
+									   </div>
+							    </th>
+							  </tr>
+							   <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>27 5% TaxCredit (PERA Act of 2008)
+							</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  <t t-if="o.bir_tax_credit">
+   <t t-esc="o.bir_tax_credit"/>
+</t>
+<t t-else="">
+	-
+</t> </div>
+							    </th>
+							  </tr>
+							  <tr style="width:100%;">
+							    <th style="width:60%;">
+							      <div>28 Total Taxes Withheld (Sumof Items 26 and 27)
+							</div>
+							    </th>
+							    <th style="width:40%;">
+							      <div style="background-color:white;">
+									  
+									  <t t-if="o.bir_total_tax">
+   <t t-esc="o.bir_total_tax"/>
+</t>
+<t t-else="">
+	-
+</t> </div>
+							    </th>
+							  </tr>
+							</table>
+			
+					  </div>
+									  
+  
+  
+									</div></td>
+				    <td style="width:50%;background:rgba(0,0,0,0.5);border:1px solid black;border-left:none;">
+				      <div class="container" style="margin-bottom:238px;">
+														
+						
+							<table class="awb_table" style="width:100%;font-size:xx-small;" >
+							    <tr style="width:100%;">
+							      <th style="width:25%;"><div >From the period <br/> From </div></th>
+							      <th style="width:25%;padding-right:1px;"><div style="background-color:white;">
+									  
+									  <t t-if="o.bir_for_period_from">
+   <t t-esc="o.bir_for_period_from"/>
+</t>
+<t t-else="">
+	-
+</t>
+								  </div></th>
+							      <th style="width:25%;"><div >To</div></th>
+							      <th style="width:25%;"><div style="background-color:white;">
+									  <t t-if="o.bir_for_period_to">
+   <t t-esc="o.bir_for_period_to"/>
+</t>
+<t t-else="">
+	-
+</t>
+									  
+								  </div></th>
+							    </tr>  
+							  </table>
+							<table class="awb_table" style="width:100%;font-size:xx-small;text-align:left;" >
+							    <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>A. NON-TAXABLE/EXEMPT COMPENSATION INCOME</div>
+							
+							       </th>
+							      <th style="width:25%;">
+							        <div >Amount</div>
+							        </th>
+							    </tr>  
+							    <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div> 29 Basic Salary (including the exempt
+							          P250,000 and below)
+							          or the Statutory MinimumWage of the
+							          MWE
+							          </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_basic_sal">
+   <t t-esc="o.bir_basic_sal"/>
+</t>
+<t t-else="">
+	-
+</t>
+										  </div>
+							        </th>
+							    </tr>
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div> 30 Holiday Pay (MWE) </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_h_pay">
+   <t t-esc="o.bir_h_pay"/>
+</t>
+<t t-else="">
+	-
+</t> </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div> 31 Overtime Pay (MWE)</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_o_pay">
+   <t t-esc="o.bir_o_pay"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div> 32 Night Shift Differential (MWE) </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_night_shift">
+   <t t-esc="o.bir_night_shift"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div> 33 Hazard Pay (MWE)
+							 </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_har_pay">
+   <t t-esc="o.bir_har_pay"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>34 13th Month Pay and Other Benefits
+							        (maximumof P90,000)
+							        </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_13th">
+   <t t-esc="o.bir_13th"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>35 De Minimis Benefits
+							      </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_de_min">
+   <t t-esc="o.bir_de_min"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div> 36 SSS, GSIS, PHICand PAG-IBIG
+							        Contributions
+							        and Union Dues (Employee share only)
+							        </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_sss">
+   <t t-esc="o.bir_sss"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>37 Salaries and Other Forms of
+							        Compensation
+							        </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_sal">
+   <t t-esc="o.bir_sal"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>38 Total Non-Taxable/Exempt
+							        Compensation Income (Sumof Items 29 to 37)</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_total_nontax">
+   <t t-esc="o.bir_total_nontax"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr>  
+							   <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>B. TAXABLECOMPENSATION
+							        INCOMEREGULAR</div>
+							       </th>
+							     <th style="width:25%;">
+							         <div style="background-color:white;"> </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>39 Basic Salary
+							        </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_basic">
+   <t t-esc="o.bir_basic"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>40 Representation</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_representation">
+   <t t-esc="o.bir_representation"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>41 Transportation</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_transportation">
+   <t t-esc="o.bir_transportation"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>42 Cost of Living Allowance (COLA)</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_cola">
+   <t t-esc="o.bir_cola"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>43 Fixed Housing Allowance</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_fixed_housing">
+   <t t-esc="o.bir_fixed_housing"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>44 Others (specify)
+							      </div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;"> </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div style="background-color:white;width:50%">44A 
+										 <t t-if="o.bir_other_1">
+   <t t-esc="o.bir_other_1"/>
+</t>
+<t t-else="">
+	-
+</t>
+										
+									</div>
+							      
+							       </th>
+							        
+							      <th style="width:25%;">
+							         <div style="background-color:white;"> 
+										 <t t-if="o.bir_other_2">
+   <t t-esc="o.bir_other_2"/>
+</t>
+<t t-else="">
+	-
+</t>
+
+										 
+									 </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div style="background-color:white;width:50%">44B 
+										
+										<t t-if="o.bir_other_3">
+   <t t-esc="o.bir_other_3"/>
+</t>
+<t t-else="">
+	-
+</t>
+									</div>
+							      
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_other_4">
+   <t t-esc="o.bir_other_4"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							    <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>SUPPLEMENTARY</div>
+							       </th>
+							     <th style="width:25%;">
+							         <div style="background-color:white;"> </div>
+							        </th>
+							    </tr>
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>45 Commission
+							</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_comission">
+   <t t-esc="o.bir_comission"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>46 Profit Sharing</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_profit_sharing">
+   <t t-esc="o.bir_profit_sharing"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>47 Fees Including Director's Fees</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_fee_dir">
+   <t t-esc="o.bir_fee_dir"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>48 Taxable 13th Month Benefits</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_tax_13th">
+   <t t-esc="o.bir_tax_13th"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>49 Hazard Pay</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_har_pay_1">
+   <t t-esc="o.bir_har_pay_1"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>50 Overtime Pay</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_o_pay_2">
+   <t t-esc="o.bir_o_pay_2"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>51 Others (specify)
+										
+										
+									</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;"> </div>
+							        </th>
+							    </tr> 
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div style="background-color:white;width:50%">51A 
+										
+										<t t-if="o.bir_other_5">
+   <t t-esc="o.bir_other_5"/>
+</t>
+<t t-else="">
+	-
+</t>
+									</div>
+							      
+							       </th>
+							        
+							      <th style="width:25%;">
+							         <div style="background-color:white;"> 
+										 <t t-if="o.bir_other_6">
+   <t t-esc="o.bir_other_6"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+									 </div>
+							        </th>
+							    </tr> 
+							  <tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div style="background-color:white;width:50%">51B 
+										<t t-if="o.bir_other_7">
+   <t t-esc="o.bir_other_7"/>
+</t>
+<t t-else="">
+	-
+</t>
+										
+									</div>
+							      
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_other_8">
+   <t t-esc="o.bir_other_8"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							<tr style="width:100%;">
+							      <th style="width:75%;">
+							        <div>52 Total Taxable Compensation Income
+							(Sumof Items 39 to 51B)</div>
+							       </th>
+							      <th style="width:25%;">
+							         <div style="background-color:white;">
+										 <t t-if="o.bir_total_tax_income">
+   <t t-esc="o.bir_total_tax_income"/>
+</t>
+<t t-else="">
+	-
+</t>
+										 
+										  </div>
+							        </th>
+							    </tr> 
+							 </table>
+							 </div>		</td>					
+				  </tr>
+				</table>
+			
+			<!--table-6-->
+			<table class="awb_table" style="width:100%;">
+				<th style="border:1px solid black;text-align:left;background-color:grey;font-size:xx-small;">	  
+					<div >
+						<span>
+							I/We declare, 
+							 under the penalties of perjury that this certificate has been made in good faith,
+							  verified by me/us, and to the best of my/our knowledge and belief, is true and correct,
+							 pursuant to the provisions of the National Internal Revenue Code, as amended, 
+							 and the regulations issued under authority thereof. Further,
+							  I/we give my/our consent to the processing of my/our information as contemplated
+							   under the *Data Privacy Act of 2012 (R.A. No. 10173) 
+							 for legitimate and lawful purposes. </span>
+					</div>
+				</th>
+			</table>
+			<table class="awb_table" style="width:100%;font-size:xx-small;">
+				<th style="width:65%;border: 1px solid black;">
+					<div class="container">
+						<div style="text-align:left;padding-bottom:0%;">
+							<div>
+								<span>
+									53.
+									<t t-if="o.bir_employer">
+									   <t t-esc="o.bir_employer.name"/>
+									  </t>
+									<t t-else="">
+										<span>_______________________</span>
+									</t>
+								</span>
+							</div>
+							<div>
+								<div>
+									Present Employer/Authorized Agent Signature over Printed Name
+									<br />
+								</div>
+							</div>
+						</div>
+						<div  style="text-align:left;padding-bottom:0%;padding-top:0px;">
+							<div>
+								<span>
+									54.
+									<t t-if="o.bir_employee">
+										<t t-esc="o.bir_employee.name"/>
+   										 <!--<img t-attf-src="data:image/png;base64,{{o.bir_a_employee}}" style="width:100px;heigth:5px;color:black;"/>-->
+</t>
+<t t-else="">
+	<span>_______________________</span>
+</t>
+								</span>
+							</div>
+							<div>
+								<div>
+									Employee Signature over Printed Name
+									<br />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container" style="width:100%;text-align:left;margin-top:0;padding-bottom:0;">
+						<span >CTC/Valid ID No. of of Employee*.</span>
+						<span style="margin-left:20%">Place of issue</span>
+					</div>
+					<div class="container" style="width:100%;text-align:left;">
+						<span style="text-align:left;">
+			<t t-if="o.bir_ctc">
+   <t t-esc="o.bir_ctc" />
+</t>
+<t t-else="">
+	<span>_________________</span>
+</t>
+</span>
+						<span style="margin-left:34%;"><t t-if="o.bir_issue">
+   <t t-esc="o.bir_issue" />
+</t>
+<t t-else="">
+	-
+</t></span>
+					</div>
+				</th>
+				<th style="width:35%;border: 1px solid black;border-left:none;">
+					<div style="width: 100%; ">
+						 <div style="width: 100%;text-align:left;">
+	            				<span style="width:50%;">Date signed</span>
+								<span style="width:50%;margin-left:25%"> 
+									<t t-if="o.bir_date_sign_1">
+   <t t-esc="o.bir_date_sign_1" />
+</t>
+<t t-else="">
+	-
+</t>
+									
+								</span>
+	         			 </div>
+	         			 <div style="width: 100%;text-align:left;margin-top:5%;">
+	            				<span style="width:50%;">Date signed</span>
+								<span style="width:50%;margin-left:25%"> 
+									<t t-if="o.bir_date_sign_2">
+   <t t-esc="o.bir_date_sign_2" />
+</t>
+<t t-else="">
+	-
+</t>
+									
+								</span>
+	         			 </div>
+	         			 <div style="width: 100%;text-align:left;margin-top:5%;">
+	            				<span style="width:50%;">Date signed</span>
+								<span style="width:50%;margin-left:25%"> 
+									<t t-if="o.bir_date_sign_3">
+   <t t-esc="o.bir_date_sign_3" />
+</t>
+<t t-else="">
+	-
+</t>
+									
+								</span>
+	         			 </div>
+	         			 <div style="width: 100%; text-align:left;margin-top:5%;">
+	            				<span style="width:50%;">Amount Paid, if CTC</span>
+								<span style="width:50%;margin-left:10%"> 
+									<t t-if="o.bir_amount_ctc">
+   <t t-esc="o.bir_amount_ctc" />
+</t>
+<t t-else="">
+	-
+</t>
+									
+								</span>
+	         			 </div>
+					</div>
+				</th>
+			</table>
+			<!--table-6-->
+			<!--table-7-->
+			<table class="awb_table" style="width:100%;font-size:xx-small;">
+				<th style="border:1px solid black;text-align:center;background-color:grey;">	  
+					<div >
+						<span><strong>To be accomplished under substituted filing</strong></span>
+					</div>
+				</th>
+			</table>
+			<!--table-7-->
+			<!--table-8-->
+			<table class="awb_table" style="width:100%;font-size:xx-small;">
+					<th style="width:50%;padding-bottom: 5%;border: 1px solid black; border-right: none;">
+					<div class="navin" style=""> 
+						<div class="container">
+							<span style="font-size: xx-small;text-align:left;">I declare, under the penalties of perjury that the information herein stated are reported under BIR Form No. 1604-C which has been filed with the Bureau of Internal Revenue.</span>
+							<br></br>
+							<div >
+								<span >55.
+									<t t-if="o.bir_employer">
+									   <t t-esc="o.bir_employer.name"/>
+									  </t>
+									<t t-else="">
+										<span>_______________________</span>
+									</t>
+								</span>
+								<div >
+									<!--<field name="name"/>-->
+									<div >
+										Present Employer/Authorized Agent Signature over Printed Name
+										<br />
+										(Head of Accounting/Human Resource or Authorized Representative)
+										<br />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</th>
+					<th style="width:50%;border: 1px solid black;">
+					<div style="">
+						<div class="container">
+							<span style="font-size: xx-small;text-align:left;">I declare, under the penalties of perjury that I am qualified under substituted filing of Income Tax Return (BIR Form No. 1700), since I received purely compensation income from only one employer in the Philippines for the calendar year; that taxes have been correctly withheld by my employer (tax due equals tax withheld); that the BIR Form No. 1604-C filed by my employer to the BIR shall constitute as my income tax return; and that BIR Form No. 2316 shall serve the same purpose as if BIR Form No. 1700 has been filed pursuant to the provisions of Revenue Regulations (RR) No. 3-2002, as amended.</span>
+							<br></br>
+							<div >
+								<span>56.
+									<t t-if="o.bir_employee">
+									   <t t-esc="o.bir_employee.name"/>
+									  </t>
+									<t t-else="">
+										<span>_______________________</span>
+									</t>
+								</span>
+								<div >
+									<div >
+										Employee Signature over Printed Name
+										<br />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</th>
+				
+			</table>
+			<!--table-8-->
+			</div>
+	
+        
+               
+            
+        </t>
+    </t>
+</template>
+</odoo>

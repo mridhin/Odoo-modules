@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <record model="ir.ui.view" id="view_pos_config_kanban_z_reading">
+            <field name="name">pos.config.kanban.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_kanban"/>
+            <field name="arch" type="xml">
+               <xpath expr="//button[@name='open_session_cb']" position="after">
+               	<field name="show_delete_z_reading" invisible="1"/>
+                 <button class="btn btn-primary" attrs="{'invisible': [('show_delete_z_reading', '=', False)]}" name="delete_z_reading" type="object" confirm="Are you sure you want to delete the Z-reading?">Delete Z-Reading</button>
+                         
+               </xpath>
+            </field>
+        </record>
+   <record id="pos_config_view_form" model="ir.ui.view">
+        <field name="name">awb_reset_counter.pos.config.form.view</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_settings_container')][3]" position="after">
+               <h2>Z-Reading Sequence</h2>
+                    <div class="row mt16 o_settings_container">
+                        <field name="z_reading_sequence_id" invisible="1"/>
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|', ('z_reading_sequence_id', '!=', False), ('id', '=', False)]}">
+                            <div class="o_setting_right_pane">
+                                <button class="btn btn-primary" name="generate_sequence" type="object">Generate Sequence</button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                           <div class="o_setting_right_pane">
+                                <label for="z_reading_next_number"/>
+                                <div class="text-muted">
+                                    Next number on the sequence.
+                                </div>
+                                <field name="z_reading_next_number" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                           <div class="o_setting_right_pane">
+                                <label for="z_reading_padding"/>
+                                <div class="text-muted">
+                                    Change sequence size. Once the sequence is used, the sequence size cannot be changed.
+                                </div>
+                                <field name="z_reading_padding" attrs="{'readonly': [('z_reading_next_number', '>', '1')]}"/>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12 col-lg-6 o_setting_box">
+                           <div class="o_setting_right_pane">
+                                <label for="z_reading_reset_counter"/>
+                                <div class="text-muted">
+                                    Number of times the sequence resets.
+                                </div>
+                                <field name="z_reading_reset_counter" />
+                            </div>
+                        </div> -->
+                    </div> 
+            </xpath>
+        </field>
+   </record> 
+
+</odoo>

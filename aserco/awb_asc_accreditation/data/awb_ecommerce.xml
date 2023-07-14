@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="ecommerce_menu_form" model="website.menu">
+		<field name="name">AWB ASC accreditation</field>
+		<field name="url">/ASC_accreditation_form</field>
+		<field name="parent_id" ref="website.main_menu" />
+		<field name="sequence">50</field>
+	</record>
+
+</odoo>

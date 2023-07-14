@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">inherit.res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]/div[@data-key='general_settings']/div[@id='languages']" position="after">
+                <div id="sms_configuration">
+                    <h2>SMS Gateway</h2>
+                    <div class="row mt16 o_settings_container" name="awb_sms_setting_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="awb_sms_setting">
+                            <div class="o_setting_right_pane">
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="sms_gateway_name" string="SMS Gateway" />
+                                         <br />
+                                        <field name="sms_gateway_name"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-12 o_setting_box"  attrs="{'invisible':[('sms_gateway_name', '!=', 'smart_gateway')]}">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="smart_gateway_url"/>
+                                <br />
+                                <field name="smart_gateway_url"/>
+                                <div class="text-muted">
+                                    Smart Suite SMS Gateway API URL
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-12 o_setting_box"  attrs="{'invisible':[('sms_gateway_name', '!=', 'smart_gateway')]}">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="smart_gateway_username"/>
+                                <br />
+                                <field name="smart_gateway_username"/>
+                                <div class="text-muted">
+                                    Smart Suite SMS Gateway Username
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-12 o_setting_box"  attrs="{'invisible':[('sms_gateway_name', '!=', 'smart_gateway')]}">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="smart_gateway_password"/>
+                            <br />
+                            <field name="smart_gateway_password" password="True"/>
+                            <div class="text-muted">
+                                Smart Suite SMS Gateway API Password
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

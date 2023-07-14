@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_asc_inherit" model="ir.ui.view">
+        <field name="name">sale.order.service.status</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group[2]" position="inside">
+<!--                <group>-->
+                    <field name="assigned_asc_sale_domain" invisible="1"/>
+                    <field name="assigned_asc_sale" domain="assigned_asc_sale_domain"/>
+                <field name="assigned_asc_count" invisible="1"/>
+                <field name="assigned_asc_count_partner" invisible="1"/>
+<!--                </group>-->
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

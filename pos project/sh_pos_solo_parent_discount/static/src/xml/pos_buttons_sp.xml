@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<t t-name="DiscountButtonSP" owl="1">
+    <button class="control-button" t-on-click="display_discount_popup_sp">
+            <i class="fa fa-tag"/>
+            <span>Solo Parent
+        </span>
+    </button>
+
+</t>
+</templates>

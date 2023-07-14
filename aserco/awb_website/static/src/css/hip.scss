@@ -1,0 +1,12 @@
+
+.hip-item {
+    text-align: center; line-height: 200px; color: #fff;
+}
+.hip-item:nth-of-type(odd) {
+  background: blue;
+}
+.hip-item:nth-of-type(even) {
+  background: #C0392B;
+}
+.myt-container { margin: 150px auto; max-width: 960px;}
+.hip-grid { margin: 1.5rem auto;}

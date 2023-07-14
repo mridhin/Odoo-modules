@@ -1,0 +1,6 @@
+.fa-star.checked {
+    color:orange;
+}
+.rating_icon {
+    cursor:pointer;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">    
+    
+   <!--Button design-->
+   <t t-name="VoidPos" t-inherit="point_of_sale.RefundButton" t-inherit-mode="extension" >
+           <xpath expr="//div[hasclass('control-button')]" position="replace">
+               <div class="control-button buttonrefundhide" style="display:none;">
+		            <i class="fa fa-undo" role="img" aria-label="Refund" title="Refund" />
+		            Refund
+		        </div>
+               
+           </xpath>
+    </t>
+</templates>

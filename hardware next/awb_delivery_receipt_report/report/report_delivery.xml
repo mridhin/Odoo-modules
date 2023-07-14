@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!-- template design for Delivery slip print report -->
+	<template id="report_delivery_slip">
+		<t t-call="web.html_container">
+		<style type="text/css">
+			.table-style {border: 1px solid black;width:100%;}
+			.table-style{border-collapse:collapse;border-spacing:0;}
+			.table-style tr td{padding-left:4px !important;border-right: 1px solid black;}
+			.table_line tr{line-height:2px !important}
+			.tg  {border-collapse:collapse;border-spacing:0; width: 100%;}
+			.tg td{border-width:0px;overflow:hidden;padding:10px 5px;word-break:normal;}
+			.tg th{overflow:hidden;padding:10px 5px;word-break:normal;}
+			.tg .tg-0pky{text-align:center;vertical-align:middle;}
+			.tg .tg-0lax{text-align:center;vertical-align:middle}
+			.tg-10 {width: 10%;text-align: left !important;}
+			.tg-5 {width: 5%;text-align: left !important;}
+			.tg-60 {width: 60%;font-weight:bold}
+			.tg-35 {width: 35%;}
+			.tg-63 {width: 63%;text-align: left !important;}
+			.tg-1 {width: 1%;text-align: center !important;}
+			.tg-2 {width: 2%;text-align: center !important;}
+			.tg-3 {width: 3%;text-align: center !important;}
+			.tg-4 {width: 8%;text-align: left !important;}
+			.tg-5 {width: 5%;text-align: left !important;}
+			.tg-6 {width: 6%;text-align: left !important;}
+			.tg-7 {width: 7.5%;text-align: right !important;}
+			.tg-8 {width: 8%;text-align: left !important;}
+			.tg-12 {width: 12%;text-align: left !important;}
+			.tg-23 {width: 23%;text-align: left !important;}
+			.tg-32 {width: 32%;text-align: left !important;}
+			.tg-14 {width: 10%;text-align: right !important;}
+			.td_left {text-align: left !important}
+			.td_discount{font-weight:bold !important}
+			.td_right {text-align: right !important}
+			.td_bottom {margin-top:20px;width:100%}
+			.td_bottom tr {font-size:10px;font-weight:bold;}
+			.td_bottom tr td {width:25% !important;}
+			.table-sm{border:1px !important;font-size:10px}
+			.content-style{margin-top:60%;font-size:8px;text-align:center}
+		</style>
+		<table class="tg table_line" style="font-size:10px;">
+		<thead>
+		 <tr>
+		    <td class="tg-2"></td>
+			<td class="tg-5 tg-0pky">Route</td>
+			<td class="tg-1 tg-0pky">:</td>
+		    <td class="tg-12 tg-0pky"><span t-field="o.partner_id.delivery_area_id" /></td>
+		    <td class="tg-60 tg-0pky" colspan="4"><span t-field="o.company_id" style="font-size:11px"/></td>
+		    <td class="tg-17 tg-0lax" colspan="2" rowspan="3"></td>
+			<td class="tg-3"></td>
+  		</tr>
+		 <tr>
+			<td class="tg-2"></td>
+		    <td class="tg-5 tg-0pky">CLTR</td>
+			<td class="tg-1 tg-0pky">:</td>
+		    <td class="tg-12 tg-0pky"><span t-field="o.partner_id.collection_area" /></td>
+		    <td class="tg-60 tg-0pky" colspan="4"><span t-field="o.company_id.phone"/><br></br><br><br></br></br><br></br><span t-field="o.company_id.mobile"/></td>
+			<td class="tg-3"></td>
+		 </tr>
+		</thead>
+		</table>
+		<table class="tg" style="font-size:10px">
+			<tr>
+				<span style="font-size:10px;padding-left:5px;">Printed By</span>
+				<span style="font-size:10px;padding-left:9px;">:</span>
+				<span style="font-size:10px;padding-left:9px;"><span t-field="request.env.user.partner_id"></span><span>  </span><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/></span>
+			  </tr>
+		</table>
+		<br></br>
+		<table class="tg" style="font-size:10px;">
+		<thead>
+		  <tr style="height:20px !important">
+			<td class="tg-2"></td>
+			<td class="tg-7 tg-0pky">To</td>
+			<td class="tg-2 tg-0pky">:</td>
+		    <td class="tg-63 tg-0pky" colspan="4"><span t-field="o.partner_id"></span></td>
+		    <td class="tg-14 tg-0pky">Date</td>
+			<td class="tg-2 tg-0pky">:</td>
+		    <td class="tg-4 tg-0lax" ><span t-field="o.scheduled_date" t-options='{"format": "MM-d-yyyy"}'/></td>
+			<td class="tg-7"></td>
+			<td class="tg-2"></td>
+		  </tr>
+		  <tr>
+			<td class="tg-2"></td>
+		    <td class="tg-7 tg-0pky">Address</td>
+			<td class="tg-2 tg-0pky">:</td>
+		    <td class="tg-63 tg-0pky" colspan="4"><span>
+								<t t-if="o.partner_id.street">
+									<t t-esc="o.partner_id.street" />
+									<span>,</span>
+								</t>
+								<t t-if="o.partner_id.street2">
+									<t t-esc="o.partner_id.street2" />
+									<span>,</span>
+								</t>
+								<t t-if="o.partner_id.city">
+									<t t-esc="o.partner_id.city" />
+									<span>
+									</span>
+								</t>
+								<t t-if="o.partner_id.state_id">
+									<t t-esc="o.partner_id.state_id.name" />
+									<span>
+									</span>
+								</t>
+								<t t-if="o.partner_id.zip">
+									<t t-esc="o.partner_id.zip" />
+									<span>
+									</span>
+								</t>
+								<t t-if="o.partner_id.country_id">
+									<t t-esc="o.partner_id.country_id.name" />
+								</t>
+								</span></td>
+		    <td class="tg-14 tg-0pky">Sold By</td>
+			<td class="tg-2 tg-0pky">:</td>
+			<td class="tg-4 tg-0lax" colspan="2"></td>
+			<td class="tg-7"></td>
+			<td class="tg-2"></td>
+		  </tr>
+		  <tr>
+			<td class="tg-2"></td>
+		    <td class="tg-7 tg-0pky">Delivery To</td>
+			<td class="tg-2 tg-0pky">:</td>
+		    <td class="tg-63 tg-0pky" colspan="4"><span>
+								<t t-if="o.partner_id.street">
+									<t t-esc="o.partner_id.street" />
+									<span>,</span>
+								</t>
+								<t t-if="o.partner_id.street2">
+									<t t-esc="o.partner_id.street2" />
+									<span>,</span>
+								</t>
+								<t t-if="o.partner_id.city">
+									<t t-esc="o.partner_id.city" />
+									<span>
+									</span>
+								</t>
+								<t t-if="o.partner_id.state_id">
+									<t t-esc="o.partner_id.state_id.name" />
+									<span>
+									</span>
+								</t>
+								<t t-if="o.partner_id.zip">
+									<t t-esc="o.partner_id.zip" />
+									<span>
+									</span>
+								</t>
+								<t t-if="o.partner_id.country_id">
+									<t t-esc="o.partner_id.country_id.name" />
+								</t>
+								</span></td>
+		    <td class="tg-14 tg-0pky">Terms</td>
+			<td class="tg-2 tg-0pky">:</td>
+			<td class="tg-4 tg-0lax" colspan="2"><span t-field="o.sale_id.payment_term_id"></span></td>
+			<td class="tg-7"></td>
+			<td class="tg-2"></td>
+		  </tr>
+		  <tr>
+			<td class="tg-2"></td>
+		    <td class="tg-14 tg-0pky">Delivery Notes</td>
+			<td class="tg-2 tg-0pky">:</td>
+		    <td class="tg-63 tg-0pky" colspan="4"><span t-esc="o.partner_id.comment"></span></td>
+		    <td class="tg-14 tg-0pky">Ordered By</td>
+			<td class="tg-2 tg-0pky">:</td>
+			<td class="tg-4 tg-0lax"><span t-field="o.ordered_by"></span></td>
+			<td class="tg-2"></td>
+		  </tr>
+		</thead>
+		</table>
+		<br></br>
+			<table class="table tg table-sm">
+				<thead>
+					<tr>
+						<th style="border-bottom: 1px solid !important">QTY</th>
+						<th></th>
+						<th style="border-bottom: 1px solid !important">UOM</th>
+						<th></th>
+						<th style="border-bottom: 1px solid !important">DESCRIPTION</th>
+						<th></th>
+						<th style="border-bottom: 1px solid !important">UNIT PRICE</th>
+						<th></th>
+						<th style="border-bottom: 1px solid !important">DISCOUNT</th>
+						<th></th>
+						<th style="border-bottom: 1px solid !important">AMOUNT</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr t-foreach='o.sale_id.order_line' t-as='line' >
+						<td class="td_right">
+							<span t-field="line.product_uom_qty" />
+						</td>
+						<td></td>
+						<td class="td_left">
+							<span t-field="line.product_uom" />
+						</td>
+						<td></td>
+						<td class="td_left">
+							<span t-field="line.name" />
+						</td>
+						<td></td>
+						<td class="td_right">
+							<span t-field="line.price_unit" />
+						</td>
+						<td></td>
+						<td class="td_left td_discount">
+							<span t-field="line.discount" />
+						</td>
+						<td></td>
+						<td class="td_right">
+							<span t-esc="line.price_subtotal" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="content-style">
+				<p>PLEASE KEEP SALES ORDER CLEAN. PLEASE WRITE YOUR RETURNS ON A SEPERATE PAPER. RETURNS WRITTEN IN SALES ORDER WILL<br></br>
+						NOT BE ENTERTAINED. ALL RETURNS ARE SUBJECT FOR APPROVAL.</p>
+			</div>
+			<br></br>
+			<table style="width:100% !important">
+				<tr style="font-size:8px;">
+					<td style="width:50% !important"><span>STRICTLY NO CASH ADVANCE TO ANY OF OUR EMPLOYEES</span></td>
+					<td style="width:50% !important;text-align:right"><span style="font-size:10px">STRICTLY STRICT CASH ONLY</span></td>
+				</tr>
+			</table>
+			<table  class="td_bottom">	
+				<tr>
+					<td ><strong>Total Items :</strong></td>
+					<td ><strong>Vatable :</strong></td>
+					<td ><strong>Add 12% VAT :</strong></td>
+					<td ><strong>Amount Due :</strong></td>
+				</tr>
+			</table>
+			<br></br>
+			<table class='table-style tg'>
+				<tr style="font-size:10px;line-height:30px !important">
+					<td ><span>Presented by:</span> <br/>
+						 <t t-if="o.pick_up==True">
+					<span style='font-size:18px;font-weight:bold'>*** PICK-UP ***</span>
+				</t>
+					</td>
+					<td><span>Driver :</span></td>
+					<td><span>Checked by :</span></td>
+					<td><span>Time In:</span></td>
+					<td><span>Time Out:</span></td>
+				</tr>
+			</table>
+			<br></br>
+			<table  style="width:100% !important" class="tg">
+				<tr>
+					<td style="width:50% !important;font-size:10px"><span>PLEASE CONFIRM YOUR ORDERS INVOICE WILL FOLLOW</span></td>
+					<td style="width:50% !important;text-align:right"><span style="font-size:9px">Customer Printed Name  Signature</span></td>
+				</tr>
+			</table>
+			<div>
+				<span style="margin-left:10% !important;font-size:9px">white - original / pink - duplicate / yellow - customer copy</span>
+			</div>
+		</t>
+	</template>
+
+	<template id="inherited_report_deliveryslip"
+		inherit_id="stock.report_deliveryslip">
+		<xpath expr="//t[@t-foreach='docs']" position="replace">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="awb_delivery_receipt_report.report_delivery_slip"
+					t-lang="o.partner_id.lang" />
+			</t>
+		</xpath>
+	</template>
+</odoo>

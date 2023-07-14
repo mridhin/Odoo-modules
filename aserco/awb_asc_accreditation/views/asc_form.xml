@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- creating a tree and form view for the new model -->
+<record id="asc_tree" model="ir.ui.view">
+		<field name="name">asc.tree</field>
+		<field name="model">asc.accreditation</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="city" />
+				<field name="mob_no" />
+				<field name="email" />
+				<field name="name_of_bs" />
+				<field name="products" widget="many2many_tags"/>
+				<field name="ser_off" widget="many2many_tags"/>
+				
+				
+			</tree>
+		</field>
+	</record>
+	<record id="asc_form" model="ir.ui.view">
+		<field name="name">asc.tree</field>
+		<field name="model">asc.accreditation</field>
+		<field name="arch" type="xml">
+			<form>
+			<sheet>
+			
+			<group>
+				<group>
+				
+				<field name="name" />
+				<field name="city" />
+				<field name="mob_no" />
+				<field name="email" />
+				<field name="name_of_bs" />
+				<field name="products" widget="many2many_tags"/>
+				<field name="ser_off" widget="many2many_tags"/>
+				<field name="file" />
+				
+				</group>
+				</group>
+				
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="action_asc_form"
+		model="ir.actions.act_window">
+		<field name="name">ASC accreditation form</field>
+		<field name="res_model">asc.accreditation</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				ASC accreditation form
+			</p>
+		</field>
+	</record>
+	<!-- creating a menu -->
+	<menuitem id="asc_form_menu" name="ASC accreditation form"
+		action="action_asc_form" sequence="1" />
+</odoo>

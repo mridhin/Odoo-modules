@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_task_access_inherit_form" model="ir.ui.view">
+        <field name="name">project.task.access.inherit.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_order_id']" position="after">
+                <field name="custom_access_token" invisible="1"/>
+                <field name="state" force_save="1" invisible="1"/>
+                <field name="sending_date" invisible="1"/>
+                <field name="state_lines" invisible="1"/>
+                <field name="custom_is_closed" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='stage_id']" position="attributes">
+            	<attribute name="attrs">{'invisible': ['|',('custom_is_closed', '=', True),'&amp;',('project_id', '=', False), ('stage_id', '=', False)]}
+                </attribute>           	      
+            </xpath>
+            <xpath expr="//field[@name='stage_id']" position="after">
+            	<field name="custom_stage_id" widget="statusbar"  attrs="{'invisible': ['|',('custom_is_closed', '!=', True),'&amp;',('project_id', '=', False), ('stage_id', '=', False)]}" options="{'fold_field': 'fold'}" />
+            </xpath> 
+            <xpath expr="//button[@name='action_timer_start'][1]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|','|', ('display_timer_start_primary', '=', False),
+                    ('encode_uom_in_days', '=', True), ('state', '!=', 'In Progress')]}
+                </attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_timer_start'][2]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', ('display_timer_start_secondary', '=', False),
+                    ('encode_uom_in_days', '=', True), ('state', '!=', 'In Progress')]}
+                </attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_timer_stop']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', ('display_timer_stop', '=', False),
+                    ('encode_uom_in_days', '=', True), ('state', '!=', 'In Progress')]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

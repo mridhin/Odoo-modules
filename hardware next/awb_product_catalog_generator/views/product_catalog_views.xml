@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="generated_catalog_form_view" model="ir.ui.view">
+            <field name="name">product.generated.catalog.form.view</field>
+            <field name="model">product.catalog</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="send_by_email" string="Send By Email" type="object"
+                            class="oe_highlight" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="create_date" />
+                            </group>
+                            <group>
+                                <field name="attachment_name" invisible="1" />
+                                <field name="attachment" filename="attachment_name" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="generated_catalog_tree_view" model="ir.ui.view">
+            <field name="name">product.generated.catalog.tree.view</field>
+            <field name="model">product.catalog</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="create_date" />
+                    <field name="attachment_name" invisible="0" />
+                    <field name="attachment" filename="attachment_name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="generated_catalog_action_view" model="ir.actions.act_window">
+            <field name="name">Product Catalog</field>
+            <field name="res_model">product.catalog</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Product Catalog" id="awb_product_catalog" />
+
+        <menuitem name="Product Catalog" id="awb_product_catalog_menu" parent="awb_product_catalog" />
+
+        <menuitem name="Product Catalog" id="menu_generated_product_catalog"
+            parent="awb_product_catalog_menu" action="generated_catalog_action_view" sequence="1" />
+
+    </data>
+</odoo>

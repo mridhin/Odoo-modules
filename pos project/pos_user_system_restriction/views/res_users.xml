@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id='pusr_res_users_view_form' model='ir.ui.view'>
+        <field name='name'>res.users.form.view.pusr</field>
+        <field name='model'>res.users</field>
+        <field name='inherit_id' ref='awb_void_orders.res_users_view_form'/>
+        <field name='arch' type='xml'>
+            <xpath expr="//field[@name='pos_security_pin']" position='after'>
+                <field name="machine_type" />
+                <field name="serial_number" attrs="{'invisible':[('machine_type','!=','laptop')]}"/>
+                <field name="imei_number"  attrs="{'invisible':[('machine_type','!=','tablet')]}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

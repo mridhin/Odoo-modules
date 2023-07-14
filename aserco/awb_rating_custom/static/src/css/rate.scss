@@ -1,0 +1,36 @@
+
+@media (max-width: 575.98px) {
+    img.rate-imgs {
+        height: 45px;
+    }
+
+    .star_pad {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (max-width: 300px) {
+    img.rate-imgs {
+        height: 40px;
+    }
+}
+
+@media (max-width: 270px) {
+    img.rate-imgs {
+        height: 30px;
+    }
+}
+
+@media (max-width: 220px) {
+    img.rate-imgs {
+        height: 25px;
+    }
+}
+
+@media (max-width: 200px) {
+    .star_pad {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+}

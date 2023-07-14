@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+   <t t-name="DiscountPopup" owl="1">
+	   <!-- updated the pos discount popup design-->
+       <div role="dialog" class="modal-dialog">
+           <div class="popup">
+               <p class="title">
+                   <t t-esc="props.title" />
+               </p>
+               <div class="body" style="margin: 5px;width: -webkit-fill-available;display: inline-flex">
+					
+						<div style="width:50%;">
+							<div class="select_vat" style="width: 88%;margin: 5px;height: 47px">
+								<select id="vat_selection_id" name="vat_selection_id" class="form-control vat_selection_id" t-on-change="captureVat" required="required" placeholder="Select" style="width: -webkit-fill-available;height: -webkit-fill-available;font-size: initial;border-radius: 3px;border: none;box-shadow: 0px 0px 0px 1px rgb(220 220 220) inset;">
+									<option value="">Select</option>
+									<option value="vat_in">VAT Inclusive</option>
+									<option value="vat_ex">VAT Exclusive</option>
+								</select>
+							</div>
+							<div class="discount_val" style="width:100%;margin-top:20px;">
+								<input id="dicountValue" type="text" value="0" style="text-align-last: end;width: 88%;" name="discount" t-on-change="captureChange" disabled="True"/>
+								<span style="margin-left:5px;">%</span>
+							</div>
+							
+							
+						</div>
+						<div style="width:50%;">
+							<div style="font-size: small;padding-left: 10px;text-align: left;">
+								<span>Select VAT Exclusive if you want to remove the VAT amount before applying the discount. Otherwise, select VAT Inclusive</span>
+							</div>
+							<div style="font-size: small;margin-top: 25px;text-align: left;padding-left: 10px">
+								<span>Example: 5%, 20%</span>
+							</div>
+						</div>
+					
+
+               </div>
+               <footer class="footer" >
+				   <div class="awb_footer_dialog">
+				   	
+                    <div class="button cancel" t-on-click="cancel">
+                        <span >Cancel</span>
+                    </div>
+                     <div class="button  confirm" style="background: #875A7B;" t-on-click="confirm">
+                        <span style="color: white;">Apply to All</span>
+                    </div>
+                    <div class="button  apply_confirm" style="background: #875A7B;" t-on-click="applyConfirm">
+                       <span style="color: white;">Apply</span>
+                    </div>
+                   
+                    </div>
+                </footer>
+
+           </div>
+       </div>
+   </t>
+</templates>
