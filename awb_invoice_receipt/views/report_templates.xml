@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- EDITED ADDRESS LAYOUT -->
+    <template id="awb_address_layout" inherit_id="web.address_layout">
+        <xpath expr="//t[@t-set='colclass']" position="attributes">
+            <!-- REMOVED + ' ml-auto' at the end of t-value to prevent the address from aligning to the right. -->
+            <attribute name="t-value">('col-sm-5' if report_type == 'html' else 'col-5')</attribute>
+        </xpath>
+    </template>
+</odoo>
