@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id ="transfer_report" name =" All Report" parent="stock.menu_warehouse_report" action="action_all_transfer_report"/>
+    <menuitem id="stock.stock_picking_type_menu" active="False"/>
+    <menuitem name="FASTAG-INVENTORY" id="stock.menu_stock_root"/>
+</odoo>

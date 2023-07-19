@@ -1,0 +1,213 @@
+<odoo>
+    <record model="ir.ui.view" id="hotel_report_wizard_form">
+      <field name="name">Accommodation Report</field>
+      <field name="model">hotel.report.wizard</field>
+      <field name="arch" type="xml">
+        <form>
+            <group>
+           <group>
+               <field name="partner_id"/>
+               <field name="room_ids" widget="many2many_tags"/>
+           </group>
+                <group>
+                    <field name="check_in"/>
+               <field name="check_out"/>
+                    <field name="check" invisible="1"/>
+                </group>
+            </group>
+             <footer>
+               <button name="accommodation_report" string="Print Pdf" type="object" class="oe_highlight"/>
+                  <button name="accommodation_report_xlsx" string="Generate Excel" type="object" class="oe_highlight"/>
+           </footer>
+        </form>
+      </field>
+    </record>
+     <record model="ir.actions.act_window" id="hotel_report_wizard">
+      <field name="name">Accommodation Report</field>
+      <field name="res_model">hotel.report.wizard</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="hotel_report_wizard_form"/>
+      <field name="target">new</field>
+    </record>
+
+   <record id="hotel_report_generate" model="ir.actions.report">
+        <field name="name">Accommodation Report</field>
+        <field name="model">hotel.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hotel__management.accommodation_report_generate</field>
+        <field name="report_file">hotel__management.accommodation_report_generate</field>
+    </record>
+     <record id="hotel_xlsx_report_generate" model="ir.actions.report">
+        <field name="name">Accommodation Excel Report</field>
+        <field name="model">hotel.report.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">hotel__management.accommodation_xlsx_report_generate</field>
+        <field name="report_file">hotel__management.accommodation_xlsx_report_generate</field>
+    </record>
+     <template id="accommodation_report_generate">
+
+                <t t-call="web.basic_layout">
+
+                    <div class="page">
+                        <div class="oe_structure">
+                           <div class="text-center">
+                            <h2>Accommodation Report</h2>
+                           </div>
+                            <table>
+                                <tr>
+                                    <td>
+
+                                            <string>Guest Name</string>
+                                    </td>
+                                    <td>
+                                        :
+                                    </td>
+                                   <td>
+                                           <t t-if="wizard.get('partner_id')">
+                                               <t t-esc="wizard['partner_id'][1]">
+
+                                               </t>a
+                                           </t>
+                                    </td>
+
+                                </tr>
+                               <tr>
+                                    <td>
+
+                                            <string>Room</string>
+                                    </td>
+                                    <td>
+                                        :
+                                    </td>
+                                   <td>
+                                         <t t-foreach="room_list" t-as="l">
+
+                                             <span t-esc="l"/><br/>
+
+                                         </t>
+
+
+
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                            <br/>
+                            <table class="table table-bordered mt32">
+                                <thead>
+                                    <tr>
+                                        <th name="th_si_no" class="text_left">
+                                            <span>Si No</span>
+                                        </th>
+                                        <th name="th_accommodation" class="text_left">
+                                            <span>Accommodation</span>
+                                        </th>
+                                        <th name="th_guest" class="text_left">
+                                            <span>Guest Name</span>
+                                        </th>
+                                        <th name="th_room" class="text_left">
+                                            <span>Room</span>
+                                        </th>
+                                        <th name="th_check_in" class="text_left">
+                                            <span>Check In</span>
+                                        </th>
+                                        <th name="th_check_out" class="text_left">
+                                            <span>Check Out</span>
+                                        </th>
+                                        <th name="th_order_ref" class="text_left">
+                                            <span>Order Ref</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                               <t t-set="c" t-value="0"/>
+                                <t t-foreach="booking" t-as="d">
+                                     <t t-set="c" t-value="c+1"/>
+                                    <tr>
+                                        <td>
+                                            <t t-esc="c" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="d[7]"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="d[15]"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="d[16]"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="d[2]"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="d[3]"/>
+                                        </td>
+                                         <td>
+                                            <span t-esc="d[14]"/>
+                                        </td>
+                                    </tr>
+                                    </t>
+
+
+                            </table>
+                            <br/>
+                            <table>
+                                <tr>
+                                    <td>
+
+                                            <string>From</string>
+                                    </td>
+                                    <td>
+                                        :
+                                    </td>
+                                   <td>
+                                            <t t-if="not wizard.get('check_in')">
+                                               <t t-esc="wizard['check']">
+
+                                               </t>
+                                           </t>
+                                           <t t-if="wizard.get('check_in')">
+                                               <t t-esc="wizard['check_in']">
+
+                                               </t>
+                                           </t>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                            <string>To</string>
+                                    </td>
+                                    <td>
+                                        :
+                                    </td>
+                                   <td>
+                                           <t t-if="not wizard.get('check_out')">
+                                               <t t-esc="wizard['check']">
+
+                                               </t>
+                                           </t>
+                                           <t t-if="wizard.get('check_out')">
+                                               <t t-esc="wizard['check_out']">
+
+                                               </t>
+                                           </t>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                        </div>
+                    </div>
+
+
+
+           </t>
+    </template>
+
+
+
+</odoo>

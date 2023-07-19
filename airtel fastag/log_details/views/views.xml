@@ -1,0 +1,113 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="log_details_tree">
+            <field name="name">Log Details</field>
+            <field name="model">log.details</field>
+            <field name="arch" type="xml">
+                <tree default_order="date desc">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="mobile_no"/>
+                    <field name="change_from" invisible="1"/>
+                    <field name="change_to"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="log_details_from">
+            <field name="name">Log Details</field>
+            <field name="model">log.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="mobile_no"/>
+
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="change_from" invisible="1"/>
+                                <field name="change_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="user_log_search">
+        <field name="name">user search</field>
+        <field name="model">log.details</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="mobile_no" string="login"/>
+            </search>
+        </field>
+    </record>
+        <record model="ir.ui.view" id="transfer_details_tree">
+            <field name="name">Transfer Log Details</field>
+            <field name="model">transfer.details</field>
+            <field name="arch" type="xml">
+                <tree default_order="date desc">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="transfer_name"/>
+                    <field name="fastag_count"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="transfer_log_details_from">
+            <field name="name">Transfer Log Details</field>
+            <field name="model">transfer.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="transfer_name"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="fastag_count"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Fastag Details">
+                                <field name="fastag_details_ids">
+                                    <tree>
+                                        <field name="product_barcode"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_log_details">
+            <field name="name">Log Details</field>
+            <field name="res_model">log.details</field>
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_transfer_log_details">
+            <field name="name">Transfer Log Details</field>
+            <field name="res_model">transfer.details</field>
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+
+        <menuitem name="Log Details" id="log_details_menu"
+                  parent="stock.menu_stock_root" sequence="5"/>
+        <menuitem name="User Log Details" id="log_details"
+                  parent="log_details_menu" action="action_log_details"
+                  sequence="4"/>
+        <menuitem name="Transfer Log Details" id="transfer_log_details"
+                  parent="log_details_menu" action="action_transfer_log_details"
+                  sequence="5"/>
+        <record model="ir.ui.menu" id="log_details_menu">
+            <field eval="[(6,0,[ref('stock.group_stock_manager')])]" name="groups_id"/>
+        </record>
+
+    </data>
+</odoo>

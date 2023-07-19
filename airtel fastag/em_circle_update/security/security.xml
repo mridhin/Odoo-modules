@@ -1,0 +1,21 @@
+<odoo>
+<data>
+<!--     <function name="write" model="ir.model.data">-->
+<!--        <function name="search" model="ir.model.data">-->
+<!--            <value eval="[('module', '=','base'), ('name','=','default_user')]"/>-->
+<!--        </function>-->
+<!--        <value eval="{'noupdate': False}"/>-->
+<!--    </function>-->
+
+<!--    <record id="base.default_user" model="res.users">-->
+<!--        <field name="groups_id" eval="[(3,ref('stock.group_stock_manager'))]"/>-->
+<!--    </record>-->
+
+<!--    <function name="write" model="ir.model.data">-->
+<!--        <function name="search" model="ir.model.data">-->
+<!--            <value eval="[('module', '=','base'), ('name','=','default_user')]"/>-->
+<!--        </function>-->
+<!--        <value eval="{'noupdate': True}"/>-->
+<!--    </function>-->
+</data>
+</odoo>

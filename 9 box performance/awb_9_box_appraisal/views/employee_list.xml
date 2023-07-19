@@ -1,0 +1,120 @@
+<odoo>
+    <odoo>
+        <record model="ir.ui.view" id="employee_list_search">
+            <field name="name">employee search</field>
+            <field name="model">employee.list</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="potential_gem" string="Potential Gem"
+                            domain="[('category', '=', 'hp_lp')]"/>
+                    <filter name="high_potential" string="High Potential"
+                            domain="[('category', '=', 'hp_mp')]"/>
+                    <filter name="star" string="Star"
+                            domain="[('category', '=', 'hp_hp')]"/>
+                    <filter name="inconsistent" string="Inconsistent Player"
+                            domain="[('category', '=', 'mp_lp')]"/>
+                    <filter name="core" string="Core Player"
+                            domain="[('category', '=', 'mp_mp')]"/>
+                    <filter name="high" string="High Performer"
+                            domain="[('category', '=', 'mp_hp')]"/>
+                    <filter name="risk" string="Risk"
+                            domain="[('category', '=', 'lp_lp')]"/>
+                    <filter name="average_performer" string="Average Performer"
+                            domain="[('category', '=', 'lp_mp')]"/>
+                    <filter name="solid-performer" string="Solid Performer"
+                            domain="[('category', '=', 'lp_hp')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Appraisal Period" name="appraisal_period"
+                                context="{'group_by': 'appraisal_name'}"/>
+                        <filter string="Employee" name="employee_name"
+                                context="{'group_by': 'name'}"/>
+                        <filter string="Category" name="employee_category"
+                                context="{'group_by': 'category'}"/>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="employee_list_tree">
+            <field name="name">Employee List</field>
+            <field name="model">employee.list</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false">
+                    <field name="name"/>
+                    <field name="appraisal_name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="category"/>
+                    <field name="potential"/>
+                    <field name="performance"/>
+                    <field name="employee_period_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="employee_list_graph">
+            <field name="name">Employee List Graph</field>
+            <field name="model">employee.list</field>
+            <field name="arch" type="xml">
+                <graph type="pie">
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="employee_list_pivot">
+            <field name="name">Employee List Pivot</field>
+            <field name="model">employee.list</field>
+            <field name="arch" type="xml">
+                <pivot>
+<!--                     <field name="name" type="col"/>-->
+<!--                    <field name="appraisal_name" type="col"/>-->
+<!--                    <field name="category" type="col"/>-->
+                </pivot>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="employee_list_form">
+            <field name="name">Employee List</field>
+            <field name="model">employee.list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="appraisal_name"/>
+                        </group>
+                        <group>
+                            <group>
+                                    <field name="start_date"/>
+                                </group>
+                                <group>
+                                    <field name="end_date"/>
+                                </group>
+                            </group>
+                        <group>
+                            <field name="category"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="potential"/>
+                            </group>
+                            <group>
+                                <field name="performance"/>
+                            </group>
+                        </group>
+                 </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_employee_list">
+            <field name="name">Employee List</field>
+            <field name="res_model">employee.list</field>
+            <field name="view_mode">tree,kanban,form,graph,pivot</field>
+            <field name="context">{"search_default_appraisal_period":1,"search_default_employee_category":1}</field>
+        </record>
+        <menuitem name="Employee List" id="employee_list1"
+                  parent="main_menu_appraisal"/>
+        <menuitem name="Employee List" id="employee_list2"
+                  parent="employee_list1"
+                  action="action_employee_list"/>
+    </odoo>
+</odoo>

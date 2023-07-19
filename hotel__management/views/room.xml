@@ -1,0 +1,58 @@
+<odoo>
+    <record model="ir.ui.view" id="hotel_room_form">
+        <field name="name">hotel form</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="rent"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group>
+                            <field name="beds"/>
+                            <field name="available_seats" attrs="{'invisible':[('beds', '!=', 'dor')]}"/>
+                            <field name="facility_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Accommodation">
+                            <field name="accommodation"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hotel_room_search">
+        <field name="name">room</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <separator/>
+                <filter domain="[('state', '=', 'available')]" name="available" string="available"/>
+                <filter domain="[('facility_ids', '=', True)]" name="facility" string="facility"/>
+                <filter domain="[('beds', '=', 'single')]" name="single_bed" string="single_bed"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hotel_tree_room">
+        <field name="name">Rooms</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="beds"/>
+                <field name="facility_ids"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

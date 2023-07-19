@@ -1,0 +1,42 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vehical_class,vehical_class,model_vehical_class,base.group_user,1,1,1,1
+access_rs_user_role,rs_user_role,model_rs_user_role,base.group_user,1,1,1,1
+access_rs_order_line_product,order_line_product,model_order_line_product,base.group_user,1,1,1,1
+access_fastag_line_form,fastag_line_form,model_fastag_line_form,base.group_user,1,1,1,1
+access_message_wizard,message_wizard,model_message_wizard,base.group_user,1,1,1,1
+access_transfer_report,transfer_report,model_transfer_report,base.group_user,1,1,1,1
+
+access_res_users_manager,res_users,model_res_users,stock.group_stock_manager,1,1,1,1
+access_res_users,res_users,model_res_users,stock.group_stock_user,1,1,1,1
+access_stock_picking,stock_picking,model_stock_picking,stock.group_stock_manager,1,1,1,1
+
+access_rs_circle_name,rs_circle_name,model_rs_circle_name,base.group_user,1,1,1,1
+access_stock_picking_type_user,stock.picking.type user,stock.model_stock_picking_type,stock.group_stock_user,1,1,1,1
+
+access_stock_picking_type_all,stock.picking.type all users,stock.model_stock_picking_type,stock.group_stock_user,1,1,1,1
+access_stock_picking_type_user,stock.picking.type user,stock.model_stock_picking_type,stock.group_stock_user,1,1,1,1
+access_stock_picking_type_manager,stock.picking.type manager,stock.model_stock_picking_type,stock.group_stock_manager,1,1,1,1
+access_product_product_stock_user,product_product_stock_user,product.model_product_product,stock.group_stock_user,1,1,1,1
+access_product_template_stock_user,product.template stock user,product.model_product_template,stock.group_stock_user,1,1,1,0
+access_stock_warehouse_orderpoint,stock.warehouse.orderpoint,stock.model_stock_warehouse_orderpoint,stock.group_stock_user,1,1,1,0
+access_stock_quant_user,stock.quant user,stock.model_stock_quant,stock.group_stock_user,1,1,1,0
+ccess_stock_rule_user,stock_rule user,stock.model_stock_rule,stock.group_stock_user,1,1,1,0
+access_barcode_nomenclature_stock_user,barcode.nomenclature.stock.user,barcodes.model_barcode_nomenclature,stock.group_stock_user,1,1,1,0
+access_barcode_rule_stock_user,barcode.rule.stock.user,barcodes.model_barcode_rule,stock.group_stock_user,1,1,1,1
+access_stock_warehouse_user,stock.warehouse.user,stock.model_stock_warehouse,base.group_user,1,1,1,0
+access_stock_location_user,stock.location.user,stock.model_stock_location,base.group_user,1,1,1,0
+access_stock_picking_type_all,stock.picking.type all users,stock.model_stock_picking_type,base.group_user,1,1,1,0
+access_stock_picking_type_all,stock.picking.type all users,stock.model_stock_picking_type,base.group_user,1,1,1,0
+access_stock_quant_all,stock.quant all users,stock.model_stock_quant,base.group_user,1,1,1,0
+access_stock_quant_package_all,stock.quant.package all users,stock.model_stock_quant_package,base.group_user,1,1,1,0
+access_stock_package_level_all,stock.package_level all users,stock.model_stock_package_level,base.group_user,1,1,1,0
+access_stock_location_route,stock.location.route,stock.model_stock_location_route,base.group_user,1,1,1,0
+access_stock_rule_internal,stock.rule.flow internal,stock.model_stock_rule,base.group_user,1,1,1,0
+access_stock_putaway_all,stock.putaway.rule all users,stock.model_stock_putaway_rule,base.group_user,1,1,1,0
+access_stock_removal_all,product.removal all users,stock.model_product_removal,base.group_user,1,1,1,0
+access_report_stock_quantity,access_report_stock_quantity,stock.model_report_stock_quantity,base.group_user,1,1,1,0
+
+access_seequence_wizard,access.seequence.wizard,model_seequence_wizard,,1,1,1,1
+access_barcode_wizard,access.barcode.wizard,model_barcode_wizard,,1,1,1,1
+access_product_sold,access.product.sold,model_product_sold,,1,1,1,1
+access_unacknowledged_report,access.unacknowledged.report,model_unacknowledged_report,,1,1,1,1

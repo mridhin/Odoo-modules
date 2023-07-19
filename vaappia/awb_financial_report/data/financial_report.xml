@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Updated Domain values -->
+	<record id="domain_update_report" model="ir.cron" >
+            <field name="name">account.financial.html.report: domain report</field>
+            <field name="model_id" ref="model_account_financial_html_report"/>
+            <field name="state">code</field>
+            <field name="code">model.domain_update()</field>
+            <field name="active" eval="False"/>
+            <field name="interval_number">1</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+</odoo>

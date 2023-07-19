@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Transfer Report Form View -->
+     <record id="rs_transfer_report_view_form" model="ir.ui.view">
+      <field name="name">transfer.report.form</field>
+      <field name="model">transfer.report</field>
+      <field name="arch" type="xml">
+        <form string="Transfer Report">
+          <sheet>
+            <group col="4" name="rs_transfer_repot" string="Transfer Report Details">
+              <field name="name"/>
+              <field name="rs_date_dispatch" readonly="1"/>
+              <field name="rs_date_transfer" readonly="1"/>
+              <field name="rs_from_emp_no" readonly="1"/>
+              <field name="rs_to_emp_no" readonly="1"/>
+              <field name="parent_id"/>
+                <field name="tag_class" readonly="1"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--Transfer Report Tree View -->
+    <record id="rs_transfer_report_view_tree" model="ir.ui.view">
+      <field name="name">transfer.report.tree</field>
+      <field name="model">transfer.report</field>
+      <field name="field_parent">child_ids</field>
+      <field name="arch" type="xml">
+        <tree create="0" string="Transfer Report" default_order="rs_date_transfer desc">
+          <field name="name" readonly="1"/>
+          <field name="rs_date_dispatch" readonly="1"/>
+          <field name="rs_date_transfer" readonly="1"/>
+          <field name="rs_from_emp_no" readonly="1"/>
+          <field name="rs_to_emp_no" readonly="1"/>
+          <field name="assigned_id" readonly="1"/>
+            <field name="tag_class" readonly="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Transfer Report Action view -->
+    <record id="rs_transfer_report_action_view" model="ir.actions.act_window">
+      <field name="name">Transfer Report</field>
+      <field name="res_model">transfer.report</field>
+       <field name="domain">[('parent_id','=',False)]</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <field name="view_id" ref="rs_transfer_report_view_tree"/>
+        <p class="oe_view_nocontent_create">
+          <!-- Add Text Here -->
+          View All Transfer Report
+        </p>
+        <p>
+          <!-- More details about what a user can do -->
+        </p>
+      </field>
+    </record>
+
+    <!-- search and group by -->
+
+  <record id="view_transfer_report_form_search" model="ir.ui.view">
+            <field name="name">transfer.report.search</field>
+            <field name="model">transfer.report</field>
+            <field name="arch" type="xml">
+                <search string="Transfer Report">
+                    <field name="name"/>
+                    <field name="rs_date_dispatch"/>
+                    <field name="rs_date_transfer"/>
+                    <field name="rs_from_emp_no"/>
+                    <field name="rs_to_emp_no"/>
+                    <field name="assigned_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Barcode" name="name" context="{'group_by':'name'}" help="Barcode"/>
+                        <filter string="From Emp No" name="rs_from_emp_no" context="{'group_by':'rs_from_emp_no'}" help="From Emp No"/>
+                        <filter string="To Emp No" name="rs_to_emp_no" context="{'group_by':'rs_to_emp_no'}" help="To Emp No" />
+                        <filter string="Promoter" name="assigned_id" context="{'group_by':'assigned_id'}" help="Promoter" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+     <menuitem id="menu_inventory_report" name="Transfer Report"
+              parent="stock.menu_warehouse_report" sequence="10"
+              action="rs_transfer_report_action_view"/>
+  </data>
+</odoo>

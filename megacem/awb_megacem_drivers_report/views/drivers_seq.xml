@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_mti" model="ir.sequence">
+            <field name="name">SEQ MTI CODE</field>
+            <field name="code">mti.drivers.report.sequence</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">MTI DR -</field>
+            <field name="padding">8</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_mpi" model="ir.sequence">
+            <field name="name">SEQ MPI CODE</field>
+            <field name="code">mpi.drivers.report.sequence</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">MPI DR -</field>
+            <field name="padding">8</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+    </data>
+</odoo>

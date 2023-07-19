@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_drivers_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div style="font-size: 10px">
+                        <style>
+                            .start-row {
+                            border-top: 1px solid black;
+                            border-left: 1px solid black;
+                            border-right: 1px solid black;
+                            }
+                            .end-row {
+                            border: 1px solid black;
+                            }
+
+                            .top-col-start {
+                            border-right: 1px solid black;
+                            }
+                            .top-col-end {
+
+                            }
+                            .inner-row {
+
+                            border-top: 1px solid black;
+                            border-left: 1px solid black;
+                            border-right: 1px solid black;}
+
+                            .inner-col {
+                            border-right: 1px solid black;
+                            }
+
+                            .pad-value {
+                            padding-left: 15px;
+                            padding-right: 5px;
+                            padding-bottom: 5px;
+                            padding-top: 5px;
+                            }
+
+                            .inner-col {
+                            border-right: 1px solid black;
+                            }
+
+                            .headers {
+                            padding: 5px;
+                            padding-left: 15px;
+                            }
+
+                            .helper-row {
+                            border-top: 1px solid black;
+                            }
+
+                            .driver-row {
+                            padding-right: 7px;
+                            padding-bottom: 7px;
+                            padding-top: 7px;
+                            }
+
+                            .font-red {
+                            color: red;
+                            }
+                            .font-italic {
+                            font-style: italic;
+                            }
+
+
+                        </style>
+                        <div class="row start-row" style="background-color: lightgray;">
+                            <div class="col-9 top-col-start headers" style="font-weight: bold;">
+                                <h4>
+                                    <span t-field="doc.drivers_class"/>
+                                </h4>
+                            </div>
+                            <div class="col-3 top-col-end headers">
+                                <span>
+                                    <strong>Drivers Report No.:</strong>
+                                    <br/>
+                                </span>
+                                <span t-field="doc.name"/>
+                            </div>
+                        </div>
+                        <div class="box1">
+                            <div class="row inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Customer Name:</strong>
+                                        <br/>
+                                    </span>
+                                    <span t-field="doc.customer.name"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Created By:</strong>
+                                        <br/>
+                                    </span>
+                                    <span t-field="doc.created_by_2"/>
+                                </div>
+                                <div class="col-4 pad-value">
+                                    <span>
+                                        <strong>Fullfilled By:</strong>
+                                        <br/>
+                                    </span>
+                                    <span t-field="doc.fulfilled_by_2"/>
+                                </div>
+                            </div>
+                            <div class="row inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>DOR No.:</strong>
+                                        <br/>
+                                    </span>
+                                    <span t-field="doc.dor_no"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Created On:</strong>
+                                        <br/>
+                                    </span>
+                                    <span t-field="doc.created_on"/>
+                                </div>
+                                <div class="col-4 pad-value">
+                                    <span>
+                                        <strong>Submitted On:</strong>
+                                        <br/>
+                                    </span>
+                                    <span t-field="doc.submitted_on"/>
+                                </div>
+                            </div>
+                            <div class="row inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Type of Delivery:</strong>
+                                        <br/>
+                                    </span>
+<!--                                    <span t-field="doc.type_of_delivery"/>-->
+                                    <span t-field="doc.type_of_delivery_id"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Type of Operation:</strong>
+                                        <br/>
+                                    </span>
+<!--                                    <span t-field="doc.type_of_operation"/>-->
+                                    <span t-field="doc.type_of_operation_id"/>
+                                </div>
+                                <div class="col-4 pad-value">
+                                    <span>
+                                        <strong>Approved On:</strong>
+                                        <br/>
+                                    </span>
+                                    <span t-field="doc.approved_on"/>
+                                </div>
+                            </div>
+                            <div class="row end-row pad-value">
+                                <span>
+                                    <strong>Remarks:</strong>
+                                    <br/>
+                                </span>
+                                <span t-field="doc.remarks"/>
+                            </div>
+                        </div>
+                        <div class="box2">
+                            <div class="row start-row" style="background-color: lightgray; margin-top: 5px;">
+                                <div class="col-4 inner-col headers">
+                                    <span>
+                                        <strong>Yard</strong>
+                                    </span>
+                                </div>
+                                <div class="col-4 inner-col headers">
+                                    <span>
+                                        <strong>Plant</strong>
+                                    </span>
+                                </div>
+                                <div class="col-4 headers">
+                                    <span>
+                                        <strong>Delivery Site</strong>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Starting Location:</strong>
+                                    </span>
+                                    <span t-field="doc.starting_location"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span class="font-red">
+                                        <strong>Plant Site:</strong>
+                                    </span>
+                                    <span t-field="doc.plant_site"/>
+
+                                </div>
+                                <div class="col-4 pad-value">
+                                    <span class="font-red">
+                                        <strong>Delivery Site:</strong>
+                                    </span>
+                                    <span t-field="doc.delivery_site"/>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Please Specify (if others):</strong>
+                                    </span>
+                                    <t t-if="doc.starting_location == 'others'">
+                                        <span t-field="doc.please_specify"/>
+                                    </t>
+                                </div>
+
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Please Specify (if others):</strong>
+                                    </span>
+                                    <t t-if="doc.plant_site == 'others'">
+                                        <span t-field="doc.plant_please_specify"/>
+                                    </t>
+                                </div>
+
+                                <div class="col-4 pad-value">
+                                    <span class="font-red">
+                                        <strong>Date &amp; Time of Arrival:</strong>
+                                    </span>
+                                    <span t-field="doc.date_and_time_of_arrival"/>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Date &amp; Time Dispatched:</strong>
+                                    </span>
+                                    <span t-field="doc.date_and_time_dispatched"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span class="font-red">
+                                        <strong>Date &amp; Time of Plant Arrival:</strong>
+                                    </span>
+                                    <span t-field="doc.date_and_time_of_plant_arrival"/>
+                                </div>
+
+                                <div class="col-4 pad-value">
+                                    <span class="font-red">
+                                        <strong>Start of Unload:</strong>
+                                    </span>
+                                    <span t-field="doc.start_of_unload"/>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Yard Arrival:</strong>
+                                    </span>
+                                    <span t-field="doc.yard_arrival"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span class="font-red">
+                                        <strong>Date &amp; Time of Plant Departure:</strong>
+                                    </span>
+                                    <span t-field="doc.date_and_time_of_plant_departure"/>
+                                </div>
+
+                                <div class="col-4 pad-value">
+                                    <span class="font-red">
+                                        <strong>End of Unload:</strong>
+                                    </span>
+                                    <span t-field="doc.end_of_unload"/>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value"></div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Unit of Measure:</strong>
+                                    </span>
+                                    <span t-field="doc.unit_of_measure"/>
+                                </div>
+
+                                <div class="col-4 pad-value">
+                                    <span class="font-red">
+                                        <strong>Date &amp; Time of Departure:</strong>
+                                    </span>
+                                    <span t-field="doc.date_and_time_of_departure_from_delivery_site"/>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value"></div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <span class="font-red">
+                                            <strong>Quantity Received:</strong>
+                                        </span>
+                                        <t t-if="doc.quantity_received > 0">
+                                            <span t-field="doc.quantity_received"/>
+                                        </t>
+                                    </span>
+                                </div>
+
+                                <div class="col-4 pad-value"></div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value"></div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span class="font-red">
+                                        <strong>Quantity Delivered:</strong>
+                                    </span>
+                                    <t t-if="doc.quantity_delivered > 0">
+                                        <span t-field="doc.quantity_delivered"/>
+                                    </t>
+                                </div>
+
+                                <div class="col-4 pad-value"></div>
+                            </div>
+                            <div class="row content end-row">
+                                <div class="col-4 inner-col pad-value"></div>
+                                <div class="col-4 inner-col pad-value">
+                                    <strong>Discrepancy:</strong>
+                                    <t t-if="doc.discrepancy > 0">
+                                        <span t-field="doc.discrepancy"/>
+                                    </t>
+                                </div>
+                                <div class="col-4 pad-value"></div>
+                            </div>
+
+                        </div>
+                        <div class="box3">
+                            <div class="row start-row" style="background-color: lightgray; margin-top: 5px;">
+                                <div class="col-4 inner-col headers">
+                                    <span>
+                                        <strong>Truck Details</strong>
+                                    </span>
+                                </div>
+                                <div class="col-4 inner-col headers">
+                                    <span>
+                                        <strong>Fuel Details</strong>
+                                    </span>
+                                </div>
+                                <div class="col-4 headers">
+                                    <span>
+                                        <strong>Hubreading</strong>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>TH no./Truck Plate no.:</strong>
+                                    </span>
+                                    <span t-field="doc.th_number"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Date &amp; Time Issued:</strong>
+                                    </span>
+                                    <span t-field="doc.date_and_time_issued"/>
+                                </div>
+                                <div class="col-4 pad-value">
+                                    <span class="font-red">
+                                        <strong>Hubreading - Start:</strong>
+                                    </span>
+                                    <t t-if="doc.hubreading_starting_location > 0">
+                                        <span t-field="doc.hubreading_starting_location"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Bulk no./Bulk Plate no.:</strong>
+                                    </span>
+                                    <span t-field="doc.bulk_no_id"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Location:</strong>
+                                    </span>
+                                    <span t-field="doc.location"/>
+                                </div>
+                                <div class="col-4 pad-value">
+                                    <span class="font-red">
+                                        <strong>Hubreading - Plant:</strong>
+                                    </span>
+                                    <t t-if="doc.hubreading_plant_site > 0">
+                                        <span t-field="doc.hubreading_plant_site"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Load no:</strong>
+                                    </span>
+
+                                    <span t-field="doc.load_no"/>
+
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Pondo (Before Trips):</strong>
+                                    </span>
+                                    <t t-if="doc.pondo_before_trips > 0">
+                                        <span t-field="doc.pondo_before_trips"/>
+                                    </t>
+                                </div>
+                                <div class="col-4 pad-value">
+                                    <span class="font-red">
+                                        <strong>Hubreading - Delivery Site:</strong>
+                                    </span>
+                                    <t t-if="doc.hubreading_delivery_site > 0">
+                                        <span t-field="doc.hubreading_delivery_site"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>DOR no.:</strong>
+                                    </span>
+                                    <span t-field="doc.dor_no"/>
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <span>
+                                        <strong>Issued:</strong>
+                                    </span>
+                                    <t t-if="doc.issued > 0">
+                                        <span t-field="doc.issued"/>
+                                    </t>
+                                </div>
+                                <div class="col-4 pad-value">
+                                     <span class="font-red">
+                                        <strong>Hubreading - End:</strong>
+                                     </span>
+                                    <t t-if="doc.hubreading_ending_location > 0">
+                                        <span t-field="doc.hubreading_ending_location"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value"></div>
+                                <div class="col-4 inner-col pad-value">
+                                    <strong>Pondo (After Trips):</strong>
+                                    <t t-if="doc.pondo_after_trips > 0">
+                                        <span t-field="doc.pondo_after_trips"/>
+                                    </t>
+                                </div>
+                                <div class="col-4 pad-value">
+                                    <strong>Total Kilometers Travelled:</strong>
+                                    <t t-if="doc.total_kilometers_travelled > 0">
+                                        <span t-field="doc.total_kilometers_travelled"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-4 inner-col pad-value">
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <strong>Total Fuel Usage:</strong>
+                                    <t t-if="doc.total_fuel_usage > 0">
+                                        <span t-field="doc.total_fuel_usage"/>
+                                    </t>
+                                </div>
+                                <div class="col-4 pad-value">
+                                </div>
+                            </div>
+                            <div class="row content end-row">
+                                <div class="col-4 inner-col pad-value">
+                                </div>
+                                <div class="col-4 inner-col pad-value">
+                                    <strong>Average Fuel Consumption:</strong>
+                                    <t t-if="doc.average_fuel_consumption > 0">
+                                        <span t-field="doc.average_fuel_consumption"/>
+                                    </t>
+                                </div>
+                                <div class="col-4 pad-value">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box4">
+
+                            <div class="row inner-row"
+                                     style="background-color: lightgray; margin-top: 5px;">
+                                  <div class="col-3 headers">
+                                    <span>
+                                        <strong>Drivers and Helpers</strong>
+                                    </span>
+                                  </div>
+
+                                </div>
+
+                            <div class="row start-row">
+                                <div class="col-3 inner-col pad-value">
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                    <span>Authority to deduct</span>
+                                    <br/>
+                                    <span>(Signature)</span>
+                                </div>
+                                <div class="col-3 inner-col pad-value"></div>
+                                <div class="col-2 inner-col pad-value"></div>
+                                <div class="col-2 pad-value">
+                                    <span>Authority to deduct</span>
+                                    <br/>
+                                    <span>(Signature)</span>
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-3 inner-col pad-value">
+                                    <span>
+                                        <strong>Driver 1 Name:</strong>
+                                    </span>
+                                    <span t-field="doc.driver_1_name"/>
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                </div>
+                                <div class="col-3 inner-col pad-value">
+                                    <span>
+                                        <strong>Helper 1:</strong>
+                                    </span>
+                                    <span t-field="doc.helper_1_name"/>
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                    <span class="font-red">
+                                        <strong>Vale:</strong>
+                                    </span>
+                                    <t t-if="doc.vale_h1 > 0">
+                                        <span t-field="doc.vale_h1"/>
+                                    </t>
+                                </div>
+                                <div class="col-2 pad-value">
+
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-3 inner-col pad-value">
+                                    <span class="font-red">
+                                        <strong>Vale:</strong>
+                                    </span>
+                                    <t t-if="doc.vale_d1 > 0">
+                                        <span t-field="doc.vale_d1"/>
+                                    </t>
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                </div>
+                                <div class="col-3 inner-col pad-value">
+                                    <span>
+                                        <strong>Helper 2:</strong>
+                                    </span>
+                                    <span t-field="doc.helper_2_name"/>
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                    <span class="font-red">
+                                        <strong>Vale:</strong>
+                                    </span>
+                                    <t t-if="doc.vale_h1 > 0">
+                                        <span t-field="doc.vale_h2"/>
+                                    </t>
+                                </div>
+                                <div class="col-2 pad-value">
+
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-3 inner-col pad-value">
+                                    <span>
+                                        <strong>Driver 2 Name:</strong>
+                                    </span>
+                                    <span t-field="doc.driver_2_name"/>
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                </div>
+                                <div class="col-3 inner-col pad-value">
+                                    <span>
+                                        <strong>Helper 3:</strong>
+                                    </span>
+                                    <span t-field="doc.helper_3_name"/>
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                    <span class="font-red">
+                                        <strong>Vale:</strong>
+                                    </span>
+                                    <t t-if="doc.vale_h1 > 0">
+                                        <span t-field="doc.vale_h3"/>
+                                    </t>
+                                </div>
+                                <div class="col-2 pad-value">
+
+                                </div>
+                            </div>
+                            <div class="row content inner-row">
+                                <div class="col-3 inner-col pad-value">
+                                    <span>
+                                        <strong>Vale:</strong>
+                                    </span>
+                                    <t t-if="doc.vale_d2 > 0">
+                                        <span t-field="doc.vale_d2"/>
+                                    </t>
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                </div>
+                                <div class="col-3 inner-col pad-value">
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                </div>
+                                <div class="col-2 pad-value">
+                                </div>
+                            </div>
+
+                            <div class="row content inner-row">
+                                <div class="col-3 inner-col pad-value">
+                                    <span>
+                                        <strong>PCV No.:</strong>
+                                    </span>
+                                    <span t-field="doc.pcv_no"/>
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                </div>
+                                <div class="col-3 inner-col pad-value">
+                                </div>
+                                <div class="col-2 inner-col pad-value">
+                                </div>
+                                <div class="col-2 pad-value">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box5">
+                                <div class="row inner-row headers"
+                                     style="background-color: lightgray; margin-top: 5px;">
+                                    <span>
+                                        <strong>Expenses</strong>
+                                    </span>
+                                </div>
+                                <div class="row inner-row">
+                                    <div class="col-3 inner-col pad-value">
+                                        <span>
+                                            <strong>Travel Allowance:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <t t-if="doc.travel_allowance > 0">
+                                            <span t-field="doc.travel_allowance"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <span class="font-red">
+                                            <strong>Extra Helper:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3">
+                                        <t t-if="doc.extra_helper_amount > 0">
+                                            <span t-field="doc.extra_helper_amount"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="row inner-row">
+                                    <div class="col-3 inner-col pad-value">
+                                        <span class="font-red">
+                                            <strong>Travel Vale:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <t t-if="doc.travel_vale > 0">
+                                            <span t-field="doc.travel_vale"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <span class="font-red">
+                                            <strong>Return Money:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 pad-value">
+                                        <t t-if="doc.return_money_amount > 0">
+                                            <span t-field="doc.return_money_amount"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="row inner-row">
+                                    <div class="col-3 inner-col pad-value">
+                                        <span>
+                                            <strong>Total Travel Allowance:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <t t-if="doc.total_travel_allowance > 0">
+                                            <span t-field="doc.total_travel_allowance"/>
+                                        </t>
+                                    </div>
+                                     <div class="col-3 inner-col pad-value">
+                                        <span class="font-red">
+                                            <strong>S.O.P:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 pad-value">
+                                        <t t-if="doc.sop_amount > 0">
+                                            <span t-field="doc.sop_amount"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="row inner-row">
+                                    <div class="col-3 inner-col pad-value">
+                                        <span class="font-red">
+                                            <strong>Passway:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <t t-if="doc.passway_fee_amount > 0">
+                                            <span t-field="doc.passway_fee_amount"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <span class="font-red">
+                                            <strong>Others (please specify):</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 pad-value">
+                                        <t t-if="doc.others == True">
+                                            <span t-field="doc.expenses_please_specify"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="row inner-row">
+                                    <div class="col-3 inner-col pad-value">
+                                        <span class="font-red">
+                                            <strong>Toll Fee:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <t t-if="doc.toll_fee_amount > 0">
+                                            <span t-field="doc.toll_fee_amount"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-3 inner-col pad-value">
+                                        <span>
+                                            <strong>Remaining:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 pad-value">
+                                        <t t-if="doc.remaining > 0">
+                                            <span t-field="doc.remaining"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="row inner-row">
+                                    <div class="col-3 inner-col pad-value">
+                                        <span class="font-red">
+                                            <strong>Diesel:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-3 pad-value">
+                                        <t t-if="doc.diesel_amount > 0">
+                                            <span t-field="doc.diesel_amount"/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="box6">
+                            <div class="row"
+                                 style="border: 1px solid black; background-color: lightgray; margin-top: 5px;">
+                                <div class="col-4 inner-col headers" style="padding-bottom: 30px;">
+                                    <span>
+                                        <strong>Driver's Name &amp; Signature</strong>
+                                    </span>
+                                </div>
+                                <div class="col-4 inner-col headers">
+                                    <span>
+                                        <strong>Dispatcher's Name &amp; Signature</strong>
+                                    </span>
+                                </div>
+                                <div class="col-4 headers">
+                                    <span>
+                                        <strong>Approved By</strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box7">
+                            <div class="row"
+                                 style="border: 1px solid black; background-color: lightgray; margin-top: 5px;">
+                                <div class="col-4 inner-col headers" style="padding-bottom: 30px;">
+                                    <span>
+                                        <strong>Received By:</strong>
+                                    </span>
+                                </div>
+                                <div class="col-4 inner-col headers">
+                                    <span>
+                                        <strong>Date and Time:</strong>
+                                    </span>
+                                </div>
+                                <div class="col-4 headers">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box8">
+                            <div class="row">
+                              <div class="col">
+                                <span class="font-red font-italic">
+                                    <strong>NOTE: Red font to be filled up by Driver</strong>
+                                </span>
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <p style="page-break-after: always;"/>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

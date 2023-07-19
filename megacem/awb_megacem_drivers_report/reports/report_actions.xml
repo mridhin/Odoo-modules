@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+            id="print_drivers_report"
+            model="drivers.report"
+            string="Drivers Report"
+            name="awb_megacem_drivers_report.report_drivers_report"
+    />
+</odoo>

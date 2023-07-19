@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="megacem_driver_report_journal" model="account.journal">
+            <field name="name">Driver Report</field>
+            <field name="type">general</field>
+            <field name="code">DR</field>
+        </record>
+	</data>
+</odoo>

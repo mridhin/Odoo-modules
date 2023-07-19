@@ -1,0 +1,76 @@
+<odoo>
+  <data>
+
+   <record id="import_button_product" model="ir.ui.view">
+            <field name="name">product.button.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                 <xpath expr="//tree" position="inside">
+                   <header><button name="import_product" type="object" string="Import Fastag"/></header>
+               </xpath>
+<!--                <xpath expr="//tree" position="attributes">-->
+<!--                   <attribute name="js_class">button_in_tree</attribute>-->
+<!--               </xpath>-->
+            </field>
+   </record>
+
+      <record id="add_product_action_view" model="ir.ui.view">
+            <field name="name">Import Fastag</field>
+            <field name="model">import.product</field>
+            <field name="arch" type="xml">
+                <form string="Product Details">
+                    <sheet>
+                        <group>
+                            <group>
+                              <field name="fastag_product" filename="filename"/>
+                                <field name="filename" invisible="1"/>
+
+                            </group>
+                            <group>
+                                <button name="import_product_line"
+                                        string="Import Fastag"
+                                        context="{'default_active_id': active_id}"
+                                        type="object" class="oe_highlight"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="import_line_form" readonly="1">
+                                <tree>
+                                    <field name="barcode"/>
+                                    <field name="tag_id"/>
+                                    <field name="vendor_id"/>
+                                    <field name="inward_date"/>
+                                    <field name="categ_id"/>
+                                    <field name="vehicle_type_id"/>
+                                    <field name="tag_color"/>
+                                    <field name="partner_id"/>
+                                    <field name="name"/>
+                                    <field name="employee_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="import_fastag" string="Confirm" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="add_product_aaction_view">
+            <field name="name">Import Product</field>
+            <field name="res_model">import.product</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="add_product_action_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="product_import_menu" name="Import Fastags" action="add_product_aaction_view"
+        parent="stock.menu_stock_inventory_control" sequence="0" groups="record_rule.group_warhouse_manager"/>
+
+  </data>
+</odoo>
+
+

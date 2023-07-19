@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="purchase_requisition.action_purchase_requisition">
+            <field name="name">Purchase Request Form</field>
+        </record>
+        <record model="ir.ui.menu" id="purchase_requisition.menu_purchase_requisition_pro_mgt">
+            <field name="name">Purchase Request Form</field>
+        </record>
+        <record id="purchase_requisition_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.requisition.form.inherit</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form" />
+            <field name="arch" type="xml">
+                <field name='user_id' position="attributes">
+                    <attribute name='string'>Requested By</attribute>
+                </field>
+                <field name='type_id' position="attributes">
+                    <attribute name='string'>Request Type</attribute>
+                </field>
+                <field name='date_end' position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </field>
+                <field name='ordering_date' position="attributes">
+                    <attribute name='string'>Date</attribute>
+                </field>
+                <field name='schedule_date' position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </field>
+                <field name='origin' position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </field>
+                <field name='origin' position="after">
+                    <field name="noted_employee_id" string="Noted By"/>
+                </field>
+                <xpath expr="//field[@name='line_ids']/tree//field[@name='product_description_variants']"  position="attributes">
+                    <attribute name="string">Description</attribute>
+                </xpath>
+            </field>
+        </record>
+        <!-- Purchase Order Action Inherited Below -->
+        <record model="ir.actions.act_window" id="purchase.purchase_rfq">
+            <field name="name">Purchase Order</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,261 @@
+<odoo>
+    <data>
+
+        <!-- inehrit product  -->
+
+        <record id="ni_inherit_product_template_only_form_view"
+                model="ir.ui.view">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id"
+                   ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="product_update" type="object"
+                            string="employee id Update"
+                            class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="report_update" type="object"
+                            string="Report Update"
+                            class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//field[@name='default_code']"
+                       position="attributes">
+                    <attribute name="string">TAG ID</attribute>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="assigned_to_mob"/>
+                    <field name="fastag_sold"/>
+                    <field name="rs_faulty_stag"/>
+                    <field name="unlink_fastag" string="Unlink"/>
+                    <field name="unlink_amount"
+                           attrs="{'invisible': [('unlink_fastag','!=',True)]}"/>
+                    <field name="unlink_amount2"/>
+                    <field name="internal_ref"/>
+                    <field name="order_id"/>
+                </xpath>
+
+                <xpath expr="//page[4]" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='taxes_id']" position="replace">
+                    <field name="category_id" widget="many2many_tags"
+                           options="{'color_field': 'color', 'no_create_edit': True}"
+                           placeholder="Tags..."/>
+                    <field name="category_id_list"/>
+                    <field name="rs_tag_id"/>
+                </xpath>
+                <xpath expr="//page[5]" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='categ_id']" position="attributes">
+                    <attribute name="string">Vehicle Type</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='rs_tag_id']" position="after">
+                    <field name="inword_date"/>
+                    <field name="partner_id"/>
+                    <field name="product_assigned_to"/>
+                    <field name="rs_vendor_name"/>
+                    <field name="warehouse_emp_no"/>
+                </xpath>
+                <xpath expr="//page[3]" position="replace">
+                </xpath>
+<!--                <xpath expr="//button[@name='action_view_stock_move_lines']"-->
+<!--                       position="attributes">-->
+<!--                    <attribute name="invisible">1</attribute>-->
+<!--                </xpath>-->
+                <!--            <xpath expr="//form" position="attributes">-->
+                <!--                <attribute name="create">false</attribute>-->
+                <!--                <attribute name="edit">false</attribute>-->
+                <!--            </xpath>-->
+            </field>
+        </record>
+
+        <record id="ni_inherit_product_view_tree_view" model="ir.ui.view">
+            <field name="name">product.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//tree" position="attributes">-->
+<!--                   <attribute name="js_class">button_in_tree</attribute>-->
+<!--               </xpath>-->
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="product_assigned_to"/>
+                    <field name="inword_date"/>
+                    <field name="fastag_sold" string="SOLD"/>
+                    <field name="rs_faulty_stag" string="FAULTY"/>
+                    <field name="unlink_fastag" string="Unlink"/>
+
+                </xpath>
+                <xpath expr="//field[@name='responsible_id']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='list_price']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='qty_available']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='virtual_available']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='barcode']" position="attributes">
+                    <attribute name="optional"></attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+<!--        <record id="ni_inherit_product_kanban_tree_view" model="ir.ui.view">-->
+<!--            <field name="name">product.product.tree</field>-->
+<!--            <field name="model">product.template</field>-->
+<!--            <field name="inherit_id" ref="product.product_template_kanban_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//kanban" position="attributes">-->
+<!--                   <attribute name="js_class">button_in_kanban</attribute>-->
+<!--               </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="ni_inherit_product_view_form_view" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']"
+                       position="attributes">
+                    <attribute name="string">TAG ID</attribute>
+                </xpath>
+<!--                <xpath expr="//field[@name='type']" position="attributes">-->
+<!--                    <attribute name="invisible">1</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//label[@for='lst_price']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='lst_price']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='taxes_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='standard_price']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="assigned_to_mob"/>
+                    <field name="product_assigned_to"/>
+                    <field name="fastag_sold"/>
+                    <field name="rs_faulty_stag"/>
+                    <field name="internal_ref"/>
+                    <field name="order_id"/>
+                    <field name="warehouse_emp_no"/>
+                    <field name="unlink_fastag" string="Unlink"/>
+                    <field name="unlink_amount"
+                           attrs="{'invisible': [('unlink_fastag','!=',True)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='categ_id']" position="attributes">
+                    <attribute name="string">Vehicle Type</attribute>
+                </xpath>
+                <xpath expr="//field[@name='taxes_id']" position="after">
+                    <field name="category_id" widget="many2many_tags"
+                           options="{'color_field': 'color', 'no_create_edit': True}"
+                           placeholder="Tags..."/>
+                    <field name="category_id_list"/>
+                    <field name="rs_tag_id"/>
+                    <field name="inword_date"/>
+                    <field name="partner_id"/>
+                    <field name="rs_vendor_name"/>
+                </xpath>
+                <page name="purchase" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </page>
+                <page name="inventory" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </page>
+<!--                <xpath expr="//button[@name='action_view_stock_move_lines']"-->
+<!--                       position="attributes">-->
+<!--                    <attribute name="invisible">1</attribute>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+
+        <record id="ni_inherit_product_variant_view_tree_view"
+                model="ir.ui.view">
+            <field name="name">product.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="attributes">
+                    <attribute name="optional"></attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_template_attribute_value_ids']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='lst_price']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='qty_available']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='virtual_available']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='categ_id']" position="attributes">
+                    <attribute name="optional"></attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="stock.product_template_action_product"
+                model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+        <!-- hidden odoo logo -->
+
+        <template id="inherited_login_layout" inherit_id="web.login_layout"
+                  name="My Theme Login">
+            <xpath expr="//div[@class='text-center small mt-4 pt-3 border-top']"
+                   position="replace">
+                <a href="https://apk.rediansoftware.in/Inventory.apk">Download
+                    Mobile App
+                </a>
+            </xpath>
+        </template>
+
+
+        <!-- Product Template inherit Search view -->
+
+        <!--  <record id="product_template_search_form_rs_view" model="ir.ui.view">
+             <field name="name">product.template.search.form</field>
+             <field name="model">product.template</field>
+             <field name="inherit_id" ref="product.product_template_search_view"/>
+             <field name="arch" type="xml">
+                 <xpath expr="//field[@name='name']" position="before">
+                     <separator/>
+                     <filter string="Sold Fastag" name="fastag_sold" domain="[('fastag_sold','=','yes')]"/>
+                     <filter string="Faulty Fastag" name="rs_faulty_stag" domain="[('rs_faulty_stag','=','yes')]"/>
+                 </xpath>
+             </field>
+         </record> -->
+    </data>
+</odoo>

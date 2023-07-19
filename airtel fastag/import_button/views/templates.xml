@@ -1,0 +1,14 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <template id="assets_backend" name="barcode_css" inherit_id="web.assets_backend">-->
+<!--            <xpath expr="." position="inside">-->
+
+<!--                 <script src="static/src/js/near_create_button.js" type="text/javascript"/>-->
+
+<!--            </xpath>-->
+<!--        </template>-->
+<!--    </data>-->
+<!--</odoo>-->
+<odoo>
+
+</odoo>

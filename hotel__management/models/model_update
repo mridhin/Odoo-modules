@@ -1,0 +1,72 @@
+            if self.env.user.id == 2061:
+                product = self.env['product.product'].search(
+                    [
+                     ('fastag_sold', '=', 'no'), ('rs_faulty_stag', '=', 'no'),
+                     ('unlink_fastag', '=', False)])
+                if len(product) >= int(self.no_fastags):
+                    for product_id in product[
+                                      :int(self.no_fastags)]:
+                        self.env['stock.move'].sudo().create(
+                            {'picking_id': self.id, 'product_id': product_id.id,
+                             'name': product_id.name,
+                             'fatag_bracode': product_id.barcode,
+                             'category_id': product_id.categ_id.id,
+                             'circle_name': self.rs_circle.id,
+                             'emp_mobile_no': self.rs_emp_mob_no,
+                             'location_id': 1,
+                             'product_uom': 1,
+                             'location_dest_id': 1})
+
+                        product_id.sudo().write({'internal_ref': self.name})
+                        product_id.product_tmpl_id.sudo().update(
+                            {'warehouse_emp_no': user_id.rs_employee_id,
+                             'assigned_to_mob': user_id.login,
+                             'product_assigned_to': user_id.id,
+                             'internal_ref': self.name})
+                        self.sudo().update({'rs_destination_id': user_id.id,
+                                            'rs_emp_no': self.rs_emp_mob_no,
+                                            'rs_circle_id': self.rs_circle.id
+                                            })
+                template = self.env.ref(
+                    'rn_vehical_class.inventory_trasfer_assigned_email_template')
+                self.env['mail.template'].browse(template.id).send_mail(
+                    self.id)
+            else:
+                if user_id:
+                    avail_circle_product = self.env['product.product'].search(
+                        [('circle_name', '=', self.rs_circle.id),('fastag_sold','=','no'),('rs_faulty_stag','=','no'),('unlink_fastag','=',False)])
+                    if len(avail_circle_product) >= int(self.no_fastags):
+                        print('availproductcount',len(avail_circle_product))
+                        for product_id in avail_circle_product[:int(self.no_fastags)]:
+                            self.env['stock.move'].sudo().create(
+                                {'picking_id': self.id, 'product_id': product_id.id,
+                                 'name': product_id.name,
+                                 'fatag_bracode': product_id.barcode,
+                                 'category_id': product_id.categ_id.id,
+                                 'circle_name': self.rs_circle.id,
+                                 'emp_mobile_no': self.rs_emp_mob_no,
+                                 'location_id': 1,
+                                 'product_uom': 1,
+                                 'location_dest_id': 1})
+
+                            product_id.sudo().write({'internal_ref': self.name})
+                            product_id.product_tmpl_id.sudo().update(
+                                {'warehouse_emp_no': user_id.rs_employee_id,
+                                 'assigned_to_mob': user_id.login,
+                                 'product_assigned_to': user_id.id,
+                                 'internal_ref': self.name})
+                            self.sudo().update({'rs_destination_id': user_id.id,
+                                                'rs_emp_no': self.rs_emp_mob_no,
+                                                'rs_circle_id': self.rs_circle.id
+                                                })
+                    else:
+                        raise UserError(
+                            _('No available fastag %s',
+                              self.rs_circle.name))
+                    template = self.env.ref(
+                        'rn_vehical_class.inventory_trasfer_assigned_email_template')
+                    self.env['mail.template'].browse(template.id).send_mail(self.id)
+
+                else:
+                    raise UserError(_('Please Check Employee Mobile Number'))
+        return True

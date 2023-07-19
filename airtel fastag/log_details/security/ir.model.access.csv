@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_log_details,access.log.details,model_log_details,,1,1,1,1
+access_transfer_details,access.transfer.details,model_transfer_details,,1,1,1,1
+access_fastag_details,access.fastag.details,model_fastag_details,,1,1,1,1

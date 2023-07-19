@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+       <record id="rs_user_role_view_form" model="ir.ui.view">
+      <field name="name">user.role.form</field>
+      <field name="model">rs.user.role</field>
+      <field name="arch" type="xml">
+        <form string="User Role">
+          <sheet>
+            <group col="4" name="rs_user_role" string="User Role">
+              <field name="name" required="1"/>
+              <field name="rs_create_date" readonly="1"/>
+              <field name="rs_user_id" readonly="1"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- role tree view -->
+    <record id="rs_user_role_view_tree" model="ir.ui.view">
+      <field name="name">user.role.tree</field>
+      <field name="model">rs.user.role</field>
+      <field name="arch" type="xml">
+        <tree string="User Role">
+          <field name="name"/>
+          <field name="rs_create_date" readonly="1"/>
+          <field name="rs_user_id" readonly="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Role Action view -->
+    <record id="rs_user_role_action_form_view" model="ir.actions.act_window">
+      <field name="name">User Role</field>
+      <field name="res_model">rs.user.role</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <field name="view_id" ref="rs_user_role_view_tree"/>
+        <p class="oe_view_nocontent_create">
+          <!-- Add Text Here -->
+          Click to add a new User Role.
+        </p>
+        <p>
+          <!-- More details about what a user can do -->
+        </p>
+      </field>
+    </record>
+
+    <!-- <menuitem id="main_menu_user_config" 
+      name="User Configuration" 
+      parent="stock.menu_stock_root" 
+      sequence="50"/> -->
+
+    <menuitem id="new_menu_user_role" 
+      name="User Role" 
+      parent="rn_vehical_class.main_vehical_class" 
+      action="rs_user_role_action_form_view"/>
+
+
+      <!-- User Role in user object -->
+
+         <record id="inherit_view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='sel_groups_1_9_10']" position="after">
+                  
+                    <separator string="Roles" colspan="2" groups="  base.group_no_one"/>
+                      <group>
+                      <field name="rs_user_role" groups="base.group_no_one"/></group>
+                      <group>
+                      <field name="rs_user_id" string="Report To" groups="base.group_no_one"/>
+                    </group>
+                </xpath> -->
+
+                <!-- hide button from user section  -->
+                <xpath expr="//button[@name='action_show_groups']" position="attributes">
+                  <attribute name="invisible">True</attribute>
+
+                </xpath>
+                <xpath expr="//button[@name='action_show_accesses']" position="attributes">
+                  <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='action_show_rules']" position="attributes">
+                  <attribute name="invisible">True</attribute>
+                </xpath>
+
+
+                <xpath expr="//field[@name='login']" position="after">
+                  <group col="4">
+                  <field name="rs_employee" attrs="{'invisible': [('rs_promoter', '=', True)]}"/>
+                  <field name="rs_promoter" attrs="{'invisible': [('rs_employee', '=', True)]}"/>
+                      <field name="rs_partner_name"/>
+                </group>
+                </xpath>
+                <xpath expr="//field[@name='action_id']" position="after">
+                  <field name="rs_access"/>
+                </xpath>
+
+                 <!-- <xpath expr="//page[@name='access_rights']" position="attributes">
+                  <attribute name="invisible">['rs_promoter','=',True]</attribute>
+                </xpath> -->
+                 <xpath expr="//div/label[@for='login']" position="attributes">
+                  <attribute name="string">Lapu No</attribute>
+                </xpath>
+                <xpath expr="//div/label[@for='name']" position="attributes">
+                  <attribute name="string">Employee / Promoter Name</attribute>
+                </xpath>
+
+                <xpath expr="//page[@name='access_rights']" position="before">
+                    <page string="Employee Details"
+                          attrs="{'invisible': [('rs_employee', '=', False)]}">
+                        <separator string="Managers" colspan="2"
+                                   groups=" base.group_no_one"
+                                   attrs="{'invisible':[('rs_designation','=','em')]}"/>
+                        <group>
+                            <group colspan="2">
+                                <group>
+                                     <field name="rs_em"
+                                           attrs="{'invisible':[('rs_designation','=','em')]}"/>
+                                </group>
+                                <group>
+                                    <field name="rs_cm"
+                                           attrs="{'invisible':['|',('rs_designation','=','fastag_mg'),('rs_designation','=','em')]}"/>
+                                </group>
+                            </group>
+                        </group>
+                    <group col="4" string="Employee Details">
+                    <field name="rs_employee_id" attrs="{'required': [('rs_employee', '=', True)]}"/>
+                    <field name="rs_email" placeholder="admin@gmail.com" attrs="{'required': [('rs_employee', '=', True)]}"/>
+                    <field name="rs_designation"/>
+                    <field name="rs_level"/>
+                    <field name="rs_circle" attrs="{'invisible': [('rs_designation','=','em')]}"/>
+                    <field name="rs_pin"/>
+                    <field name="rs_circle_ids" widget="many2many_tags" attrs="{'invisible': [('rs_designation','!=','em')]}"/>
+                    
+                  </group>
+                  <group>
+                    <label for="rs_office_addres" class="oe_edit_only" string="Office Address"/>
+                            <h3><field name="rs_office_addres"/></h3>
+                  </group>
+                  </page>
+                  <!-- promotor details -->
+
+                  <page string="Promoter Details" attrs="{'invisible': [('rs_promoter', '=', False)]}">
+                    <separator string="Access Rights" colspan="2" groups="  base.group_no_one"/>
+                    <group>
+                      <group>
+                      <field name="rs_user_role"/></group>
+                  </group>
+                    <group col="4" string="Promoter Info">
+                    <field name="rs_employee_id" attrs="{'required': [('rs_promoter', '=', True)]}"/>
+                    <field name="rs_lapu_no"/>
+                    <field name="rs_toll_name"/>
+                    <field name="rs_project"/>
+                    <field name="rs_work_city"/>
+                    <field name="rs_agency"/>
+                    <field name="rs_em"/>
+                    <field name="rs_cm"/>
+                    <field name="rs_tl"/>
+                    <field name="rs_circle" options="{'no_create': True, 'no_create_edit':True}"  />
+                    <field name="rs_doj"/>
+                    <field name="rs_designation"/>
+<!--                        <field name="em_circle_custom"/>-->
+<!--                    <field name="rs_sel_group"/>-->
+                    <field name="rs_pin"/>
+                  </group>
+                  <group>
+                    <label for="rs_office_addres" class="oe_edit_only" string="Office Address"/>
+                            <h3><field name="rs_office_addres"/></h3>
+                  </group>
+                  </page>
+                </xpath>
+                <xpath expr="//sheet" position="after">
+<!--                <div class="oe_chatter">-->
+<!--                     <field name="message_follower_ids"/>-->
+<!--                    <field name="activity_ids"/>-->
+<!--                  <field name="message_ids"/>-->
+<!--                   </div>-->
+            </xpath>
+            </field>
+        </record>
+
+      <!--code for getting filter option of enterprise manager in users section-->
+      <record id="view_users_order_inherit_search" model="ir.ui.view">
+          <field name="name">user.search.filter</field>
+          <field name="model">res.users</field>
+          <field name="inherit_id" ref="base.view_users_search"/>
+          <field name="arch" type="xml">
+              <xpath expr="//search" position="inside">
+                  <filter string="EM Manager" name="rs_designation"
+                          domain="[('rs_designation', '=', 'em')]"/>
+                   <filter string="employeer" name="employee"
+                          domain="[('rs_employee_id', '=', 'A1YHHI7237')]"/>
+                  <group expand="0" string="Group By">
+                      <filter string="Designation" name="rs_designation"
+                              context="{'group_by': 'rs_designation'}"/>
+                      <filter string="Circle" name="rs_circle"
+                              context="{'group_by': 'rs_circle'}"/>
+<!--                      <filter name="em_circle" string="EM Circle" domain="[]"-->
+<!--                              context="{'group_by': 'em_circle_custom'}"/>-->
+                  </group>
+                  <!-- <filter string="Total &gt;= 1000" name="total_above_1000" domain="[('amount_total', '&gt;=', 1000)]"/> -->
+              </xpath>
+          </field>
+      </record>
+
+      <record id="res_users_tree_view" model="ir.ui.view">
+            <field name="name">res.users.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="rs_circle"/>
+<!--                    <field name="em_circle_custom"/>-->
+                </xpath>
+            </field>
+      </record>
+          <!-- Record Rule -->
+
+    <record id = "transfer_record_rule_manager_user" model = "ir.rule"> 
+   <field name = "name"> User can see his / her Transfer</field> 
+   <field name = "model_id" ref = "model_stock_picking"/> 
+   <field name = "perm_read" eval = "True" /> 
+   <field name = "perm_write" eval = "True" /> 
+   <field name = "perm_create" eval = "True" /> 
+   <field name = "perm_unlink" eval = "True" /> 
+   <field name = "groups" eval = "[(4, ref ('stock.group_stock_user'))]"/>
+   <field name = "domain_force">['|',('rs_emp_no', '=', user.login),('create_uid', '=', user.id)]</field> 
+</record>
+<record id = "transfer_record_rule_manager" model = "ir.rule"> 
+   <field name = "name"> Manager can see All Transfer</field> 
+   <field name = "model_id" ref = "model_stock_picking"/> 
+   <field name = "perm_read" eval = "True" /> 
+   <field name = "perm_write" eval = "True" /> 
+   <field name = "perm_create" eval = "True" /> 
+   <field name = "perm_unlink" eval = "True" /> 
+   <field name = "groups" eval = "[(4, ref ('stock.group_stock_manager'))]"/>
+   <field name = "domain_force">[(1, '=',1)]</field> 
+</record>
+
+<!-- circle view -->
+
+<record id="rs_circle_view_form" model="ir.ui.view">
+      <field name="name">circle.form</field>
+      <field name="model">rs.circle.name</field>
+      <field name="arch" type="xml">
+        <form string="Circle Name">
+          <sheet>
+            <group>
+            <group string="Circle Name">
+              <field name="name" required="1"/>
+            </group>
+          </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- role tree view -->
+    <record id="rs_circle_role_view_tree" model="ir.ui.view">
+      <field name="name">circle.tree</field>
+      <field name="model">rs.circle.name</field>
+      <field name="arch" type="xml">
+        <tree string="Circle Name">
+          <field name="name"/>
+         
+        </tree>
+      </field>
+    </record>
+
+    <!-- Role Action view -->
+    <record id="rs_circle_action_form_view" model="ir.actions.act_window">
+      <field name="name">Circle Name</field>
+      <field name="res_model">rs.circle.name</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <field name="view_id" ref="rs_circle_role_view_tree"/>
+        <p class="oe_view_nocontent_create">
+          <!-- Add Text Here -->
+          Click to add a new Circle Name.
+        </p>
+        <p>
+          <!-- More details about what a user can do -->
+        </p>
+      </field>
+    </record>
+
+    <menuitem id="new_menu_circle" 
+      name="Circle List" 
+      parent="rn_vehical_class.main_vehical_class" 
+      action="rs_circle_action_form_view"/>
+
+
+  <record id = "view_own_products_user" model = "ir.rule"> 
+   <field name = "name"> User can only see his / her Products</field> 
+   <field name = "model_id" ref = "model_product_template"/> 
+   <field name = "perm_read" eval = "True" /> 
+   <field name = "perm_write" eval = "True" /> 
+   <field name = "perm_create" eval = "True" /> 
+   <field name = "perm_unlink" eval = "True" /> 
+   <field name = "groups" eval = "[(4, ref ('stock.group_stock_user'))]"/>
+   <field name = "domain_force">[('warehouse_emp_no', '=', user.rs_employee_id)]</field> 
+</record>
+
+<record id = "view_all_products_user" model = "ir.rule"> 
+   <field name = "name"> Manager can see all his/her Products</field> 
+   <field name = "model_id" ref = "model_product_template"/> 
+   <field name = "perm_read" eval = "True" /> 
+   <field name = "perm_write" eval = "True" /> 
+   <field name = "perm_create" eval = "True" /> 
+   <field name = "perm_unlink" eval = "True" /> 
+   <field name = "groups" eval = "[(4, ref ('stock.group_stock_manager'))]"/>
+   <field name = "domain_force">[(1, '=',1)]</field> 
+</record>
+  </data>
+</odoo>

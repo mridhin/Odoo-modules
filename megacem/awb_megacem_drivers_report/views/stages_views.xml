@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--report stages tree -->
+        <record id="view_drivers_stages" model="ir.ui.view">
+            <field name="name">drivers.stages.tree</field>
+            <field name="model">report.stages</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="awb_sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="drivers_stages" model="ir.actions.act_window">
+            <field name="name">Report Stages</field>
+            <field name="res_model">report.stages</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Define a new lost reason
+                </p>
+                <p>
+                    Use lost reasons to expla in why an opportunity is lost.
+                </p>
+                <p>
+                    Some examples of lost reasons: "We don't have people/skill", "Price too high"
+                </p>
+            </field>
+        </record>
+        <!-- end report stages tree -->
+    </data>
+</odoo>

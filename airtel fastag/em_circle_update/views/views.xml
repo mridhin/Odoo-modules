@@ -1,0 +1,45 @@
+<odoo>
+  <data>
+    <record id="inyerit_em_circle_view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form.inherit.em</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="rn_vehical_class.inherit_view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='rs_designation']" position="after">
+                    <field name="em_circle_custom"/>
+                    <field name="rs_partner_name"/>
+                </xpath>
+            </field>
+    </record>
+
+      <record id="inherited_em_tree_view" model="ir.ui.view">
+            <field name="name">res.users.inherit.em</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="em_circle_custom"/>
+<!--                    <field name="em_circle_custom"/>-->
+                </xpath>
+            </field>
+      </record>
+
+      <record id="inherited_em_order_inherit_search" model="ir.ui.view">
+          <field name="name">user.search.filter.em</field>
+          <field name="model">res.users</field>
+          <field name="inherit_id" ref="base.view_users_search"/>
+          <field name="arch" type="xml">
+              <xpath expr="//search" position="inside">
+
+                  <group expand="0" string="Group By">
+
+                      <filter name="em_circle" string="EM Circle" domain="[]"
+                              context="{'group_by': 'em_circle_custom'}"/>
+                  </group>
+                  <!-- <filter string="Total &gt;= 1000" name="total_above_1000" domain="[('amount_total', '&gt;=', 1000)]"/> -->
+              </xpath>
+          </field>
+      </record>
+  </data>
+</odoo>

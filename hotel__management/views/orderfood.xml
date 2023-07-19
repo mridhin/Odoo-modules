@@ -1,0 +1,186 @@
+<odoo>
+    <record model="ir.ui.view" id="hotel_tree_order">
+        <field name="name">Orders</field>
+        <field name="model">hotel.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="guest_name"/>
+                <field name="time"/>
+                <field name="category_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hotel_food_search">
+        <field name="name">food</field>
+        <field name="model">hotel.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hotel_form_order">
+        <field name="name">order food</field>
+        <field name="model">hotel.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>
+                        <field name="name1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="guest_name"/>
+                            <!--<field name="food_ids" domain="[('breakfast', '=', True)]" attrs="{'invisible': [('category','!=','breakfast')]}"/>
+                         -->
+                        </group>
+                        <group>
+                            <field name="time"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+
+                        <page string="Menu">
+                            Select Category
+                            <field name="category_ids" widget="many2many_tags"/>
+                            <field name="food_ids">
+                                <kanban>
+                                    <field name="name"/>
+                                    <field name="price"/>
+                                    <field name="image"/>
+                                    <field name="description"/>
+                                    <field name="id1"/>
+                                    <field name="order_id"/>
+                                    <field name="id2"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-attf-class="oe_kanban_global_click">
+                                                <div class="o_kanban_image">
+                                                    <field name="image" widget="image" class="oe_avatar"/>
+                                                </div>
+                                                <div class="oe_kanban_details">
+
+                                                    <strong class="o_kanban_record_title">
+                                                        <b>
+                                                            <field name="name"/>
+
+                                                        </b>
+                                                    </strong>
+
+                                                    <div t-if="record.price.value">
+                                                        Price:
+                                                        <t t-esc="record.price.value"/>
+                                                    </div>
+                                                    <div t-if="record.description.value">
+                                                        <t t-esc="record.description.value"/>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form>
+                                    <sheet>
+                                        <header>
+                                            <field name="state" widget="statusbar"/>
+                                        </header>
+                                        <field name="image" widget="image" class="oe_avatar"/>
+                                        <group>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="quantity"/>
+                                                <field name="sub_total_price" invisible="1"/>
+                                                <field name="notes"/>
+                                                <field name="id1" invisible="1"/>
+                                                <field name="id2" invisible="1"/>
+
+                                                <button name='action_add_to_list' type='object' string='Add to List'
+                                                        class="oe_highlight"/>
+
+
+                                            </group>
+                                        </group>
+
+
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Order List">
+                            <field name="food_id">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="price"/>
+                                    <field name="sub_total_price" sum="total"/>
+                                </tree>
+
+                            </field>
+
+
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hotel_form_food">
+        <field name="name">order food</field>
+        <field name="model">hotel.food</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <group>
+
+                        <group>
+                            <field name="name"/>
+
+
+                            <field name="price"/>
+
+
+                        </group>
+                        <group>
+                            <field name="category_ids" widget="many2many_tags"/>
+                            <field name="quantity" invisible="1"/>
+                            <field name="sub_total_price" invisible="1"/>
+                            <field name="id1" invisible="1"/>
+
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hotel_tree_food">
+        <field name="name">order food</field>
+        <field name="model">hotel.food</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="name"/>
+                <field name="price"/>
+                <field name="category_ids" widget="many2many_tags"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+</odoo>

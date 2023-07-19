@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="drivers_report_menu_root" name="Drivers Report">
+        <menuitem id="drivers_report_first_level_menu" name="Drivers Report" action="drivers_report_model_action"/>
+        <!--            <menuitem id="drivers_report_model_menu_action" />-->
+        <!--        </menuitem>-->
+    </menuitem>
+
+    <!-- header menu items -->
+
+    <menuitem id="menu_driver_configuration"
+              name="Configuration"
+              parent="awb_megacem_drivers_report.drivers_report_menu_root"
+              sequence="10"/>
+
+    <menuitem id="configurations_Stages"
+              name="Drivers Report Stages"
+              parent="awb_megacem_drivers_report.menu_driver_configuration"
+              action="drivers_stages"
+              sequence="10"/>
+
+    <menuitem id="menu_driver_Destinations"
+              name="Destinations"
+              parent="awb_megacem_drivers_report.menu_driver_configuration"
+              action="drivers_destinations"
+              sequence="20"/>
+
+    <menuitem id="menu_driver_th_number"
+              name="TH Number"
+              parent="awb_megacem_drivers_report.menu_driver_configuration"
+              action="drivers_report_th_number"
+              sequence="30"/>
+
+    <menuitem id="menu_driver_bulk_number"
+              name="Bulk No./Plate No."
+              parent="awb_megacem_drivers_report.menu_driver_configuration"
+              action="drivers_report_bulk_number"
+              sequence="40"/>
+
+    <menuitem id="menu_driver_class"
+              name="Class"
+              parent="awb_megacem_drivers_report.menu_driver_configuration"
+              sequence="50"/>
+
+    <menuitem id="menu_driver_type_of_operation"
+              name="Type Of Operations"
+              parent="awb_megacem_drivers_report.menu_driver_configuration"
+              action="drivers_report_type_of_operation"
+              sequence="60"/>
+
+    <menuitem id="menu_driver_type_of_delivery"
+              name="Type Of Delivery"
+              parent="awb_megacem_drivers_report.menu_driver_configuration"
+              action="drivers_report_type_of_delivery"
+              sequence="70"/>
+
+    <!-- end header menu items -->
+</odoo>
